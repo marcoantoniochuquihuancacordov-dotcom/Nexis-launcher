@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexis Launcher</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    
+    <style>
+        * {margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
+        :root {
+            --bg: #050A12; --card: #0F1724; --input: #12121F;
+            --azul: #60D0FF; --texto: #FFFFFF; --gris: #A0AEC0; --borde: rgba(255,255,255,.1);
+            /* COLORES EXACTOS DE LOS BOTONES ORIGINALES */
+            --btn-fondo-oscuro: #1A2332;
+            --btn-borde: rgba(255,255,255,.08);
+            --btn-gradiente: linear-gradient(135deg, #40C0FF, #60D0FF);
+        }
+        body {background:var(--bg);color:var(--texto);min-height:100vh;}
+        
+        /* Barra de Navegación */
+        nav {
+            background:rgba(5,10,18,.95);border-bottom:1px solid var(--borde);
+            padding:14px 40px;display:flex;justify-content:space-between;align-items:center;
+            position:sticky;top:0;z-index:100;
+        }
+        .logo {
+            font-size:1.3rem;font-weight:800;color:var(--azul);text-decoration:none;
+            display:flex;align-items:center;gap:8px;
+        }
+        .enlaces {display:flex;gap:32px;align-items:center;}
+        .enlaces a {
+            color:var(--gris);text-decoration:none;font-size:.95rem;font-weight:500;
+            transition:color .2s;
+        }
+        .enlaces a:hover {color:var(--texto);}
+
+        /* ==============================================
+           BOTONES — ESTILO EXACTO DE HELLOWORLD / NEXIS
+           ============================================== */
+        .contenedor-botones {display:flex;gap:12px;align-items:center;}
+        
+        /* Botón OSCURO (Iniciar Sesión / Perfil) */
+        .btn {
+            padding:10px 20px;border-radius:8px;border:none;font-size:.9rem;
+            font-weight:600;cursor:pointer;transition:all .25s ease;
+        }
+        .btn-oscuro {
+            background:var(--btn-fondo-oscuro);
+            color:var(--texto);
+            border:1px solid var(--btn-borde);
+        }
+        .btn-oscuro:hover {background:#1F2A3C;transform:translateY(-1px);}
+
+        /* Botón AZUL BRILLANTE (Crear Cuenta / Guardar) */
+        .btn-azul {
+            background:var(--btn-gradiente);
+            color:#000000;
+            font-weight:700;
+        }
+        .btn-azul:hover {transform:translateY(-1px);box-shadow:0 4px 12px rgba(96,208,255,.25);}
+
+        .oculto {display:none !important;}
+
+        /* MODAL */
+        .modal {
+            display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);
+            backdrop-filter:blur(8px);align-items:flex-start;justify-content:center;
+            z-index:200;padding:40px 20px;overflow-y:auto;
+        }
+        .modal.activo {display:flex;}
+        .caja {
+            background:#121526;border:1px solid var(--borde);border-radius:16px;
+            padding:32px;width:100%;max-width:820px;
+            box-shadow:0 8px 32px rgba(0,0,0,.5);position:relative;
+        }
+        .caja-pequeña {max-width:420px;}
+        .caja h2 {font-size:1.5rem;margin-bottom:24px;color:var(--texto);}
+        .cerrar {
+            position:absolute;top:20px;right:24px;font-size:1.5rem;
+            color:var(--gris);cursor:pointer;transition:color .2s;
+        }
+        .cerrar:hover {color:var(--texto);}
+
+        /* FORMULARIOS */
+        .fila {display:flex;gap:20px;flex-wrap:wrap;}
+        .grupo {flex:1;min-width:280px;margin-bottom:16px;}
+        .grupo label {display:block;margin-bottom:8px;font-size:.9rem;color:var(--gris);}
+        .grupo input, .grupo select, .grupo textarea {
+            width:100%;padding:12px 14px;background:var(--input);
+            border:1px solid var(--borde);border-radius:8px;color:var(--texto);
+            font-size:.95rem;outline:none;
+        }
+        .grupo input:focus, .grupo select:focus, .grupo textarea:focus {border-color:var(--azul);}
+        .grupo textarea {resize:none;min-height:100px;}
+        .error {color:#F87171;font-size:.85rem;margin-top:10px;text-align:center;display:none;}
+        .bien {color:#60D0FF;font-size:.85rem;margin-top:10px;text-align:center;display:none;}
+
+        /* PERFIL */
+        .perfil-cabecera {display:flex;gap:24px;margin-bottom:28px;align-items:center;}
+        .avatar {
+            width:120px;height:120px;border-radius:50%;background:var(--input);
+            display:flex;align-items:center;justify-content:center;font-size:2.5rem;
+            color:var(--azul);border:3px solid var(--borde);
+        }
+        .etiquetas {display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;}
+        .etiqueta {
+            padding:6px 12px;background:var(--input);border-radius:20px;
+            font-size:.85rem;border:1px solid var(--borde);cursor:pointer;transition:all .2s;
+        }
+        .etiqueta.seleccionada {background:var(--azul);color:#000;border-color:var(--azul);}
+        .contador {text-align:right;font-size:.8rem;color:var(--gris);margin-top:4px;}
+        .aviso {font-size:.8rem;color:#FBBF24;margin-top:6px;}
+        .botones-abajo {margin-top:24px;display:flex;gap:12px;justify-content:flex-end;}
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo"><i class="bi bi-rocket-takeoff"></i> Nexis Launcher</a>
+        <div class="enlaces">
+            <a href="#">Inicio</a>
+            <a href="#">Noticias</a>
+            <a href="#">Nexis+</a>
+            <a href="#">Más ▾</a>
+        </div>
+
+        <!-- SIN SESIÓN → BOTONES ESTILO ORIGINAL -->
+        <div class="contenedor-botones oculto" id="botonesUsuario">
+            <button class="btn btn-oscuro" onclick="abrirPerfil()"><i class="bi bi-person-circle"></i> <span id="nombreUsuario"></span></button>
+            <button class="btn btn-azul" onclick="salir()">Cerrar Sesión</button>
+        </div>
+        <div class="contenedor-botones" id="botonesEntrar">
+            <button class="btn btn-oscuro" onclick="abrir('modalEntrar')">Iniciar Sesión</button>
+            <button class="btn btn-azul" onclick="abrir('modalCrear')">Crear Cuenta</button>
+        </div>
+    </nav>
+
+    <!-- MODAL: Iniciar Sesión -->
+    <div id="modalEntrar" class="modal">
+        <div class="caja caja-pequeña">
+            <span class="cerrar" onclick="cerrar('modalEntrar')">&times;</span>
+            <h2>Iniciar Sesión</h2>
+            <form id="formEntrar">
+                <div class="grupo">
+                    <label>Correo Electrónico</label>
+                    <input type="email" id="correoEntrar" required>
+                </div>
+                <div class="grupo">
+                    <label>Contraseña</label>
+                    <input type="password" id="passEntrar" required>
+                </div>
+                <div class="error" id="errorEntrar"></div>
+                <div class="bien" id="bienEntrar">¡Bienvenido de nuevo! ✅</div>
+                <button type="submit" class="btn btn-azul" style="width:100%;margin-top:8px;">Ingresar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL: Crear Cuenta -->
+    <div id="modalCrear" class="modal">
+        <div class="caja caja-pequeña">
+            <span class="cerrar" onclick="cerrar('modalCrear')">&times;</span>
+            <h2>Crear Cuenta</h2>
+            <form id="formCrear">
+                <div class="grupo">
+                    <label>Tu Nombre de Jugador</label>
+                    <input type="text" id="nombreCrear" placeholder="Tu nombre en el juego" required>
+                </div>
+                <div class="grupo">
+                    <label>Correo Electrónico</label>
+                    <input type="email" id="correoCrear" required>
+                </div>
+                <div class="grupo">
+                    <label>Contraseña (mínimo 6 caracteres)</label>
+                    <input type="password" id="passCrear" required minlength="6">
+                </div>
+                <div class="error" id="errorCrear"></div>
+                <div class="bien" id="bienCrear">¡Cuenta creada! Completa tu perfil ✅</div>
+                <button type="submit" class="btn btn-azul" style="width:100%;margin-top:8px;">Crear Cuenta</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL: EDITAR PERFIL -->
+    <div id="modalPerfil" class="modal">
+        <div class="caja">
+            <span class="cerrar" onclick="cerrar('modalPerfil')">&times;</span>
+            <h2>Panel de Cuenta</h2>
+
+            <div class="perfil-cabecera">
+                <div class="avatar" id="avatarPerfil">?</div>
+                <div class="perfil-info">
+                    <div class="grupo" style="margin-bottom:8px;">
+                        <label>Nombre de usuario de Minecraft</label>
+                        <input type="text" id="p_nombre" placeholder="Tu nombre de Minecraft">
+                        <p class="aviso">⚠️ Cambiar tu nombre puede hacer que pierdas progreso en servidores.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="fila">
+                <div class="grupo">
+                    <label>País</label>
+                    <select id="p_pais">
+                        <option value="">Selecciona tu país</option>
+                        <option>🇵🇪 Perú</option>
+                        <option>🇪🇸 España</option>
+                        <option>🇲🇽 México</option>
+                        <option>🇦🇷 Argentina</option>
+                        <option>🇨🇱 Chile</option>
+                        <option>🇨🇴 Colombia</option>
+                        <option>🇺🇸 Estados Unidos</option>
+                        <option>🌍 Otro...</option>
+                    </select>
+                </div>
+                <div class="grupo">
+                    <label>Biografía (máx 500 caracteres)</label>
+                    <textarea id="p_biografia" maxlength="500" placeholder="Cuéntanos sobre ti..."></textarea>
+                    <div class="contador" id="contadorBio">0 / 500</div>
+                </div>
+            </div>
+
+            <div class="grupo">
+                <label>Etiquetas de estilo de juego (máximo 5)</label>
+                <div class="etiquetas" id="cajaEtiquetas">
+                    <span class="etiqueta" data-etq="PvP">PvP</span>
+                    <span class="etiqueta" data-etq="PvP Pro">PvP Pro</span>
+                    <span class="etiqueta" data-etq="Constructor">Constructor</span>
+                    <span class="etiqueta" data-etq="Arquitecto">Arquitecto</span>
+                    <span class="etiqueta" data-etq="Supervivencia">Supervivencia</span>
+                    <span class="etiqueta" data-etq="Duro">Duro</span>
+                    <span class="etiqueta" data-etq="Explorador">Explorador</span>
+                    <span class="etiqueta" data-etq="Creativo">Creativo</span>
+                    <span class="etiqueta" data-etq="Socialita">Socialita</span>
+                    <span class="etiqueta" data-etq="Minijuegos">Minijuegos</span>
+                </div>
+            </div>
+
+            <div class="botones-abajo">
+                <button class="btn btn-oscuro" onclick="cerrar('modalPerfil')">Cancelar</button>
+                <button class="btn btn-azul" onclick="guardarPerfil()">💾 Guardar Cambios</button>
+            </div>
+            <div class="bien" id="guardadoOk" style="margin-top:12px;">✅ Perfil guardado correctamente</div>
+        </div>
+    </div>
+
+    <script>
+        // Firebase ya configurado — no tocar
+        const firebaseConfig = {
+            apiKey: "AIzaSyACXEDP5R48HrhxVCyzz8fBGimEIVkY2SM",
+            authDomain: "helloworld-launcher.firebaseapp.com",
+            projectId: "helloworld-launcher",
+            storageBucket: "helloworld-launcher.firebasestorage.app",
+            messagingSenderId: "1088760222656",
+            appId: "1:1088760222656:web:13aefa81bdecdfdf832e25"
+        };
+
+        if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+        let usuarioActual = null;
+        let etiquetasSeleccionadas = [];
+
+        // ABRIR / CERRAR
+        function abrir(id) { document.getElementById(id).classList.add('activo'); }
+        function cerrar(id) {
+            document.getElementById(id).classList.remove('activo');
+            setTimeout(()=>{
+                document.getElementById(id)?.querySelector('form')?.reset();
+                document.querySelectorAll('.error, .bien').forEach(e=>e.style.display='none');
+            },300);
+        }
+        function abrirPerfil() { cargarPerfil(); abrir('modalPerfil'); }
+        document.querySelectorAll('.modal').forEach(m=>{
+            m.addEventListener('click',e=>{if(e.target===m)cerrar(m.id);});
+        });
+
+        // CONTADOR BIOGRAFÍA
+        document.addEventListener('input',e=>{
+            if(e.target.id==='p_biografia'){
+                document.getElementById('contadorBio').textContent = e.target.value.length+' / 500';
+            }
+        });
+
+        // SELECCIONAR ETIQUETAS
+        document.addEventListener('click',e=>{
+            if(e.target.classList.contains('etiqueta')){
+                const etq = e.target.dataset.etq;
+                if(e.target.classList.contains('seleccionada')){
+                    e.target.classList.remove('seleccionada');
+                    etiquetasSeleccionadas = etiquetasSeleccionadas.filter(x=>x!==etq);
+                } else if(etiquetasSeleccionadas.length < 5){
+                    e.target.classList.add('seleccionada');
+                    etiquetasSeleccionadas.push(etq);
+                }
+            }
+        });
+
+        // CREAR CUENTA
+        document.getElementById('formCrear').addEventListener('submit',async e=>{
+            e.preventDefault();
+            const correo = document.getElementById('correoCrear').value.trim();
+            const pass = document.getElementById('passCrear').value;
+            const nombre = document.getElementById('nombreCrear').value.trim();
+            const error = document.getElementById('errorCrear');
+            const bien = document.getElementById('bienCrear');
+            try {
+                const cred = await auth.createUserWithEmailAndPassword(correo,pass);
+                await db.collection('usuarios').doc(cred.user.uid).set({
+                    nombre: nombre, correo: correo, creado: new Date()
+                });
+                bien.style.display='block';
+                setTimeout(()=>{cerrar('modalCrear');abrirPerfil();},1800);
+            } catch(err) {
+                error.textContent='❌ '+traducir(err.code);
+                error.style.display='block';
+            }
+        });
+
+        // INICIAR SESIÓN
+        document.getElementById('formEntrar').addEventListener('submit',async e=>{
+            e.preventDefault();
+            const correo = document.getElementById('correoEntrar').value.trim();
+            const pass = document.getElementById('passEntrar').value;
+            const error = document.getElementById('errorEntrar');
+            const bien = document.getElementById('bienEntrar');
+            try {
+                await auth.signInWithEmailAndPassword(correo,pass);
+                bien.style.display='block';
+                setTimeout(()=>cerrar('modalEntrar'),1500);
+            } catch(err) {
+                error.textContent='❌ '+traducir(err.code);
+                error.style.display='block';
+            }
+        });
+
+        // CARGAR PERFIL
+        async function cargarPerfil(){
+            if(!usuarioActual) return;
+            const doc = await db.collection('usuarios').doc(usuarioActual.uid).get();
+            const datos = doc.exists ? doc.data() : {};
+
+            document.getElementById('p_nombre').value = datos.nombre || '';
+            document.getElementById('p_pais').value = datos.pais || '';
+            document.getElementById('p_biografia').value = datos.biografia || '';
+            document.getElementById('contadorBio').textContent = (datos.biografia||'').length+' / 500';
+            document.getElementById('avatarPerfil').textContent = (datos.nombre||'?')[0].toUpperCase();
+
+            etiquetasSeleccionadas = datos.etiquetas || [];
+            document.querySelectorAll('.etiqueta').forEach(et=>{
+                et.classList.toggle('seleccionada', etiquetasSeleccionadas.includes(et.dataset.etq));
+            });
+        }
+
+        // GUARDAR PERFIL
+        async function guardarPerfil(){
+            if(!usuarioActual) return;
+            const datos = {
+                nombre: document.getElementById('p_nombre').value.trim(),
+                pais: document.getElementById('p_pais').value,
+                biografia: document.getElementById('p_biografia').value,
+                etiquetas: etiquetasSeleccionadas,
+                actualizado: new Date()
+            };
+            await db.collection('usuarios').doc(usuarioActual.uid).set(datos, {merge:true});
+            document.getElementById('nombreUsuario').textContent = datos.nombre || usuarioActual.email.split('@')[0];
+            document.getElementById('avatarPerfil').textContent = (datos.nombre||'?')[0].toUpperCase();
+            document.getElementById('guardadoOk').style.display='block';
+            setTimeout(()=>{document.getElementById('guardadoOk').style.display='none';},3000);
+        }
+
+        // VINCULAR CUENTA AUTOMÁTICAMENTE
+        auth.onAuthStateChanged(async usuario=>{
+            usuarioActual = usuario;
+            if(usuario){
+                document.getElementById('botonesEntrar').classList.add('oculto');
+                document.getElementById('botonesUsuario').classList.remove('oculto');
+                const doc = await db.collection('usuarios').doc(usuario.uid).get();
+                const nombre = doc.exists && doc.data().nombre ? doc.data().nombre : usuario.email.split('@')[0];
+                document.getElementById('nombreUsuario').textContent = nombre;
+            }else{
+                document.getElementById('botonesUsuario').classList.add('oculto');
+                document.getElementById('botonesEntrar').classList.remove('oculto');
+            }
+        });
+
+        function salir(){auth.signOut();}
+        function traducir(cod){
+            const m={
+                'auth/email-already-in-use':'Ese correo ya está registrado',
+                'auth/weak-password':'La contraseña debe tener al menos 6 caracteres',
+                'auth/user-not-found':'No existe esa cuenta',
+                'auth/wrong-password':'Contraseña incorrecta',
+                'auth/invalid-email':'Correo no válido'
+            };
+            return m[cod]||cod;
+        }
+    </script>
+</body>
+</html>
