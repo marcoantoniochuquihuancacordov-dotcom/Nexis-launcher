@@ -229,8 +229,8 @@
         <nav>
             <div class="logo">Nexis Launcher</div>
             <div class="nav-buttons">
-                <!-- ⬇️ DESCARGA RÁPIDA → TU INSTALADOR DIRECTO -->
-                <a href="TU_ENLACE_DE_DESCARGA_AQUI" class="btn btn-download-fast">⚡ Descarga rápida</a>
+                <!-- ⬇️ DESCARGA RÁPIDA → TU LAUNCHER DIRECTO -->
+                <a href="https://github.com/Abeloskyyy/Nexis-Launcher/archive/refs/heads/main.zip" class="btn btn-download-fast" download>⚡ Descarga rápida</a>
                 <a href="#descargar" class="btn btn-primary">Descargar >></a>
                 <a href="#sesion" class="btn btn-login">Iniciar Sesión</a>
             </div>
@@ -243,8 +243,8 @@
                 <p>Nexis es un Launcher de Minecraft que se enfoca en la seguridad, rapidez, eficacia y adaptación a cualquier usuario que quiera usarlo. Gracias a sus funcionalidades, Nexis consigue posicionarse entre los mejores Launchers del mercado.</p>
                 
                 <div class="hero-buttons">
-                    <!-- ⬇️ DESCARGA RÁPIDA PRINCIPAL → TU INSTALADOR -->
-                    <a href="TU_ENLACE_DE_DESCARGA_AQUI" class="btn btn-download-fast">⚡ Descarga rápida</a>
+                    <!-- ⬇️ DESCARGA RÁPIDA PRINCIPAL → TU LAUNCHER -->
+                    <a href="https://github.com/Abeloskyyy/Nexis-Launcher/archive/refs/heads/main.zip" class="btn btn-download-fast" download>⚡ Descarga rápida</a>
                     <a href="#descargar" class="btn btn-primary">Descargar >></a>
                     <a href="#sesion" class="btn btn-login">Iniciar Sesión</a>
                 </div>
@@ -292,10 +292,10 @@
         </section>
 
         <!-- 🔹 SECCIÓN DESCARGA -->
-        <section style="margin-top: 6rem; text-align: center; padding: 3rem; background: linear-gradient(135deg, #1e293b, #0f172a); border-radius: 16px;">
+        <section id="descargar" style="margin-top: 6rem; text-align: center; padding: 3rem; background: linear-gradient(135deg, #1e293b, #0f172a); border-radius: 16px;">
             <h2 style="font-size: 2.2rem; margin-bottom: 1.5rem;">¿Listo para usar Nexis Launcher?</h2>
             <p style="color: #cbd5e1; margin-bottom: 2rem; font-size: 1.1rem;">¡Descarga Nexis Launcher ahora y empieza a jugar!</p>
-            <a href="TU_ENLACE_DE_DESCARGA_AQUI" class="btn btn-download-fast" style="font-size: 1.2rem; padding: 1rem 2.5rem;">⚡ Descargar Gratis</a>
+            <a href="https://github.com/Abeloskyyy/Nexis-Launcher/archive/refs/heads/main.zip" class="btn btn-download-fast" download style="font-size: 1.2rem; padding: 1rem 2.5rem;">⚡ Descargar Gratis</a>
         </section>
 
         <!-- 🔹 PIE DE PÁGINA -->
@@ -308,7 +308,6 @@
     <!-- ⚡ CÓDIGO PARA QUE LOS BOTONES SIEMPRE ESTÉN VISIBLES -->
     <script>
         // Los botones se mantienen siempre visibles sin importar la sesión
-        // Cuando el usuario inicie sesión, puedes cambiar el texto de "Iniciar Sesión" por su nombre
         function actualizarBotonSesion(nombreUsuario) {
             const boton = document.querySelector('.btn-login');
             if (nombreUsuario) {
