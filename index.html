@@ -87,15 +87,14 @@
         .btn-descarga:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(127, 255, 0, 0.35); }
         section { max-width: 1200px; margin: 0 auto; padding: 3rem 2rem; }
         section h2 { font-size: 2rem; margin-bottom: 2rem; color: #7fff00; }
-        .features-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;
+        .feature-item {
+            margin-bottom: 1.8rem; padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(127,255,0,0.15);
         }
-        .feature-card {
-            background: rgba(255,255,255,0.05); padding: 1.8rem; border-radius: 12px;
-            border: 1px solid rgba(127,255,0,0.15); transition: all 0.3s;
+        .feature-item h3 {
+            color: #7fff00; font-size: 1.2rem; margin-bottom: 0.5rem;
         }
-        .feature-card:hover { border-color: #7fff00; transform: translateY(-5px); }
-        .feature-card h3 { color: #7fff00; margin-bottom: 0.8rem; }
+        .feature-item p { color: #ddd; line-height: 1.7; font-size: 1.05rem; }
         footer {
             text-align: center; padding: 2.5rem; color: #888;
             border-top: 1px solid rgba(255,255,255,0.08); margin-top: 3rem;
@@ -127,7 +126,6 @@
     </style>
 </head>
 <body>
-
     <nav class="navbar">
         <div class="nav-container">
             <a href="#" class="logo">Nexis Launcher</a>
@@ -165,31 +163,35 @@
 
     <section id="caracteristicas" class="features">
         <h2>Características Principales</h2>
-        <div class="features-grid">
-            <div class="feature-card">
-                <h3>⚡ Rápido y Ligero</h3>
-                <p>Se inicia en segundos y consume muy pocos recursos del sistema.</p>
-            </div>
-            <div class="feature-card">
-                <h3>📦 Instalación de Mods</h3>
-                <p>Instala y gestiona mods de forma sencilla directamente desde el launcher.</p>
-            </div>
-            <div class="feature-card">
-                <h3>👤 Perfiles Personalizados</h3>
-                <p>Crea perfiles con su propia configuración, versión, mods y memoria RAM.</p>
-            </div>
-            <div class="feature-card">
-                <h3>🔒 Privacidad Primero</h3>
-                <p>Sin rastreadores, sin telemetría, sin recolección de datos.</p>
-            </div>
-            <div class="feature-card">
-                <h3>🖥️ Para PCs de Bajos Recursos</h3>
-                <p>Optimizado para funcionar fluido en equipos modestos.</p>
-            </div>
-            <div class="feature-card">
-                <h3>🔑 Cuenta Microsoft / Offline</h3>
-                <p>Inicia sesión con tu cuenta oficial o usa modo sin conexión.</p>
-            </div>
+        
+        <div class="feature-item">
+            <h3>1. ⚡ Rápido y Ligero</h3>
+            <p>Se inicia en segundos y consume muy pocos recursos del sistema. El launcher no carga cosas innecesarias, por eso arranca veloz y funciona suave incluso en equipos modestos.</p>
+        </div>
+
+        <div class="feature-item">
+            <h3>2. 📦 Instalación de Mods</h3>
+            <p>Instala y gestiona mods de forma sencilla directamente desde el launcher. No necesitas mover archivos manualmente ni buscar carpetas complicadas: todo se gestiona desde la interfaz.</p>
+        </div>
+
+        <div class="feature-item">
+            <h3>3. 👤 Perfiles Personalizados</h3>
+            <p>Crea perfiles con su propia configuración: versión del juego, mods instalados, memoria RAM asignada, resolución de pantalla y más. Cada perfil se guarda por separado según lo que necesites.</p>
+        </div>
+
+        <div class="feature-item">
+            <h3>4. 🔒 Privacidad Primero</h3>
+            <p>Sin rastreadores, sin telemetría, sin recolección de datos. El launcher no envía tu información personal a ningún servidor. Tus datos y configuraciones se quedan únicamente en tu computadora.</p>
+        </div>
+
+        <div class="feature-item">
+            <h3>5. 🖥️ Para PCs de Bajos Recursos</h3>
+            <p>Optimizado para funcionar fluido en equipos modestos y computadoras con pocos recursos. No exige componentes costosos ni tarjetas gráficas potentes, así cualquiera puede jugar sin problemas.</p>
+        </div>
+
+        <div class="feature-item" style="border-bottom: none;">
+            <h3>6. 🔑 Cuenta Microsoft / Offline</h3>
+            <p>Inicia sesión con tu cuenta oficial de Microsoft si tienes Minecraft comprado, o usa el modo sin conexión para jugar sin necesidad de cuenta ni de estar conectado a internet.</p>
         </div>
     </section>
 
