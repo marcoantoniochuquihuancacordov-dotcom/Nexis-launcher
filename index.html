@@ -3,319 +3,329 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexis Launcher — El Launcher de Minecraft optimizado</title>
+    <title>Nexis Launcher — Inicio</title>
+    <meta name="description" content="Nexis Launcher — El Launcher de Minecraft optimizado, ligero, gratuito y sin bloatware.">
+    
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <!-- Estilos -->
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
         body {
-            background-color: #0f172a;
-            color: #ffffff;
-            line-height: 1.6;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            min-height: 100vh;
         }
-
-        .container {
-            max-width: 1400px;
+        /* Barra de Navegación */
+        nav.navbar {
+            background: rgba(5, 16, 0, 0.7);
+            padding: 1.5rem 0;
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav-container {
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem;
-        }
-
-        /* Barra de navegación con botones PERMANENTES */
-        nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.5rem 0;
-            margin-bottom: 3rem;
+            padding: 0 2rem;
         }
-
         .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #38bdf8;
-        }
-
-        .nav-buttons {
-            display: flex;
-            gap: 1rem;
-        }
-
-        /* ESTILO DE BOTONES — SIEMPRE VISIBLES */
-        .btn {
-            padding: 0.8rem 1.5rem;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            border: none;
-            transition: all 0.3s ease;
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #7fff00;
             text-decoration: none;
-            display: inline-block;
         }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #38bdf8, #0ea5e9);
-            color: #000;
+        .nav-links a {
+            color: #ccc;
+            text-decoration: none;
+            margin-left: 2rem;
+            font-weight: 500;
+            transition: color 0.3s;
         }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 20px rgba(56, 189, 248, 0.4);
+        .nav-links a:hover, .nav-links a.active {
+            color: #7fff00;
         }
-
-        .btn-secondary {
-            background-color: #1e293b;
-            color: #fff;
-            border: 1px solid #334155;
+        a.discord-float {
+            background: #5865F2;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s;
         }
-
-        .btn-secondary:hover {
-            background-color: #334155;
+        a.discord-float:hover {
+            transform: scale(1.05);
         }
-
-        .btn-download-fast {
-            background: linear-gradient(135deg, #22c55e, #16a34a);
-            color: #fff;
-        }
-
-        .btn-download-fast:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 20px rgba(34, 197, 94, 0.4);
-        }
-
-        .btn-login {
-            background-color: transparent;
-            color: #38bdf8;
-            border: 2px solid #38bdf8;
-        }
-
-        .btn-login:hover {
-            background-color: #38bdf8;
-            color: #000;
-        }
-
-        /* Sección principal */
-        .hero {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            min-height: 70vh;
-        }
-
-        .hero-text h1 {
-            font-size: 3.5rem;
-            line-height: 1.2;
-            margin-bottom: 2rem;
-        }
-
-        .hero-text h1 span {
-            color: #38bdf8;
-        }
-
-        .hero-text p {
-            font-size: 1.15rem;
-            color: #cbd5e1;
-            margin-bottom: 2.5rem;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin-bottom: 2rem;
-        }
-
-        .hero-image {
-            background: linear-gradient(135deg, #1e293b, #0f172a);
-            border-radius: 16px;
-            padding: 1rem;
-            border: 1px solid #334155;
-        }
-
-        .compatible {
-            margin-top: 2rem;
-            color: #94a3b8;
-            font-size: 0.95rem;
-        }
-
-        /* Sección de características */
-        .features {
-            margin-top: 6rem;
-        }
-
-        .features h2 {
+        /* Sección Principal */
+        header.hero {
+            padding: 5rem 2rem;
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
         }
-
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, #7fff00, #39ff14);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2.5rem;
+            color: #d0d0d0;
+            line-height: 1.6;
+        }
+        .btn-descarga {
+            background: linear-gradient(90deg, #7fff00, #39ff14);
+            color: #000;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .btn-descarga:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(127, 255, 0, 0.35);
+        }
+        /* Secciones */
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+        section h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #7fff00;
+        }
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.5rem;
         }
-
         .feature-card {
-            background-color: #1e293b;
-            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.8rem;
             border-radius: 12px;
-            border: 1px solid #334155;
+            border: 1px solid rgba(127, 255, 0, 0.15);
+            transition: all 0.3s;
         }
-
+        .feature-card:hover {
+            border-color: #7fff00;
+            transform: translateY(-5px);
+        }
         .feature-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            color: #7fff00;
+            margin-bottom: 0.8rem;
         }
-
-        .feature-card p, .feature-card ul {
-            color: #cbd5e1;
-            font-size: 0.95rem;
-        }
-
-        .feature-card ul {
-            list-style: none;
-            margin-top: 0.5rem;
-        }
-
-        .feature-card li {
-            margin-bottom: 0.3rem;
-        }
-
-        .feature-card li::before {
-            content: "✅ ";
-        }
-
-        .feature-blue {
-            background: linear-gradient(135deg, #0369a1, #0284c7);
-        }
-
         /* Pie de página */
         footer {
-            margin-top: 6rem;
             text-align: center;
-            padding: 2rem;
-            color: #64748b;
-            border-top: 1px solid #1e293b;
+            padding: 2.5rem;
+            color: #888;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            margin-top: 3rem;
         }
-
-        /* Responsivo */
-        @media (max-width: 900px) {
-            .hero {
-                grid-template-columns: 1fr;
-            }
-            .hero-text h1 {
-                font-size: 2.5rem;
-            }
-            nav {
-                flex-direction: column;
-                gap: 1rem;
-            }
+        /* Botón flotante Ko-fi */
+        a.kofi-float {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #13c3ff;
+            color: white;
+            padding: 0.7rem 1.2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 50;
+        }
+        /* Modales ocultos por defecto */
+        div[id$="Modal"], div[id$="Overlay"] {
+            display: none;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
+    <!-- Capa de Notificación / Carga -->
+    <div id="authLoaderOverlay" style="position: fixed; inset: 0; background: rgba(15, 12, 41, 0.85); z-index: 9999; display: none; flex-direction: column; align-items: center; justify-content: center; color: white; transition: opacity 0.3s;"></div>
 
-        <!-- 🔹 BARRA DE NAVEGACIÓN — BOTONES SIEMPRE VISIBLES -->
-        <nav>
-            <div class="logo">Nexis Launcher</div>
-            <div class="nav-buttons">
-                <!-- ⬇️ DESCARGA RÁPIDA → TU LAUNCHER DIRECTO -->
-                <a href="https://github.com/Abeloskyyy/Nexis-Launcher/archive/refs/heads/main.zip" class="btn btn-download-fast" download>⚡ Descarga rápida</a>
-                <a href="#descargar" class="btn btn-primary">Descargar >></a>
-                <a href="#sesion" class="btn btn-login">Iniciar Sesión</a>
+    <!-- Barra de Navegación -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">Nexis Launcher</a>
+            <div class="nav-links">
+                <a href="#inicio" class="active">Inicio</a>
+                <a href="#caracteristicas">Características</a>
+                <a href="#capturas">Capturas</a>
+                <a href="#descargar">Descargar</a>
+                <a href="#acerca">Acerca de</a>
             </div>
-        </nav>
+            <a href="https://discord.gg/nexis-launcher" target="_blank" class="discord-float">
+                <i class="bi bi-discord"></i> Discord
+            </a>
+        </div>
+    </nav>
 
-        <!-- 🔹 SECCIÓN PRINCIPAL -->
-        <section class="hero">
-            <div class="hero-text">
-                <h1>El Launcher de Minecraft <span>optimizado</span></h1>
-                <p>Nexis es un Launcher de Minecraft que se enfoca en la seguridad, rapidez, eficacia y adaptación a cualquier usuario que quiera usarlo. Gracias a sus funcionalidades, Nexis consigue posicionarse entre los mejores Launchers del mercado.</p>
-                
-                <div class="hero-buttons">
-                    <!-- ⬇️ DESCARGA RÁPIDA PRINCIPAL → TU LAUNCHER -->
-                    <a href="https://github.com/Abeloskyyy/Nexis-Launcher/archive/refs/heads/main.zip" class="btn btn-download-fast" download>⚡ Descarga rápida</a>
-                    <a href="#descargar" class="btn btn-primary">Descargar >></a>
-                    <a href="#sesion" class="btn btn-login">Iniciar Sesión</a>
-                </div>
+    <!-- Sección Principal -->
+    <header class="hero" id="inicio">
+        <h1>Bienvenido a Nexis Launcher</h1>
+        <p>El Launcher de Minecraft: Java Edition gratuito, ligero, sin publicidad y sin bloatware. Descarga, instala y gestiona tus versiones, mods y perfiles con total libertad.</p>
+        <button class="btn-descarga" onclick="descargarLauncher()">
+            <i class="bi bi-download"></i> Descargar Nexis Launcher
+        </button>
+    </header>
 
-                <div class="compatible">
-                    ✅ Compatible con Windows 7-11, macOS, Linux y Android.
-                </div>
+    <!-- Sección de Características -->
+    <section id="caracteristicas" class="features">
+        <h2>Características Principales</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>⚡ Rápido y Ligero</h3>
+                <p>Se inicia en segundos y consume muy pocos recursos del sistema.</p>
             </div>
-
-            <div class="hero-image">
-                <img src="imagen-de-tu-launcher.png" alt="Nexis Launcher" style="width:100%; border-radius:8px;">
+            <div class="feature-card">
+                <h3>📦 Instalación de Mods</h3>
+                <p>Instala y gestiona mods de forma sencilla directamente desde el launcher.</p>
             </div>
-        </section>
-
-        <!-- 🔹 CARACTERÍSTICAS -->
-        <section class="features">
-            <h2>¿Por qué Nexis?</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <h3>⚡ Rapidez</h3>
-                    <p>Nexis cuenta con la mayor velocidad de inicio. Eliminando todos los archivos basura para realizar sus funciones limpia y eficazmente.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>👤 Cuentas</h3>
-                    <p>Soporte oficial para cualquier tipo de cuenta. Podrás iniciar sesión y vincular tu cuenta con total facilidad.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>🗄️ Instancias</h3>
-                    <p>Sistema de instancias único, para poder instalar modpacks y aislar versiones sin conflictos.</p>
-                </div>
-                <div class="feature-card feature-blue">
-                    <h3>≡ Versiones</h3>
-                    <p>Desde la 1.0 hasta la más reciente, incluyendo snapshots, betas y alphas. Compatibilidad con Forge, Fabric, Quilt, NeoForge, LegacyFabric y OptiFine integrados.</p>
-                    <ul>
-                        <li>Todas las versiones + snapshots</li>
-                        <li>Forge, Fabric, Quilt, NeoForge</li>
-                        <li>OptiFine integrado</li>
-                    </ul>
-                </div>
-                <div class="feature-card">
-                    <h3>🎵 Sistema de música</h3>
-                    <p>Escucha música mientras juegas. Búsqueda directa desde YouTube, listas de reproducción y más.</p>
-                </div>
+            <div class="feature-card">
+                <h3>👤 Perfiles Personalizados</h3>
+                <p>Crea perfiles con su propia configuración, versión, mods y memoria RAM.</p>
             </div>
-        </section>
+            <div class="feature-card">
+                <h3>🔒 Privacidad Primero</h3>
+                <p>Sin rastreadores, sin telemetría, sin recolección de datos.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🖥️ Para PCs de Bajos Recursos</h3>
+                <p>Optimizado para funcionar fluido en equipos modestos.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🔑 Cuenta Microsoft / Offline</h3>
+                <p>Inicia sesión con tu cuenta oficial o usa modo sin conexión.</p>
+            </div>
+        </div>
+    </section>
 
-        <!-- 🔹 SECCIÓN DESCARGA -->
-        <section id="descargar" style="margin-top: 6rem; text-align: center; padding: 3rem; background: linear-gradient(135deg, #1e293b, #0f172a); border-radius: 16px;">
-            <h2 style="font-size: 2.2rem; margin-bottom: 1.5rem;">¿Listo para usar Nexis Launcher?</h2>
-            <p style="color: #cbd5e1; margin-bottom: 2rem; font-size: 1.1rem;">¡Descarga Nexis Launcher ahora y empieza a jugar!</p>
-            <a href="https://github.com/Abeloskyyy/Nexis-Launcher/archive/refs/heads/main.zip" class="btn btn-download-fast" download style="font-size: 1.2rem; padding: 1rem 2.5rem;">⚡ Descargar Gratis</a>
-        </section>
+    <!-- Sección de Capturas -->
+    <section id="capturas" class="screenshots">
+        <h2>Capturas de Pantalla</h2>
+        <p style="color:#aaa;">Próximamente...</p>
+    </section>
 
-        <!-- 🔹 PIE DE PÁGINA -->
-        <footer>
-            <p>Nexis Launcher © 2026 — Todos los derechos reservados</p>
-        </footer>
+    <!-- Sección de Descarga -->
+    <section id="descargar" class="faq-section">
+        <h2>Descargar</h2>
+        <p style="color:#d0d0d0; margin-bottom:1rem;">Pulsa el botón de arriba para descargar el instalador de Nexis Launcher para Windows.</p>
+        <ul style="color:#bbb; line-height:1.8;">
+            <li>✅ Instalador oficial para Windows</li>
+            <li>✅ Sin programas adicionales</li>
+            <li>✅ Código abierto y gratuito</li>
+            <li>⚠️ Requiere Java 17 o superior</li>
+        </ul>
+    </section>
 
+    <!-- Pie de página -->
+    <footer id="acerca">
+        <p><strong>Nexis Launcher</strong> — Launcher de Minecraft: Java Edition gratuito y de código abierto.</p>
+        <p style="margin-top:0.5rem; font-size:0.9rem;">Basado en HelloWorld Launcher · © 2026 Nexis Launcher</p>
+    </footer>
+
+    <!-- Botón flotante de Apoyo -->
+    <a href="https://ko-fi.com/tuusuario" target="_blank" class="kofi-float" title="Apóyanos en Ko-fi">☕ Apóyanos</a>
+
+    <!-- Botón y Modal de Reseña -->
+    <button id="reviewBtn" class="review-float-btn" title="Dejar una Reseña" style="position: fixed; bottom: 2rem; left: 2rem; background: #ffc107; color: #000; border: none; padding: 0.7rem 1.2rem; border-radius: 50px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.3); z-index: 50;">⭐ Dejar Reseña</button>
+    <div id="reviewModal" class="review-modal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 10000; align-items: center; justify-content: center;">
+        <div style="background: #1a1a2e; padding: 2rem; border-radius: 12px; max-width: 400px; width: 90%;">
+            <h3 style="margin-bottom: 1rem; color: #7fff00;">Deja tu Reseña</h3>
+            <p style="color: #ccc; margin-bottom: 1rem;">Esta sección estará disponible próximamente.</p>
+            <button onclick="cerrarModal()" style="background: #7fff00; color: #000; border: none; padding: 0.6rem 1.2rem; border-radius: 6px; font-weight: 600; cursor: pointer;">Cerrar</button>
+        </div>
     </div>
 
-    <!-- ⚡ CÓDIGO PARA QUE LOS BOTONES SIEMPRE ESTÉN VISIBLES -->
+    <!-- Modales de Autenticación y Cuenta (ocultos por ahora) -->
+    <div id="authModal" class="review-modal"></div>
+    <div id="accountDashboardModal" class="review-modal"></div>
+    <div id="cropperModal" class="review-modal"></div>
+    <div id="firebaseModal" class="review-modal" style="z-index: 20000;"></div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+    <!-- Script Principal -->
     <script>
-        // Los botones se mantienen siempre visibles sin importar la sesión
-        function actualizarBotonSesion(nombreUsuario) {
-            const boton = document.querySelector('.btn-login');
-            if (nombreUsuario) {
-                boton.textContent = nombreUsuario;
-                boton.href = "#cuenta";
-            }
+        // === Configuración de Firebase ===
+        // Puedes configurarla después desde tu consola de Firebase
+        const firebaseConfig = {
+            apiKey: "",
+            authDomain: "",
+            projectId: "",
+            storageBucket: "",
+            messagingSenderId: "",
+            appId: ""
+        };
+
+        // Inicializar Firebase si está configurado
+        if (firebaseConfig.apiKey) {
+            firebase.initializeApp(firebaseConfig);
+            console.log("✅ Firebase inicializado");
+        } else {
+            console.log("ℹ️ Firebase sin configurar — inicio de sesión desactivado temporalmente");
         }
+
+        // === Funciones ===
+        function descargarLauncher() {
+            alert("📦 Descargando instalador de Nexis Launcher...\n\n(Enlaza aquí tu archivo de descarga cuando lo tengas listo)");
+            // Ejemplo: window.location.href = "/descargas/Nexis-Launcher-Installer.exe";
+        }
+
+        // Modal de reseña
+        const reviewBtn = document.getElementById('reviewBtn');
+        const reviewModal = document.getElementById('reviewModal');
+        if (reviewBtn && reviewModal) {
+            reviewBtn.addEventListener('click', () => {
+                reviewModal.style.display = 'flex';
+            });
+        }
+        function cerrarModal() {
+            document.getElementById('reviewModal').style.display = 'none';
+        }
+
+        // Navegación suave
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', e => {
+                document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+                link.classList.add('active');
+            });
+        });
+
+        console.log("✅ Nexis Launcher — Página cargada correctamente");
     </script>
 
+    <!-- Google reCAPTCHA (desactivado por ahora) -->
+    <!-- <script src="https://www.google.com/recaptcha/api.js?render=explicit" async defer></script> -->
 </body>
 </html>
