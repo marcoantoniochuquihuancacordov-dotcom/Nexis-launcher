@@ -3,116 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexis Launcher — Inicio</title>
-    <meta name="description" content="Nexis Launcher — El Launcher de Minecraft optimizado, ligero, gratuito y sin bloatware.">
+    <title>Nexis Launcher — Minecraft sin complicaciones</title>
+    <meta name="description" content="Nexis Launcher: Launcher de Minecraft Java y Bedrock gratuito, ligero, sin publicidad. Descarga versiones, mods y gestiona perfiles fácilmente.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --verde: #7fff00;
+            --verde-oscuro: #39ff14;
+            --fondo-1: #0f0c29;
+            --fondo-2: #302b63;
+            --fondo-3: #24243e;
+            --tarjeta: rgba(127, 255, 0, 0.05);
+            --borde: rgba(127, 255, 0, 0.2);
+        }
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            background: linear-gradient(135deg, var(--fondo-1), var(--fondo-2), var(--fondo-3));
             color: #fff;
             min-height: 100vh;
+            line-height: 1.6;
         }
-        nav.navbar {
+        .contenedor { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+        /* === NAVEGACIÓN === */
+        nav {
             background: rgba(5, 16, 0, 0.7);
-            padding: 1.5rem 0;
+            padding: 1.2rem 0;
             backdrop-filter: blur(12px);
             position: sticky;
             top: 0;
             z-index: 100;
+            border-bottom: 1px solid rgba(127,255,0,0.1);
         }
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
+        .nav-wrap {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 2rem;
             flex-wrap: wrap;
+            gap: 1rem;
         }
         .logo {
             font-size: 1.6rem;
             font-weight: 800;
-            color: #7fff00;
+            color: var(--verde);
             text-decoration: none;
         }
-        .nav-links { display: flex; align-items: center; gap: 2rem; }
-        .nav-links a {
+        .nav-enlaces { display: flex; gap: 2rem; align-items: center; flex-wrap: wrap; }
+        .nav-enlaces a {
             color: #ccc; text-decoration: none; font-weight: 500; transition: color 0.3s;
         }
-        .nav-links a:hover, .nav-links a.active { color: #7fff00; }
-        .auth-buttons { display: flex; gap: 0.8rem; align-items: center; }
-        .btn-iniciar {
-            background: transparent; color: #7fff00; border: 2px solid #7fff00;
-            padding: 0.5rem 1.2rem; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.3s;
-        }
-        .btn-iniciar:hover { background: #7fff00; color: #000; }
-        .btn-registrar {
-            background: linear-gradient(90deg, #7fff00, #39ff14); color: #000; border: none;
-            padding: 0.5rem 1.2rem; border-radius: 8px; font-weight: 700; cursor: pointer; transition: transform 0.3s;
-        }
-        .btn-registrar:hover { transform: scale(1.05); }
-        .usuario-info { display: none; align-items: center; gap: 0.8rem; }
-        .usuario-nombre { color: #7fff00; font-weight: 600; }
-        .btn-salir {
-            background: #ff4444; color: white; border: none;
-            padding: 0.4rem 1rem; border-radius: 6px; cursor: pointer; font-weight: 600;
-        }
-        a.discord-float {
-            background: #5865F2; color: white; padding: 0.6rem 1.2rem;
+        .nav-enlaces a:hover, .nav-enlaces a.activo { color: var(--verde); }
+        .boton-discord {
+            background: #5865F2; color: white; padding: 0.5rem 1.2rem;
             border-radius: 8px; text-decoration: none; font-weight: 600; transition: transform 0.2s;
         }
-        a.discord-float:hover { transform: scale(1.05); }
-        header.hero { padding: 5rem 2rem; text-align: center; }
-        .hero h1 {
-            font-size: 3.5rem; margin-bottom: 1rem;
-            background: linear-gradient(90deg, #7fff00, #39ff14);
+        .boton-discord:hover { transform: scale(1.05); }
+
+        /* === HERO / BIENVENIDA === */
+        header { padding: 4rem 2rem; text-align: center; }
+        header h1 {
+            font-size: 3.2rem; margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--verde), var(--verde-oscuro));
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
-        .hero p {
-            font-size: 1.2rem; max-width: 800px; margin: 0 auto 2.5rem;
-            color: #d0d0d0; line-height: 1.6;
+        header p {
+            font-size: 1.15rem; max-width: 750px; margin: 0 auto 2.5rem;
+            color: #d0d0d0;
         }
-        .btn-descarga {
+        .boton-descarga {
             display: inline-block;
-            background: linear-gradient(90deg, #7fff00, #39ff14); color: #000;
-            padding: 1rem 2.5rem; font-size: 1.1rem; font-weight: 700;
-            border-radius: 10px; border: none; cursor: pointer; transition: transform 0.3s, box-shadow 0.3s;
-            text-decoration: none;
+            background: linear-gradient(90deg, var(--verde), var(--verde-oscuro));
+            color: #000; padding: 1rem 2.5rem; font-size: 1.1rem; font-weight: 700;
+            border-radius: 10px; text-decoration: none; transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(127, 255, 0, 0.2);
         }
-        .btn-descarga:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(127, 255, 0, 0.35); }
-        section { max-width: 1200px; margin: 0 auto; padding: 3rem 2rem; }
-        section h2 { font-size: 2rem; margin-bottom: 2rem; color: #7fff00; }
-        .feature-item {
-            margin-bottom: 1.8rem; padding-bottom: 1.5rem;
-            border-bottom: 1px solid rgba(127,255,0,0.15);
+        .boton-descarga:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(127, 255, 0, 0.35);
         }
-        .feature-item h3 {
-            color: #7fff00; font-size: 1.2rem; margin-bottom: 0.5rem;
+
+        /* === SECCIONES GENERALES === */
+        section { padding: 3.5rem 2rem; }
+        section h2 {
+            font-size: 2rem; margin-bottom: 2rem; color: var(--verde);
+            text-align: center;
         }
-        .feature-item p { color: #ddd; line-height: 1.7; font-size: 1.05rem; }
-        .pasos-lista {
-            background: rgba(127, 255, 0, 0.05);
-            border: 1px solid rgba(127, 255, 0, 0.2);
+
+        /* === NOTICIAS === */
+        .noticias { background: rgba(0,0,0,0.15); border-radius: 16px; padding: 3rem 0; }
+        .noticias-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        .noticia {
+            background: var(--tarjeta);
+            border: 1px solid var(--borde);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        .noticia:hover {
+            transform: translateY(-5px);
+            border-color: var(--verde);
+        }
+        .etiqueta {
+            display: inline-block;
+            background: rgba(127, 255, 0, 0.15);
+            color: var(--verde);
+            font-size: 0.8rem;
+            padding: 0.25rem 0.7rem;
+            border-radius: 20px;
+            margin-bottom: 0.8rem;
+        }
+        .noticia h3 { color: var(--verde); font-size: 1.1rem; margin-bottom: 0.6rem; }
+        .noticia p { color: #ccc; font-size: 0.98rem; line-height: 1.6; }
+
+        /* === CARACTERÍSTICAS === */
+        .caracteristicas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .caracteristica {
+            background: var(--tarjeta);
+            border: 1px solid var(--borde);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+        .caracteristica h3 { color: var(--verde); margin-bottom: 0.5rem; }
+        .caracteristica p { color: #bbb; }
+
+        /* === CÓMO DESCARGAR === */
+        .pasos {
+            background: var(--tarjeta);
+            border: 1px solid var(--borde);
             border-radius: 12px;
             padding: 2rem;
-            margin-top: 1.5rem;
+            margin-top: 2rem;
         }
-        .paso-item {
-            display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.2rem;
-        }
-        .paso-numero {
-            background: linear-gradient(90deg, #7fff00, #39ff14);
+        .paso { display: flex; gap: 1rem; margin-bottom: 1.2rem; align-items: flex-start; }
+        .paso-num {
+            background: linear-gradient(90deg, var(--verde), var(--verde-oscuro));
             color: #000; font-weight: 800; width: 32px; height: 32px;
             border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
         }
-        .paso-texto { color: #eee; line-height: 1.6; }
+        .paso-texto { color: #ddd; }
         .requisitos {
             background: rgba(255, 204, 0, 0.08);
             border: 1px solid rgba(255, 204, 0, 0.25);
@@ -120,237 +161,170 @@
             padding: 1.2rem; margin-top: 1.5rem;
         }
         .requisitos h3 { color: #ffcc00; margin-bottom: 0.8rem; font-size: 1.1rem; }
-        .requisitos li { color: #ddd; margin-left: 1.2rem; line-height: 1.7; }
+        .requisitos ul { margin-left: 1.4rem; color: #ddd; }
+        .requisitos li { margin-bottom: 0.4rem; }
+
+        /* === PIE DE PÁGINA === */
         footer {
             text-align: center; padding: 2.5rem; color: #888;
-            border-top: 1px solid rgba(255,255,255,0.08); margin-top: 3rem;
+            border-top: 1px solid rgba(255,255,255,0.08); margin-top: 2rem;
         }
-        .modal-overlay {
-            display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8);
-            z-index: 10000; align-items: center; justify-content: center;
-        }
-        .modal-contenido {
-            background: #1a1a2e; padding: 2.5rem; border-radius: 16px;
-            max-width: 420px; width: 90%; border: 1px solid #7fff00;
-        }
-        .modal-contenido h2 { color: #7fff00; margin-bottom: 1.5rem; text-align: center; }
-        .modal-contenido input {
-            width: 100%; padding: 0.9rem; margin-bottom: 1rem;
-            background: rgba(255,255,255,0.08); border: 1px solid #444;
-            border-radius: 8px; color: white; font-size: 1rem;
-        }
-        .modal-contenido input:focus { outline: none; border-color: #7fff00; }
-        .modal-botones { display: flex; gap: 0.8rem; margin-top: 1rem; }
-        .modal-botones button {
-            flex: 1; padding: 0.8rem; border-radius: 8px;
-            font-weight: 600; cursor: pointer; border: none;
-        }
-        .btn-aceptar { background: #7fff00; color: #000; }
-        .btn-cerrar { background: #444; color: white; }
-        .cambiar-form { text-align: center; margin-top: 1.2rem; color: #aaa; font-size: 0.95rem; }
-        .cambiar-form span { color: #7fff00; cursor: pointer; font-weight: 600; }
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="#" class="logo">Nexis Launcher</a>
-            <div class="nav-links">
-                <a href="#inicio" class="active">Inicio</a>
-                <a href="#caracteristicas">Características</a>
-                <a href="#descargar">Descargar</a>
-                <a href="#acerca">Acerca de</a>
+
+<!-- NAVEGACIÓN -->
+<nav>
+    <div class="contenedor nav-wrap">
+        <a href="#" class="logo">Nexis Launcher</a>
+        <div class="nav-enlaces">
+            <a href="#" class="activo">Inicio</a>
+            <a href="#noticias">Noticias</a>
+            <a href="#caracteristicas">Características</a>
+            <a href="#descargar">Descargar</a>
+            <a href="#acerca">Acerca de</a>
+            <a href="https://discord.gg/ef4uw4ttF" target="_blank" class="boton-discord">Discord</a>
+        </div>
+    </div>
+</nav>
+
+<!-- BIENVENIDA -->
+<header>
+    <h1>Bienvenido a Nexis Launcher</h1>
+    <p>El launcher de Minecraft: Java Edition gratuito, ligero y sin publicidad. Descarga, instala y gestiona versiones, mods y perfiles con total libertad.</p>
+    <a href="https://github.com/marcoantoniochiuquihuancacordov-dotcom/Nexis-launcher/releases/download/v2.0.0/Nexis.Launcher.exe"
+       download="Nexis.Launcher.exe"
+       class="boton-descarga">
+        📥 Descargar Nexis Launcher v2.0.0
+    </a>
+</header>
+
+<!-- NOTICIAS -->
+<section id="noticias" class="noticias">
+    <div class="contenedor">
+        <h2>📰 Noticias y Actualizaciones</h2>
+        <div class="noticias-grid">
+
+            <div class="noticia">
+                <span class="etiqueta">Launcher</span>
+                <h3>Nexis Launcher v2.0.0</h3>
+                <p>¡Nueva versión disponible! Mejor rendimiento, arranque más rápido y corrección de errores. Descarga y prueba la última actualización.</p>
             </div>
-            <div class="auth-buttons" id="botonesNoSesion">
-                <button class="btn-iniciar" onclick="abrirModal('iniciar')">Iniciar Sesión</button>
-                <button class="btn-registrar" onclick="abrirModal('registrar')">Crear Cuenta</button>
-                <a href="https://discord.gg/ef4uw4ttF" target="_blank" class="discord-float">
-                    <i class="bi bi-discord"></i> Discord
-                </a>
+
+            <div class="noticia">
+                <span class="etiqueta">Minecraft Java</span>
+                <h3>Versiones 1.21 y Snapshots</h3>
+                <p>Ya puedes descargar y jugar la versión 1.21 y sus instantáneas. Todas las actualizaciones de Java Edition disponibles al instante.</p>
             </div>
-            <div class="usuario-info" id="infoUsuario">
-                <span class="usuario-nombre" id="nombreUsuario"></span>
-                <button class="btn-salir" onclick="cerrarSesion()">Cerrar Sesión</button>
-                <a href="https://discord.gg/ef4uw4ttF" target="_blank" class="discord-float">
-                    <i class="bi bi-discord"></i> Discord
-                </a>
+
+            <div class="noticia">
+                <span class="etiqueta">Minecraft Bedrock</span>
+                <h3>Compatibilidad Bedrock</h3>
+                <p>Gestión de perfiles y configuraciones para Bedrock Edition. Ajusta tu experiencia tanto en Java como en Bedrock desde un mismo lugar.</p>
             </div>
-        </div>
-    </nav>
-    <header class="hero" id="inicio">
-        <h1>Bienvenido a Nexis Launcher</h1>
-        <p>El Launcher de Minecraft: Java Edition gratuito, ligero, sin publicidad y sin bloatware. Descarga, instala y gestiona tus versiones, mods y perfiles con total libertad.<br><br>
-        <strong>¿Ya tienes cuenta o quieres crear una?</strong> Usa los botones de arriba.</p>
-        
-        <!-- ✅ DESCARGA DIRECTA — NO ABRE GITHUB -->
-        <a href="https://github.com/marcoantoniochiuquihuancacordov-dotcom/Nexis-launcher/releases/download/v2.0.0/Nexis.Launcher.exe" 
-           download="Nexis.Launcher.exe"
-           class="btn-descarga">
-            <i class="bi bi-download"></i> 📥 Descargar Nexis Launcher v2.0.0
-        </a>
-    </header>
-    <section id="caracteristicas" class="features">
-        <h2>Características Principales</h2>
-        
-        <div class="feature-item">
-            <h3>1. ⚡ Rápido y Ligero</h3>
-            <p>Se inicia en segundos y consume muy pocos recursos del sistema. El launcher no carga cosas innecesarias, por eso arranca veloz y funciona suave incluso en equipos modestos.</p>
-        </div>
-        <div class="feature-item">
-            <h3>2. 📦 Instalación de Mods</h3>
-            <p>Instala y gestiona mods de forma sencilla directamente desde el launcher. No necesitas mover archivos manualmente ni buscar carpetas complicadas: todo se gestiona desde la interfaz.</p>
-        </div>
-        <div class="feature-item">
-            <h3>3. 👤 Perfiles Personalizados</h3>
-            <p>Crea perfiles con su propia configuración: versión del juego, mods instalados, memoria RAM asignada, resolución de pantalla y más. Cada perfil se guarda por separado según lo que necesites.</p>
-        </div>
-        <div class="feature-item">
-            <h3>4. 🔒 Privacidad Primero</h3>
-            <p>Sin rastreadores, sin telemetría, sin recolección de datos. El launcher no envía tu información personal a ningún servidor. Tus datos y configuraciones se quedan únicamente en tu computadora.</p>
-        </div>
-        <div class="feature-item">
-            <h3>5. 🖥️ Para PCs de Bajos Recursos</h3>
-            <p>Optimizado para funcionar fluido en equipos modestos y computadoras con pocos recursos. No exige componentes costosos ni tarjetas gráficas potentes, así cualquiera puede jugar sin problemas.</p>
-        </div>
-        <div class="feature-item" style="border-bottom: none;">
-            <h3>6. ✅ Totalmente gratuito y exclusivo</h3>
-            <p>Disponible sin costo para todos los jugadores. No necesitas pagar nada ni tener suscripción para disfrutar de todas sus funciones.</p>
-        </div>
-    </section>
-    
-    <!-- ✅ SECCIÓN DE DESCARGA CON PASOS ACTUALIZADOS -->
-    <section id="descargar" class="faq-section">
-        <h2>📥 Cómo descargar e instalar</h2>
-        
-        <div class="pasos-lista">
-            <div class="paso-item">
-                <span class="paso-numero">1</span>
-                <div class="paso-texto">
-                    <strong>Pulsa el botón verde de arriba</strong> que dice "Descargar Nexis Launcher v2.0.0".
-                </div>
+
+            <div class="noticia">
+                <span class="etiqueta">Mods</span>
+                <h3>Forge, Fabric y más</h3>
+                <p>Instalador integrado de mods. Soporte para Forge, Fabric, Quilt y NeoForge. Elige tu cargador y descarga mods directamente.</p>
             </div>
-            <div class="paso-item">
-                <span class="paso-numero">2</span>
-                <div class="paso-texto">
-                    <strong>Espera a que termine de descargar</strong> (pesa aproximadamente 169 MB). Puedes ver el progreso en la parte inferior de tu navegador.
-                </div>
+
+            <div class="noticia">
+                <span class="etiqueta">General</span>
+                <h3>Optimizaciones y Rendimiento</h3>
+                <p>Ajusta memoria RAM, gráficos y resolución. Nexis optimiza el juego para que funcione fluido incluso en equipos sencillos.</p>
             </div>
-            <div class="paso-item">
-                <span class="paso-numero">3</span>
-                <div class="paso-texto">
-                    <strong>Abre el archivo descargado</strong> llamado <code>Nexis.Launcher.exe</code>. No necesita instalación: se abre y funciona directamente.
-                </div>
+
+            <div class="noticia">
+                <span class="etiqueta">Comunidad</span>
+                <h3>Únete a Discord</h3>
+                <p>Comparte tus mundos, descubre mods y recibe ayuda. ¡Todo sobre Minecraft y Nexis Launcher en nuestro servidor!</p>
             </div>
-            <div class="paso-item">
-                <span class="paso-numero">4</span>
-                <div class="paso-texto">
-                    <strong>¡Listo!</strong> Ya puedes usar el launcher. Crea tu perfil, elige tu versión de Minecraft y ¡disfruta! 🎮
-                </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- CARACTERÍSTICAS -->
+<section id="caracteristicas">
+    <div class="contenedor">
+        <h2>✨ Características Principales</h2>
+        <div class="caracteristicas-grid">
+            <div class="caracteristica">
+                <h3>⚡ Rápido y Ligero</h3>
+                <p>Se inicia en segundos y consume pocos recursos. Sin cosas innecesarias, solo lo esencial.</p>
+            </div>
+            <div class="caracteristica">
+                <h3>📦 Instalación de Mods</h3>
+                <p>Gestiona mods sin mover archivos manualmente. Soporte completo para Forge, Fabric y más.</p>
+            </div>
+            <div class="caracteristica">
+                <h3>👤 Perfiles Personalizados</h3>
+                <p>Crea perfiles con su propia versión, mods, memoria y ajustes. Cada configuración separada.</p>
+            </div>
+            <div class="caracteristica">
+                <h3>🔒 Privacidad Primero</h3>
+                <p>Sin rastreadores ni recolección de datos. Tu información se queda solo en tu equipo.</p>
+            </div>
+            <div class="caracteristica">
+                <h3>🖥️ Para PCs de Bajos Recursos</h3>
+                <p>Optimizado para equipos modestos. No necesitas componentes costosos para jugar bien.</p>
+            </div>
+            <div class="caracteristica">
+                <h3>✅ Totalmente Gratuito</h3>
+                <p>Sin pagos ni suscripciones. Todo gratis para disfrutar de Minecraft sin límites.</p>
             </div>
         </div>
-        
+    </div>
+</section>
+
+<!-- DESCARGAR E INSTALAR -->
+<section id="descargar">
+    <div class="contenedor">
+        <h2>📥 Cómo Descargar e Instalar</h2>
+        <div class="pasos">
+            <div class="paso">
+                <span class="paso-num">1</span>
+                <div class="paso-texto"><strong>Pulsa el botón verde de arriba</strong> que dice "Descargar Nexis Launcher v2.0.0".</div>
+            </div>
+            <div class="paso">
+                <span class="paso-num">2</span>
+                <div class="paso-texto"><strong>Espera la descarga</strong> (pesa aproximadamente 169 MB). Verás el progreso en tu navegador.</div>
+            </div>
+            <div class="paso">
+                <span class="paso-num">3</span>
+                <div class="paso-texto"><strong>Abre el archivo</strong> llamado <code>Nexis.Launcher.exe</code>. No necesita instalación: se abre y funciona directo.</div>
+            </div>
+            <div class="paso">
+                <span class="paso-num">4</span>
+                <div class="paso-texto"><strong>¡Listo!</strong> Crea tu perfil, elige tu versión de Minecraft y ¡a jugar! 🎮</div>
+            </div>
+        </div>
         <div class="requisitos">
-            <h3>⚠️ Requisitos importantes</h3>
+            <h3>⚠️ Requisitos Importantes</h3>
             <ul>
-                <li>✅ Sistema operativo: Windows 10 o superior</li>
-                <li>☕ Necesitas tener instalado <strong>Java 17 o superior</strong></li>
-                <li>💾 Espacio en disco: al menos 500 MB libres</li>
-                <li>🌐 Conexión a internet para descargar versiones del juego</li>
+                <li>Windows 10 o superior</li>
+                <li>Java 17 o superior instalado</li>
+                <li>Al menos 500 MB libres en disco</li>
+                <li>Conexión a internet para descargar versiones del juego</li>
             </ul>
         </div>
-    </section>
-    
-    <footer id="acerca">
-        <p><strong>Nexis Launcher</strong> — Launcher de Minecraft: Java Edition gratuito.</p>
-        <p style="margin-top:0.5rem; font-size:0.9rem;">Únete a nuestra comunidad: <a href="https://discord.gg/ef4uw4ttF" target="_blank" style="color:#7fff00;">discord.gg/ef4uw4ttF</a> · © 2026 Nexis Launcher</p>
-    </footer>
-    <div class="modal-overlay" id="modalIniciar">
-        <div class="modal-contenido">
-            <h2>Iniciar Sesión</h2>
-            <input type="email" id="correoIniciar" placeholder="Correo electrónico">
-            <input type="password" id="passIniciar" placeholder="Contraseña">
-            <div class="modal-botones">
-                <button class="btn-cerrar" onclick="cerrarModal()">Cancelar</button>
-                <button class="btn-aceptar" onclick="iniciarSesion()">Entrar</button>
-            </div>
-            <div class="cambiar-form">
-                ¿No tienes cuenta? <span onclick="cerrarModal(); abrirModal('registrar')">Crear cuenta</span>
-            </div>
-        </div>
     </div>
-    <div class="modal-overlay" id="modalRegistrar">
-        <div class="modal-contenido">
-            <h2>Crear Cuenta</h2>
-            <input type="text" id="nombreReg" placeholder="Tu nombre o usuario">
-            <input type="email" id="correoReg" placeholder="Correo electrónico">
-            <input type="password" id="passReg" placeholder="Contraseña">
-            <div class="modal-botones">
-                <button class="btn-cerrar" onclick="cerrarModal()">Cancelar</button>
-                <button class="btn-aceptar" onclick="crearCuenta()">Registrarse</button>
-            </div>
-            <div class="cambiar-form">
-                ¿Ya tienes cuenta? <span onclick="cerrarModal(); abrirModal('iniciar')">Iniciar sesión</span>
-            </div>
-        </div>
+</section>
+
+<!-- ACERCA DE -->
+<section id="acerca">
+    <div class="contenedor" style="text-align:center; color:#bbb; max-width:700px; margin:0 auto;">
+        <h2>ℹ️ Acerca de Nexis Launcher</h2>
+        <p>Nexis Launcher es un proyecto gratuito diseñado para facilitar el acceso a Minecraft: Java Edition. Sin publicidad, sin seguimiento y sin costos ocultos. Tu juego, tus reglas.</p>
+        <p style="margin-top:1rem;">Únete a nuestra comunidad: <a href="https://discord.gg/ef4uw4ttF" target="_blank" style="color:#7fff00;">discord.gg/ef4uw4ttF</a></p>
     </div>
-    <script>
-        let usuarioActual = null;
-        window.onload = function() {
-            const guardado = localStorage.getItem('nexis_usuario');
-            if (guardado) {
-                usuarioActual = JSON.parse(guardado);
-                actualizarBarraSesion();
-            }
-        };
-        function abrirModal(tipo) {
-            if (tipo === 'iniciar') {
-                document.getElementById('modalIniciar').style.display = 'flex';
-            } else {
-                document.getElementById('modalRegistrar').style.display = 'flex';
-            }
-        }
-        function cerrarModal() {
-            document.getElementById('modalIniciar').style.display = 'none';
-            document.getElementById('modalRegistrar').style.display = 'none';
-        }
-        function iniciarSesion() {
-            const correo = document.getElementById('correoIniciar').value;
-            const pass = document.getElementById('passIniciar').value;
-            if (!correo || !pass) { alert('⚠️ Completa todos los campos'); return; }
-            usuarioActual = { nombre: correo.split('@')[0], correo: correo };
-            localStorage.setItem('nexis_usuario', JSON.stringify(usuarioActual));
-            actualizarBarraSesion(); cerrarModal();
-            alert('✅ ¡Bienvenido de nuevo, ' + usuarioActual.nombre + '!');
-        }
-        function crearCuenta() {
-            const nombre = document.getElementById('nombreReg').value;
-            const correo = document.getElementById('correoReg').value;
-            const pass = document.getElementById('passReg').value;
-            if (!nombre || !correo || !pass) { alert('⚠️ Completa todos los campos'); return; }
-            usuarioActual = { nombre: nombre, correo: correo };
-            localStorage.setItem('nexis_usuario', JSON.stringify(usuarioActual));
-            actualizarBarraSesion(); cerrarModal();
-            alert('🎉 ¡Cuenta creada con éxito! Bienvenido, ' + nombre);
-        }
-        function cerrarSesion() {
-            usuarioActual = null;
-            localStorage.removeItem('nexis_usuario');
-            actualizarBarraSesion();
-            alert('👋 Sesión cerrada correctamente');
-        }
-        function actualizarBarraSesion() {
-            const botonesNoSesion = document.getElementById('botonesNoSesion');
-            const infoUsuario = document.getElementById('infoUsuario');
-            const nombreUsuario = document.getElementById('nombreUsuario');
-            if (usuarioActual) {
-                botonesNoSesion.style.display = 'none';
-                infoUsuario.style.display = 'flex';
-                nombreUsuario.textContent = '👤 ' + usuarioActual.nombre;
-            } else {
-                botonesNoSesion.style.display = 'flex';
-                infoUsuario.style.display = 'none';
-            }
-        }
-    </script>
+</section>
+
+<!-- PIE DE PÁGINA -->
+<footer>
+    <p><strong>Nexis Launcher</strong> — Launcher de Minecraft: Java Edition gratuito. © 2026 Nexis Launcher</p>
+</footer>
+
 </body>
 </html>
