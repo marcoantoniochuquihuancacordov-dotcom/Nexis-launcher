@@ -80,9 +80,11 @@
             color: #d0d0d0; line-height: 1.6;
         }
         .btn-descarga {
+            display: inline-block;
             background: linear-gradient(90deg, #7fff00, #39ff14); color: #000;
             padding: 1rem 2.5rem; font-size: 1.1rem; font-weight: 700;
             border-radius: 10px; border: none; cursor: pointer; transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
         }
         .btn-descarga:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(127, 255, 0, 0.35); }
         section { max-width: 1200px; margin: 0 auto; padding: 3rem 2rem; }
@@ -151,16 +153,16 @@
             </div>
         </div>
     </nav>
-
     <header class="hero" id="inicio">
         <h1>Bienvenido a Nexis Launcher</h1>
         <p>El Launcher de Minecraft: Java Edition gratuito, ligero, sin publicidad y sin bloatware. Descarga, instala y gestiona tus versiones, mods y perfiles con total libertad.<br><br>
         <strong>¿Ya tienes cuenta o quieres crear una?</strong> Usa los botones de arriba — <em>toda la información del sitio sigue disponible para ti sin importar tu estado.</em></p>
-        <button class="btn-descarga" onclick="descargarLauncher()">
+        
+        <!-- ✅ BOTÓN DE DESCARGA ACTUALIZADO -->
+        <a href="Nexis-Launcher-Setup-2.0.0.exe" download class="btn-descarga">
             <i class="bi bi-download"></i> Descargar Nexis Launcher
-        </button>
+        </a>
     </header>
-
     <section id="caracteristicas" class="features">
         <h2>Características Principales</h2>
         
@@ -168,33 +170,27 @@
             <h3>1. ⚡ Rápido y Ligero</h3>
             <p>Se inicia en segundos y consume muy pocos recursos del sistema. El launcher no carga cosas innecesarias, por eso arranca veloz y funciona suave incluso en equipos modestos.</p>
         </div>
-
         <div class="feature-item">
             <h3>2. 📦 Instalación de Mods</h3>
             <p>Instala y gestiona mods de forma sencilla directamente desde el launcher. No necesitas mover archivos manualmente ni buscar carpetas complicadas: todo se gestiona desde la interfaz.</p>
         </div>
-
         <div class="feature-item">
             <h3>3. 👤 Perfiles Personalizados</h3>
             <p>Crea perfiles con su propia configuración: versión del juego, mods instalados, memoria RAM asignada, resolución de pantalla y más. Cada perfil se guarda por separado según lo que necesites.</p>
         </div>
-
         <div class="feature-item">
             <h3>4. 🔒 Privacidad Primero</h3>
             <p>Sin rastreadores, sin telemetría, sin recolección de datos. El launcher no envía tu información personal a ningún servidor. Tus datos y configuraciones se quedan únicamente en tu computadora.</p>
         </div>
-
         <div class="feature-item">
             <h3>5. 🖥️ Para PCs de Bajos Recursos</h3>
             <p>Optimizado para funcionar fluido en equipos modestos y computadoras con pocos recursos. No exige componentes costosos ni tarjetas gráficas potentes, así cualquiera puede jugar sin problemas.</p>
         </div>
-
         <div class="feature-item" style="border-bottom: none;">
             <h3>6. ✅ Totalmente gratuito y exclusivo</h3>
             <p>Disponible sin costo para todos los jugadores. No necesitas pagar nada ni tener suscripción para disfrutar de todas sus funciones.</p>
         </div>
     </section>
-
     <section id="descargar" class="faq-section">
         <h2>Descargar</h2>
         <p style="color:#d0d0d0; margin-bottom:1rem;">Pulsa el botón de arriba para descargar el instalador de Nexis Launcher para Windows.</p>
@@ -205,12 +201,10 @@
             <li>⚠️ Requiere Java 17 o superior</li>
         </ul>
     </section>
-
     <footer id="acerca">
         <p><strong>Nexis Launcher</strong> — Launcher de Minecraft: Java Edition gratuito.</p>
         <p style="margin-top:0.5rem; font-size:0.9rem;">Únete a nuestra comunidad: <a href="https://discord.gg/ef4uw4ttF" target="_blank" style="color:#7fff00;">discord.gg/ef4uw4ttF</a> · © 2026 Nexis Launcher</p>
     </footer>
-
     <div class="modal-overlay" id="modalIniciar">
         <div class="modal-contenido">
             <h2>Iniciar Sesión</h2>
@@ -225,7 +219,6 @@
             </div>
         </div>
     </div>
-
     <div class="modal-overlay" id="modalRegistrar">
         <div class="modal-contenido">
             <h2>Crear Cuenta</h2>
@@ -241,7 +234,6 @@
             </div>
         </div>
     </div>
-
     <script>
         let usuarioActual = null;
         window.onload = function() {
@@ -299,9 +291,6 @@
                 botonesNoSesion.style.display = 'flex';
                 infoUsuario.style.display = 'none';
             }
-        }
-        function descargarLauncher() {
-            alert('📦 Descargando instalador de Nexis Launcher...');
         }
     </script>
 </body>
