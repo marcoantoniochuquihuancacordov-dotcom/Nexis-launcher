@@ -11,21 +11,28 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         :root {
             --verde: #7fff00;
             --verde-oscuro: #39ff14;
+            --azul: #38bdf8;
+            --azul-oscuro: #0284c7;
             --fondo-1: #0a0f1f;
             --fondo-2: #0f172a;
             --fondo-3: #1e293b;
-            --azul-bat: #38bdf8;
-            --rosa-bat: #f472b6;
-            --rojo-error: #ff4d6d;
+            --rojo: #f43f5e;
             --dorado: #facc15;
-            --borde: rgba(255,255,255,0.08);
             --texto: #e2e8f0;
             --texto-claro: #94a3b8;
+            --borde: rgba(255, 255, 255, 0.08);
+            --sombra: 0 8px 30px rgba(0, 0, 0, 0.35);
         }
+
         body {
             font-family: 'Inter', sans-serif;
             background: linear-gradient(135deg, var(--fondo-1), var(--fondo-2));
@@ -33,9 +40,14 @@
             min-height: 100vh;
             line-height: 1.6;
         }
-        .contenedor { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
 
-        /* === NAVEGACIÓN === */
+        .contenedor {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* === BARRA DE NAVEGACIÓN === */
         nav {
             background: rgba(15, 23, 42, 0.85);
             padding: 1rem 0;
@@ -45,6 +57,7 @@
             z-index: 100;
             border-bottom: 1px solid var(--borde);
         }
+
         .nav-wrap {
             display: flex;
             justify-content: space-between;
@@ -52,28 +65,44 @@
             flex-wrap: wrap;
             gap: 1rem;
         }
+
         .logo {
             font-size: 1.5rem;
             font-weight: 900;
             color: var(--verde);
             text-decoration: none;
+            transition: transform 0.2s;
         }
-        .nav-enlaces { 
-            display: flex; 
-            gap: 2rem; 
-            align-items: center; 
-            flex-wrap: wrap; 
+
+        .logo:hover {
+            transform: scale(1.05);
         }
+
+        .nav-enlaces {
+            display: flex;
+            gap: 0.4rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
         .nav-enlaces a {
             color: var(--texto-claro);
             text-decoration: none;
             font-weight: 600;
-            padding: 0.4rem 0.8rem;
+            padding: 0.5rem 1rem;
             border-radius: 8px;
-            transition: all 0.25s;
+            transition: all 0.25s ease;
         }
-        .nav-enlaces a:hover { color: #fff; background: rgba(127,255,0,0.08); }
-        .nav-enlaces a.activo { color: var(--verde); background: rgba(127,255,0,0.1); }
+
+        .nav-enlaces a:hover {
+            color: #fff;
+            background: rgba(127, 255, 0, 0.08);
+        }
+
+        .nav-enlaces a.activo {
+            color: var(--verde);
+            background: rgba(127, 255, 0, 0.1);
+        }
 
         .usuario-nav {
             color: #fff;
@@ -81,292 +110,828 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.4rem 0.9rem;
-            background: rgba(255,255,255,0.05);
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 8px;
             cursor: pointer;
-            transition: background 0.2s;
+            transition: all 0.2s;
+            border: 1px solid transparent;
         }
-        .usuario-nav:hover { background: rgba(255,255,255,0.1); }
+
+        .usuario-nav:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--azul);
+        }
 
         .btn-cerrar {
             background: linear-gradient(90deg, #f43f5e, #e11d48);
-            color: white; border: none; padding: 0.5rem 1.1rem;
-            border-radius: 8px; font-weight: 700; cursor: pointer;
-            transition: transform 0.2s;
+            color: white;
+            border: none;
+            padding: 0.55rem 1.1rem;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
         }
-        .btn-cerrar:hover { transform: translateY(-2px); }
+
+        .btn-cerrar:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(244, 63, 94, 0.3);
+        }
 
         .btn-discord {
-            background: #5865F2; color: white;
-            padding: 0.5rem 1.1rem; border-radius: 8px;
-            text-decoration: none; font-weight: 700;
-            transition: transform 0.2s;
+            background: #5865F2;
+            color: white;
+            padding: 0.55rem 1.1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.2s;
         }
-        .btn-discord:hover { transform: translateY(-2px); }
 
-        /* === SECCIONES GENERALES === */
-        .seccion { display: none; animation: aparecer 0.35s ease-out; }
-        .seccion.visible { display: block; }
+        .btn-discord:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(88, 101, 242, 0.3);
+        }
+
+        /* === SECCIONES === */
+        .seccion {
+            display: none;
+            animation: aparecer 0.35s ease-out;
+        }
+
+        .seccion.visible {
+            display: block;
+        }
+
         @keyframes aparecer {
-            from { opacity: 0; transform: translateY(12px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        /* === INICIO === */
-        header { padding: 3.5rem 2rem; text-align: center; }
+        /* === INICIO — CABECERA === */
+        header {
+            padding: 3.5rem 2rem;
+            text-align: center;
+        }
+
         header h1 {
-            font-size: 3rem; margin-bottom: 1rem;
+            font-size: 3rem;
+            margin-bottom: 1rem;
             background: linear-gradient(90deg, var(--verde), var(--verde-oscuro));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             font-weight: 900;
         }
+
         header p {
-            font-size: 1.1rem; max-width: 800px; margin: 0 auto 1.2rem;
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto 1.5rem;
             color: var(--texto-claro);
         }
+
         .boton-descarga {
-            display: inline-flex; align-items: center; gap: 0.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             background: linear-gradient(90deg, var(--verde), var(--verde-oscuro));
-            color: #000; padding: 1rem 2.5rem; font-size: 1.05rem;
-            font-weight: 800; border-radius: 10px; text-decoration: none;
-            transition: all 0.3s; border: none; cursor: pointer; margin-top: 1rem;
+            color: #000;
+            padding: 1rem 2.5rem;
+            font-size: 1.05rem;
+            font-weight: 800;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            margin-top: 1rem;
         }
-        .boton-descarga:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(127,255,0,0.25); }
 
-        /* === NOTICIAS OFICIALES === */
-        .noticias { padding: 2rem 0 4rem; }
-        .noticias h2 { text-align: center; font-size: 1.8rem; margin-bottom: 0.5rem; color: #fff; }
-        .noticias-sub { text-align: center; color: var(--texto-claro); margin-bottom: 2rem; }
+        .boton-descarga:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(127, 255, 0, 0.25);
+        }
+
+        /* === NOTICIAS === */
+        .noticias {
+            padding: 2rem 0 4rem;
+        }
+
+        .noticias h2 {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        .noticias-sub {
+            text-align: center;
+            color: var(--texto-claro);
+            margin-bottom: 2rem;
+        }
+
         .noticias-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 1.2rem;
         }
-        .noticia {
-            background: rgba(30, 41, 59, 0.55); border: 1px solid var(--borde);
-            border-radius: 14px; padding: 1.5rem; transition: all 0.25s;
-        }
-        .noticia:hover { border-color: var(--azul-bat); background: rgba(30, 41, 59, 0.8); }
-        .etiqueta {
-            display: inline-block; background: rgba(56,189,248,0.12);
-            color: var(--azul-bat); font-size: 0.8rem; font-weight: 700;
-            padding: 0.25rem 0.75rem; border-radius: 20px; margin-bottom: 1rem;
-        }
-        .noticia h3 { font-size: 1.05rem; margin-bottom: 0.6rem; color: #fff; }
-        .noticia p { color: var(--texto-claro); font-size: 0.95rem; line-height: 1.6; margin-bottom: 0.8rem; }
-        .leer-mas {
-            color: var(--verde); font-weight: 600; text-decoration: none;
-            display: inline-flex; align-items: center; gap: 0.3rem;
-        }
-        .leer-mas:hover { text-decoration: underline; }
-        .fuente { font-size: 0.78rem; color: #475569; margin-top: 0.4rem; display: flex; align-items: center; gap: 0.3rem; }
 
-        /* === CUENTA / DASHBOARD (ESTILO BATTLY) === */
+        .noticia {
+            background: rgba(30, 41, 59, 0.55);
+            border: 1px solid var(--borde);
+            border-radius: 14px;
+            padding: 1.5rem;
+            transition: all 0.25s ease;
+        }
+
+        .noticia:hover {
+            border-color: var(--azul);
+            background: rgba(30, 41, 59, 0.8);
+            transform: translateY(-4px);
+            box-shadow: var(--sombra);
+        }
+
+        .etiqueta {
+            display: inline-block;
+            background: rgba(56, 189, 248, 0.12);
+            color: var(--azul);
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            margin-bottom: 1rem;
+        }
+
+        .noticia h3 {
+            font-size: 1.05rem;
+            margin-bottom: 0.6rem;
+            color: #fff;
+        }
+
+        .noticia p {
+            color: var(--texto-claro);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 0.8rem;
+        }
+
+        .leer-mas {
+            color: var(--verde);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: all 0.2s;
+        }
+
+        .leer-mas:hover {
+            text-decoration: underline;
+            gap: 0.5rem;
+        }
+
+        .fuente {
+            font-size: 0.78rem;
+            color: #475569;
+            margin-top: 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        /* === PANEL DE CUENTA — ESTILO BATTLY === */
         .dashboard {
-            max-width: 1100px; margin: 3rem auto; padding: 0 1.5rem 4rem;
+            max-width: 1100px;
+            margin: 3rem auto;
+            padding: 0 1.5rem 4rem;
         }
+
         .dashboard-saludo {
-            font-size: 2.5rem; font-weight: 800; margin-bottom: 0.2rem;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.2rem;
         }
+
         .dashboard-subtitulo {
-            color: var(--texto-claro); font-size: 1.05rem; margin-bottom: 2rem;
+            color: var(--texto-claro);
+            font-size: 1.05rem;
+            margin-bottom: 2rem;
         }
+
         .etiqueta-beta {
-            display: inline-block; background: var(--azul-bat); color: #000;
-            font-size: 0.75rem; font-weight: 800; padding: 0.05rem 0.5rem;
-            border-radius: 12px; margin-left: 0.5rem; vertical-align: middle;
+            display: inline-block;
+            background: var(--azul);
+            color: #000;
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 0.05rem 0.5rem;
+            border-radius: 12px;
+            margin-left: 0.5rem;
+            vertical-align: middle;
         }
 
         /* Pestañas */
         .pestañas {
-            display: flex; gap: 0.4rem; margin-bottom: 2.5rem;
-            background: rgba(30, 41, 59, 0.6); padding: 0.4rem;
-            border-radius: 12px; border: 1px solid var(--borde);
+            display: flex;
+            gap: 0.4rem;
+            margin-bottom: 2.5rem;
+            background: rgba(30, 41, 59, 0.6);
+            padding: 0.4rem;
+            border-radius: 12px;
+            border: 1px solid var(--borde);
             flex-wrap: wrap;
         }
+
         .pestaña {
-            padding: 0.6rem 1.2rem; border-radius: 8px;
-            cursor: pointer; font-weight: 600; color: var(--texto-claro);
-            transition: all 0.2s; border: none; background: transparent;
-            display: flex; align-items: center; gap: 0.4rem; font-size: 0.95rem;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--texto-claro);
+            transition: all 0.2s ease;
+            border: none;
+            background: transparent;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.95rem;
         }
-        .pestaña:hover { color: #fff; background: rgba(255,255,255,0.05); }
-        .pestaña.activa { background: var(--azul-bat); color: #000; font-weight: 700; }
-        .contenido-pestaña { display: none; animation: aparecer 0.3s ease-out; }
-        .contenido-pestaña.visible { display: block; }
 
-        /* Tarjetas del Dashboard */
+        .pestaña:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .pestaña.activa {
+            background: var(--azul);
+            color: #000;
+            font-weight: 700;
+            box-shadow: 0 2px 8px rgba(56, 189, 248, 0.25);
+        }
+
+        .contenido-pestaña {
+            display: none;
+            animation: aparecer 0.3s ease-out;
+        }
+
+        .contenido-pestaña.visible {
+            display: block;
+        }
+
+        /* Tarjetas */
         .tarjeta {
-            background: rgba(30, 41, 59, 0.5); border: 1px solid var(--borde);
-            border-radius: 14px; padding: 1.8rem; margin-bottom: 1.5rem;
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid var(--borde);
+            border-radius: 14px;
+            padding: 1.8rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.25s ease;
         }
-        .tarjeta h3 { font-size: 1.3rem; margin-bottom: 1.2rem; color: #fff; border-bottom: 1px solid var(--borde); padding-bottom: 0.5rem; }
-        .fila { display: flex; gap: 1rem; flex-wrap: wrap; }
-        .grupo { flex: 1; min-width: 260px; }
-        label { display: block; margin-bottom: 0.4rem; color: var(--texto-claro); font-weight: 500; font-size: 0.95rem; }
-        input, textarea {
-            width: 100%; padding: 0.75rem 1rem; border-radius: 8px;
-            border: 1px solid var(--borde); background: rgba(0,0,0,0.3);
-            color: #fff; font-size: 0.95rem; outline: none;
-            transition: border 0.2s;
-        }
-        input:focus, textarea:focus { border-color: var(--azul-bat); }
-        .btn-guardar {
-            background: var(--azul-bat); color: #000; border: none;
-            padding: 0.8rem 2rem; border-radius: 8px;
-            font-weight: 700; cursor: pointer; font-size: 0.95rem;
-            margin-top: 1rem; width: 100%; transition: transform 0.2s;
-        }
-        .btn-guardar:hover { transform: translateY(-2px); }
-        .btn-peligro { background: linear-gradient(90deg, #f43f5e, #e11d48); color: #fff; }
 
-        .suscripcion { font-size: 1rem; margin-bottom: 0.5rem; }
-        .inactiva { color: var(--rojo-error); font-weight: 700; }
-        .fecha-acceso { color: var(--texto-claro); font-size: 0.95rem; }
-        .aviso-premium {
-            margin-top: 1.2rem; padding: 1rem 1.2rem;
-            background: rgba(250, 204, 21, 0.08); border: 1px solid rgba(250, 204, 21, 0.25);
-            border-radius: 10px; color: #fde047; font-size: 0.95rem;
+        .tarjeta:hover {
+            border-color: rgba(56, 189, 248, 0.3);
         }
-        .aviso-premium strong { color: #fff; }
+
+        .tarjeta h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.2rem;
+            color: #fff;
+            border-bottom: 1px solid var(--borde);
+            padding-bottom: 0.5rem;
+        }
+
+        .fila {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .grupo {
+            flex: 1;
+            min-width: 260px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.4rem;
+            color: var(--texto-claro);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--borde);
+            background: rgba(0, 0, 0, 0.3);
+            color: #fff;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border 0.25s, box-shadow 0.25s;
+        }
+
+        input:focus, textarea:focus {
+            border-color: var(--azul);
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .btn-guardar {
+            background: var(--azul);
+            color: #000;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.95rem;
+            margin-top: 1rem;
+            width: 100%;
+            transition: all 0.2s ease;
+        }
+
+        .btn-guardar:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
+        }
+
+        .btn-peligro {
+            background: linear-gradient(90deg, #f43f5e, #e11d48);
+            color: #fff;
+        }
+
+        .btn-peligro:hover {
+            box-shadow: 0 4px 15px rgba(244, 63, 94, 0.3);
+        }
+
+        .suscripcion {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .inactiva {
+            color: var(--rojo);
+            font-weight: 700;
+        }
+
+        .fecha-acceso {
+            color: var(--texto-claro);
+            font-size: 0.95rem;
+        }
+
+        .aviso-premium {
+            margin-top: 1.5rem;
+            padding: 1.2rem 1.4rem;
+            background: rgba(250, 204, 21, 0.08);
+            border: 1px solid rgba(250, 204, 21, 0.25);
+            border-radius: 10px;
+            color: #fde047;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .aviso-premium strong {
+            color: #fff;
+        }
+
         .aviso-premium a {
-            color: var(--dorado); font-weight: 700; text-decoration: underline;
-            cursor: pointer; display: inline-block; margin-top: 0.3rem;
+            color: var(--dorado);
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            display: inline-block;
+            margin-top: 0.5rem;
+            padding: 0.4rem 1rem;
+            background: rgba(250, 204, 21, 0.15);
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+
+        .aviso-premium a:hover {
+            background: rgba(250, 204, 21, 0.25);
+            transform: translateY(-1px);
         }
 
         /* Interruptores Privacidad */
         .fila-toggle {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 0.7rem 0; border-bottom: 1px solid var(--borde);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.9rem 0;
+            border-bottom: 1px solid var(--borde);
         }
-        .toggle {
-            position: relative; display: inline-block; width: 44px; height: 24px;
-        }
-        .toggle input { opacity: 0; width: 0; height: 0; }
-        .desliza {
-            position: absolute; cursor: pointer; inset: 0; background: #334155;
-            border-radius: 24px; transition: 0.3s;
-        }
-        .desliza:before {
-            content: ''; position: absolute; height: 18px; width: 18px;
-            left: 3px; bottom: 3px; background: white; border-radius: 50%; transition: 0.3s;
-        }
-        input:checked + .desliza { background: var(--azul-bat); }
-        input:checked + .desliza:before { transform: translateX(20px); }
 
-        /* === PERFIL - SKIN Y CAPA === */
-        .grid-perfil { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-        @media (max-width: 768px) { .grid-perfil { grid-template-columns: 1fr; } }
-        .tarjeta-perfil {
-            background: rgba(30, 41, 59, 0.5); border: 1px solid var(--borde);
-            border-radius: 14px; padding: 2rem; text-align: center;
+        .fila-toggle:last-child {
+            border-bottom: none;
         }
-        .tarjeta-perfil h4 { margin-bottom: 1.2rem; color: #fff; font-size: 1rem; }
+
+        .toggle {
+            position: relative;
+            display: inline-block;
+            width: 48px;
+            height: 26px;
+        }
+
+        .toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .desliza {
+            position: absolute;
+            cursor: pointer;
+            inset: 0;
+            background: #334155;
+            border-radius: 26px;
+            transition: 0.3s ease;
+        }
+
+        .desliza:before {
+            content: '';
+            position: absolute;
+            height: 20px;
+            width: 20px;
+            left: 3px;
+            bottom: 3px;
+            background: white;
+            border-radius: 50%;
+            transition: 0.3s ease;
+        }
+
+        input:checked + .desliza {
+            background: var(--azul);
+        }
+
+        input:checked + .desliza:before {
+            transform: translateX(22px);
+        }
+
+        /* === PERFIL — SKINS Y CAPAS POR SEPARADO === */
+        .apartado-perfil {
+            margin-bottom: 3.5rem;
+        }
+
+        .titulo-apartado {
+            font-size: 1.4rem;
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--borde);
+        }
+
+        .titulo-skins {
+            color: var(--verde);
+        }
+
+        .titulo-capas {
+            color: var(--azul);
+        }
+
+        .tarjeta-perfil {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid var(--borde);
+            border-radius: 14px;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            transition: all 0.25s ease;
+        }
+
+        .tarjeta-perfil:hover {
+            border-color: rgba(56, 189, 248, 0.3);
+        }
+
+        .tarjeta-perfil h4 {
+            margin-bottom: 1.2rem;
+            color: #fff;
+            font-size: 1rem;
+        }
+
         .vista-skin, .vista-capa {
-            width: 140px; height: 220px; margin: 0 auto;
-            background: rgba(0,0,0,0.25); border-radius: 10px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 4rem; border: 1px solid var(--borde);
+            width: 140px;
+            height: 220px;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            border: 2px solid var(--borde);
             image-rendering: pixelated;
         }
+
         .btn-establecer {
-            margin-top: 1.2rem; padding: 0.6rem 1.4rem;
-            background: var(--azul-bat); color: #000; border: none;
-            border-radius: 8px; font-weight: 700; cursor: pointer;
-            transition: transform 0.2s;
-        }
-        .btn-establecer:hover { transform: translateY(-2px); }
-        .btn-eliminar {
-            margin-left: 0.5rem; padding: 0.6rem 1.4rem;
-            background: #f43f5e; color: #fff; border: none;
-            border-radius: 8px; font-weight: 700; cursor: pointer;
+            margin-top: 1.2rem;
+            padding: 0.65rem 1.4rem;
+            background: var(--azul);
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
         }
 
-        /* Biblioteca de Skins / Capas */
+        .btn-establecer:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.25);
+        }
+
+        .btn-eliminar {
+            margin-left: 0.5rem;
+            padding: 0.65rem 1.4rem;
+            background: var(--rojo);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+        }
+
+        .btn-eliminar:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(244, 63, 94, 0.25);
+        }
+
+        /* Biblioteca */
         .biblioteca {
-            margin-top: 2rem;
-            background: rgba(30, 41, 59, 0.5); border: 1px solid var(--borde);
-            border-radius: 14px; padding: 1.8rem;
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid var(--borde);
+            border-radius: 14px;
+            padding: 1.8rem;
         }
-        .biblioteca h4 { margin-bottom: 1.2rem; color: #fff; font-size: 1.1rem; }
-        .biblioteca-cuerpo { display: flex; gap: 1.5rem; align-items: flex-start; }
-        .vista-actual { flex: 0 0 160px; text-align: center; }
-        .vista-actual h5 { color: var(--texto-claro); margin-bottom: 0.8rem; font-size: 0.9rem; }
+
+        .biblioteca h4 {
+            margin-bottom: 1.2rem;
+            color: #fff;
+            font-size: 1.1rem;
+        }
+
+        .biblioteca-cuerpo {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .vista-actual {
+            flex: 0 0 160px;
+            text-align: center;
+        }
+
+        .vista-actual h5 {
+            color: var(--texto-claro);
+            margin-bottom: 0.8rem;
+            font-size: 0.9rem;
+        }
+
         .skin-preview {
-            width: 100px; height: 180px; margin: 0 auto;
-            background: rgba(0,0,0,0.25); border-radius: 8px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 3rem; border: 2px solid var(--azul-bat);
+            width: 100px;
+            height: 180px;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            border: 2px solid var(--azul);
         }
-        .separador { width: 1px; height: 200px; background: var(--borde); }
-        .skins-lista { flex: 1; }
-        .skins-lista h5 { color: var(--texto-claro); margin-bottom: 0.8rem; font-size: 0.9rem; }
+
+        .separador {
+            width: 1px;
+            height: 200px;
+            background: var(--borde);
+        }
+
+        .skins-lista {
+            flex: 1;
+            min-width: 220px;
+        }
+
+        .skins-lista h5 {
+            color: var(--texto-claro);
+            margin-bottom: 0.8rem;
+            font-size: 0.9rem;
+        }
+
         .cuadricula-skins {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
             gap: 0.8rem;
         }
+
         .skin-item {
-            aspect-ratio: 2/3; background: rgba(255,255,255,0.04);
-            border-radius: 8px; display: flex; align-items: center; justify-content: center;
-            font-size: 1.8rem; cursor: pointer; border: 2px solid transparent;
-            transition: all 0.2s; position: relative; padding: 0.3rem;
+            aspect-ratio: 2/3;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s ease;
+            position: relative;
+            padding: 0.3rem;
         }
-        .skin-item:hover { border-color: var(--azul-bat); background: rgba(56,189,248,0.08); }
-        .skin-item.seleccionada { border-color: var(--azul-bat); box-shadow: 0 0 10px rgba(56,189,248,0.25); }
-        .skin-item.bloqueado { opacity: 0.5; filter: grayscale(0.7); }
-        .icono-bloqueo { position: absolute; top: 4px; right: 4px; font-size: 0.7rem; }
+
+        .skin-item:hover {
+            border-color: var(--azul);
+            background: rgba(56, 189, 248, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .skin-item.seleccionada {
+            border-color: var(--verde);
+            box-shadow: 0 0 10px rgba(127, 255, 0, 0.2);
+        }
+
+        .skin-item.bloqueado {
+            opacity: 0.6;
+            filter: grayscale(0.6);
+            cursor: not-allowed;
+        }
+
+        .icono-bloqueo {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            font-size: 0.7rem;
+        }
+
         .aviso-limite {
-            color: var(--rojo-error); font-size: 0.85rem; margin-top: 0.5rem;
-            display: flex; align-items: center; gap: 0.3rem;
+            color: var(--rojo);
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            line-height: 1.5;
         }
+
         .btn-volver {
-            display: inline-block; margin-top: 1.5rem; padding: 0.6rem 1.4rem;
-            background: var(--azul-bat); color: #000; border: none;
-            border-radius: 8px; font-weight: 700; cursor: pointer; text-decoration: none;
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.6rem 1.4rem;
+            background: var(--azul);
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn-volver:hover {
+            transform: translateY(-2px);
         }
 
         /* === CARACTERÍSTICAS, DESCARGAR, ACERCA === */
-        section { padding: 2rem 2rem 4rem; }
+        section {
+            padding: 2rem 2rem 4rem;
+        }
+
         section h2 {
-            font-size: 2rem; text-align: center; margin-bottom: 2rem;
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
             color: #fff;
         }
+
         .grid-caracteristicas {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.2rem;
         }
+
         .card {
-            background: rgba(30, 41, 59, 0.5); border: 1px solid var(--borde);
-            border-radius: 14px; padding: 1.5rem; transition: all 0.25s;
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid var(--borde);
+            border-radius: 14px;
+            padding: 1.5rem;
+            transition: all 0.25s ease;
         }
-        .card:hover { border-color: var(--verde); transform: translateY(-4px); }
-        .card h3 { color: var(--verde); margin-bottom: 0.6rem; font-size: 1.1rem; }
-        .card p { color: var(--texto-claro); line-height: 1.6; }
+
+        .card:hover {
+            border-color: var(--verde);
+            transform: translateY(-4px);
+            box-shadow: var(--sombra);
+        }
+
+        .card h3 {
+            color: var(--verde);
+            margin-bottom: 0.6rem;
+            font-size: 1.1rem;
+        }
+
+        .card p {
+            color: var(--texto-claro);
+            line-height: 1.6;
+        }
+
         .pasos {
-            background: rgba(30, 41, 59, 0.5); border: 1px solid var(--borde);
-            border-radius: 14px; padding: 2rem; max-width: 700px; margin: 0 auto;
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid var(--borde);
+            border-radius: 14px;
+            padding: 2rem;
+            max-width: 700px;
+            margin: 0 auto;
         }
-        .paso { display: flex; gap: 1rem; margin-bottom: 1rem; align-items: flex-start; }
+
+        .paso {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            align-items: flex-start;
+        }
+
         .paso-num {
-            background: var(--verde); color: #000; font-weight: 900;
-            width: 32px; height: 32px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+            background: var(--verde);
+            color: #000;
+            font-weight: 900;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
         }
-        .paso-texto { color: var(--texto); }
+
+        .paso-texto {
+            color: var(--texto);
+        }
+
         .acerca {
-            text-align: center; max-width: 700px; margin: 0 auto;
-            background: rgba(30, 41, 59, 0.5); border: 1px solid var(--borde);
-            border-radius: 14px; padding: 2rem; color: var(--texto-claro);
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid var(--borde);
+            border-radius: 14px;
+            padding: 2rem;
+            color: var(--texto-claro);
+            line-height: 1.8;
         }
-        .acerca a { color: var(--verde); text-decoration: none; font-weight: 600; }
 
+        .acerca a {
+            color: var(--verde);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .acerca a:hover {
+            text-decoration: underline;
+        }
+
+        /* === PIE DE PÁGINA === */
         footer {
-            text-align: center; padding: 2rem; color: #475569;
-            border-top: 1px solid var(--borde); margin-top: 2rem; font-size: 0.9rem;
+            text-align: center;
+            padding: 2rem;
+            color: #475569;
+            border-top: 1px solid var(--borde);
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            line-height: 1.7;
         }
 
+        /* === RESPONSIVE === */
         @media (max-width: 768px) {
-            header h1 { font-size: 2rem; }
-            .separador { display: none; }
-            .biblioteca-cuerpo { flex-wrap: wrap; justify-content: center; }
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .separador {
+                display: none;
+            }
+
+            .biblioteca-cuerpo {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-enlaces {
+                justify-content: center;
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -461,7 +1026,7 @@
             <div class="card"><h3>👤 Perfiles Personalizados</h3><p>Crea perfiles con su propia versión, mods y configuración separada.</p></div>
             <div class="card"><h3>🔒 100% Seguro</h3><p>Sin virus, sin rastreadores. Tu información se queda solo en tu equipo.</p></div>
             <div class="card"><h3>🖥️ Para cualquier PC</h3><p>Optimizado para funcionar bien incluso en equipos modestos.</p></div>
-            <div class="card"><h3>✅ Gratis siempre</h3><p>Funciones básicas gratis. Beneficios extra disponibles mediante suscripción.</p></div>
+            <div class="card"><h3>✅ Gratis siempre</h3><p>Funciones básicas gratis. Beneficios extra disponibles mediante suscripción Premium.</p></div>
         </div>
     </section>
 </div>
@@ -499,7 +1064,7 @@
         <div class="acerca">
             <p>Nexis Launcher es un proyecto gratuito diseñado para facilitar el acceso a Minecraft. Sin publicidad, sin virus y sin costos ocultos en sus funciones básicas.</p>
             <br>
-            <p>Algunos beneficios adicionales, como skins exclusivas, más espacio en la biblioteca de capas y personalización avanzada, <strong>requieren una suscripción Premium</strong>.</p>
+            <p>Algunos beneficios adicionales, como skins ilimitadas, capas exclusivas, subida sin límites y soporte prioritario, <strong>requieren una suscripción Premium</strong>.</p>
             <br>
             <p>Únete a nuestra comunidad: <a href="https://discord.gg/ef4uw4ttF" target="_blank">Discord Oficial</a></p>
         </div>
@@ -507,12 +1072,12 @@
 </div>
 
 <!-- ====================================== -->
-<!-- CUENTA / DASHBOARD (ESTILO BATTLY) -->
+<!-- CUENTA / DASHBOARD -->
 <!-- ====================================== -->
 <div id="s-cuenta" class="seccion">
     <div class="dashboard">
         <h1 class="dashboard-saludo">Hola, Papichulo6070</h1>
-        <p class="dashboard-subtitulo">Bienvenid@ a tu nuevo Panel de Cuenta de Nexis Launcher</p>
+        <p class="dashboard-subtitulo">Bienvenid@ a tu Panel de Cuenta</p>
 
         <!-- Pestañas -->
         <div class="pestañas">
@@ -527,13 +1092,13 @@
         <div id="cuenta-inicio" class="contenido-pestaña visible">
             <div class="tarjeta">
                 <h3>Inicio <span class="etiqueta-beta">BETA</span></h3>
-                <p class="suscripcion">Suscripción a Nexis Launcher Premium: <span class="inactiva">Inactiva</span></p>
+                <p class="suscripcion">Suscripción Premium: <span class="inactiva">Inactiva</span></p>
                 <p class="fecha-acceso">Tu último inicio de sesión fue el lunes, 14 de septiembre de 2026</p>
 
                 <div class="aviso-premium">
-                    💡 <strong>Debes pagar para tener más beneficios.</strong><br>
-                    Al suscribirte obtienes: skins ilimitadas, capas exclusivas, subida de archivos prioritarias, sin anuncios y soporte prioritario.<br>
-                    <a onclick="alert('Aquí se abriría el pago de Premium')">💎 Suscribirse a Nexis Premium →</a>
+                    💎 <strong>Debes pagar para tener más beneficios.</strong><br>
+                    Al suscribirte obtienes: skins ilimitadas, capas exclusivas, subida sin límites, sin anuncios y soporte prioritario.<br>
+                    <a onclick="alert('Aquí se abriría el pago de Premium')">💳 Suscribirse a Nexis Premium →</a>
                 </div>
 
                 <button class="btn-guardar btn-peligro" style="margin-top:1.5rem;">Cerrar sesión</button>
@@ -556,7 +1121,7 @@
                 </div>
                 <div class="grupo" style="margin-top:1rem;">
                     <label>Sobre mí</label>
-                    <textarea rows="4">No has escrito nada sobre ti</textarea>
+                    <textarea>No has escrito nada sobre ti</textarea>
                 </div>
                 <button class="btn-guardar">Guardar cambios</button>
             </div>
@@ -603,109 +1168,53 @@
             </div>
         </div>
 
-        <!-- === PERFIL: SKIN Y CAPA === -->
+        <!-- === PERFIL: SKIN Y CAPA — APARTADOS SEPARADOS === -->
         <div id="cuenta-perfil" class="contenido-pestaña">
-            <div class="grid-perfil">
-                <!-- SKIN -->
+
+            <!-- 🎨 APARTADO DE SKINS -->
+            <div class="apartado-perfil">
+                <h3 class="titulo-apartado titulo-skins">🎨 Skins</h3>
+
                 <div class="tarjeta-perfil">
-                    <h4>🎨 Personalizar skin</h4>
+                    <h4>Skin Actual</h4>
                     <div class="vista-skin">🧍</div>
-                    <button class="btn-establecer">✅ Establecer skin</button>
-                    <button class="btn-eliminar">🗑️ Eliminar</button>
+                    <div style="margin-top:1rem;">
+                        <button class="btn-establecer">✅ Establecer skin</button>
+                        <button class="btn-eliminar">🗑️ Eliminar skin</button>
+                    </div>
                 </div>
-                <!-- CAPA -->
+
+                <div class="biblioteca">
+                    <h4>📚 Biblioteca de Skins</h4>
+                    <div class="biblioteca-cuerpo">
+                        <div class="vista-actual">
+                            <h5>Skin en uso</h5>
+                            <div class="skin-preview">🧍</div>
+                        </div>
+                        <div class="separador"></div>
+                        <div class="skins-lista">
+                            <h5>Tus skins guardadas</h5>
+                            <div class="aviso-limite">⚠️ No puedes subir más skins. <strong>Compra Premium</strong> para almacenar ilimitadas.</div>
+                            <div class="cuadricula-skins" style="margin-top:0.8rem;">
+                                <div class="skin-item seleccionada" title="Skin actual">🧍</div>
+                                <div class="skin-item bloqueado" title="🔒 Solo con Premium">🧍‍♂️<span class="icono-bloqueo">🔒</span></div>
+                                <div class="skin-item bloqueado" title="🔒 Solo con Premium">🥷<span class="icono-bloqueo">🔒</span></div>
+                                <div class="skin-item bloqueado" title="🔒 Solo con Premium">🤠<span class="icono-bloqueo">🔒</span></div>
+                                <div class="skin-item bloqueado" title="🔒 Solo con Premium">🧙<span class="icono-bloqueo">🔒</span></div>
+                                <div class="skin-item bloqueado" title="🔒 Solo con Premium">⚔️<span class="icono-bloqueo">🔒</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn-volver">← Volver atrás</button>
+                </div>
+            </div>
+
+            <!-- 🧥 APARTADO DE CAPAS -->
+            <div class="apartado-perfil">
+                <h3 class="titulo-apartado titulo-capas">🧥 Capas</h3>
+
                 <div class="tarjeta-perfil">
-                    <h4>🧥 Personalizar capa</h4>
+                    <h4>Capa Actual</h4>
                     <div class="vista-capa">🧥</div>
-                    <button class="btn-establecer">✅ Establecer capa</button>
-                </div>
-            </div>
-
-            <!-- BIBLIOTECA DE SKINS -->
-            <div class="biblioteca">
-                <h4>📚 Biblioteca de Skins</h4>
-                <div class="biblioteca-cuerpo">
-                    <div class="vista-actual">
-                        <h5>Skin actual</h5>
-                        <div class="skin-preview">🧍</div>
-                    </div>
-                    <div class="separador"></div>
-                    <div class="skins-lista">
-                        <h5>Biblioteca</h5>
-                        <div class="aviso-limite">⚠️ No puedes subir más skins. Necesitas Premium.</div>
-                        <div class="cuadricula-skins" style="margin-top:0.8rem;">
-                            <div class="skin-item seleccionada" title="Steve">🧍</div>
-                            <div class="skin-item bloqueado" title="Premium — Suscríbete">🧍‍♂️<span class="icono-bloqueo">🔒</span></div>
-                            <div class="skin-item bloqueado" title="Premium — Suscríbete">🥷<span class="icono-bloqueo">🔒</span></div>
-                            <div class="skin-item bloqueado" title="Premium — Suscríbete">🤠<span class="icono-bloqueo">🔒</span></div>
-                            <div class="skin-item bloqueado" title="Premium — Suscríbete">🧙<span class="icono-bloqueo">🔒</span></div>
-                        </div>
-                    </div>
-                </div>
-                <button class="btn-volver">← Volver atrás</button>
-            </div>
-
-            <!-- BIBLIOTECA DE CAPAS -->
-            <div class="biblioteca" style="margin-top:2rem;">
-                <h4>📚 Biblioteca de Capas</h4>
-                <div class="biblioteca-cuerpo">
-                    <div class="vista-actual">
-                        <h5>Capa actual</h5>
-                        <div class="skin-preview">🧥</div>
-                    </div>
-                    <div class="separador"></div>
-                    <div class="skins-lista">
-                        <h5>Biblioteca</h5>
-                        <div class="aviso-limite">⚠️ Necesitas Premium para añadir más capas.</div>
-                        <div class="cuadricula-skins" style="margin-top:0.8rem;">
-                            <div class="skin-item seleccionada" title="Capa estándar">🏳️</div>
-                            <div class="skin-item bloqueado" title="Premium — Suscríbete">🔥<span class="icono-bloqueo">🔒</span></div>
-                            <div class="skin-item bloqueado" title="Premium — Suscríbete">❄️<span class="icono-bloqueo">🔒</span></div>
-                            <div class="skin-item bloqueado" title="Premium — Suscríbete">⭐<span class="icono-bloqueo">🔒</span></div>
-                            <div class="skin-item bloqueado" title="Premium — Suscríbete">🛡️<span class="icono-bloqueo">🔒</span></div>
-                        </div>
-                    </div>
-                </div>
-                <button class="btn-volver">← Volver atrás</button>
-            </div>
-
-            <!-- AVISO PREMIUM FINAL -->
-            <div class="aviso-premium" style="margin-top:2rem;">
-                💎 <strong>¿Quieres más skins, capas y beneficios exclusivos?</strong><br>
-                Al pagar la suscripción Premium obtienes: skins ilimitadas, capas exclusivas, subida sin límite, sin anuncios y soporte prioritario.<br>
-                <a onclick="alert('Aquí se abriría el pago de Premium')">Suscribirse a Nexis Premium →</a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- PIE -->
-<footer>
-    © 2026 Nexis Launcher. Este es un proyecto independiente. No está afiliado a Mojang Studios ni Microsoft.<br>
-    Las funciones básicas son gratis. Beneficios extra disponibles mediante suscripción Premium.
-</footer>
-
-<!-- SCRIPTS -->
-<script>
-    // Mostrar sección principal
-    function mostrarSeccion(nombre) {
-        document.querySelectorAll('.seccion').forEach(s => s.classList.remove('visible'));
-        document.getElementById('s-' + nombre).classList.add('visible');
-        
-        document.querySelectorAll('.nav-enlaces a').forEach(a => a.classList.remove('activo'));
-        const m = document.getElementById('m-' + nombre);
-        if (m) m.classList.add('activo');
-    }
-
-    // Cambiar pestaña del panel de cuenta
-    function cambiarPestanaCuenta(nombre) {
-        document.querySelectorAll('#s-cuenta .contenido-pestaña').forEach(p => p.classList.remove('visible'));
-        document.getElementById(nombre).classList.add('visible');
-        
-        document.querySelectorAll('#s-cuenta .pestaña').forEach(p => p.classList.remove('activa'));
-        event.currentTarget.classList.add('activa');
-    }
-</script>
-
-</body>
-</html>
+                    <div style="margin-top:1rem;">
+                        <button class="btn-establecer">✅
