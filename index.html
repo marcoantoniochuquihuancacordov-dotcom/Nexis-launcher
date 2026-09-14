@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nexis Launcher — Minecraft rápido, seguro y gratis</title>
-    <meta name="description" content="Nexis Launcher: Launcher de Minecraft Java y Bedrock gratuito, ligero, sin virus y sin publicidad.">
+    <meta name="description" content="Nexis Launcher: Launcher de Minecraft Java y Bedrock gratuito, ligero, sin virus y 100% seguro.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -60,10 +60,10 @@
             text-align: center;
             color: var(--texto-claro);
             font-size: 0.9rem;
-            display: block; /* Por defecto se muestra */
+            display: block;
         }
         .premium .anuncio-banner {
-            display: none !important; /* Si es Premium → SE OCULTA TODO */
+            display: none !important;
         }
         .etiqueta-anuncio {
             display: inline-block;
@@ -75,7 +75,6 @@
             color: var(--texto-claro);
         }
 
-        /* RESTO DE TUS ESTILOS */
         nav {
             background: rgba(15, 23, 42, 0.85);
             padding: 1rem 0;
@@ -102,10 +101,7 @@
             transition: transform 0.2s;
             cursor: pointer;
         }
-
-        .logo:hover {
-            transform: scale(1.05);
-        }
+        .logo:hover { transform: scale(1.05); }
 
         .nav-enlaces {
             display: flex;
@@ -124,15 +120,11 @@
             border: none;
             font-size: 1rem;
             cursor: pointer;
-            position: relative;
-            z-index: 10;
         }
-
         .nav-enlaces button:hover {
             color: #fff;
             background: rgba(127, 255, 0, 0.08);
         }
-
         .nav-enlaces button.activo {
             color: var(--verde);
             background: rgba(127, 255, 0, 0.15);
@@ -151,7 +143,6 @@
             transition: all 0.2s;
             border: 1px solid transparent;
         }
-
         .usuario-nav:hover {
             background: rgba(255, 255, 255, 0.1);
             border-color: var(--verde);
@@ -167,7 +158,6 @@
             cursor: pointer;
             transition: all 0.2s;
         }
-
         .btn-cerrar:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 15px rgba(244, 63, 94, 0.3);
@@ -184,7 +174,6 @@
             border: none;
             cursor: pointer;
         }
-
         .btn-discord:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 15px rgba(88, 101, 242, 0.4);
@@ -197,21 +186,14 @@
             position: relative;
             z-index: 1;
         }
-
-        .seccion.visible {
-            display: block;
-        }
+        .seccion.visible { display: block; }
 
         @keyframes aparecer {
             from { opacity: 0; transform: translateY(12px); }
             to   { opacity: 1; transform: translateY(0); }
         }
 
-        header {
-            padding: 3.5rem 2rem;
-            text-align: center;
-        }
-
+        header { padding: 3.5rem 2rem; text-align: center; }
         header h1 {
             font-size: 3rem;
             margin-bottom: 1rem;
@@ -220,14 +202,12 @@
             -webkit-text-fill-color: transparent;
             font-weight: 900;
         }
-
         header p {
             font-size: 1.1rem;
             max-width: 800px;
             margin: 0 auto 1.5rem;
             color: var(--texto-claro);
         }
-
         .boton-descarga {
             display: inline-flex;
             align-items: center;
@@ -244,7 +224,6 @@
             cursor: pointer;
             margin-top: 1rem;
         }
-
         .boton-descarga:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(127, 255, 0, 0.25);
@@ -262,14 +241,12 @@
             padding: 1.5rem;
             transition: all 0.25s ease;
         }
-
         .noticia:hover {
             border-color: var(--verde);
             background: rgba(30, 41, 59, 0.8);
             transform: translateY(-4px);
             box-shadow: var(--sombra);
         }
-
         .etiqueta {
             display: inline-block;
             background: rgba(127, 255, 0, 0.12);
@@ -280,7 +257,6 @@
             border-radius: 20px;
             margin-bottom: 1rem;
         }
-
         .noticia h3 { font-size: 1.05rem; margin-bottom: 0.6rem; color: #fff; }
         .noticia p { color: var(--texto-claro); font-size: 0.95rem; line-height: 1.6; margin-bottom: 0.8rem; }
         .leer-mas { color: var(--verde); font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 0.3rem; transition: all 0.2s; }
@@ -316,10 +292,7 @@
             gap: 0.5rem; 
             font-size: 0.95rem; 
         }
-        .pestaña:hover { 
-            color: #fff; 
-            background: rgba(127, 255, 0, 0.08); 
-        }
+        .pestaña:hover { color: #fff; background: rgba(127, 255, 0, 0.08); }
         .pestaña.activa { 
             background: linear-gradient(90deg, var(--verde), var(--verde-oscuro)); 
             color: #000; 
@@ -378,16 +351,105 @@
             width: 100%; 
             transition: all 0.2s ease; 
         }
-        .btn-guardar:hover { 
-            transform: translateY(-2px); 
-            box-shadow: 0 4px 15px rgba(127, 255, 0, 0.3); 
-        }
+        .btn-guardar:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(127, 255, 0, 0.3); }
         .btn-peligro { background: linear-gradient(90deg, #f43f5e, #e11d48); color: #fff; }
         .btn-peligro:hover { box-shadow: 0 4px 15px rgba(244, 63, 94, 0.3); }
         .suscripcion { font-size: 1.1rem; margin-bottom: 0.5rem; }
         .inactiva { color: var(--rojo); font-weight: 700; }
         .activa-premium { color: var(--verde); font-weight: 700; }
         .fecha-acceso { color: var(--texto-claro); font-size: 0.95rem; }
+
+        /* === SECCIÓN DE PAGOS === */
+        .metodos-pago {
+            margin-top: 1.5rem;
+        }
+        .metodos-pago h4 {
+            font-size: 1rem;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+        .opcion-pago {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.2rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px solid var(--borde);
+            border-radius: 12px;
+            margin-bottom: 0.8rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+        .opcion-pago:hover {
+            border-color: var(--verde);
+            background: rgba(127, 255, 0, 0.05);
+        }
+        .opcion-pago.seleccionada {
+            border-color: var(--verde);
+            background: rgba(127, 255, 0, 0.08);
+            box-shadow: 0 0 12px rgba(127, 255, 0, 0.15);
+        }
+        .radio-pago {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid var(--texto-claro);
+            position: relative;
+            flex-shrink: 0;
+        }
+        .opcion-pago.seleccionada .radio-pago {
+            border-color: var(--verde);
+        }
+        .opcion-pago.seleccionada .radio-pago::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background: var(--verde);
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .icono-pago {
+            font-size: 1.5rem;
+        }
+        .info-pago {
+            flex: 1;
+        }
+        .info-pago strong {
+            display: block;
+            color: #fff;
+            font-size: 0.95rem;
+        }
+        .info-pago span {
+            display: block;
+            color: var(--texto-claro);
+            font-size: 0.85rem;
+        }
+        .boton-pagar {
+            margin-top: 1.2rem;
+            width: 100%;
+            padding: 0.9rem;
+            background: linear-gradient(90deg, var(--verde), var(--verde-oscuro));
+            color: #000;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .boton-pagar:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(127, 255, 0, 0.3);
+        }
+        .boton-pagar:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
         .aviso-premium { 
             margin-top: 1.5rem; 
             padding: 1.4rem 1.6rem; 
@@ -399,29 +461,9 @@
             line-height: 1.7; 
         }
         .aviso-premium strong { color: #fff; }
-        .aviso-premium a { 
-            color: var(--dorado); 
-            font-weight: 700; 
-            text-decoration: none; 
-            cursor: pointer; 
-            display: inline-block; 
-            margin-top: 0.8rem; 
-            padding: 0.5rem 1.2rem; 
-            background: rgba(250, 204, 21, 0.15); 
-            border-radius: 8px; 
-            transition: all 0.2s; 
-        }
-        .aviso-premium a:hover { 
-            background: rgba(250, 204, 21, 0.25); 
-            transform: translateY(-1px); 
-        }
         .aviso-donar {
             background: rgba(34, 197, 94, 0.08);
             border: 1px solid rgba(34, 197, 94, 0.25);
-            color: #86efac;
-        }
-        .aviso-donar a {
-            background: rgba(34, 197, 94, 0.15);
             color: #86efac;
         }
 
@@ -477,17 +519,10 @@
             align-items: start;
         }
         @media (max-width: 768px) {
-            .personalizar-grid {
-                grid-template-columns: 1fr;
-            }
-            .separador-vertical {
-                width: 100%;
-                height: 1px;
-            }
+            .personalizar-grid { grid-template-columns: 1fr; }
+            .separador-vertical { width: 100%; height: 1px; }
         }
-        .skin-actual, .capa-actual {
-            text-align: center;
-        }
+        .skin-actual, .capa-actual { text-align: center; }
         .skin-actual h4, .capa-actual h4 {
             font-size: 1.1rem;
             color: #fff;
@@ -505,9 +540,17 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 5rem;
+            font-size: 4.5rem;
             border: 2px solid var(--borde);
             image-rendering: pixelated;
+        }
+        .sin-capa {
+            color: var(--texto-claro);
+            font-size: 0.9rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
         .btn-azul {
             background: var(--azul);
@@ -519,10 +562,7 @@
             cursor: pointer;
             transition: all 0.2s;
         }
-        .btn-azul:hover {
-            background: var(--azul-claro);
-            transform: translateY(-2px);
-        }
+        .btn-azul:hover { background: var(--azul-claro); transform: translateY(-2px); }
         .btn-rojo {
             background: var(--rojo);
             color: #fff;
@@ -533,15 +573,8 @@
             cursor: pointer;
             transition: all 0.2s;
         }
-        .btn-rojo:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(244, 63, 94, 0.25);
-        }
-        .separador-vertical {
-            width: 2px;
-            height: 280px;
-            background: var(--borde);
-        }
+        .btn-rojo:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(244, 63, 94, 0.25); }
+        .separador-vertical { width: 2px; height: 280px; background: var(--borde); }
         .biblioteca-lado h4 {
             font-size: 1.1rem;
             color: #fff;
@@ -555,18 +588,9 @@
             margin-bottom: 1rem;
             line-height: 1.5;
         }
-        .aviso-limite-lado span {
-            color: var(--verde);
-            font-weight: 700;
-        }
-        .cuadricula-skins-lado {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0.8rem;
-        }
-        .cuadricula-skins-lado.skin-4 {
-            grid-template-columns: repeat(2, 1fr);
-        }
+        .aviso-limite-lado span { color: var(--verde); font-weight: 700; }
+        .cuadricula-skins-lado { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; }
+        .cuadricula-skins-lado.skin-4 { grid-template-columns: repeat(2, 1fr); }
         .skin-item-lado {
             aspect-ratio: 2/3;
             background: rgba(255, 255, 255, 0.04);
@@ -578,7 +602,6 @@
             cursor: pointer;
             border: 2px solid transparent;
             transition: all 0.2s ease;
-            position: relative;
         }
         .skin-item-lado:hover {
             border-color: var(--verde);
@@ -588,10 +611,7 @@
             border-color: var(--verde);
             box-shadow: 0 0 12px rgba(127, 255, 0, 0.25);
         }
-        .boton-volver {
-            text-align: center;
-            margin-top: 2rem;
-        }
+        .boton-volver { text-align: center; margin-top: 2rem; }
         .btn-volver {
             display: inline-block;
             padding: 0.65rem 1.4rem;
@@ -604,9 +624,7 @@
             text-decoration: none;
             transition: all 0.2s ease;
         }
-        .btn-volver:hover {
-            transform: translateY(-2px);
-        }
+        .btn-volver:hover { transform: translateY(-2px); }
 
         section { padding: 2rem 2rem 4rem; }
         section h2 { font-size: 2rem; text-align: center; margin-bottom: 2rem; color: #fff; }
@@ -787,12 +805,49 @@
                     <a href="#cuenta-perfil" onclick="cambiarPestanaCuenta('cuenta-perfil'); return false;">🎨 Ver límites de Skins y Capas →</a>
                 </div>
 
-                <!-- 💳 DONACIONES Y PREMIUM POR PAYPAL -->
-                <div class="aviso-premium aviso-donar" style="margin-top: 1.5rem;">
-                    💳 <strong>Pagar Premium / Donar con PayPal</strong><br>
-                    Al pagar tu suscripción, Premium se activará automáticamente en tu cuenta — disponible tanto en la página web como en el Launcher.<br>
-                    <a href="https://paypal.me/TU_CUENTA_PAYPAL" target="_blank" style="color: #86efac;">💳 Pagar Premium por PayPal →</a>
-                    <a href="https://paypal.me/TU_CUENTA_PAYPAL" target="_blank" style="color: #86efac;">☕ Hacer una donación →</a>
+                <!-- 💳 ELEGIR MEDIO DE PAGO -->
+                <div class="aviso-premium aviso-donar metodos-pago" style="margin-top: 1.5rem;">
+                    <h4>💳 Elegir medio de pago</h4>
+                    
+                    <div class="opcion-pago" id="pago-paypal" onclick="seleccionarPago('paypal')">
+                        <div class="radio-pago"></div>
+                        <div class="icono-pago">🅿️</div>
+                        <div class="info-pago">
+                            <strong>PayPal</strong>
+                            <span>Paga con saldo, tarjeta o cuenta bancaria</span>
+                        </div>
+                    </div>
+
+                    <div class="opcion-pago" id="pago-yape" onclick="seleccionarPago('yape')">
+                        <div class="radio-pago"></div>
+                        <div class="icono-pago">📱</div>
+                        <div class="info-pago">
+                            <strong>Yape</strong>
+                            <span>Pago rápido desde tu celular (Perú)</span>
+                        </div>
+                    </div>
+
+                    <div class="opcion-pago" id="pago-plin" onclick="seleccionarPago('plin')">
+                        <div class="radio-pago"></div>
+                        <div class="icono-pago">🔵</div>
+                        <div class="info-pago">
+                            <strong>Plin</strong>
+                            <span>Transferencia inmediata entre bancos</span>
+                        </div>
+                    </div>
+
+                    <div class="opcion-pago" id="pago-donar" onclick="seleccionarPago('donar')">
+                        <div class="radio-pago"></div>
+                        <div class="icono-pago">☕</div>
+                        <div class="info-pago">
+                            <strong>Hacer una donación</strong>
+                            <span>Apoya el proyecto con cualquier cantidad</span>
+                        </div>
+                    </div>
+
+                    <button class="boton-pagar" id="boton-pagar" onclick="realizarPago()" disabled>
+                        Selecciona un medio de pago ↑
+                    </button>
                 </div>
 
                 <button class="btn-guardar btn-peligro" style="margin-top:1.5rem;">Cerrar sesión</button>
@@ -838,16 +893,16 @@
         <!-- === PERFIL: SKINS Y CAPAS === -->
         <div id="cuenta-perfil" class="contenido-pestaña">
 
-            <!-- === PERSONALIZAR SKIN === -->
+            <!-- 🧍 SKIN POR DEFECTO: STEVE al iniciar sesión -->
             <div class="personalizar-seccion">
                 <h3>🎨 Personalizar skin</h3>
                 <div class="personalizar-grid">
                     <div class="skin-actual">
-                        <h4>Skin actual</h4>
-                        <div class="vista-personalizada">🧍</div>
+                        <h4>Skin actual (Predeterminada)</h4>
+                        <div class="vista-personalizada" id="vista-skin">🧍</div>
                         <div style="display:flex; gap:0.5rem; justify-content:center; flex-wrap:wrap;">
                             <button class="btn-azul">✅ Establecer skin</button>
-                            <button class="btn-rojo">🗑️ Eliminar skin</button>
+                            <button class="btn-rojo" onclick="restablecerSkin()">↩️ Restablecer a Steve</button>
                         </div>
                     </div>
                     <div class="separador-vertical"></div>
@@ -858,7 +913,7 @@
                             <strong>Compra Premium</strong> para skins ilimitadas.
                         </div>
                         <div class="cuadricula-skins-lado skin-4">
-                            <div class="skin-item-lado seleccionada" title="Skin actual">🧍</div>
+                            <div class="skin-item-lado seleccionada" title="Steve (Predeterminada)">🧍</div>
                             <div class="skin-item-lado" title="Skin guardada 1">🧍‍♂️</div>
                             <div class="skin-item-lado" title="Skin guardada 2">🥷</div>
                             <div class="skin-item-lado" title="Skin guardada 3">🤠</div>
@@ -867,13 +922,16 @@
                 </div>
             </div>
 
-            <!-- === PERSONALIZAR CAPA === -->
+            <!-- 🧥 SIN CAPA POR DEFECTO -->
             <div class="personalizar-seccion">
                 <h3>🧥 Personalizar capa</h3>
                 <div class="personalizar-grid">
                     <div class="capa-actual">
                         <h4>Capa actual</h4>
-                        <div class="vista-personalizada">🧥</div>
+                        <div class="vista-personalizada sin-capa" id="vista-capa">
+                            🚫<br>
+                            <em>Sin capa</em>
+                        </div>
                         <button class="btn-azul">✅ Establecer capa</button>
                     </div>
                     <div class="separador-vertical"></div>
@@ -884,90 +942,7 @@
                             <strong>con Premium</strong>.
                         </div>
                         <div class="cuadricula-skins-lado">
-                            <div class="skin-item-lado seleccionada" title="Capa actual">🏳️</div>
+                            <div class="skin-item-lado" title="Sin capa" onclick="quitarCapa()">🚫</div>
                             <div class="skin-item-lado" title="Capa guardada 1">🔥</div>
                             <div class="skin-item-lado" title="Capa guardada 2">❄️</div>
                             <div class="skin-item-lado" title="Capa guardada 3">⭐</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="boton-volver">
-                <button class="btn-volver" onclick="cambiarPestanaCuenta('cuenta-inicio')">← Volver atrás</button>
-            </div>
-        </div>
-
-    </div>
-</div>
-
-<footer>
-    © 2026 Nexis Launcher — Gratis, Seguro y Sin Publicidad.<br>
-    Este proyecto no está afiliado a Mojang Studios ni a Microsoft.
-</footer>
-
-<!-- ====================================== -->
-<!-- ✅ JAVASCRIPT: PREMIUM SIN ANUNCIOS -->
-<!-- ====================================== -->
-<script>
-    // === SISTEMA DE PREMIUM Y ANUNCIOS ===
-    // Cambia esto a true para probar cómo se ve con Premium activado
-    let cuentaPremium = false; // 👈 PRUEBA: ponlo en "true" y verás que desaparecen los anuncios
-
-    // Función que activa/desactiva Premium
-    function aplicarPremium() {
-        const cuerpo = document.getElementById('cuerpo-web');
-        const estadoTexto = document.getElementById('estado-premium');
-
-        if (cuentaPremium) {
-            // ✅ ES PREMIUM: Quitar anuncios y cambiar estado
-            cuerpo.classList.add('premium');
-            estadoTexto.textContent = 'Activo ✅';
-            estadoTexto.classList.remove('inactiva');
-            estadoTexto.classList.add('activa-premium');
-        } else {
-            // ❌ GRATIS: Mostrar anuncios
-            cuerpo.classList.remove('premium');
-            estadoTexto.textContent = 'Inactiva';
-            estadoTexto.classList.remove('activa-premium');
-            estadoTexto.classList.add('inactiva');
-        }
-    }
-
-    // === NAVEGACIÓN ===
-    function mostrarSeccion(nombreSeccion) {
-        document.querySelectorAll('.seccion').forEach(sec => {
-            sec.classList.remove('visible');
-        });
-        const seccion = document.getElementById('s-' + nombreSeccion);
-        if (seccion) seccion.classList.add('visible');
-
-        document.querySelectorAll('.nav-enlaces button').forEach(btn => {
-            btn.classList.remove('activo');
-        });
-        const botonActivo = document.getElementById('m-' + nombreSeccion);
-        if (botonActivo) botonActivo.classList.add('activo');
-    }
-
-    function cambiarPestanaCuenta(nombrePestana, botonPulsado) {
-        document.querySelectorAll('.contenido-pestaña').forEach(tab => {
-            tab.classList.remove('visible');
-        });
-        document.getElementById(nombrePestana).classList.add('visible');
-
-        document.querySelectorAll('.pestañas .pestaña').forEach(btn => {
-            btn.classList.remove('activa');
-        });
-        if (botonPulsado) {
-            botonPulsado.classList.add('activa');
-        }
-    }
-
-    // Al cargar la página → aplicar estado de Premium
-    document.addEventListener('DOMContentLoaded', () => {
-        aplicarPremium();
-    });
-</script>
-
-</body>
-</html>
