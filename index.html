@@ -139,6 +139,12 @@
             background: var(--discord-azul);
             color: white;
             text-decoration: none;
+            padding: 0 1rem;
+            height: var(--altura-boton);
+            border-radius: var(--radio-borde);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
         .btn-discord:hover {
             filter: brightness(1.1);
@@ -401,6 +407,226 @@
         .inactiva { color: var(--rojo); font-weight: 700; }
         .fecha-acceso { color: var(--texto-claro); font-size: 0.95rem; }
 
+        .metodos-pago { margin-top: 1.5rem; }
+        .metodos-pago h4 { font-size: 1rem; color: #fff; margin-bottom: 1rem; }
+        .opcion-pago {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.2rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px solid var(--borde);
+            border-radius: 12px;
+            margin-bottom: 0.8rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+        .opcion-pago:hover {
+            border-color: var(--verde);
+            background: rgba(127, 255, 0, 0.05);
+        }
+        .opcion-pago.seleccionada {
+            border-color: var(--verde);
+            background: rgba(127, 255, 0, 0.08);
+        }
+        .radio-pago {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid var(--texto-claro);
+            position: relative;
+            flex-shrink: 0;
+        }
+        .opcion-pago.seleccionada .radio-pago { border-color: var(--verde); }
+        .opcion-pago.seleccionada .radio-pago::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background: var(--verde);
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .icono-pago { font-size: 1.5rem; }
+        .info-pago { flex: 1; }
+        .info-pago strong { display: block; color: #fff; font-size: 0.95rem; }
+        .info-pago span { display: block; color: var(--texto-claro); font-size: 0.85rem; }
+        .boton-pagar {
+            margin-top: 1.2rem;
+            width: 100%;
+            padding: 0.9rem;
+            background: linear-gradient(90deg, var(--verde), var(--verde-oscuro));
+            color: #000;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+        .boton-pagar:hover:not(:disabled) { transform: translateY(-2px); }
+        .boton-pagar:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+        .aviso-premium { 
+            margin-top: 1.5rem; 
+            padding: 1.4rem 1.6rem; 
+            background: rgba(250, 204, 21, 0.08); 
+            border: 1px solid rgba(250, 204, 21, 0.25); 
+            border-radius: 12px; 
+            color: #fde047; 
+            font-size: 1rem; 
+            line-height: 1.7; 
+        }
+        .aviso-donar {
+            background: rgba(34, 197, 94, 0.08);
+            border: 1px solid rgba(34, 197, 94, 0.25);
+            color: #86efac;
+        }
+        .aviso-premium a { color: var(--verde); text-decoration: none; font-weight: 500; }
+        .aviso-premium a:hover { text-decoration: underline; }
+
+        .fila-toggle { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 1rem 0; 
+            border-bottom: 1px solid var(--borde); 
+        }
+        .fila-toggle:last-child { border-bottom: none; }
+        .toggle { position: relative; display: inline-block; width: 52px; height: 28px; }
+        .toggle input { opacity: 0; width: 0; height: 0; }
+        .desliza { 
+            position: absolute; 
+            cursor: pointer; 
+            inset: 0; 
+            background: #334155; 
+            border-radius: 28px; 
+            transition: 0.3s ease; 
+        }
+        .desliza:before { 
+            content: ''; 
+            position: absolute; 
+            height: 22px; 
+            width: 22px; 
+            left: 3px; 
+            bottom: 3px; 
+            background: white; 
+            border-radius: 50%; 
+            transition: 0.3s ease; 
+        }
+        input:checked + .desliza { background: var(--verde); }
+        input:checked + .desliza:before { transform: translateX(24px); }
+
+        .personalizar-seccion {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid var(--borde);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        .personalizar-seccion h3 {
+            font-size: 1rem;
+            color: #fff;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+        .personalizar-grid {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+        @media (max-width: 768px) {
+            .personalizar-grid { grid-template-columns: 1fr; }
+            .separador-vertical { width: 100%; height: 1px; }
+        }
+        .skin-actual { text-align: center; }
+        .skin-actual h4 {
+            font-size: 1.1rem;
+            color: #fff;
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--borde);
+            display: inline-block;
+        }
+        .vista-personalizada {
+            width: 160px;
+            height: 240px;
+            margin: 0 auto 1.2rem;
+            background: rgba(0, 0, 0, 0.35);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4.5rem;
+            border: 2px solid var(--borde);
+            transition: all 0.3s ease;
+        }
+        .btn-azul {
+            background: #38bdf8;
+            color: #000;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            margin: 0.25rem;
+            font-family: inherit;
+        }
+        .btn-azul:hover { background: #60a5fa; }
+        .btn-rojo {
+            background: var(--rojo);
+            color: #fff;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            margin: 0.25rem;
+            font-family: inherit;
+        }
+        .btn-rojo:hover { background: #fb7185; }
+        .separador-vertical { width: 2px; height: 280px; background: var(--borde); }
+        .biblioteca-lado h4 {
+            font-size: 1.1rem;
+            color: #fff;
+            margin-bottom: 1.2rem;
+            text-align: center;
+        }
+        .aviso-limite-lado {
+            text-align: center;
+            color: var(--rojo);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+        .aviso-limite-lado span { color: var(--verde); font-weight: 700; }
+        .cuadricula-skins-lado { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; }
+        .cuadricula-skins-lado.skin-4 { grid-template-columns: repeat(2, 1fr); }
+        .skin-item-lado {
+            aspect-ratio: 2/3;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s ease;
+        }
+        .skin-item-lado:hover {
+            border-color: var(--verde);
+            background: rgba(127, 255, 0, 0.08);
+        }
+        .skin-item-lado.seleccionada {
+            border-color: var(--verde);
+            box-shadow: 0 0 12px rgba(127, 255, 0, 0.25);
+        }
+
         .mensaje-accion {
             margin-top: 1rem;
             padding: 0.8rem;
@@ -530,35 +756,150 @@
             <button class="pestaña" onclick="cambiarPestanaCuenta('cuenta-general', this)">👤 General</button>
             <button class="pestaña" onclick="cambiarPestanaCuenta('cuenta-privacidad', this)">🔒 Privacidad</button>
             <button class="pestaña" onclick="cambiarPestanaCuenta('cuenta-seguridad', this)">🛡️ Seguridad</button>
+            <button class="pestaña" onclick="cambiarPestanaCuenta('cuenta-perfil', this)">🎨 Skins y Capas</button>
         </div>
 
+        <!-- INICIO CUENTA → PREMIUM + MÉTODOS DE PAGO -->
         <div id="cuenta-inicio" class="contenido-pestaña visible">
             <div class="tarjeta">
                 <h3>Inicio <span class="etiqueta-beta">BETA</span></h3>
                 <p class="suscripcion">Suscripción Premium: <span id="estado-premium" class="inactiva">Inactiva</span></p>
-                <p class="fecha-acceso">Último acceso: Hoy</p>
+                <p class="fecha-acceso">Último acceso: Hoy a las 18:00</p>
+
+                <div class="aviso-premium">
+                    💎 <strong>Obtén Nexis Premium</strong><br>
+                    ✅ Skins ilimitadas &nbsp;|&nbsp; ✅ Capas ilimitadas y exclusivas<br>
+                    ✅ Sin anuncios &nbsp;|&nbsp; ✅ Soporte prioritario &nbsp;|&nbsp; ✅ Funciones exclusivas<br>
+                    <a href="#" onclick="cambiarPestanaCuenta('cuenta-perfil'); return false;">🎨 Ver límites de Skins y Capas →</a>
+                </div>
+
+                <div class="aviso-premium aviso-donar metodos-pago">
+                    <h4>💳 Elegir medio de pago</h4>
+                    
+                    <div class="opcion-pago" id="pago-elegir" onclick="seleccionarPago('elegir', this)">
+                        <div class="radio-pago"></div>
+                        <div class="icono-pago">💳</div>
+                        <div class="info-pago">
+                            <strong>Elegir medio de pago</strong>
+                            <span>Selecciona cualquier método de tu preferencia</span>
+                        </div>
+                    </div>
+
+                    <div class="opcion-pago" id="pago-paypal" onclick="seleccionarPago('paypal', this)">
+                        <div class="radio-pago"></div>
+                        <div class="icono-pago">🅿️</div>
+                        <div class="info-pago">
+                            <strong>PayPal</strong>
+                            <span>Paga con saldo, tarjeta o cuenta bancaria</span>
+                        </div>
+                    </div>
+
+                    <div class="opcion-pago" id="pago-yape" onclick="seleccionarPago('yape', this)">
+                        <div class="radio-pago"></div>
+                        <div class="icono-pago">📱</div>
+                        <div class="info-pago">
+                            <strong>Yape</strong>
+                            <span>Pago rápido desde tu celular (Perú)</span>
+                        </div>
+                    </div>
+
+                    <div class="opcion-pago" id="pago-plin" onclick="seleccionarPago('plin', this)">
+                        <div class="radio-pago"></div>
+                        <div class="icono-pago">🔵</div>
+                        <div class="info-pago">
+                            <strong>Plin</strong>
+                            <span>Transferencia inmediata entre bancos</span>
+                        </div>
+                    </div>
+
+                    <div class="opcion-pago" id="pago-donar" onclick="seleccionarPago('donar', this)">
+                        <div class="radio-pago"></div>
+                        <div class="icono-pago">☕</div>
+                        <div class="info-pago">
+                            <strong>Hacer una donación</strong>
+                            <span>Apoya el proyecto con cualquier cantidad</span>
+                        </div>
+                    </div>
+
+                    <button class="boton-pagar" id="boton-pagar" onclick="realizarPago()" disabled>
+                        Selecciona un medio de pago ↑
+                    </button>
+                    <div class="mensaje-accion" id="mensaje-pago">✅ Medio de pago seleccionado</div>
+                </div>
+
                 <button class="btn-guardar btn-peligro" onclick="cerrarSesion()">Cerrar sesión</button>
             </div>
         </div>
 
+        <!-- GENERAL -->
         <div id="cuenta-general" class="contenido-pestaña">
             <div class="tarjeta">
                 <h3>General</h3>
                 <div class="fila">
-                    <div class="grupo"><label>Nombre de usuario</label><input type="text" id="campo-usuario" placeholder="Tu nombre"></div>
+                    <div class="grupo"><label>Nombre de usuario</label><input type="text" id="campo-usuario" placeholder="Inicia sesión para ver tu nombre"></div>
                     <div class="grupo"><label>Correo electrónico</label><input type="email" id="campo-correo" placeholder="tu@gmail.com"></div>
                 </div>
+                <div class="grupo" style="margin-top:1.2rem;"><label>Sobre mí</label><textarea id="campo-sobre">No has escrito nada sobre ti</textarea></div>
                 <button class="btn-guardar" onclick="document.getElementById('guardado-general').classList.add('mostrar'); setTimeout(()=>document.getElementById('guardado-general').classList.remove('mostrar'),3000)">Guardar cambios</button>
                 <div class="mensaje-accion" id="guardado-general">✅ Cambios guardados correctamente</div>
             </div>
         </div>
 
+        <!-- PRIVACIDAD -->
         <div id="cuenta-privacidad" class="contenido-pestaña">
-            <div class="tarjeta"><h3>Privacidad</h3><p>Ajustes de privacidad aquí...</p></div>
+            <div class="tarjeta">
+                <h3>Privacidad</h3>
+                <div class="fila-toggle"><span>Permitir que te encuentren</span><label class="toggle"><input type="checkbox"><span class="desliza"></span></label></div>
+                <div class="fila-toggle"><span>Permitir solicitudes de amistad</span><label class="toggle"><input type="checkbox"><span class="desliza"></span></label></div>
+                <div class="fila-toggle"><span>Perfil público</span><label class="toggle"><input type="checkbox" checked><span class="desliza"></span></label></div>
+            </div>
         </div>
 
+        <!-- SEGURIDAD -->
         <div id="cuenta-seguridad" class="contenido-pestaña">
-            <div class="tarjeta"><h3>Seguridad</h3><p>Ajustes de seguridad aquí...</p></div>
+            <div class="tarjeta">
+                <h3>Seguridad</h3>
+                <div class="grupo"><label>Contraseña actual</label><input type="password" placeholder="••••••••"></div>
+                <div class="fila" style="margin-top:1.2rem;">
+                    <div class="grupo"><label>Nueva contraseña</label><input type="password" placeholder="••••••••"></div>
+                    <div class="grupo"><label>Confirmar contraseña</label><input type="password" placeholder="••••••••"></div>
+                </div>
+                <button class="btn-guardar" style="margin-top:1rem;" onclick="document.getElementById('guardado-pass').classList.add('mostrar'); setTimeout(()=>document.getElementById('guardado-pass').classList.remove('mostrar'),3000)">🔒 Cambiar contraseña</button>
+                <div class="mensaje-accion" id="guardado-pass">✅ Contraseña actualizada</div>
+            </div>
+        </div>
+
+        <!-- SKINS Y CAPAS -->
+        <div id="cuenta-perfil" class="contenido-pestaña">
+            <div class="personalizar-seccion">
+                <h3>🎨 Personalizar Skin y Capa</h3>
+                <div class="personalizar-grid">
+                    <div class="skin-actual">
+                        <h4>Skin actual (Predeterminada)</h4>
+                        <div class="vista-personalizada" id="vista-skin">🧍</div>
+                        <div>
+                            <button class="btn-azul">📁 Subir Skin</button>
+                            <button class="btn-azul">📁 Subir Capa</button>
+                            <button class="btn-rojo" onclick="restablecerSkin()">↩️ Restablecer a Steve</button>
+                        </div>
+                        <div class="mensaje-accion" id="mensaje-skin">✅ Skin restablecida a Steve</div>
+                    </div>
+                    <div class="separador-vertical"></div>
+                    <div class="biblioteca-lado">
+                        <h4>Biblioteca de Skins</h4>
+                        <div class="aviso-limite-lado">
+                            <span>+</span> Has usado 2 de 2 skins gratuitas.<br>
+                            <strong>Compra Premium</strong> para skins ilimitadas.
+                        </div>
+                        <div class="cuadricula-skins-lado skin-4">
+                            <div class="skin-item-lado seleccionada" onclick="seleccionarSkin(this, '🧍')">🧍</div>
+                            <div class="skin-item-lado" onclick="seleccionarSkin(this, '🧍‍♂️')">🧍‍♂️</div>
+                            <div class="skin-item-lado" onclick="seleccionarSkin(this, '🥷')">🥷</div>
+                            <div class="skin-item-lado" onclick="seleccionarSkin(this, '🤠')">🤠</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -570,7 +911,7 @@
 
 // Al cargar la página: SIEMPRE empieza limpia
 window.addEventListener('load', function() {
-    // Limpia la URL para que no pase datos de sesión al compartir
+    // ⚠️ LIMPIA LA URL para que NO pase datos de sesión al compartir
     if (window.location.search || window.location.hash) {
         history.replaceState({}, document.title, window.location.pathname);
     }
@@ -585,7 +926,7 @@ window.addEventListener('load', function() {
     }
 });
 
-// ✅ NAVEGACIÓN ENTRE SECCIONES
+// ✅ NAVEGACIÓN ENTRE SECCIONES (Inicio, Características, Descargar, Acerca de, Cuenta)
 function mostrarSeccion(nombre) {
     // Ocultar todas las secciones
     document.querySelectorAll('.seccion').forEach(s => s.classList.remove('visible'));
@@ -593,7 +934,7 @@ function mostrarSeccion(nombre) {
     const seccion = document.getElementById('s-' + nombre);
     if (seccion) seccion.classList.add('visible');
 
-    // Actualizar botones activos del menú
+    // Actualizar botón activo en el menú
     document.querySelectorAll('.nav-enlaces > button').forEach(btn => {
         btn.classList.remove('activo');
     });
@@ -622,31 +963,6 @@ function iniciarConGoogle() {
             correo: correoUsuario,
             fecha: new Date().toISOString()
         };
-        // Guardar SOLO en el dispositivo del usuario
+        // ⚠️ Guardar SOLO en ESTE dispositivo, NUNCA en la URL
         localStorage.setItem('nexis_sesion', JSON.stringify(datosSesion));
-        aplicarSesion(nombreUsuario, correoUsuario);
-    }
-}
-
-// Aplicar interfaz con sesión iniciada
-function aplicarSesion(nombre, correo) {
-    document.body.classList.add('sesion-iniciada');
-    document.getElementById('usuario-nombre').textContent = '👤 ' + nombre;
-    document.getElementById('saludo-usuario').textContent = nombre;
-    document.getElementById('campo-usuario').value = nombre;
-    document.getElementById('campo-correo').value = correo;
-}
-
-// ✅ CERRAR SESIÓN
-function cerrarSesion() {
-    localStorage.removeItem('nexis_sesion');
-    document.body.classList.remove('sesion-iniciada');
-    document.getElementById('campo-usuario').value = '';
-    document.getElementById('campo-correo').value = '';
-    // Volver a inicio
-    mostrarSeccion('inicio');
-}
-</script>
-
-</body>
-</html>
+        aplicarSesion(nombreUsuario, correo
