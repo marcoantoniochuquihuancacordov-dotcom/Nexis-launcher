@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nexis Launcher — Minecraft rápido, seguro y gratis</title>
-    <meta name="description" content="Nexis Launcher: Launcher de Minecraft Java y Bedrock gratuito, ligero, sin publicidad y 100% seguro.">
+    <meta name="description" content="Nexis Launcher: Launcher de Minecraft Java y Bedrock gratuito, ligero, sin virus y sin publicidad.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -50,7 +50,32 @@
             padding: 0 2rem;
         }
 
-        /* BARRA DE NAVEGACIÓN */
+        /* === ANUNCIOS — SOLO SE MUESTRAN SI NO ES PREMIUM === */
+        .anuncio-banner {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--borde);
+            border-radius: 12px;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            text-align: center;
+            color: var(--texto-claro);
+            font-size: 0.9rem;
+            display: block; /* Por defecto se muestra */
+        }
+        .premium .anuncio-banner {
+            display: none !important; /* Si es Premium → SE OCULTA TODO */
+        }
+        .etiqueta-anuncio {
+            display: inline-block;
+            font-size: 0.75rem;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+            color: var(--texto-claro);
+        }
+
+        /* RESTO DE TUS ESTILOS */
         nav {
             background: rgba(15, 23, 42, 0.85);
             padding: 1rem 0;
@@ -166,7 +191,6 @@
             filter: brightness(1.1);
         }
 
-        /* SECCIONES */
         .seccion {
             display: none;
             animation: aparecer 0.35s ease-out;
@@ -183,7 +207,6 @@
             to   { opacity: 1; transform: translateY(0); }
         }
 
-        /* CABECERA INICIO */
         header {
             padding: 3.5rem 2rem;
             text-align: center;
@@ -227,7 +250,6 @@
             box-shadow: 0 8px 25px rgba(127, 255, 0, 0.25);
         }
 
-        /* NOTICIAS */
         .noticias { padding: 2rem 0 4rem; }
         .noticias h2 { text-align: center; font-size: 1.8rem; margin-bottom: 0.5rem; color: #fff; }
         .noticias-sub { text-align: center; color: var(--texto-claro); margin-bottom: 2rem; }
@@ -265,13 +287,11 @@
         .leer-mas:hover { text-decoration: underline; gap: 0.5rem; }
         .fuente { font-size: 0.78rem; color: #475569; margin-top: 0.4rem; display: flex; align-items: center; gap: 0.3rem; }
 
-        /* PANEL CUENTA */
         .dashboard { max-width: 1100px; margin: 3rem auto; padding: 0 1.5rem 4rem; }
         .dashboard-saludo { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.2rem; }
         .dashboard-subtitulo { color: var(--texto-claro); font-size: 1.05rem; margin-bottom: 2rem; }
         .etiqueta-beta { display: inline-block; background: var(--verde); color: #000; font-size: 0.75rem; font-weight: 800; padding: 0.05rem 0.5rem; border-radius: 12px; margin-left: 0.5rem; vertical-align: middle; }
 
-        /* PESTAÑAS */
         .pestañas { 
             display: flex; 
             gap: 0.4rem; 
@@ -437,7 +457,6 @@
         input:checked + .desliza { background: var(--verde); }
         input:checked + .desliza:before { transform: translateX(24px); }
 
-        /* === SECCIÓN SKIN Y CAPA — ESTILO IGUAL A TU IMAGEN === */
         .personalizar-seccion {
             background: rgba(30, 41, 59, 0.5);
             border: 1px solid var(--borde);
@@ -641,7 +660,7 @@
         footer { text-align: center; padding: 2rem; color: #475569; border-top: 1px solid var(--borde); margin-top: 2rem; font-size: 0.9rem; line-height: 1.7; }
     </style>
 </head>
-<body>
+<body id="cuerpo-web">
 
 <!-- NAVEGACIÓN -->
 <nav>
@@ -666,6 +685,16 @@
         <p>El Launcher de Minecraft: Java Edition gratuito, ligero, sin publicidad y 100% seguro. Descarga versiones, instala mods y gestiona perfiles fácilmente.</p>
         <a href="#" class="boton-descarga">⬇️ Descargar Nexis Launcher v2.0.0</a>
     </header>
+
+    <!-- 📢 ANUNCIO — SOLO VISIBLE SI NO ES PREMIUM -->
+    <div class="contenedor">
+        <div class="anuncio-banner">
+            <span class="etiqueta-anuncio">📢 Anuncio</span><br>
+            Este espacio muestra publicidad para usuarios gratuitos.<br>
+            💡 <strong>Consigue Premium</strong> y navega sin anuncios en la web y en el Launcher → sin interrupciones, sin límites.
+        </div>
+    </div>
+
     <div class="noticias contenedor">
         <h2>📰 Noticias Oficiales de Minecraft</h2>
         <p class="noticias-sub">Información verificada directamente desde <strong>minecraft.net</strong></p>
@@ -723,7 +752,7 @@
         <div class="acerca">
             <p>Nexis Launcher es un proyecto gratuito diseñado para facilitar el acceso a Minecraft. Sin publicidad, sin virus y sin costos ocultos en sus funciones básicas.</p>
             <br>
-            <p>Algunos beneficios adicionales requieren una suscripción Premium.</p>
+            <p>Algunos beneficios requieren una suscripción Premium.</p>
             <br>
             <p>Únete a nuestra comunidad: <a href="https://discord.gg/ef4uw4ttF" target="_blank">Discord Oficial</a></p>
         </div>
@@ -754,7 +783,7 @@
                 <div class="aviso-premium">
                     💎 <strong>Obtén Nexis Premium</strong><br>
                     ✅ Skins ilimitadas &nbsp;|&nbsp; ✅ Capas ilimitadas y exclusivas<br>
-                    ✅ Sin anuncios &nbsp;|&nbsp; ✅ Soporte prioritario &nbsp;|&nbsp; ✅ Funciones exclusivas<br>
+                    ✅ Sin anuncios en Web y Launcher &nbsp;|&nbsp; ✅ Soporte prioritario &nbsp;|&nbsp; ✅ Funciones exclusivas<br>
                     <a href="#cuenta-perfil" onclick="cambiarPestanaCuenta('cuenta-perfil'); return false;">🎨 Ver límites de Skins y Capas →</a>
                 </div>
 
@@ -813,7 +842,6 @@
             <div class="personalizar-seccion">
                 <h3>🎨 Personalizar skin</h3>
                 <div class="personalizar-grid">
-                    <!-- SKIN ACTUAL -->
                     <div class="skin-actual">
                         <h4>Skin actual</h4>
                         <div class="vista-personalizada">🧍</div>
@@ -822,10 +850,7 @@
                             <button class="btn-rojo">🗑️ Eliminar skin</button>
                         </div>
                     </div>
-
                     <div class="separador-vertical"></div>
-
-                    <!-- BIBLIOTECA DE SKINS — LÍMITE 4 SKINS (incluyendo la actual) -->
                     <div class="biblioteca-lado">
                         <h4>Biblioteca</h4>
                         <div class="aviso-limite-lado">
@@ -837,7 +862,6 @@
                             <div class="skin-item-lado" title="Skin guardada 1">🧍‍♂️</div>
                             <div class="skin-item-lado" title="Skin guardada 2">🥷</div>
                             <div class="skin-item-lado" title="Skin guardada 3">🤠</div>
-                            <!-- ⚠️ Más skins SOLO con Premium -->
                         </div>
                     </div>
                 </div>
@@ -847,16 +871,12 @@
             <div class="personalizar-seccion">
                 <h3>🧥 Personalizar capa</h3>
                 <div class="personalizar-grid">
-                    <!-- CAPA ACTUAL -->
                     <div class="capa-actual">
                         <h4>Capa actual</h4>
                         <div class="vista-personalizada">🧥</div>
                         <button class="btn-azul">✅ Establecer capa</button>
                     </div>
-
                     <div class="separador-vertical"></div>
-
-                    <!-- BIBLIOTECA DE CAPAS — LÍMITE 4 CAPAS -->
                     <div class="biblioteca-lado">
                         <h4>Biblioteca</h4>
                         <div class="aviso-limite-lado">
@@ -868,7 +888,6 @@
                             <div class="skin-item-lado" title="Capa guardada 1">🔥</div>
                             <div class="skin-item-lado" title="Capa guardada 2">❄️</div>
                             <div class="skin-item-lado" title="Capa guardada 3">⭐</div>
-                            <!-- ⚠️ Más capas SOLO con Premium -->
                         </div>
                     </div>
                 </div>
@@ -888,10 +907,34 @@
 </footer>
 
 <!-- ====================================== -->
-<!-- ✅ JAVASCRIPT COMPLETO -->
+<!-- ✅ JAVASCRIPT: PREMIUM SIN ANUNCIOS -->
 <!-- ====================================== -->
 <script>
-    // Cambiar sección principal
+    // === SISTEMA DE PREMIUM Y ANUNCIOS ===
+    // Cambia esto a true para probar cómo se ve con Premium activado
+    let cuentaPremium = false; // 👈 PRUEBA: ponlo en "true" y verás que desaparecen los anuncios
+
+    // Función que activa/desactiva Premium
+    function aplicarPremium() {
+        const cuerpo = document.getElementById('cuerpo-web');
+        const estadoTexto = document.getElementById('estado-premium');
+
+        if (cuentaPremium) {
+            // ✅ ES PREMIUM: Quitar anuncios y cambiar estado
+            cuerpo.classList.add('premium');
+            estadoTexto.textContent = 'Activo ✅';
+            estadoTexto.classList.remove('inactiva');
+            estadoTexto.classList.add('activa-premium');
+        } else {
+            // ❌ GRATIS: Mostrar anuncios
+            cuerpo.classList.remove('premium');
+            estadoTexto.textContent = 'Inactiva';
+            estadoTexto.classList.remove('activa-premium');
+            estadoTexto.classList.add('inactiva');
+        }
+    }
+
+    // === NAVEGACIÓN ===
     function mostrarSeccion(nombreSeccion) {
         document.querySelectorAll('.seccion').forEach(sec => {
             sec.classList.remove('visible');
@@ -906,7 +949,6 @@
         if (botonActivo) botonActivo.classList.add('activo');
     }
 
-    // Cambiar pestaña de cuenta
     function cambiarPestanaCuenta(nombrePestana, botonPulsado) {
         document.querySelectorAll('.contenido-pestaña').forEach(tab => {
             tab.classList.remove('visible');
@@ -920,6 +962,11 @@
             botonPulsado.classList.add('activa');
         }
     }
+
+    // Al cargar la página → aplicar estado de Premium
+    document.addEventListener('DOMContentLoaded', () => {
+        aplicarPremium();
+    });
 </script>
 
 </body>
