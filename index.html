@@ -21,7 +21,6 @@
             --fondo-3: #24243e;
             --tarjeta: rgba(127, 255, 0, 0.06);
             --borde: rgba(127, 255, 0, 0.18);
-            --sombra: rgba(127, 255, 0, 0.2);
         }
         body {
             font-family: 'Inter', sans-serif;
@@ -57,7 +56,12 @@
             text-decoration: none;
             letter-spacing: -0.5px;
         }
-        .nav-enlaces { display: flex; gap: 2.5rem; align-items: center; flex-wrap: wrap; }
+        .nav-enlaces { 
+            display: flex; 
+            gap: 2.5rem; 
+            align-items: center; 
+            flex-wrap: wrap; 
+        }
         .nav-enlaces a {
             color: #aaa; text-decoration: none; font-weight: 600; transition: all 0.3s;
             position: relative; cursor: pointer;
@@ -68,6 +72,41 @@
             content: ''; position: absolute; bottom: -6px; left: 0;
             width: 100%; height: 2px; background: var(--verde); border-radius: 2px;
         }
+
+        /* === INFORMACIÓN DE CUENTA === */
+        .cuenta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-left: 1rem;
+        }
+        .usuario {
+            color: #ddd;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .usuario::before {
+            content: '👤';
+            font-size: 1.1rem;
+        }
+        .btn-cerrar {
+            background: linear-gradient(135deg, #ff4d4d, #cc0000);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(255,0,0,0.25);
+        }
+        .btn-cerrar:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(255,0,0,0.35);
+        }
+
         .boton-discord {
             background: linear-gradient(135deg, #5865F2, #4752C4); color: white;
             padding: 0.6rem 1.3rem; border-radius: 10px; text-decoration: none;
@@ -99,11 +138,18 @@
             font-weight: 900; line-height: 1.2;
         }
         header p {
-            font-size: 1.2rem; max-width: 750px; margin: 0 auto 2.5rem;
+            font-size: 1.2rem; max-width: 850px; margin: 0 auto 1rem;
             color: #d0d0d0; line-height: 1.7;
         }
+        .pregunta-cuenta {
+            color: #ccc;
+            font-size: 1.05rem;
+            margin: 1.5rem 0 2.5rem;
+        }
         .boton-descarga {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             background: linear-gradient(90deg, var(--verde), var(--verde-oscuro));
             color: #000; padding: 1.1rem 3rem; font-size: 1.15rem; font-weight: 800;
             border-radius: 12px; text-decoration: none; transition: all 0.3s;
@@ -116,7 +162,7 @@
         }
 
         /* === NOTICIAS === */
-        .noticias { background: rgba(0,0,0,0.18); border-radius: 20px; padding: 3rem 0; margin-top: 2rem; }
+        .noticias { background: rgba(0,0,0,0.18); border-radius: 20px; padding: 3rem 0; margin-top: 3rem; }
         .noticias-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -223,16 +269,20 @@
         }
 
         /* === RESPONSIVO === */
+        @media (max-width: 900px) {
+            .nav-enlaces { gap: 1rem; }
+            .cuenta { margin-left: 0; }
+        }
         @media (max-width: 768px) {
             header h1 { font-size: 2.2rem; }
-            .nav-enlaces { gap: 1.2rem; }
             section { padding: 2rem 1rem; }
+            .nav-wrap { justify-content: center; }
         }
     </style>
 </head>
 <body>
 
-<!-- NAVEGACIÓN -->
+<!-- NAVEGACIÓN CON CUENTA -->
 <nav>
     <div class="contenedor nav-wrap">
         <a href="#" class="logo">Nexis Launcher</a>
@@ -241,6 +291,13 @@
             <a id="menu-caracteristicas" onclick="mostrarSeccion('caracteristicas')">Características</a>
             <a id="menu-descargar" onclick="mostrarSeccion('descargar')">Descargar</a>
             <a id="menu-acerca" onclick="mostrarSeccion('acerca')">Acerca de</a>
+            
+            <!-- ✅ INFORMACIÓN DE CUENTA -->
+            <div class="cuenta">
+                <span class="usuario">Papichulo6070</span>
+                <button class="btn-cerrar">Cerrar Sesión</button>
+            </div>
+            
             <a href="https://discord.gg/ef4uw4ttF" target="_blank" class="boton-discord">Discord</a>
         </div>
     </div>
@@ -252,11 +309,15 @@
 <div id="seccion-inicio" class="seccion visible">
     <header>
         <h1>Bienvenido a Nexis Launcher</h1>
-        <p>El launcher de Minecraft: Java Edition gratuito, ligero, sin publicidad y <strong>100% seguro</strong>. Descarga, instala y gestiona versiones, mods y perfiles con total libertad.</p>
-        <a href="Nexis.Launcher.exe"
+        <p>El Launcher de Minecraft: Java Edition gratuito, ligero, sin publicidad y sin cosas innecesarias — <strong>100% seguro</strong>.</p>
+        <p>Descarga, instala y gestiona tus versiones, mods y perfiles con total libertad.</p>
+        <p class="pregunta-cuenta">¿Ya tienes cuenta o quieres crear una? Usa los botones de arriba.</p>
+        
+        <!-- ✅ ENLACE CORRECTO A TU RELEASE DE GITHUB -->
+        <a href="https://github.com/marcoantoniochiuquihuancacordov-dotcom/Nexis-launcher/releases/download/v2.0.0/Nexis.Launcher.exe"
            download="Nexis.Launcher.exe"
            class="boton-descarga">
-            📥 Descargar Nexis Launcher v2.0.0
+            ⬇️ Descargar Nexis Launcher v2.0.0
         </a>
     </header>
 
@@ -382,7 +443,7 @@
         <div class="acerca-contenido">
             <p>Nexis Launcher es un proyecto gratuito diseñado para facilitar el acceso a Minecraft. Sin publicidad, sin virus y sin costos ocultos. Tu juego, tus reglas.</p>
             <br>
-            <p>Desarrollado pensando en todos los jugadores que buscan una alternativa sencilla, rápida y segura para jugar Minecraft.</p>
+            <p>Desarrollado pensando en todos los jugadores que buscan una alternativa sencilla, rápida y segura.</p>
             <p style="margin-top:1.5rem;">Únete a nuestra comunidad: <a href="https://discord.gg/ef4uw4ttF" target="_blank">discord.gg/ef4uw4ttF</a></p>
         </div>
     </section>
@@ -399,19 +460,14 @@
 <!-- ====================================== -->
 <script>
 function mostrarSeccion(nombre) {
-    // Ocultar TODAS las secciones
     document.querySelectorAll('.seccion').forEach(sec => {
         sec.classList.remove('visible');
     });
-    // Quitar clase activo de TODOS los menús
     document.querySelectorAll('.nav-enlaces a').forEach(link => {
         link.classList.remove('activo');
     });
-    // Mostrar la sección elegida
     document.getElementById('seccion-' + nombre).classList.add('visible');
-    // Marcar el menú como activo
     document.getElementById('menu-' + nombre).classList.add('activo');
-    // Evitar que el enlace recargue la página
     event.preventDefault();
 }
 </script>
