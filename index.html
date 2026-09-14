@@ -47,15 +47,16 @@
             padding: 0 2rem;
         }
 
-        /* === BARRA DE NAVEGACIÓN === */
+        /* === BARRA DE NAVEGACIÓN — CORREGIDO z-index y puntero === */
         nav {
             background: rgba(15, 23, 42, 0.85);
             padding: 1rem 0;
             backdrop-filter: blur(12px);
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 9999; /* ✅ Aumentado para que quede por encima de todo */
             border-bottom: 1px solid var(--borde);
+            pointer-events: auto; /* ✅ Permitir clics siempre */
         }
 
         .nav-wrap {
@@ -64,6 +65,7 @@
             align-items: center;
             flex-wrap: wrap;
             gap: 1rem;
+            pointer-events: auto;
         }
 
         .logo {
@@ -72,6 +74,8 @@
             color: var(--verde);
             text-decoration: none;
             transition: transform 0.2s;
+            cursor: pointer;
+            pointer-events: auto;
         }
 
         .logo:hover {
@@ -83,23 +87,34 @@
             gap: 0.4rem;
             align-items: center;
             flex-wrap: wrap;
+            pointer-events: auto;
         }
 
-        .nav-enlaces a {
+        .nav-enlaces a,
+        .nav-enlaces button {
             color: var(--texto-claro);
             text-decoration: none;
             font-weight: 600;
             padding: 0.5rem 1rem;
             border-radius: 8px;
             transition: all 0.25s ease;
+            background: transparent;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            pointer-events: auto; /* ✅ Asegurar que sea cliqueable */
+            position: relative;
+            z-index: 10;
         }
 
-        .nav-enlaces a:hover {
+        .nav-enlaces a:hover,
+        .nav-enlaces button:hover {
             color: #fff;
             background: rgba(127, 255, 0, 0.08);
         }
 
-        .nav-enlaces a.activo {
+        .nav-enlaces a.activo,
+        .nav-enlaces button.activo {
             color: var(--verde);
             background: rgba(127, 255, 0, 0.1);
         }
@@ -158,6 +173,8 @@
         .seccion {
             display: none;
             animation: aparecer 0.35s ease-out;
+            position: relative;
+            z-index: 1;
         }
 
         .seccion.visible {
@@ -306,7 +323,7 @@
             gap: 0.3rem;
         }
 
-        /* === PANEL DE CUENTA — ESTILO BATTLY === */
+        /* === PANEL DE CUENTA === */
         .dashboard {
             max-width: 1100px;
             margin: 3rem auto;
@@ -579,7 +596,7 @@
             transform: translateX(22px);
         }
 
-        /* === PERFIL — SKINS Y CAPAS POR SEPARADO === */
+        /* === PERFIL — SKINS Y CAPAS === */
         .apartado-perfil {
             margin-bottom: 3.5rem;
         }
@@ -942,10 +959,10 @@
     <div class="contenedor nav-wrap">
         <a href="#" class="logo" onclick="mostrarSeccion('inicio'); return false;">Nexis Launcher</a>
         <div class="nav-enlaces">
-            <a id="m-inicio" class="activo" onclick="mostrarSeccion('inicio')">Inicio</a>
-            <a id="m-caracteristicas" onclick="mostrarSeccion('caracteristicas')">Características</a>
-            <a id="m-descargar" onclick="mostrarSeccion('descargar')">Descargar</a>
-            <a id="m-acerca" onclick="mostrarSeccion('acerca')">Acerca de</a>
+            <button id="m-inicio" class="activo" onclick="mostrarSeccion('inicio')">Inicio</button>
+            <button id="m-caracteristicas" onclick="mostrarSeccion('caracteristicas')">Características</button>
+            <button id="m-descargar" onclick="mostrarSeccion('descargar')">Descargar</button>
+            <button id="m-acerca" onclick="mostrarSeccion('acerca')">Acerca de</button>
             <span class="usuario-nav" onclick="mostrarSeccion('cuenta'); cambiarPestanaCuenta('cuenta-inicio')">👤 Papichulo6070</span>
             <button class="btn-cerrar">Cerrar sesión</button>
             <a href="https://discord.gg/ef4uw4ttF" target="_blank" class="btn-discord">Discord</a>
@@ -1201,20 +1218,3 @@
                                 <div class="skin-item bloqueado" title="🔒 Solo con Premium">🥷<span class="icono-bloqueo">🔒</span></div>
                                 <div class="skin-item bloqueado" title="🔒 Solo con Premium">🤠<span class="icono-bloqueo">🔒</span></div>
                                 <div class="skin-item bloqueado" title="🔒 Solo con Premium">🧙<span class="icono-bloqueo">🔒</span></div>
-                                <div class="skin-item bloqueado" title="🔒 Solo con Premium">⚔️<span class="icono-bloqueo">🔒</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="btn-volver">← Volver atrás</button>
-                </div>
-            </div>
-
-            <!-- 🧥 APARTADO DE CAPAS -->
-            <div class="apartado-perfil">
-                <h3 class="titulo-apartado titulo-capas">🧥 Capas</h3>
-
-                <div class="tarjeta-perfil">
-                    <h4>Capa Actual</h4>
-                    <div class="vista-capa">🧥</div>
-                    <div style="margin-top:1rem;">
-                        <button class="btn-establecer">✅
