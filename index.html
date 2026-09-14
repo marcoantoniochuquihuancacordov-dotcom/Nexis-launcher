@@ -31,6 +31,7 @@
             --texto-claro: #94a3b8;
             --borde: rgba(255, 255, 255, 0.08);
             --sombra: 0 8px 30px rgba(0, 0, 0, 0.35);
+            --discord-azul: #5865F2; /* ✅ Nuevo color de Discord */
         }
 
         body {
@@ -47,16 +48,15 @@
             padding: 0 2rem;
         }
 
-        /* === BARRA DE NAVEGACIÓN — CORREGIDO z-index y puntero === */
+        /* === BARRA DE NAVEGACIÓN === */
         nav {
             background: rgba(15, 23, 42, 0.85);
             padding: 1rem 0;
             backdrop-filter: blur(12px);
             position: sticky;
             top: 0;
-            z-index: 9999; /* ✅ Aumentado para que quede por encima de todo */
+            z-index: 9999;
             border-bottom: 1px solid var(--borde);
-            pointer-events: auto; /* ✅ Permitir clics siempre */
         }
 
         .nav-wrap {
@@ -65,7 +65,6 @@
             align-items: center;
             flex-wrap: wrap;
             gap: 1rem;
-            pointer-events: auto;
         }
 
         .logo {
@@ -75,7 +74,6 @@
             text-decoration: none;
             transition: transform 0.2s;
             cursor: pointer;
-            pointer-events: auto;
         }
 
         .logo:hover {
@@ -87,11 +85,10 @@
             gap: 0.4rem;
             align-items: center;
             flex-wrap: wrap;
-            pointer-events: auto;
         }
 
-        .nav-enlaces a,
-        .nav-enlaces button {
+        .nav-enlaces button,
+        .nav-enlaces a.nav-boton {
             color: var(--texto-claro);
             text-decoration: none;
             font-weight: 600;
@@ -102,18 +99,16 @@
             border: none;
             font-size: 1rem;
             cursor: pointer;
-            pointer-events: auto; /* ✅ Asegurar que sea cliqueable */
             position: relative;
             z-index: 10;
         }
 
-        .nav-enlaces a:hover,
-        .nav-enlaces button:hover {
+        .nav-enlaces button:hover,
+        .nav-enlaces a.nav-boton:hover {
             color: #fff;
             background: rgba(127, 255, 0, 0.08);
         }
 
-        .nav-enlaces a.activo,
         .nav-enlaces button.activo {
             color: var(--verde);
             background: rgba(127, 255, 0, 0.1);
@@ -154,19 +149,23 @@
             box-shadow: 0 4px 15px rgba(244, 63, 94, 0.3);
         }
 
+        /* ✅ Botón de Discord con color actualizado */
         .btn-discord {
-            background: #5865F2;
+            background: var(--discord-azul);
             color: white;
             padding: 0.55rem 1.1rem;
             border-radius: 8px;
             text-decoration: none;
             font-weight: 700;
             transition: all 0.2s;
+            border: none;
+            cursor: pointer;
         }
 
         .btn-discord:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(88, 101, 242, 0.3);
+            box-shadow: 0 4px 15px rgba(88, 101, 242, 0.4);
+            filter: brightness(1.1);
         }
 
         /* === SECCIONES === */
@@ -182,14 +181,8 @@
         }
 
         @keyframes aparecer {
-            from {
-                opacity: 0;
-                transform: translateY(12px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(12px); }
+            to   { opacity: 1; transform: translateY(0); }
         }
 
         /* === INICIO — CABECERA === */
@@ -237,28 +230,10 @@
         }
 
         /* === NOTICIAS === */
-        .noticias {
-            padding: 2rem 0 4rem;
-        }
-
-        .noticias h2 {
-            text-align: center;
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-            color: #fff;
-        }
-
-        .noticias-sub {
-            text-align: center;
-            color: var(--texto-claro);
-            margin-bottom: 2rem;
-        }
-
-        .noticias-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 1.2rem;
-        }
+        .noticias { padding: 2rem 0 4rem; }
+        .noticias h2 { text-align: center; font-size: 1.8rem; margin-bottom: 0.5rem; color: #fff; }
+        .noticias-sub { text-align: center; color: var(--texto-claro); margin-bottom: 2rem; }
+        .noticias-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.2rem; }
 
         .noticia {
             background: rgba(30, 41, 59, 0.55);
@@ -286,669 +261,117 @@
             margin-bottom: 1rem;
         }
 
-        .noticia h3 {
-            font-size: 1.05rem;
-            margin-bottom: 0.6rem;
-            color: #fff;
-        }
-
-        .noticia p {
-            color: var(--texto-claro);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 0.8rem;
-        }
-
-        .leer-mas {
-            color: var(--verde);
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.3rem;
-            transition: all 0.2s;
-        }
-
-        .leer-mas:hover {
-            text-decoration: underline;
-            gap: 0.5rem;
-        }
-
-        .fuente {
-            font-size: 0.78rem;
-            color: #475569;
-            margin-top: 0.4rem;
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-        }
+        .noticia h3 { font-size: 1.05rem; margin-bottom: 0.6rem; color: #fff; }
+        .noticia p { color: var(--texto-claro); font-size: 0.95rem; line-height: 1.6; margin-bottom: 0.8rem; }
+        .leer-mas { color: var(--verde); font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 0.3rem; transition: all 0.2s; }
+        .leer-mas:hover { text-decoration: underline; gap: 0.5rem; }
+        .fuente { font-size: 0.78rem; color: #475569; margin-top: 0.4rem; display: flex; align-items: center; gap: 0.3rem; }
 
         /* === PANEL DE CUENTA === */
-        .dashboard {
-            max-width: 1100px;
-            margin: 3rem auto;
-            padding: 0 1.5rem 4rem;
-        }
-
-        .dashboard-saludo {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 0.2rem;
-        }
-
-        .dashboard-subtitulo {
-            color: var(--texto-claro);
-            font-size: 1.05rem;
-            margin-bottom: 2rem;
-        }
-
-        .etiqueta-beta {
-            display: inline-block;
-            background: var(--azul);
-            color: #000;
-            font-size: 0.75rem;
-            font-weight: 800;
-            padding: 0.05rem 0.5rem;
-            border-radius: 12px;
-            margin-left: 0.5rem;
-            vertical-align: middle;
-        }
+        .dashboard { max-width: 1100px; margin: 3rem auto; padding: 0 1.5rem 4rem; }
+        .dashboard-saludo { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.2rem; }
+        .dashboard-subtitulo { color: var(--texto-claro); font-size: 1.05rem; margin-bottom: 2rem; }
+        .etiqueta-beta { display: inline-block; background: var(--azul); color: #000; font-size: 0.75rem; font-weight: 800; padding: 0.05rem 0.5rem; border-radius: 12px; margin-left: 0.5rem; vertical-align: middle; }
 
         /* Pestañas */
-        .pestañas {
-            display: flex;
-            gap: 0.4rem;
-            margin-bottom: 2.5rem;
-            background: rgba(30, 41, 59, 0.6);
-            padding: 0.4rem;
-            border-radius: 12px;
-            border: 1px solid var(--borde);
-            flex-wrap: wrap;
-        }
-
-        .pestaña {
-            padding: 0.6rem 1.2rem;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            color: var(--texto-claro);
-            transition: all 0.2s ease;
-            border: none;
-            background: transparent;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            font-size: 0.95rem;
-        }
-
-        .pestaña:hover {
-            color: #fff;
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .pestaña.activa {
-            background: var(--azul);
-            color: #000;
-            font-weight: 700;
-            box-shadow: 0 2px 8px rgba(56, 189, 248, 0.25);
-        }
-
-        .contenido-pestaña {
-            display: none;
-            animation: aparecer 0.3s ease-out;
-        }
-
-        .contenido-pestaña.visible {
-            display: block;
-        }
+        .pestañas { display: flex; gap: 0.4rem; margin-bottom: 2.5rem; background: rgba(30, 41, 59, 0.6); padding: 0.4rem; border-radius: 12px; border: 1px solid var(--borde); flex-wrap: wrap; }
+        .pestaña { padding: 0.6rem 1.2rem; border-radius: 8px; cursor: pointer; font-weight: 600; color: var(--texto-claro); transition: all 0.2s ease; border: none; background: transparent; display: flex; align-items: center; gap: 0.4rem; font-size: 0.95rem; }
+        .pestaña:hover { color: #fff; background: rgba(255, 255, 255, 0.05); }
+        .pestaña.activa { background: var(--azul); color: #000; font-weight: 700; box-shadow: 0 2px 8px rgba(56, 189, 248, 0.25); }
+        .contenido-pestaña { display: none; animation: aparecer 0.3s ease-out; }
+        .contenido-pestaña.visible { display: block; }
 
         /* Tarjetas */
-        .tarjeta {
-            background: rgba(30, 41, 59, 0.5);
-            border: 1px solid var(--borde);
-            border-radius: 14px;
-            padding: 1.8rem;
-            margin-bottom: 1.5rem;
-            transition: all 0.25s ease;
-        }
-
-        .tarjeta:hover {
-            border-color: rgba(56, 189, 248, 0.3);
-        }
-
-        .tarjeta h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1.2rem;
-            color: #fff;
-            border-bottom: 1px solid var(--borde);
-            padding-bottom: 0.5rem;
-        }
-
-        .fila {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .grupo {
-            flex: 1;
-            min-width: 260px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 0.4rem;
-            color: var(--texto-claro);
-            font-weight: 500;
-            font-size: 0.95rem;
-        }
-
-        input, textarea {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            border-radius: 8px;
-            border: 1px solid var(--borde);
-            background: rgba(0, 0, 0, 0.3);
-            color: #fff;
-            font-size: 0.95rem;
-            outline: none;
-            transition: border 0.25s, box-shadow 0.25s;
-        }
-
-        input:focus, textarea:focus {
-            border-color: var(--azul);
-            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.1);
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        .btn-guardar {
-            background: var(--azul);
-            color: #000;
-            border: none;
-            padding: 0.8rem 2rem;
-            border-radius: 8px;
-            font-weight: 700;
-            cursor: pointer;
-            font-size: 0.95rem;
-            margin-top: 1rem;
-            width: 100%;
-            transition: all 0.2s ease;
-        }
-
-        .btn-guardar:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
-        }
-
-        .btn-peligro {
-            background: linear-gradient(90deg, #f43f5e, #e11d48);
-            color: #fff;
-        }
-
-        .btn-peligro:hover {
-            box-shadow: 0 4px 15px rgba(244, 63, 94, 0.3);
-        }
-
-        .suscripcion {
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .inactiva {
-            color: var(--rojo);
-            font-weight: 700;
-        }
-
-        .fecha-acceso {
-            color: var(--texto-claro);
-            font-size: 0.95rem;
-        }
-
-        .aviso-premium {
-            margin-top: 1.5rem;
-            padding: 1.2rem 1.4rem;
-            background: rgba(250, 204, 21, 0.08);
-            border: 1px solid rgba(250, 204, 21, 0.25);
-            border-radius: 10px;
-            color: #fde047;
-            font-size: 0.95rem;
-            line-height: 1.7;
-        }
-
-        .aviso-premium strong {
-            color: #fff;
-        }
-
-        .aviso-premium a {
-            color: var(--dorado);
-            font-weight: 700;
-            text-decoration: none;
-            cursor: pointer;
-            display: inline-block;
-            margin-top: 0.5rem;
-            padding: 0.4rem 1rem;
-            background: rgba(250, 204, 21, 0.15);
-            border-radius: 6px;
-            transition: all 0.2s;
-        }
-
-        .aviso-premium a:hover {
-            background: rgba(250, 204, 21, 0.25);
-            transform: translateY(-1px);
-        }
+        .tarjeta { background: rgba(30, 41, 59, 0.5); border: 1px solid var(--borde); border-radius: 14px; padding: 1.8rem; margin-bottom: 1.5rem; transition: all 0.25s ease; }
+        .tarjeta:hover { border-color: rgba(56, 189, 248, 0.3); }
+        .tarjeta h3 { font-size: 1.3rem; margin-bottom: 1.2rem; color: #fff; border-bottom: 1px solid var(--borde); padding-bottom: 0.5rem; }
+        .fila { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .grupo { flex: 1; min-width: 260px; }
+        label { display: block; margin-bottom: 0.4rem; color: var(--texto-claro); font-weight: 500; font-size: 0.95rem; }
+        input, textarea { width: 100%; padding: 0.75rem 1rem; border-radius: 8px; border: 1px solid var(--borde); background: rgba(0, 0, 0, 0.3); color: #fff; font-size: 0.95rem; outline: none; transition: border 0.25s, box-shadow 0.25s; }
+        input:focus, textarea:focus { border-color: var(--azul); box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.1); }
+        textarea { resize: vertical; min-height: 100px; }
+        .btn-guardar { background: var(--azul); color: #000; border: none; padding: 0.8rem 2rem; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 0.95rem; margin-top: 1rem; width: 100%; transition: all 0.2s ease; }
+        .btn-guardar:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3); }
+        .btn-peligro { background: linear-gradient(90deg, #f43f5e, #e11d48); color: #fff; }
+        .btn-peligro:hover { box-shadow: 0 4px 15px rgba(244, 63, 94, 0.3); }
+        .suscripcion { font-size: 1rem; margin-bottom: 0.5rem; }
+        .inactiva { color: var(--rojo); font-weight: 700; }
+        .fecha-acceso { color: var(--texto-claro); font-size: 0.95rem; }
+        .aviso-premium { margin-top: 1.5rem; padding: 1.2rem 1.4rem; background: rgba(250, 204, 21, 0.08); border: 1px solid rgba(250, 204, 21, 0.25); border-radius: 10px; color: #fde047; font-size: 0.95rem; line-height: 1.7; }
+        .aviso-premium strong { color: #fff; }
+        .aviso-premium a { color: var(--dorado); font-weight: 700; text-decoration: none; cursor: pointer; display: inline-block; margin-top: 0.5rem; padding: 0.4rem 1rem; background: rgba(250, 204, 21, 0.15); border-radius: 6px; transition: all 0.2s; }
+        .aviso-premium a:hover { background: rgba(250, 204, 21, 0.25); transform: translateY(-1px); }
 
         /* Interruptores Privacidad */
-        .fila-toggle {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.9rem 0;
-            border-bottom: 1px solid var(--borde);
-        }
-
-        .fila-toggle:last-child {
-            border-bottom: none;
-        }
-
-        .toggle {
-            position: relative;
-            display: inline-block;
-            width: 48px;
-            height: 26px;
-        }
-
-        .toggle input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .desliza {
-            position: absolute;
-            cursor: pointer;
-            inset: 0;
-            background: #334155;
-            border-radius: 26px;
-            transition: 0.3s ease;
-        }
-
-        .desliza:before {
-            content: '';
-            position: absolute;
-            height: 20px;
-            width: 20px;
-            left: 3px;
-            bottom: 3px;
-            background: white;
-            border-radius: 50%;
-            transition: 0.3s ease;
-        }
-
-        input:checked + .desliza {
-            background: var(--azul);
-        }
-
-        input:checked + .desliza:before {
-            transform: translateX(22px);
-        }
+        .fila-toggle { display: flex; justify-content: space-between; align-items: center; padding: 0.9rem 0; border-bottom: 1px solid var(--borde); }
+        .fila-toggle:last-child { border-bottom: none; }
+        .toggle { position: relative; display: inline-block; width: 48px; height: 26px; }
+        .toggle input { opacity: 0; width: 0; height: 0; }
+        .desliza { position: absolute; cursor: pointer; inset: 0; background: #334155; border-radius: 26px; transition: 0.3s ease; }
+        .desliza:before { content: ''; position: absolute; height: 20px; width: 20px; left: 3px; bottom: 3px; background: white; border-radius: 50%; transition: 0.3s ease; }
+        input:checked + .desliza { background: var(--azul); }
+        input:checked + .desliza:before { transform: translateX(22px); }
 
         /* === PERFIL — SKINS Y CAPAS === */
-        .apartado-perfil {
-            margin-bottom: 3.5rem;
-        }
-
-        .titulo-apartado {
-            font-size: 1.4rem;
-            margin-bottom: 1.2rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid var(--borde);
-        }
-
-        .titulo-skins {
-            color: var(--verde);
-        }
-
-        .titulo-capas {
-            color: var(--azul);
-        }
-
-        .tarjeta-perfil {
-            background: rgba(30, 41, 59, 0.5);
-            border: 1px solid var(--borde);
-            border-radius: 14px;
-            padding: 2rem;
-            text-align: center;
-            margin-bottom: 1.5rem;
-            transition: all 0.25s ease;
-        }
-
-        .tarjeta-perfil:hover {
-            border-color: rgba(56, 189, 248, 0.3);
-        }
-
-        .tarjeta-perfil h4 {
-            margin-bottom: 1.2rem;
-            color: #fff;
-            font-size: 1rem;
-        }
-
-        .vista-skin, .vista-capa {
-            width: 140px;
-            height: 220px;
-            margin: 0 auto;
-            background: rgba(0, 0, 0, 0.25);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            border: 2px solid var(--borde);
-            image-rendering: pixelated;
-        }
-
-        .btn-establecer {
-            margin-top: 1.2rem;
-            padding: 0.65rem 1.4rem;
-            background: var(--azul);
-            color: #000;
-            border: none;
-            border-radius: 8px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            font-size: 0.95rem;
-        }
-
-        .btn-establecer:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.25);
-        }
-
-        .btn-eliminar {
-            margin-left: 0.5rem;
-            padding: 0.65rem 1.4rem;
-            background: var(--rojo);
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            font-size: 0.95rem;
-        }
-
-        .btn-eliminar:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(244, 63, 94, 0.25);
-        }
+        .apartado-perfil { margin-bottom: 3.5rem; }
+        .titulo-apartado { font-size: 1.4rem; margin-bottom: 1.2rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--borde); }
+        .titulo-skins { color: var(--verde); }
+        .titulo-capas { color: var(--azul); }
+        .tarjeta-perfil { background: rgba(30, 41, 59, 0.5); border: 1px solid var(--borde); border-radius: 14px; padding: 2rem; text-align: center; margin-bottom: 1.5rem; transition: all 0.25s ease; }
+        .tarjeta-perfil:hover { border-color: rgba(56, 189, 248, 0.3); }
+        .tarjeta-perfil h4 { margin-bottom: 1.2rem; color: #fff; font-size: 1rem; }
+        .vista-skin, .vista-capa { width: 140px; height: 220px; margin: 0 auto; background: rgba(0, 0, 0, 0.25); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 4rem; border: 2px solid var(--borde); image-rendering: pixelated; }
+        .btn-establecer { margin-top: 1.2rem; padding: 0.65rem 1.4rem; background: var(--azul); color: #000; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; transition: all 0.2s ease; font-size: 0.95rem; }
+        .btn-establecer:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(56, 189, 248, 0.25); }
+        .btn-eliminar { margin-left: 0.5rem; padding: 0.65rem 1.4rem; background: var(--rojo); color: #fff; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; transition: all 0.2s ease; font-size: 0.95rem; }
+        .btn-eliminar:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(244, 63, 94, 0.25); }
 
         /* Biblioteca */
-        .biblioteca {
-            background: rgba(30, 41, 59, 0.5);
-            border: 1px solid var(--borde);
-            border-radius: 14px;
-            padding: 1.8rem;
-        }
-
-        .biblioteca h4 {
-            margin-bottom: 1.2rem;
-            color: #fff;
-            font-size: 1.1rem;
-        }
-
-        .biblioteca-cuerpo {
-            display: flex;
-            gap: 1.5rem;
-            align-items: flex-start;
-            flex-wrap: wrap;
-        }
-
-        .vista-actual {
-            flex: 0 0 160px;
-            text-align: center;
-        }
-
-        .vista-actual h5 {
-            color: var(--texto-claro);
-            margin-bottom: 0.8rem;
-            font-size: 0.9rem;
-        }
-
-        .skin-preview {
-            width: 100px;
-            height: 180px;
-            margin: 0 auto;
-            background: rgba(0, 0, 0, 0.25);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            border: 2px solid var(--azul);
-        }
-
-        .separador {
-            width: 1px;
-            height: 200px;
-            background: var(--borde);
-        }
-
-        .skins-lista {
-            flex: 1;
-            min-width: 220px;
-        }
-
-        .skins-lista h5 {
-            color: var(--texto-claro);
-            margin-bottom: 0.8rem;
-            font-size: 0.9rem;
-        }
-
-        .cuadricula-skins {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
-            gap: 0.8rem;
-        }
-
-        .skin-item {
-            aspect-ratio: 2/3;
-            background: rgba(255, 255, 255, 0.04);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            cursor: pointer;
-            border: 2px solid transparent;
-            transition: all 0.2s ease;
-            position: relative;
-            padding: 0.3rem;
-        }
-
-        .skin-item:hover {
-            border-color: var(--azul);
-            background: rgba(56, 189, 248, 0.08);
-            transform: translateY(-2px);
-        }
-
-        .skin-item.seleccionada {
-            border-color: var(--verde);
-            box-shadow: 0 0 10px rgba(127, 255, 0, 0.2);
-        }
-
-        .skin-item.bloqueado {
-            opacity: 0.6;
-            filter: grayscale(0.6);
-            cursor: not-allowed;
-        }
-
-        .icono-bloqueo {
-            position: absolute;
-            top: 4px;
-            right: 4px;
-            font-size: 0.7rem;
-        }
-
-        .aviso-limite {
-            color: var(--rojo);
-            font-size: 0.85rem;
-            margin-top: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-            line-height: 1.5;
-        }
-
-        .btn-volver {
-            display: inline-block;
-            margin-top: 1.5rem;
-            padding: 0.6rem 1.4rem;
-            background: var(--azul);
-            color: #000;
-            border: none;
-            border-radius: 8px;
-            font-weight: 700;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.2s ease;
-        }
-
-        .btn-volver:hover {
-            transform: translateY(-2px);
-        }
+        .biblioteca { background: rgba(30, 41, 59, 0.5); border: 1px solid var(--borde); border-radius: 14px; padding: 1.8rem; }
+        .biblioteca h4 { margin-bottom: 1.2rem; color: #fff; font-size: 1.1rem; }
+        .biblioteca-cuerpo { display: flex; gap: 1.5rem; align-items: flex-start; flex-wrap: wrap; }
+        .vista-actual { flex: 0 0 160px; text-align: center; }
+        .vista-actual h5 { color: var(--texto-claro); margin-bottom: 0.8rem; font-size: 0.9rem; }
+        .skin-preview { width: 100px; height: 180px; margin: 0 auto; background: rgba(0, 0, 0, 0.25); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 3rem; border: 2px solid var(--azul); }
+        .separador { width: 1px; height: 200px; background: var(--borde); }
+        .skins-lista { flex: 1; min-width: 220px; }
+        .skins-lista h5 { color: var(--texto-claro); margin-bottom: 0.8rem; font-size: 0.9rem; }
+        .cuadricula-skins { display: grid; grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); gap: 0.8rem; }
+        .skin-item { aspect-ratio: 2/3; background: rgba(255, 255, 255, 0.04); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; cursor: pointer; border: 2px solid transparent; transition: all 0.2s ease; position: relative; padding: 0.3rem; }
+        .skin-item:hover { border-color: var(--azul); background: rgba(56, 189, 248, 0.08); transform: translateY(-2px); }
+        .skin-item.seleccionada { border-color: var(--verde); box-shadow: 0 0 10px rgba(127, 255, 0, 0.2); }
+        .skin-item.bloqueado { opacity: 0.6; filter: grayscale(0.6); cursor: not-allowed; }
+        .icono-bloqueo { position: absolute; top: 4px; right: 4px; font-size: 0.7rem; }
+        .aviso-limite { color: var(--rojo); font-size: 0.85rem; margin-top: 0.5rem; display: flex; align-items: center; gap: 0.3rem; line-height: 1.5; }
+        .btn-volver { display: inline-block; margin-top: 1.5rem; padding: 0.6rem 1.4rem; background: var(--azul); color: #000; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; text-decoration: none; transition: all 0.2s ease; }
+        .btn-volver:hover { transform: translateY(-2px); }
 
         /* === CARACTERÍSTICAS, DESCARGAR, ACERCA === */
-        section {
-            padding: 2rem 2rem 4rem;
-        }
-
-        section h2 {
-            font-size: 2rem;
-            text-align: center;
-            margin-bottom: 2rem;
-            color: #fff;
-        }
-
-        .grid-caracteristicas {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.2rem;
-        }
-
-        .card {
-            background: rgba(30, 41, 59, 0.5);
-            border: 1px solid var(--borde);
-            border-radius: 14px;
-            padding: 1.5rem;
-            transition: all 0.25s ease;
-        }
-
-        .card:hover {
-            border-color: var(--verde);
-            transform: translateY(-4px);
-            box-shadow: var(--sombra);
-        }
-
-        .card h3 {
-            color: var(--verde);
-            margin-bottom: 0.6rem;
-            font-size: 1.1rem;
-        }
-
-        .card p {
-            color: var(--texto-claro);
-            line-height: 1.6;
-        }
-
-        .pasos {
-            background: rgba(30, 41, 59, 0.5);
-            border: 1px solid var(--borde);
-            border-radius: 14px;
-            padding: 2rem;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .paso {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1rem;
-            align-items: flex-start;
-        }
-
-        .paso-num {
-            background: var(--verde);
-            color: #000;
-            font-weight: 900;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .paso-texto {
-            color: var(--texto);
-        }
-
-        .acerca {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto;
-            background: rgba(30, 41, 59, 0.5);
-            border: 1px solid var(--borde);
-            border-radius: 14px;
-            padding: 2rem;
-            color: var(--texto-claro);
-            line-height: 1.8;
-        }
-
-        .acerca a {
-            color: var(--verde);
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .acerca a:hover {
-            text-decoration: underline;
-        }
+        section { padding: 2rem 2rem 4rem; }
+        section h2 { font-size: 2rem; text-align: center; margin-bottom: 2rem; color: #fff; }
+        .grid-caracteristicas { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.2rem; }
+        .card { background: rgba(30, 41, 59, 0.5); border: 1px solid var(--borde); border-radius: 14px; padding: 1.5rem; transition: all 0.25s ease; }
+        .card:hover { border-color: var(--verde); transform: translateY(-4px); box-shadow: var(--sombra); }
+        .card h3 { color: var(--verde); margin-bottom: 0.6rem; font-size: 1.1rem; }
+        .card p { color: var(--texto-claro); line-height: 1.6; }
+        .pasos { background: rgba(30, 41, 59, 0.5); border: 1px solid var(--borde); border-radius: 14px; padding: 2rem; max-width: 700px; margin: 0 auto; }
+        .paso { display: flex; gap: 1rem; margin-bottom: 1rem; align-items: flex-start; }
+        .paso-num { background: var(--verde); color: #000; font-weight: 900; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .paso-texto { color: var(--texto); }
+        .acerca { text-align: center; max-width: 700px; margin: 0 auto; background: rgba(30, 41, 59, 0.5); border: 1px solid var(--borde); border-radius: 14px; padding: 2rem; color: var(--texto-claro); line-height: 1.8; }
+        .acerca a { color: var(--verde); text-decoration: none; font-weight: 600; }
+        .acerca a:hover { text-decoration: underline; }
 
         /* === PIE DE PÁGINA === */
-        footer {
-            text-align: center;
-            padding: 2rem;
-            color: #475569;
-            border-top: 1px solid var(--borde);
-            margin-top: 2rem;
-            font-size: 0.9rem;
-            line-height: 1.7;
-        }
+        footer { text-align: center; padding: 2rem; color: #475569; border-top: 1px solid var(--borde); margin-top: 2rem; font-size: 0.9rem; line-height: 1.7; }
 
         /* === RESPONSIVE === */
         @media (max-width: 768px) {
-            header h1 {
-                font-size: 2rem;
-            }
-
-            .separador {
-                display: none;
-            }
-
-            .biblioteca-cuerpo {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .nav-enlaces {
-                justify-content: center;
-                width: 100%;
-            }
+            header h1 { font-size: 2rem; }
+            .separador { display: none; }
+            .biblioteca-cuerpo { flex-wrap: wrap; justify-content: center; }
+            .nav-enlaces { justify-content: center; width: 100%; }
         }
     </style>
 </head>
@@ -1185,13 +608,10 @@
             </div>
         </div>
 
-        <!-- === PERFIL: SKIN Y CAPA — APARTADOS SEPARADOS === -->
+        <!-- === PERFIL: SKIN Y CAPA === -->
         <div id="cuenta-perfil" class="contenido-pestaña">
-
-            <!-- 🎨 APARTADO DE SKINS -->
             <div class="apartado-perfil">
                 <h3 class="titulo-apartado titulo-skins">🎨 Skins</h3>
-
                 <div class="tarjeta-perfil">
                     <h4>Skin Actual</h4>
                     <div class="vista-skin">🧍</div>
@@ -1200,7 +620,6 @@
                         <button class="btn-eliminar">🗑️ Eliminar skin</button>
                     </div>
                 </div>
-
                 <div class="biblioteca">
                     <h4>📚 Biblioteca de Skins</h4>
                     <div class="biblioteca-cuerpo">
@@ -1218,3 +637,79 @@
                                 <div class="skin-item bloqueado" title="🔒 Solo con Premium">🥷<span class="icono-bloqueo">🔒</span></div>
                                 <div class="skin-item bloqueado" title="🔒 Solo con Premium">🤠<span class="icono-bloqueo">🔒</span></div>
                                 <div class="skin-item bloqueado" title="🔒 Solo con Premium">🧙<span class="icono-bloqueo">🔒</span></div>
+                                <div class="skin-item bloqueado" title="🔒 Solo con Premium">⚔️<span class="icono-bloqueo">🔒</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn-volver">← Volver atrás</button>
+                </div>
+            </div>
+
+            <div class="apartado-perfil">
+                <h3 class="titulo-apartado titulo-capas">🧥 Capas</h3>
+                <div class="tarjeta-perfil">
+                    <h4>Capa Actual</h4>
+                    <div class="vista-capa">🧥</div>
+                    <div style="margin-top:1rem;">
+                        <button class="btn-establecer">✅ Establecer capa</button>
+                        <button class="btn-eliminar">🗑️ Quitar capa</button>
+                    </div>
+                </div>
+                <div class="biblioteca">
+                    <h4>📚 Biblioteca de Capas</h4>
+                    <div class="biblioteca-cuerpo">
+                        <div class="vista-actual">
+                            <h5>Capa en uso</h5>
+                            <div class="skin-preview">🧥</div>
+                        </div>
+                        <div class="separador"></div>
+                        <div class="skins-lista">
+                            <h5>Tus capas guardadas</h5>
+                            <div class="aviso-limite">⚠️ Límite alcanzado. <strong>Suscríbete a Premium</strong> para capas ilimitadas y exclusivas.</div>
+                            <div class="cuadricula-skins" style="margin-top:0.8rem;">
+                                <div class="skin-item seleccionada" title="Capa actual">🏳️</div>
+                                <div class="skin-item bloqueado" title="🔒 Solo con Premium">🔥<span class="icono-bloqueo">🔒</span></div>
+                                <div class="skin-item bloqueado" title="🔒 Solo con Premium">❄️<span class="icono-bloqueo">🔒</span></div>
+                                <div class="skin-item bloqueado" title="🔒 Solo con Premium">⭐<span class="icono-bloqueo">🔒</span></div>
+                                <div class="skin-item bloqueado" title="🔒 Solo con Premium">🛡️<span class="icono-bloqueo">🔒</span></div>
+                                <div class="skin-item bloqueado" title="🔒 Solo con Premium">👑<span class="icono-bloqueo">🔒</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn-volver">← Volver atrás</button>
+                </div>
+            </div>
+
+            <div class="aviso-premium">
+                💎 <strong>Desbloquea todo con Nexis Premium</strong><br>
+                ✅ Skins ilimitadas &nbsp;|&nbsp; ✅ Capas exclusivas &nbsp;|&nbsp; ✅ Subida sin límites<br>
+                ✅ Sin anuncios &nbsp;|&nbsp; ✅ Soporte prioritario &nbsp;|&nbsp; ✅ Nuevos diseños cada mes<br>
+                <a onclick="alert('Aquí se abriría el pago de Premium')">💳 Suscribirse ahora →</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ====================================== -->
+<!-- ✅ JAVASCRIPT — AQUÍ ESTÁ LO QUE FALTABA -->
+<!-- ====================================== -->
+<script>
+    // Cambiar sección principal y resaltar botón activo
+    function mostrarSeccion(nombreSeccion) {
+        // Ocultar todas las secciones
+        document.querySelectorAll('.seccion').forEach(sec => {
+            sec.classList.remove('visible');
+        });
+        // Mostrar la sección seleccionada
+        document.getElementById('s-' + nombreSeccion).classList.add('visible');
+
+        // Quitar clase activo a todos los botones del menú
+        document.querySelectorAll('.nav-enlaces button').forEach(btn => {
+            btn.classList.remove('activo');
+        });
+        // Resaltar el botón seleccionado
+        const botonActivo = document.getElementById('m-' + nombreSeccion);
+        if (botonActivo) botonActivo.classList.add('activo');
+    }
+
+    // Cambiar pestañas dentro
