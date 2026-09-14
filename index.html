@@ -97,6 +97,41 @@
             color: #7fff00; font-size: 1.2rem; margin-bottom: 0.5rem;
         }
         .feature-item p { color: #ddd; line-height: 1.7; font-size: 1.05rem; }
+        .pasos-lista {
+            background: rgba(127, 255, 0, 0.05);
+            border: 1px solid rgba(127, 255, 0, 0.2);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 1.5rem;
+        }
+        .paso-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+        }
+        .paso-numero {
+            background: linear-gradient(90deg, #7fff00, #39ff14);
+            color: #000;
+            font-weight: 800;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .paso-texto { color: #eee; line-height: 1.6; }
+        .requisitos {
+            background: rgba(255, 204, 0, 0.08);
+            border: 1px solid rgba(255, 204, 0, 0.25);
+            border-radius: 10px;
+            padding: 1.2rem;
+            margin-top: 1.5rem;
+        }
+        .requisitos h3 { color: #ffcc00; margin-bottom: 0.8rem; font-size: 1.1rem; }
+        .requisitos li { color: #ddd; margin-left: 1.2rem; line-height: 1.7; }
         footer {
             text-align: center; padding: 2.5rem; color: #888;
             border-top: 1px solid rgba(255,255,255,0.08); margin-top: 3rem;
@@ -158,9 +193,9 @@
         <p>El Launcher de Minecraft: Java Edition gratuito, ligero, sin publicidad y sin bloatware. Descarga, instala y gestiona tus versiones, mods y perfiles con total libertad.<br><br>
         <strong>¿Ya tienes cuenta o quieres crear una?</strong> Usa los botones de arriba — <em>toda la información del sitio sigue disponible para ti sin importar tu estado.</em></p>
         
-        <!-- ✅ BOTÓN DE DESCARGA ACTUALIZADO -->
-        <a href="Nexis-Launcher-Setup-2.0.0.exe" download class="btn-descarga">
-            <i class="bi bi-download"></i> Descargar Nexis Launcher
+        <!-- ✅ BOTÓN DE DESCARGA — ENLACE OFICIAL DE GITHUB -->
+        <a href="https://github.com/marcoantoniochiuquihuancacordov-dotcom/Nexis-launcher/releases/download/v2.0.0/Nexis.Launcher.exe" target="_blank" class="btn-descarga">
+            <i class="bi bi-download"></i> 📥 Descargar Nexis Launcher v2.0.0
         </a>
     </header>
     <section id="caracteristicas" class="features">
@@ -191,16 +226,49 @@
             <p>Disponible sin costo para todos los jugadores. No necesitas pagar nada ni tener suscripción para disfrutar de todas sus funciones.</p>
         </div>
     </section>
+    
+    <!-- ✅ SECCIÓN DE DESCARGA CON PASOS AGREGADOS -->
     <section id="descargar" class="faq-section">
-        <h2>Descargar</h2>
-        <p style="color:#d0d0d0; margin-bottom:1rem;">Pulsa el botón de arriba para descargar el instalador de Nexis Launcher para Windows.</p>
-        <ul style="color:#bbb; line-height:1.8;">
-            <li>✅ Instalador oficial para Windows</li>
-            <li>✅ Sin programas adicionales</li>
-            <li>✅ Totalmente gratuito</li>
-            <li>⚠️ Requiere Java 17 o superior</li>
-        </ul>
+        <h2>📥 Cómo descargar e instalar</h2>
+        
+        <div class="pasos-lista">
+            <div class="paso-item">
+                <span class="paso-numero">1</span>
+                <div class="paso-texto">
+                    <strong>Pulsa el botón verde de arriba</strong> que dice "Descargar Nexis Launcher v2.0.0". Se abrirá GitHub y comenzará la descarga automáticamente.
+                </div>
+            </div>
+            <div class="paso-item">
+                <span class="paso-numero">2</span>
+                <div class="paso-texto">
+                    <strong>Espera a que termine de descargar</strong> (pesa aproximadamente 169 MB). Puedes ver el progreso en la parte inferior de tu navegador.
+                </div>
+            </div>
+            <div class="paso-item">
+                <span class="paso-numero">3</span>
+                <div class="paso-texto">
+                    <strong>Abre el archivo descargado</strong> llamado <code>Nexis.Launcher.exe</code>. No necesita instalación: se abre y funciona directamente.
+                </div>
+            </div>
+            <div class="paso-item">
+                <span class="paso-numero">4</span>
+                <div class="paso-texto">
+                    <strong>¡Listo!</strong> Ya puedes usar el launcher. Crea tu perfil, elige tu versión de Minecraft y ¡disfruta! 🎮
+                </div>
+            </div>
+        </div>
+        
+        <div class="requisitos">
+            <h3>⚠️ Requisitos importantes</h3>
+            <ul>
+                <li>✅ Sistema operativo: Windows 10 o superior</li>
+                <li>☕ Necesitas tener instalado <strong>Java 17 o superior</strong></li>
+                <li>💾 Espacio en disco: al menos 500 MB libres</li>
+                <li>🌐 Conexión a internet para descargar versiones del juego</li>
+            </ul>
+        </div>
     </section>
+    
     <footer id="acerca">
         <p><strong>Nexis Launcher</strong> — Launcher de Minecraft: Java Edition gratuito.</p>
         <p style="margin-top:0.5rem; font-size:0.9rem;">Únete a nuestra comunidad: <a href="https://discord.gg/ef4uw4ttF" target="_blank" style="color:#7fff00;">discord.gg/ef4uw4ttF</a> · © 2026 Nexis Launcher</p>
