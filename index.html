@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nexis Launcher — Minecraft rápido, seguro y gratis</title>
-    <meta name="description" content="Nexis Launcher: Launcher de Minecraft Java y Bedrock gratuito, ligero, sin virus y 100% seguro.">
+    <meta name="description" content="Nexis Launcher: Launcher de Minecraft Java y Bedrock gratuito, ligero, sin virus y sin publicidad.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,20 +20,15 @@
         :root {
             --verde: #7fff00;
             --verde-oscuro: #39ff14;
-            --azul: #38bdf8;
-            --azul-claro: #60a5fa;
             --fondo-1: #0a0f1f;
             --fondo-2: #0f172a;
-            --fondo-3: #1e293b;
-            --rojo: #f43f5e;
-            --dorado: #facc15;
             --texto: #e2e8f0;
             --texto-claro: #94a3b8;
             --borde: rgba(255, 255, 255, 0.08);
-            --sombra: 0 8px 30px rgba(0, 0, 0, 0.35);
             --discord-azul: #5865F2;
-            --color-activo: #7fff00;
-            --fondo-activo: rgba(127, 255, 0, 0.15);
+            --rojo: #f43f5e;
+            --altura-boton: 40px;
+            --radio-borde: 8px;
         }
 
         body {
@@ -50,34 +45,10 @@
             padding: 0 2rem;
         }
 
-        /* === ANUNCIOS — SOLO SE MUESTRAN SI NO ES PREMIUM === */
-        .anuncio-banner {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--borde);
-            border-radius: 12px;
-            padding: 1rem;
-            margin: 1.5rem 0;
-            text-align: center;
-            color: var(--texto-claro);
-            font-size: 0.9rem;
-            display: block;
-        }
-        .premium .anuncio-banner {
-            display: none !important;
-        }
-        .etiqueta-anuncio {
-            display: inline-block;
-            font-size: 0.75rem;
-            background: rgba(255, 255, 255, 0.08);
-            padding: 0.15rem 0.5rem;
-            border-radius: 4px;
-            margin-bottom: 0.5rem;
-            color: var(--texto-claro);
-        }
-
+        /* === NAVEGACIÓN CORREGIDA === */
         nav {
-            background: rgba(15, 23, 42, 0.85);
-            padding: 1rem 0;
+            background: rgba(15, 23, 42, 0.9);
+            padding: 0.8rem 0;
             backdrop-filter: blur(12px);
             position: sticky;
             top: 0;
@@ -89,8 +60,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
             gap: 1rem;
+            flex-wrap: nowrap;
         }
 
         .logo {
@@ -98,93 +69,84 @@
             font-weight: 900;
             color: var(--verde);
             text-decoration: none;
-            transition: transform 0.2s;
-            cursor: pointer;
+            white-space: nowrap;
         }
-        .logo:hover { transform: scale(1.05); }
 
         .nav-enlaces {
             display: flex;
-            gap: 0.4rem;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .nav-enlaces button {
-            color: var(--texto-claro);
-            font-weight: 600;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            transition: all 0.25s ease;
-            background: transparent;
-            border: none;
-            font-size: 1rem;
-            cursor: pointer;
-        }
-        .nav-enlaces button:hover {
-            color: #fff;
-            background: rgba(127, 255, 0, 0.08);
-        }
-        .nav-enlaces button.activo {
-            color: var(--verde);
-            background: rgba(127, 255, 0, 0.15);
-        }
-
-        .usuario-nav {
-            color: #fff;
-            font-weight: 600;
-            display: flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
+            flex-wrap: nowrap;
+        }
+
+        /* 🔹 Estilo UNIFICADO para TODOS los botones */
+        .nav-enlaces button,
+        .nav-enlaces .usuario-nav,
+        .nav-enlaces .btn-discord,
+        .nav-enlaces .btn-cerrar {
+            height: var(--altura-boton);
+            padding: 0 1rem;
+            border-radius: var(--radio-borde);
+            font-size: 0.95rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.2s;
-            border: 1px solid transparent;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        /* Botones de navegación normales */
+        .nav-enlaces button {
+            background: transparent;
+            color: var(--texto-claro);
+        }
+        .nav-enlaces button:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+        }
+        .nav-enlaces button.activo {
+            background: rgba(127, 255, 0, 0.15);
+            color: var(--verde);
+        }
+
+        /* Botón de usuario */
+        .usuario-nav {
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            gap: 0.5rem;
         }
         .usuario-nav:hover {
             background: rgba(255, 255, 255, 0.1);
-            border-color: var(--verde);
         }
 
+        /* Botón Cerrar sesión */
         .btn-cerrar {
-            background: linear-gradient(90deg, #f43f5e, #e11d48);
-            color: white;
-            border: none;
-            padding: 0.55rem 1.1rem;
-            border-radius: 8px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.2s;
+            background: transparent;
+            color: var(--texto-claro);
         }
         .btn-cerrar:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(244, 63, 94, 0.3);
+            background: rgba(244, 63, 94, 0.15);
+            color: #ffc0c8;
         }
 
+        /* Botón Discord */
         .btn-discord {
             background: var(--discord-azul);
             color: white;
-            padding: 0.55rem 1.1rem;
-            border-radius: 8px;
             text-decoration: none;
-            font-weight: 700;
-            transition: all 0.2s;
-            border: none;
-            cursor: pointer;
         }
         .btn-discord:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(88, 101, 242, 0.4);
             filter: brightness(1.1);
+            transform: translateY(-1px);
         }
 
+        /* === RESTO DEL CÓDIGO === */
         .seccion {
             display: none;
             animation: aparecer 0.35s ease-out;
-            position: relative;
-            z-index: 1;
         }
         .seccion.visible { display: block; }
 
@@ -229,6 +191,17 @@
             box-shadow: 0 8px 25px rgba(127, 255, 0, 0.25);
         }
 
+        .anuncio-banner {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--borde);
+            border-radius: 12px;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            text-align: center;
+            color: var(--texto-claro);
+            font-size: 0.9rem;
+        }
+
         .noticias { padding: 2rem 0 4rem; }
         .noticias h2 { text-align: center; font-size: 1.8rem; margin-bottom: 0.5rem; color: #fff; }
         .noticias-sub { text-align: center; color: var(--texto-claro); margin-bottom: 2rem; }
@@ -245,7 +218,6 @@
             border-color: var(--verde);
             background: rgba(30, 41, 59, 0.8);
             transform: translateY(-4px);
-            box-shadow: var(--sombra);
         }
         .etiqueta {
             display: inline-block;
@@ -259,14 +231,13 @@
         }
         .noticia h3 { font-size: 1.05rem; margin-bottom: 0.6rem; color: #fff; }
         .noticia p { color: var(--texto-claro); font-size: 0.95rem; line-height: 1.6; margin-bottom: 0.8rem; }
-        .leer-mas { color: var(--verde); font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 0.3rem; transition: all 0.2s; }
-        .leer-mas:hover { text-decoration: underline; gap: 0.5rem; }
-        .fuente { font-size: 0.78rem; color: #475569; margin-top: 0.4rem; display: flex; align-items: center; gap: 0.3rem; }
+        .leer-mas { color: var(--verde); font-weight: 600; text-decoration: none; }
+        .leer-mas:hover { text-decoration: underline; }
 
         .dashboard { max-width: 1100px; margin: 3rem auto; padding: 0 1.5rem 4rem; }
         .dashboard-saludo { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.2rem; }
         .dashboard-subtitulo { color: var(--texto-claro); font-size: 1.05rem; margin-bottom: 2rem; }
-        .etiqueta-beta { display: inline-block; background: var(--verde); color: #000; font-size: 0.75rem; font-weight: 800; padding: 0.05rem 0.5rem; border-radius: 12px; margin-left: 0.5rem; vertical-align: middle; }
+        .etiqueta-beta { display: inline-block; background: var(--verde); color: #000; font-size: 0.75rem; font-weight: 800; padding: 0.1rem 0.5rem; border-radius: 12px; margin-left: 0.5rem; }
 
         .pestañas { 
             display: flex; 
@@ -297,7 +268,6 @@
             background: linear-gradient(90deg, var(--verde), var(--verde-oscuro)); 
             color: #000; 
             font-weight: 700; 
-            box-shadow: 0 0 15px rgba(127, 255, 0, 0.3); 
         }
         .contenido-pestaña { display: none; animation: aparecer 0.3s ease-out; }
         .contenido-pestaña.visible { display: block; }
@@ -309,7 +279,6 @@
             padding: 2rem; 
             margin-bottom: 1.5rem; 
             transition: all 0.25s ease; 
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
         .tarjeta:hover { border-color: rgba(127, 255, 0, 0.3); }
         .tarjeta h3 { 
@@ -356,18 +325,10 @@
         .btn-peligro:hover { box-shadow: 0 4px 15px rgba(244, 63, 94, 0.3); }
         .suscripcion { font-size: 1.1rem; margin-bottom: 0.5rem; }
         .inactiva { color: var(--rojo); font-weight: 700; }
-        .activa-premium { color: var(--verde); font-weight: 700; }
         .fecha-acceso { color: var(--texto-claro); font-size: 0.95rem; }
 
-        /* === SECCIÓN DE PAGOS === */
-        .metodos-pago {
-            margin-top: 1.5rem;
-        }
-        .metodos-pago h4 {
-            font-size: 1rem;
-            color: #fff;
-            margin-bottom: 1rem;
-        }
+        .metodos-pago { margin-top: 1.5rem; }
+        .metodos-pago h4 { font-size: 1rem; color: #fff; margin-bottom: 1rem; }
         .opcion-pago {
             display: flex;
             align-items: center;
@@ -387,7 +348,6 @@
         .opcion-pago.seleccionada {
             border-color: var(--verde);
             background: rgba(127, 255, 0, 0.08);
-            box-shadow: 0 0 12px rgba(127, 255, 0, 0.15);
         }
         .radio-pago {
             width: 20px;
@@ -397,9 +357,7 @@
             position: relative;
             flex-shrink: 0;
         }
-        .opcion-pago.seleccionada .radio-pago {
-            border-color: var(--verde);
-        }
+        .opcion-pago.seleccionada .radio-pago { border-color: var(--verde); }
         .opcion-pago.seleccionada .radio-pago::after {
             content: '';
             width: 10px;
@@ -411,22 +369,10 @@
             left: 50%;
             transform: translate(-50%, -50%);
         }
-        .icono-pago {
-            font-size: 1.5rem;
-        }
-        .info-pago {
-            flex: 1;
-        }
-        .info-pago strong {
-            display: block;
-            color: #fff;
-            font-size: 0.95rem;
-        }
-        .info-pago span {
-            display: block;
-            color: var(--texto-claro);
-            font-size: 0.85rem;
-        }
+        .icono-pago { font-size: 1.5rem; }
+        .info-pago { flex: 1; }
+        .info-pago strong { display: block; color: #fff; font-size: 0.95rem; }
+        .info-pago span { display: block; color: var(--texto-claro); font-size: 0.85rem; }
         .boton-pagar {
             margin-top: 1.2rem;
             width: 100%;
@@ -440,15 +386,8 @@
             cursor: pointer;
             transition: all 0.2s ease;
         }
-        .boton-pagar:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(127, 255, 0, 0.3);
-        }
-        .boton-pagar:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none;
-        }
+        .boton-pagar:hover:not(:disabled) { transform: translateY(-2px); }
+        .boton-pagar:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
 
         .aviso-premium { 
             margin-top: 1.5rem; 
@@ -460,12 +399,13 @@
             font-size: 1rem; 
             line-height: 1.7; 
         }
-        .aviso-premium strong { color: #fff; }
         .aviso-donar {
             background: rgba(34, 197, 94, 0.08);
             border: 1px solid rgba(34, 197, 94, 0.25);
             color: #86efac;
         }
+        .aviso-premium a { color: var(--verde); text-decoration: none; font-weight: 500; }
+        .aviso-premium a:hover { text-decoration: underline; }
 
         .fila-toggle { 
             display: flex; 
@@ -522,8 +462,8 @@
             .personalizar-grid { grid-template-columns: 1fr; }
             .separador-vertical { width: 100%; height: 1px; }
         }
-        .skin-actual, .capa-actual { text-align: center; }
-        .skin-actual h4, .capa-actual h4 {
+        .skin-actual { text-align: center; }
+        .skin-actual h4 {
             font-size: 1.1rem;
             color: #fff;
             margin-bottom: 1.2rem;
@@ -542,27 +482,19 @@
             justify-content: center;
             font-size: 4.5rem;
             border: 2px solid var(--borde);
-            image-rendering: pixelated;
-        }
-        .sin-capa {
-            color: var(--texto-claro);
-            font-size: 0.9rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            transition: all 0.3s ease;
         }
         .btn-azul {
-            background: var(--azul);
+            background: #38bdf8;
             color: #000;
             border: none;
             padding: 0.6rem 1.2rem;
             border-radius: 8px;
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.2s;
+            margin: 0.25rem;
         }
-        .btn-azul:hover { background: var(--azul-claro); transform: translateY(-2px); }
+        .btn-azul:hover { background: #60a5fa; }
         .btn-rojo {
             background: var(--rojo);
             color: #fff;
@@ -571,9 +503,9 @@
             border-radius: 8px;
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.2s;
+            margin: 0.25rem;
         }
-        .btn-rojo:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(244, 63, 94, 0.25); }
+        .btn-rojo:hover { background: #fb7185; }
         .separador-vertical { width: 2px; height: 280px; background: var(--borde); }
         .biblioteca-lado h4 {
             font-size: 1.1rem;
@@ -611,20 +543,6 @@
             border-color: var(--verde);
             box-shadow: 0 0 12px rgba(127, 255, 0, 0.25);
         }
-        .boton-volver { text-align: center; margin-top: 2rem; }
-        .btn-volver {
-            display: inline-block;
-            padding: 0.65rem 1.4rem;
-            background: linear-gradient(90deg, var(--verde), var(--verde-oscuro));
-            color: #000;
-            border: none;
-            border-radius: 8px;
-            font-weight: 700;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.2s ease;
-        }
-        .btn-volver:hover { transform: translateY(-2px); }
 
         section { padding: 2rem 2rem 4rem; }
         section h2 { font-size: 2rem; text-align: center; margin-bottom: 2rem; color: #fff; }
@@ -636,7 +554,7 @@
             padding: 1.5rem; 
             transition: all 0.25s ease; 
         }
-        .card:hover { border-color: var(--verde); transform: translateY(-4px); box-shadow: var(--sombra); }
+        .card:hover { border-color: var(--verde); transform: translateY(-4px); }
         .card h3 { color: var(--verde); margin-bottom: 0.6rem; font-size: 1.1rem; }
         .card p { color: var(--texto-claro); line-height: 1.6; }
         .pasos { 
@@ -675,12 +593,22 @@
         .acerca a { color: var(--verde); text-decoration: none; font-weight: 600; }
         .acerca a:hover { text-decoration: underline; }
 
-        footer { text-align: center; padding: 2rem; color: #475569; border-top: 1px solid var(--borde); margin-top: 2rem; font-size: 0.9rem; line-height: 1.7; }
+        .mensaje-accion {
+            margin-top: 1rem;
+            padding: 0.8rem;
+            border-radius: 8px;
+            background: rgba(127, 255, 0, 0.1);
+            color: var(--verde);
+            text-align: center;
+            font-weight: 500;
+            display: none;
+        }
+        .mensaje-accion.mostrar { display: block; }
     </style>
 </head>
-<body id="cuerpo-web">
+<body>
 
-<!-- NAVEGACIÓN -->
+<!-- NAVEGACIÓN CORREGIDA -->
 <nav>
     <div class="contenedor nav-wrap">
         <a href="#" class="logo" onclick="mostrarSeccion('inicio'); return false;">Nexis Launcher</a>
@@ -704,12 +632,11 @@
         <a href="#" class="boton-descarga">⬇️ Descargar Nexis Launcher v2.0.0</a>
     </header>
 
-    <!-- 📢 ANUNCIO — SOLO VISIBLE SI NO ES PREMIUM -->
     <div class="contenedor">
         <div class="anuncio-banner">
-            <span class="etiqueta-anuncio">📢 Anuncio</span><br>
+            📢 Anuncio<br>
             Este espacio muestra publicidad para usuarios gratuitos.<br>
-            💡 <strong>Consigue Premium</strong> y navega sin anuncios en la web y en el Launcher → sin interrupciones, sin límites.
+            💡 <strong>Consigue Premium</strong> y navega sin anuncios.
         </div>
     </div>
 
@@ -722,14 +649,12 @@
                 <h3>Versiones y Actualizaciones</h3>
                 <p>Entérate de las últimas versiones, Snapshots y Pre-releases de Mojang.</p>
                 <a href="https://www.minecraft.net/es-es/download" target="_blank" class="leer-mas">Leer en Minecraft.net →</a>
-                <div class="fuente">Fuente: minecraft.net</div>
             </div>
             <div class="noticia">
                 <span class="etiqueta">Oficial · Minecraft.net</span>
                 <h3>Minecraft Bedrock Edition</h3>
                 <p>Información oficial sobre versiones, novedades y características.</p>
                 <a href="https://www.minecraft.net/es-es/about-minecraft" target="_blank" class="leer-mas">Leer en Minecraft.net →</a>
-                <div class="fuente">Fuente: minecraft.net</div>
             </div>
         </div>
     </div>
@@ -788,10 +713,10 @@
             <button class="pestaña" onclick="cambiarPestanaCuenta('cuenta-general', this)">👤 General</button>
             <button class="pestaña" onclick="cambiarPestanaCuenta('cuenta-privacidad', this)">🔒 Privacidad</button>
             <button class="pestaña" onclick="cambiarPestanaCuenta('cuenta-seguridad', this)">🛡️ Seguridad</button>
-            <button class="pestaña" onclick="cambiarPestanaCuenta('cuenta-perfil', this)">😀 Perfil</button>
+            <button class="pestaña" onclick="cambiarPestanaCuenta('cuenta-perfil', this)">🎨 Perfil</button>
         </div>
 
-        <!-- === INICIO DE CUENTA === -->
+        <!-- INICIO CUENTA -->
         <div id="cuenta-inicio" class="contenido-pestaña visible">
             <div class="tarjeta">
                 <h3>Inicio <span class="etiqueta-beta">BETA</span></h3>
@@ -801,14 +726,22 @@
                 <div class="aviso-premium">
                     💎 <strong>Obtén Nexis Premium</strong><br>
                     ✅ Skins ilimitadas &nbsp;|&nbsp; ✅ Capas ilimitadas y exclusivas<br>
-                    ✅ Sin anuncios en Web y Launcher &nbsp;|&nbsp; ✅ Soporte prioritario &nbsp;|&nbsp; ✅ Funciones exclusivas<br>
-                    <a href="#cuenta-perfil" onclick="cambiarPestanaCuenta('cuenta-perfil'); return false;">🎨 Ver límites de Skins y Capas →</a>
+                    ✅ Sin anuncios &nbsp;|&nbsp; ✅ Soporte prioritario &nbsp;|&nbsp; ✅ Funciones exclusivas<br>
+                    <a href="#" onclick="cambiarPestanaCuenta('cuenta-perfil'); return false;">🎨 Ver límites de Skins y Capas →</a>
                 </div>
 
-                <!-- 💳 ELEGIR MEDIO DE PAGO -->
-                <div class="aviso-premium aviso-donar metodos-pago" style="margin-top: 1.5rem;">
+                <div class="aviso-premium aviso-donar metodos-pago">
                     <h4>💳 Elegir medio de pago</h4>
                     
+                    <div class="opcion-pago" id="pago-elegir" onclick="seleccionarPago('elegir')">
+                        <div class="radio-pago"></div>
+                        <div class="icono-pago">💳</div>
+                        <div class="info-pago">
+                            <strong>Elegir medio de pago</strong>
+                            <span>Selecciona cualquier método de tu preferencia</span>
+                        </div>
+                    </div>
+
                     <div class="opcion-pago" id="pago-paypal" onclick="seleccionarPago('paypal')">
                         <div class="radio-pago"></div>
                         <div class="icono-pago">🅿️</div>
@@ -848,13 +781,14 @@
                     <button class="boton-pagar" id="boton-pagar" onclick="realizarPago()" disabled>
                         Selecciona un medio de pago ↑
                     </button>
+                    <div class="mensaje-accion" id="mensaje-pago">✅ Medio de pago seleccionado</div>
                 </div>
 
-                <button class="btn-guardar btn-peligro" style="margin-top:1.5rem;">Cerrar sesión</button>
+                <button class="btn-guardar btn-peligro">Cerrar sesión</button>
             </div>
         </div>
 
-        <!-- === GENERAL === -->
+        <!-- GENERAL -->
         <div id="cuenta-general" class="contenido-pestaña">
             <div class="tarjeta">
                 <h3>General</h3>
@@ -863,11 +797,12 @@
                     <div class="grupo"><label>Correo electrónico</label><input type="email" value="usuario@correo.com"></div>
                 </div>
                 <div class="grupo" style="margin-top:1.2rem;"><label>Sobre mí</label><textarea>No has escrito nada sobre ti</textarea></div>
-                <button class="btn-guardar">Guardar cambios</button>
+                <button class="btn-guardar" onclick="document.getElementById('guardado-general').classList.add('mostrar'); setTimeout(()=>document.getElementById('guardado-general').classList.remove('mostrar'),3000)">Guardar cambios</button>
+                <div class="mensaje-accion" id="guardado-general">✅ Cambios guardados correctamente</div>
             </div>
         </div>
 
-        <!-- === PRIVACIDAD === -->
+        <!-- PRIVACIDAD -->
         <div id="cuenta-privacidad" class="contenido-pestaña">
             <div class="tarjeta">
                 <h3>Privacidad</h3>
@@ -877,7 +812,7 @@
             </div>
         </div>
 
-        <!-- === SEGURIDAD === -->
+        <!-- SEGURIDAD -->
         <div id="cuenta-seguridad" class="contenido-pestaña">
             <div class="tarjeta">
                 <h3>Seguridad</h3>
@@ -886,24 +821,24 @@
                     <div class="grupo"><label>Nueva contraseña</label><input type="password" placeholder="••••••••"></div>
                     <div class="grupo"><label>Confirmar contraseña</label><input type="password" placeholder="••••••••"></div>
                 </div>
-                <button class="btn-guardar" style="margin-top:1rem;">Cambiar contraseña</button>
+                <button class="btn-guardar" style="margin-top:1rem;" onclick="document.getElementById('guardado-pass').classList.add('mostrar'); setTimeout(()=>document.getElementById('guardado-pass').classList.remove('mostrar'),3000)">🔒 Cambiar contraseña</button>
+                <div class="mensaje-accion" id="guardado-pass">✅ Contraseña actualizada</div>
             </div>
         </div>
 
-        <!-- === PERFIL: SKINS Y CAPAS === -->
+        <!-- PERFIL SKINS -->
         <div id="cuenta-perfil" class="contenido-pestaña">
-
-            <!-- 🧍 SKIN POR DEFECTO: STEVE al iniciar sesión -->
             <div class="personalizar-seccion">
                 <h3>🎨 Personalizar skin</h3>
                 <div class="personalizar-grid">
                     <div class="skin-actual">
                         <h4>Skin actual (Predeterminada)</h4>
                         <div class="vista-personalizada" id="vista-skin">🧍</div>
-                        <div style="display:flex; gap:0.5rem; justify-content:center; flex-wrap:wrap;">
+                        <div>
                             <button class="btn-azul">✅ Establecer skin</button>
                             <button class="btn-rojo" onclick="restablecerSkin()">↩️ Restablecer a Steve</button>
                         </div>
+                        <div class="mensaje-accion" id="mensaje-skin">✅ Skin restablecida a Steve</div>
                     </div>
                     <div class="separador-vertical"></div>
                     <div class="biblioteca-lado">
@@ -913,36 +848,70 @@
                             <strong>Compra Premium</strong> para skins ilimitadas.
                         </div>
                         <div class="cuadricula-skins-lado skin-4">
-                            <div class="skin-item-lado seleccionada" title="Steve (Predeterminada)">🧍</div>
-                            <div class="skin-item-lado" title="Skin guardada 1">🧍‍♂️</div>
-                            <div class="skin-item-lado" title="Skin guardada 2">🥷</div>
-                            <div class="skin-item-lado" title="Skin guardada 3">🤠</div>
+                            <div class="skin-item-lado seleccionada" onclick="seleccionarSkin(this, '🧍')">🧍</div>
+                            <div class="skin-item-lado" onclick="seleccionarSkin(this, '🧍‍♂️')">🧍‍♂️</div>
+                            <div class="skin-item-lado" onclick="seleccionarSkin(this, '🥷')">🥷</div>
+                            <div class="skin-item-lado" onclick="seleccionarSkin(this, '🤠')">🤠</div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
 
-            <!-- 🧥 SIN CAPA POR DEFECTO -->
-            <div class="personalizar-seccion">
-                <h3>🧥 Personalizar capa</h3>
-                <div class="personalizar-grid">
-                    <div class="capa-actual">
-                        <h4>Capa actual</h4>
-                        <div class="vista-personalizada sin-capa" id="vista-capa">
-                            🚫<br>
-                            <em>Sin capa</em>
-                        </div>
-                        <button class="btn-azul">✅ Establecer capa</button>
-                    </div>
-                    <div class="separador-vertical"></div>
-                    <div class="biblioteca-lado">
-                        <h4>Biblioteca</h4>
-                        <div class="aviso-limite-lado">
-                            <span>+</span> Añadir capas ilimitadas<br>
-                            <strong>con Premium</strong>.
-                        </div>
-                        <div class="cuadricula-skins-lado">
-                            <div class="skin-item-lado" title="Sin capa" onclick="quitarCapa()">🚫</div>
-                            <div class="skin-item-lado" title="Capa guardada 1">🔥</div>
-                            <div class="skin-item-lado" title="Capa guardada 2">❄️</div>
-                            <div class="skin-item-lado" title="Capa guardada 3">⭐</div>
+<script>
+// Cambiar secciones principales
+function mostrarSeccion(nombre) {
+    document.querySelectorAll('.seccion').forEach(s => s.classList.remove('visible'));
+    document.getElementById('s-' + nombre).classList.add('visible');
+    
+    document.querySelectorAll('.nav-enlaces button').forEach(b => b.classList.remove('activo'));
+    const btnActivo = document.getElementById('m-' + nombre);
+    if (btnActivo) btnActivo.classList.add('activo');
+}
+
+// Cambiar pestañas de cuenta
+function cambiarPestanaCuenta(nombre, boton) {
+    document.querySelectorAll('.contenido-pestaña').forEach(p => p.classList.remove('visible'));
+    document.getElementById(nombre).classList.add('visible');
+    
+    document.querySelectorAll('.pestaña').forEach(p => p.classList.remove('activa'));
+    if (boton) boton.classList.add('activa');
+}
+
+// Seleccionar método de pago
+let metodoSeleccionado = null;
+function seleccionarPago(metodo) {
+    document.querySelectorAll('.opcion-pago').forEach(el => el.classList.remove('seleccionada'));
+    document.getElementById('pago-' + metodo).classList.add('seleccionada');
+    metodoSeleccionado = metodo;
+    document.getElementById('boton-pagar').disabled = false;
+    document.getElementById('boton-pagar').textContent = 'Pagar ahora ✅';
+    document.getElementById('mensaje-pago').classList.add('mostrar');
+    setTimeout(() => document.getElementById('mensaje-pago').classList.remove('mostrar'), 3000);
+}
+
+function realizarPago() {
+    alert('Redirigiendo a ' + metodoSeleccionado + '...');
+}
+
+// Restablecer skin a Steve
+function restablecerSkin() {
+    document.getElementById('vista-skin').textContent = '🧍';
+    document.querySelectorAll('.skin-item-lado').forEach(el => el.classList.remove('seleccionada'));
+    document.querySelectorAll('.skin-item-lado')[0].classList.add('seleccionada');
+    document.getElementById('mensaje-skin').classList.add('mostrar');
+    setTimeout(() => document.getElementById('mensaje-skin').classList.remove('mostrar'), 3000);
+}
+
+// Seleccionar skin de la biblioteca
+function seleccionarSkin(elemento, emoji) {
+    document.querySelectorAll('.skin-item-lado').forEach(el => el.classList.remove('seleccionada'));
+    elemento.classList.add('seleccionada');
+    document.getElementById('vista-skin').textContent = emoji;
+}
+</script>
+
+</body>
+</html>
