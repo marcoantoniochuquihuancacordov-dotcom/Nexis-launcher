@@ -31,7 +31,7 @@
             --texto-claro: #94a3b8;
             --borde: rgba(255, 255, 255, 0.08);
             --sombra: 0 8px 30px rgba(0, 0, 0, 0.35);
-            --discord-azul: #5865F2; /* ✅ Nuevo color de Discord */
+            --discord-azul: #5865F2;
         }
 
         body {
@@ -48,7 +48,7 @@
             padding: 0 2rem;
         }
 
-        /* === BARRA DE NAVEGACIÓN === */
+        /* BARRA DE NAVEGACIÓN */
         nav {
             background: rgba(15, 23, 42, 0.85);
             padding: 1rem 0;
@@ -87,10 +87,8 @@
             flex-wrap: wrap;
         }
 
-        .nav-enlaces button,
-        .nav-enlaces a.nav-boton {
+        .nav-enlaces button {
             color: var(--texto-claro);
-            text-decoration: none;
             font-weight: 600;
             padding: 0.5rem 1rem;
             border-radius: 8px;
@@ -101,10 +99,10 @@
             cursor: pointer;
             position: relative;
             z-index: 10;
+            pointer-events: auto;
         }
 
-        .nav-enlaces button:hover,
-        .nav-enlaces a.nav-boton:hover {
+        .nav-enlaces button:hover {
             color: #fff;
             background: rgba(127, 255, 0, 0.08);
         }
@@ -149,7 +147,6 @@
             box-shadow: 0 4px 15px rgba(244, 63, 94, 0.3);
         }
 
-        /* ✅ Botón de Discord con color actualizado */
         .btn-discord {
             background: var(--discord-azul);
             color: white;
@@ -168,7 +165,7 @@
             filter: brightness(1.1);
         }
 
-        /* === SECCIONES === */
+        /* SECCIONES */
         .seccion {
             display: none;
             animation: aparecer 0.35s ease-out;
@@ -185,7 +182,7 @@
             to   { opacity: 1; transform: translateY(0); }
         }
 
-        /* === INICIO — CABECERA === */
+        /* CABECERA INICIO */
         header {
             padding: 3.5rem 2rem;
             text-align: center;
@@ -229,7 +226,7 @@
             box-shadow: 0 8px 25px rgba(127, 255, 0, 0.25);
         }
 
-        /* === NOTICIAS === */
+        /* NOTICIAS */
         .noticias { padding: 2rem 0 4rem; }
         .noticias h2 { text-align: center; font-size: 1.8rem; margin-bottom: 0.5rem; color: #fff; }
         .noticias-sub { text-align: center; color: var(--texto-claro); margin-bottom: 2rem; }
@@ -267,13 +264,12 @@
         .leer-mas:hover { text-decoration: underline; gap: 0.5rem; }
         .fuente { font-size: 0.78rem; color: #475569; margin-top: 0.4rem; display: flex; align-items: center; gap: 0.3rem; }
 
-        /* === PANEL DE CUENTA === */
+        /* PANEL CUENTA */
         .dashboard { max-width: 1100px; margin: 3rem auto; padding: 0 1.5rem 4rem; }
         .dashboard-saludo { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.2rem; }
         .dashboard-subtitulo { color: var(--texto-claro); font-size: 1.05rem; margin-bottom: 2rem; }
         .etiqueta-beta { display: inline-block; background: var(--azul); color: #000; font-size: 0.75rem; font-weight: 800; padding: 0.05rem 0.5rem; border-radius: 12px; margin-left: 0.5rem; vertical-align: middle; }
 
-        /* Pestañas */
         .pestañas { display: flex; gap: 0.4rem; margin-bottom: 2.5rem; background: rgba(30, 41, 59, 0.6); padding: 0.4rem; border-radius: 12px; border: 1px solid var(--borde); flex-wrap: wrap; }
         .pestaña { padding: 0.6rem 1.2rem; border-radius: 8px; cursor: pointer; font-weight: 600; color: var(--texto-claro); transition: all 0.2s ease; border: none; background: transparent; display: flex; align-items: center; gap: 0.4rem; font-size: 0.95rem; }
         .pestaña:hover { color: #fff; background: rgba(255, 255, 255, 0.05); }
@@ -281,7 +277,6 @@
         .contenido-pestaña { display: none; animation: aparecer 0.3s ease-out; }
         .contenido-pestaña.visible { display: block; }
 
-        /* Tarjetas */
         .tarjeta { background: rgba(30, 41, 59, 0.5); border: 1px solid var(--borde); border-radius: 14px; padding: 1.8rem; margin-bottom: 1.5rem; transition: all 0.25s ease; }
         .tarjeta:hover { border-color: rgba(56, 189, 248, 0.3); }
         .tarjeta h3 { font-size: 1.3rem; margin-bottom: 1.2rem; color: #fff; border-bottom: 1px solid var(--borde); padding-bottom: 0.5rem; }
@@ -303,7 +298,6 @@
         .aviso-premium a { color: var(--dorado); font-weight: 700; text-decoration: none; cursor: pointer; display: inline-block; margin-top: 0.5rem; padding: 0.4rem 1rem; background: rgba(250, 204, 21, 0.15); border-radius: 6px; transition: all 0.2s; }
         .aviso-premium a:hover { background: rgba(250, 204, 21, 0.25); transform: translateY(-1px); }
 
-        /* Interruptores Privacidad */
         .fila-toggle { display: flex; justify-content: space-between; align-items: center; padding: 0.9rem 0; border-bottom: 1px solid var(--borde); }
         .fila-toggle:last-child { border-bottom: none; }
         .toggle { position: relative; display: inline-block; width: 48px; height: 26px; }
@@ -313,7 +307,6 @@
         input:checked + .desliza { background: var(--azul); }
         input:checked + .desliza:before { transform: translateX(22px); }
 
-        /* === PERFIL — SKINS Y CAPAS === */
         .apartado-perfil { margin-bottom: 3.5rem; }
         .titulo-apartado { font-size: 1.4rem; margin-bottom: 1.2rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--borde); }
         .titulo-skins { color: var(--verde); }
@@ -327,7 +320,6 @@
         .btn-eliminar { margin-left: 0.5rem; padding: 0.65rem 1.4rem; background: var(--rojo); color: #fff; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; transition: all 0.2s ease; font-size: 0.95rem; }
         .btn-eliminar:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(244, 63, 94, 0.25); }
 
-        /* Biblioteca */
         .biblioteca { background: rgba(30, 41, 59, 0.5); border: 1px solid var(--borde); border-radius: 14px; padding: 1.8rem; }
         .biblioteca h4 { margin-bottom: 1.2rem; color: #fff; font-size: 1.1rem; }
         .biblioteca-cuerpo { display: flex; gap: 1.5rem; align-items: flex-start; flex-wrap: wrap; }
@@ -347,7 +339,6 @@
         .btn-volver { display: inline-block; margin-top: 1.5rem; padding: 0.6rem 1.4rem; background: var(--azul); color: #000; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; text-decoration: none; transition: all 0.2s ease; }
         .btn-volver:hover { transform: translateY(-2px); }
 
-        /* === CARACTERÍSTICAS, DESCARGAR, ACERCA === */
         section { padding: 2rem 2rem 4rem; }
         section h2 { font-size: 2rem; text-align: center; margin-bottom: 2rem; color: #fff; }
         .grid-caracteristicas { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.2rem; }
@@ -363,10 +354,8 @@
         .acerca a { color: var(--verde); text-decoration: none; font-weight: 600; }
         .acerca a:hover { text-decoration: underline; }
 
-        /* === PIE DE PÁGINA === */
         footer { text-align: center; padding: 2rem; color: #475569; border-top: 1px solid var(--borde); margin-top: 2rem; font-size: 0.9rem; line-height: 1.7; }
 
-        /* === RESPONSIVE === */
         @media (max-width: 768px) {
             header h1 { font-size: 2rem; }
             .separador { display: none; }
@@ -393,133 +382,83 @@
     </div>
 </nav>
 
-<!-- ====================================== -->
 <!-- SECCIÓN INICIO -->
-<!-- ====================================== -->
 <div id="s-inicio" class="seccion visible">
     <header>
         <h1>Bienvenido a Nexis Launcher</h1>
         <p>El Launcher de Minecraft: Java Edition gratuito, ligero, sin publicidad y 100% seguro. Descarga versiones, instala mods y gestiona perfiles fácilmente.</p>
-        <a href="https://github.com/marcoantoniochiuquihuancacordov-dotcom/Nexis-launcher/releases/download/v2.0.0/Nexis.Launcher.exe" download class="boton-descarga">⬇️ Descargar Nexis Launcher v2.0.0</a>
+        <a href="#" class="boton-descarga">⬇️ Descargar Nexis Launcher v2.0.0</a>
     </header>
-
-    <!-- NOTICIAS OFICIALES -->
     <div class="noticias contenedor">
         <h2>📰 Noticias Oficiales de Minecraft</h2>
-        <p class="noticias-sub">Información verificada directamente desde <strong>minecraft.net</strong> — Sin desinformación ✅</p>
+        <p class="noticias-sub">Información verificada directamente desde <strong>minecraft.net</strong></p>
         <div class="noticias-grid">
             <div class="noticia">
                 <span class="etiqueta">Oficial · Minecraft.net</span>
                 <h3>Versiones y Actualizaciones</h3>
-                <p>Entérate de las últimas versiones, Snapshots y Pre-releases de Mojang. Siempre información oficial y confirmada.</p>
+                <p>Entérate de las últimas versiones, Snapshots y Pre-releases de Mojang.</p>
                 <a href="https://www.minecraft.net/es-es/download" target="_blank" class="leer-mas">Leer en Minecraft.net →</a>
                 <div class="fuente">Fuente: minecraft.net</div>
             </div>
             <div class="noticia">
                 <span class="etiqueta">Oficial · Minecraft.net</span>
                 <h3>Minecraft Bedrock Edition</h3>
-                <p>Información oficial sobre versiones, novedades y características para todas las plataformas.</p>
+                <p>Información oficial sobre versiones, novedades y características.</p>
                 <a href="https://www.minecraft.net/es-es/about-minecraft" target="_blank" class="leer-mas">Leer en Minecraft.net →</a>
-                <div class="fuente">Fuente: minecraft.net</div>
-            </div>
-            <div class="noticia">
-                <span class="etiqueta">Oficial · Minecraft.net</span>
-                <h3>Comunidad y Creaciones</h3>
-                <p>Guías oficiales, reglas, skins, capas, paquetes de recursos y creaciones de jugadores.</p>
-                <a href="https://www.minecraft.net/es-es/community" target="_blank" class="leer-mas">Leer en Minecraft.net →</a>
-                <div class="fuente">Fuente: minecraft.net</div>
-            </div>
-            <div class="noticia">
-                <span class="etiqueta">Oficial · Minecraft.net</span>
-                <h3>Seguridad y Cuentas</h3>
-                <p>Cuentas de Microsoft, migración, seguridad, inicio de sesión y protección de tu cuenta.</p>
-                <a href="https://www.minecraft.net/es-es/account" target="_blank" class="leer-mas">Leer en Minecraft.net →</a>
-                <div class="fuente">Fuente: minecraft.net</div>
-            </div>
-            <div class="noticia">
-                <span class="etiqueta">Ayuda oficial</span>
-                <h3>Ayuda y Soporte de Mojang</h3>
-                <p>Respuestas oficiales: errores, instalación, Java, Bedrock y más.</p>
-                <a href="https://help.minecraft.net/hc/es" target="_blank" class="leer-mas">Ir a ayuda oficial →</a>
-                <div class="fuente">Fuente: help.minecraft.net</div>
-            </div>
-            <div class="noticia">
-                <span class="etiqueta">Oficial · Novedades</span>
-                <h3>Noticias y Lanzamientos</h3>
-                <p>Anuncios oficiales, próximas actualizaciones, eventos y Minecraft Live.</p>
-                <a href="https://www.minecraft.net/es-es/article" target="_blank" class="leer-mas">Ver artículos oficiales →</a>
                 <div class="fuente">Fuente: minecraft.net</div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- ====================================== -->
-<!-- CARACTERÍSTICAS -->
-<!-- ====================================== -->
+<!-- SECCIÓN CARACTERÍSTICAS -->
 <div id="s-caracteristicas" class="seccion">
     <section>
         <h2>✨ Características Principales</h2>
         <div class="grid-caracteristicas contenedor">
-            <div class="card"><h3>⚡ Rápido y Ligero</h3><p>Se inicia en segundos y consume pocos recursos. Sin cosas innecesarias.</p></div>
-            <div class="card"><h3>📦 Gestión de Mods</h3><p>Agrega y quita mods fácilmente. Soporte para Forge, Fabric, Quilt y NeoForge.</p></div>
-            <div class="card"><h3>👤 Perfiles Personalizados</h3><p>Crea perfiles con su propia versión, mods y configuración separada.</p></div>
-            <div class="card"><h3>🔒 100% Seguro</h3><p>Sin virus, sin rastreadores. Tu información se queda solo en tu equipo.</p></div>
+            <div class="card"><h3>⚡ Rápido y Ligero</h3><p>Se inicia en segundos y consume pocos recursos.</p></div>
+            <div class="card"><h3>📦 Gestión de Mods</h3><p>Agrega y quita mods fácilmente. Soporte para Forge y Fabric.</p></div>
+            <div class="card"><h3>👤 Perfiles Personalizados</h3><p>Crea perfiles con su propia versión y configuración.</p></div>
+            <div class="card"><h3>🔒 100% Seguro</h3><p>Sin virus, sin rastreadores. Tu información se queda en tu equipo.</p></div>
             <div class="card"><h3>🖥️ Para cualquier PC</h3><p>Optimizado para funcionar bien incluso en equipos modestos.</p></div>
-            <div class="card"><h3>✅ Gratis siempre</h3><p>Funciones básicas gratis. Beneficios extra disponibles mediante suscripción Premium.</p></div>
+            <div class="card"><h3>✅ Gratis siempre</h3><p>Funciones básicas gratis. Beneficios extra disponibles en Premium.</p></div>
         </div>
     </section>
 </div>
 
-<!-- ====================================== -->
-<!-- DESCARGAR -->
-<!-- ====================================== -->
+<!-- SECCIÓN DESCARGAR -->
 <div id="s-descargar" class="seccion">
     <section>
         <h2>📥 Cómo Descargar e Instalar</h2>
         <div class="pasos">
-            <div class="paso"><span class="paso-num">1</span><span class="paso-texto">Pulsa el botón verde "Descargar Nexis Launcher v2.0.0".</span></div>
-            <div class="paso"><span class="paso-num">2</span><span class="paso-texto">Espera a que termine la descarga (~169 MB).</span></div>
-            <div class="paso"><span class="paso-num">3</span><span class="paso-texto">Abre <code>Nexis.Launcher.exe</code> — no necesita instalación.</span></div>
-            <div class="paso"><span class="paso-num">4</span><span class="paso-texto">¡Listo! Crea tu perfil, elige tu versión y ¡a jugar!</span></div>
-        </div>
-        <div class="pasos" style="margin-top:2rem; background: rgba(250,204,21,0.05); border-color: rgba(250,204,21,0.2);">
-            <h3 style="color:#fde047; margin-bottom:1rem;">⚠️ Requisitos</h3>
-            <ul style="margin-left:1.5rem; color:#ddd;">
-                <li>✅ Windows 10 o superior</li>
-                <li>☕ Java 17 o superior</li>
-                <li>💾 500 MB libres en disco</li>
-                <li>🌐 Conexión a internet para descargar versiones</li>
-            </ul>
+            <div class="paso"><span class="paso-num">1</span><span class="paso-texto">Pulsa el botón verde "Descargar Nexis Launcher".</span></div>
+            <div class="paso"><span class="paso-num">2</span><span class="paso-texto">Espera a que termine la descarga.</span></div>
+            <div class="paso"><span class="paso-num">3</span><span class="paso-texto">Abre el archivo — no necesita instalación.</span></div>
+            <div class="paso"><span class="paso-num">4</span><span class="paso-texto">¡Listo! Crea tu perfil y ¡a jugar!</span></div>
         </div>
     </section>
 </div>
 
-<!-- ====================================== -->
-<!-- ACERCA DE -->
-<!-- ====================================== -->
+<!-- SECCIÓN ACERCA DE -->
 <div id="s-acerca" class="seccion">
     <section>
         <h2>ℹ️ Acerca de Nexis Launcher</h2>
         <div class="acerca">
             <p>Nexis Launcher es un proyecto gratuito diseñado para facilitar el acceso a Minecraft. Sin publicidad, sin virus y sin costos ocultos en sus funciones básicas.</p>
             <br>
-            <p>Algunos beneficios adicionales, como skins ilimitadas, capas exclusivas, subida sin límites y soporte prioritario, <strong>requieren una suscripción Premium</strong>.</p>
+            <p>Algunos beneficios adicionales requieren una suscripción Premium.</p>
             <br>
             <p>Únete a nuestra comunidad: <a href="https://discord.gg/ef4uw4ttF" target="_blank">Discord Oficial</a></p>
         </div>
     </section>
 </div>
 
-<!-- ====================================== -->
-<!-- CUENTA / DASHBOARD -->
-<!-- ====================================== -->
+<!-- SECCIÓN CUENTA -->
 <div id="s-cuenta" class="seccion">
     <div class="dashboard">
         <h1 class="dashboard-saludo">Hola, Papichulo6070</h1>
         <p class="dashboard-subtitulo">Bienvenid@ a tu Panel de Cuenta</p>
 
-        <!-- Pestañas -->
         <div class="pestañas">
             <button class="pestaña activa" onclick="cambiarPestanaCuenta('cuenta-inicio')">🏠 Inicio</button>
             <button class="pestaña" onclick="cambiarPestanaCuenta('cuenta-general')">👤 General</button>
@@ -528,87 +467,52 @@
             <button class="pestaña" onclick="cambiarPestanaCuenta('cuenta-perfil')">😀 Perfil</button>
         </div>
 
-        <!-- === INICIO DE CUENTA === -->
         <div id="cuenta-inicio" class="contenido-pestaña visible">
             <div class="tarjeta">
                 <h3>Inicio <span class="etiqueta-beta">BETA</span></h3>
                 <p class="suscripcion">Suscripción Premium: <span class="inactiva">Inactiva</span></p>
-                <p class="fecha-acceso">Tu último inicio de sesión fue el lunes, 14 de septiembre de 2026</p>
-
                 <div class="aviso-premium">
-                    💎 <strong>Debes pagar para tener más beneficios.</strong><br>
-                    Al suscribirte obtienes: skins ilimitadas, capas exclusivas, subida sin límites, sin anuncios y soporte prioritario.<br>
-                    <a onclick="alert('Aquí se abriría el pago de Premium')">💳 Suscribirse a Nexis Premium →</a>
+                    💎 <strong>Obtén más beneficios con Premium</strong><br>
+                    Skins ilimitadas, capas exclusivas, sin anuncios y soporte prioritario.<br>
+                    <a onclick="alert('Aquí se abriría el pago')">💳 Suscribirse a Premium →</a>
                 </div>
-
                 <button class="btn-guardar btn-peligro" style="margin-top:1.5rem;">Cerrar sesión</button>
             </div>
         </div>
 
-        <!-- === GENERAL === -->
         <div id="cuenta-general" class="contenido-pestaña">
             <div class="tarjeta">
                 <h3>General</h3>
                 <div class="fila">
-                    <div class="grupo">
-                        <label>Nombre de usuario</label>
-                        <input type="text" value="Papichulo6070">
-                    </div>
-                    <div class="grupo">
-                        <label>Correo electrónico</label>
-                        <input type="email" value="marcoantoniochuquihuancacordov@gmail.com">
-                    </div>
+                    <div class="grupo"><label>Nombre de usuario</label><input type="text" value="Papichulo6070"></div>
+                    <div class="grupo"><label>Correo electrónico</label><input type="email" value="usuario@correo.com"></div>
                 </div>
-                <div class="grupo" style="margin-top:1rem;">
-                    <label>Sobre mí</label>
-                    <textarea>No has escrito nada sobre ti</textarea>
-                </div>
+                <div class="grupo" style="margin-top:1rem;"><label>Sobre mí</label><textarea>No has escrito nada sobre ti</textarea></div>
                 <button class="btn-guardar">Guardar cambios</button>
             </div>
         </div>
 
-        <!-- === PRIVACIDAD === -->
         <div id="cuenta-privacidad" class="contenido-pestaña">
             <div class="tarjeta">
                 <h3>Privacidad</h3>
-                <div class="fila-toggle">
-                    <span>Permitir que los usuarios te encuentren en Nexis Launcher</span>
-                    <label class="toggle"><input type="checkbox"><span class="desliza"></span></label>
-                </div>
-                <div class="fila-toggle">
-                    <span>Permitir solicitudes de amistad</span>
-                    <label class="toggle"><input type="checkbox"><span class="desliza"></span></label>
-                </div>
-                <div class="fila-toggle">
-                    <span>Skin pública</span>
-                    <label class="toggle"><input type="checkbox" checked><span class="desliza"></span></label>
-                </div>
+                <div class="fila-toggle"><span>Permitir que te encuentren</span><label class="toggle"><input type="checkbox"><span class="desliza"></span></label></div>
+                <div class="fila-toggle"><span>Permitir solicitudes de amistad</span><label class="toggle"><input type="checkbox"><span class="desliza"></span></label></div>
+                <div class="fila-toggle"><span>Skin pública</span><label class="toggle"><input type="checkbox" checked><span class="desliza"></span></label></div>
             </div>
         </div>
 
-        <!-- === SEGURIDAD === -->
         <div id="cuenta-seguridad" class="contenido-pestaña">
             <div class="tarjeta">
                 <h3>Seguridad</h3>
-                <div class="grupo">
-                    <label>Contraseña actual</label>
-                    <input type="password" placeholder="••••••••">
-                </div>
+                <div class="grupo"><label>Contraseña actual</label><input type="password" placeholder="••••••••"></div>
                 <div class="fila" style="margin-top:1rem;">
-                    <div class="grupo">
-                        <label>Nueva contraseña</label>
-                        <input type="password" placeholder="••••••••">
-                    </div>
-                    <div class="grupo">
-                        <label>Confirmar nueva contraseña</label>
-                        <input type="password" placeholder="••••••••">
-                    </div>
+                    <div class="grupo"><label>Nueva contraseña</label><input type="password" placeholder="••••••••"></div>
+                    <div class="grupo"><label>Confirmar contraseña</label><input type="password" placeholder="••••••••"></div>
                 </div>
                 <button class="btn-guardar" style="margin-top:1rem;">Cambiar contraseña</button>
             </div>
         </div>
 
-        <!-- === PERFIL: SKIN Y CAPA === -->
         <div id="cuenta-perfil" class="contenido-pestaña">
             <div class="apartado-perfil">
                 <h3 class="titulo-apartado titulo-skins">🎨 Skins</h3>
@@ -620,96 +524,68 @@
                         <button class="btn-eliminar">🗑️ Eliminar skin</button>
                     </div>
                 </div>
-                <div class="biblioteca">
-                    <h4>📚 Biblioteca de Skins</h4>
-                    <div class="biblioteca-cuerpo">
-                        <div class="vista-actual">
-                            <h5>Skin en uso</h5>
-                            <div class="skin-preview">🧍</div>
-                        </div>
-                        <div class="separador"></div>
-                        <div class="skins-lista">
-                            <h5>Tus skins guardadas</h5>
-                            <div class="aviso-limite">⚠️ No puedes subir más skins. <strong>Compra Premium</strong> para almacenar ilimitadas.</div>
-                            <div class="cuadricula-skins" style="margin-top:0.8rem;">
-                                <div class="skin-item seleccionada" title="Skin actual">🧍</div>
-                                <div class="skin-item bloqueado" title="🔒 Solo con Premium">🧍‍♂️<span class="icono-bloqueo">🔒</span></div>
-                                <div class="skin-item bloqueado" title="🔒 Solo con Premium">🥷<span class="icono-bloqueo">🔒</span></div>
-                                <div class="skin-item bloqueado" title="🔒 Solo con Premium">🤠<span class="icono-bloqueo">🔒</span></div>
-                                <div class="skin-item bloqueado" title="🔒 Solo con Premium">🧙<span class="icono-bloqueo">🔒</span></div>
-                                <div class="skin-item bloqueado" title="🔒 Solo con Premium">⚔️<span class="icono-bloqueo">🔒</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="btn-volver">← Volver atrás</button>
-                </div>
-            </div>
-
-            <div class="apartado-perfil">
-                <h3 class="titulo-apartado titulo-capas">🧥 Capas</h3>
-                <div class="tarjeta-perfil">
-                    <h4>Capa Actual</h4>
-                    <div class="vista-capa">🧥</div>
-                    <div style="margin-top:1rem;">
-                        <button class="btn-establecer">✅ Establecer capa</button>
-                        <button class="btn-eliminar">🗑️ Quitar capa</button>
-                    </div>
-                </div>
-                <div class="biblioteca">
-                    <h4>📚 Biblioteca de Capas</h4>
-                    <div class="biblioteca-cuerpo">
-                        <div class="vista-actual">
-                            <h5>Capa en uso</h5>
-                            <div class="skin-preview">🧥</div>
-                        </div>
-                        <div class="separador"></div>
-                        <div class="skins-lista">
-                            <h5>Tus capas guardadas</h5>
-                            <div class="aviso-limite">⚠️ Límite alcanzado. <strong>Suscríbete a Premium</strong> para capas ilimitadas y exclusivas.</div>
-                            <div class="cuadricula-skins" style="margin-top:0.8rem;">
-                                <div class="skin-item seleccionada" title="Capa actual">🏳️</div>
-                                <div class="skin-item bloqueado" title="🔒 Solo con Premium">🔥<span class="icono-bloqueo">🔒</span></div>
-                                <div class="skin-item bloqueado" title="🔒 Solo con Premium">❄️<span class="icono-bloqueo">🔒</span></div>
-                                <div class="skin-item bloqueado" title="🔒 Solo con Premium">⭐<span class="icono-bloqueo">🔒</span></div>
-                                <div class="skin-item bloqueado" title="🔒 Solo con Premium">🛡️<span class="icono-bloqueo">🔒</span></div>
-                                <div class="skin-item bloqueado" title="🔒 Solo con Premium">👑<span class="icono-bloqueo">🔒</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="btn-volver">← Volver atrás</button>
-                </div>
-            </div>
-
-            <div class="aviso-premium">
-                💎 <strong>Desbloquea todo con Nexis Premium</strong><br>
-                ✅ Skins ilimitadas &nbsp;|&nbsp; ✅ Capas exclusivas &nbsp;|&nbsp; ✅ Subida sin límites<br>
-                ✅ Sin anuncios &nbsp;|&nbsp; ✅ Soporte prioritario &nbsp;|&nbsp; ✅ Nuevos diseños cada mes<br>
-                <a onclick="alert('Aquí se abriría el pago de Premium')">💳 Suscribirse ahora →</a>
             </div>
         </div>
     </div>
 </div>
 
 <!-- ====================================== -->
-<!-- ✅ JAVASCRIPT — AQUÍ ESTÁ LO QUE FALTABA -->
+<!-- ✅ JAVASCRIPT COMPLETO — AQUÍ ESTABA LO QUE FALTABA -->
 <!-- ====================================== -->
 <script>
-    // Cambiar sección principal y resaltar botón activo
+    // Cambiar sección principal
     function mostrarSeccion(nombreSeccion) {
-        // Ocultar todas las secciones
+        console.log('Mostrando sección:', nombreSeccion); // ✅ Para depurar
+
+        // Ocultar TODAS las secciones
         document.querySelectorAll('.seccion').forEach(sec => {
             sec.classList.remove('visible');
         });
-        // Mostrar la sección seleccionada
-        document.getElementById('s-' + nombreSeccion).classList.add('visible');
 
-        // Quitar clase activo a todos los botones del menú
+        // Mostrar la sección elegida
+        const seccion = document.getElementById('s-' + nombreSeccion);
+        if (seccion) {
+            seccion.classList.add('visible');
+        } else {
+            console.error('No existe sección:', 's-' + nombreSeccion);
+        }
+
+        // Quitar clase "activo" a TODOS los botones del menú
         document.querySelectorAll('.nav-enlaces button').forEach(btn => {
             btn.classList.remove('activo');
         });
-        // Resaltar el botón seleccionado
+
+        // Poner "activo" al botón pulsado
         const botonActivo = document.getElementById('m-' + nombreSeccion);
-        if (botonActivo) botonActivo.classList.add('activo');
+        if (botonActivo) {
+            botonActivo.classList.add('activo');
+        }
     }
 
-    // Cambiar pestañas dentro
+    // Cambiar pestañas dentro de Cuenta
+    function cambiarPestanaCuenta(nombrePestana) {
+        console.log('Cambiando pestaña:', nombrePestana); // ✅ Para depurar
+
+        // Ocultar TODAS las pestañas
+        document.querySelectorAll('.contenido-pestaña').forEach(tab => {
+            tab.classList.remove('visible');
+        });
+
+        // Mostrar la pestaña elegida
+        const pestana = document.getElementById(nombrePestana);
+        if (pestana) {
+            pestana.classList.add('visible');
+        }
+
+        // Quitar "activa" a TODOS los botones de pestaña
+        document.querySelectorAll('.pestañas .pestaña').forEach(btn => {
+            btn.classList.remove('activa');
+        });
+
+        // Poner "activa" al botón pulsado
+        event.target.classList.add('activa');
+    }
+</script>
+
+</body>
+</html>
