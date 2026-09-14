@@ -27,6 +27,7 @@
             --borde: rgba(255, 255, 255, 0.08);
             --discord-azul: #5865F2;
             --rojo: #f43f5e;
+            --azul-google: #4285F4;
             --altura-boton: 40px;
             --radio-borde: 8px;
         }
@@ -83,7 +84,8 @@
         .nav-enlaces button,
         .nav-enlaces .usuario-nav,
         .nav-enlaces .btn-discord,
-        .nav-enlaces .btn-cerrar {
+        .nav-enlaces .btn-cerrar,
+        .btn-google {
             height: var(--altura-boton);
             padding: 0 1rem;
             border-radius: var(--radio-borde);
@@ -143,6 +145,23 @@
             transform: translateY(-1px);
         }
 
+        /* Botón Iniciar sesión con Google */
+        .btn-google {
+            background: var(--azul-google);
+            color: white;
+            gap: 0.5rem;
+        }
+        .btn-google:hover {
+            filter: brightness(1.1);
+            transform: translateY(-1px);
+        }
+
+        /* Ocultar elementos cuando NO hay sesión / Mostrar cuando SÍ hay sesión */
+        .sin-sesion  { display: flex; }
+        .con-sesion { display: none; }
+        body.sesion-iniciada .sin-sesion  { display: none; }
+        body.sesion-iniciada .con-sesion { display: flex; }
+
         /* === SECCIONES === */
         .seccion {
             display: none;
@@ -171,7 +190,7 @@
             color: var(--texto-claro);
         }
 
-        /* === BOTÓN DE DESCARGA FUNCIONAL === */
+        /* === BOTÓN DE DESCARGA === */
         .boton-descarga {
             display: inline-flex;
             align-items: center;
@@ -621,8 +640,14 @@
             <button id="m-caracteristicas" onclick="mostrarSeccion('caracteristicas')">Características</button>
             <button id="m-descargar" onclick="mostrarSeccion('descargar')">Descargar</button>
             <button id="m-acerca" onclick="mostrarSeccion('acerca')">Acerca de</button>
-            <span class="usuario-nav" onclick="mostrarSeccion('cuenta'); cambiarPestanaCuenta('cuenta-inicio')">👤 Papichulo6070</span>
-            <button class="btn-cerrar">Cerrar sesión</button>
+
+            <!-- ✅ SIN SESIÓN: Botón de Iniciar sesión con Google -->
+            <button class="btn-google sin-sesion" onclick="iniciarConGoogle()">🔐 Iniciar con Google</button>
+
+            <!-- ✅ CON SESIÓN: Usuario y Cerrar sesión -->
+            <span class="usuario-nav con-sesion" id="usuario-nombre" onclick="mostrarSeccion('cuenta'); cambiarPestanaCuenta('cuenta-inicio')">👤 Usuario</span>
+            <button class="btn-cerrar con-sesion" onclick="cerrarSesion()">Cerrar sesión</button>
+
             <a href="https://discord.gg/ef4uw4ttF" target="_blank" class="btn-discord">Discord</a>
         </div>
     </div>
@@ -633,8 +658,7 @@
     <header>
         <h1>Bienvenido a Nexis Launcher</h1>
         <p>El Launcher de Minecraft: Java Edition gratuito, ligero, sin publicidad y 100% seguro. Descarga versiones, instala mods y gestiona perfiles fácilmente.</p>
-        <!-- ✅ BOTÓN DE DESCARGA FUNCIONAL -->
-        <a href="#" class="boton-descarga" id="boton-descarga-principal" onclick="alert('¡Descarga iniciada! Aquí irá el enlace de descarga real.'); return false;">⬇️ Descargar Nexis Launcher v2.0.0</a>
+        <a href="#" class="boton-descarga" onclick="alert('¡Descarga iniciada! Aquí irá el enlace de descarga real.'); return false;">⬇️ Descargar Nexis Launcher v2.0.0</a>
     </header>
 
     <div class="contenedor">
@@ -713,7 +737,7 @@
 <!-- SECCIÓN CUENTA -->
 <div id="s-cuenta" class="seccion">
     <div class="dashboard">
-        <h1 class="dashboard-saludo">Hola, Papichulo6070</h1>
+        <h1 class="dashboard-saludo">Hola, <span id="saludo-usuario">Usuario</span></h1>
         <p class="dashboard-subtitulo">Bienvenid@ a tu nueva Dashboard</p>
 
         <div class="pestañas">
@@ -729,7 +753,7 @@
             <div class="tarjeta">
                 <h3>Inicio <span class="etiqueta-beta">BETA</span></h3>
                 <p class="suscripcion">Suscripción Premium: <span id="estado-premium" class="inactiva">Inactiva</span></p>
-                <p class="fecha-acceso">Último acceso: Hoy a las 16:45</p>
+                <p class="fecha-acceso">Último acceso: Hoy a las 18:00</p>
 
                 <div class="aviso-premium">
                     💎 <strong>Obtén Nexis Premium</strong><br>
@@ -792,7 +816,7 @@
                     <div class="mensaje-accion" id="mensaje-pago">✅ Medio de pago seleccionado</div>
                 </div>
 
-                <button class="btn-guardar btn-peligro">Cerrar sesión</button>
+                <button class="btn-guardar btn-peligro" onclick="cerrarSesion()">Cerrar sesión</button>
             </div>
         </div>
 
@@ -801,8 +825,8 @@
             <div class="tarjeta">
                 <h3>General</h3>
                 <div class="fila">
-                    <div class="grupo"><label>Nombre de usuario</label><input type="text" value="Papichulo6070"></div>
-                    <div class="grupo"><label>Correo electrónico</label><input type="email" value="usuario@correo.com"></div>
+                    <div class="grupo"><label>Nombre de usuario</label><input type="text" id="campo-usuario" value="" placeholder="Inicia sesión para ver tu nombre"></div>
+                    <div class="grupo"><label>Correo electrónico</label><input type="email" id="campo-correo" value="" placeholder="tu@gmail.com"></div>
                 </div>
                 <div class="grupo" style="margin-top:1.2rem;"><label>Sobre mí</label><textarea>No has escrito nada sobre ti</textarea></div>
                 <button class="btn-guardar" onclick="document.getElementById('guardado-general').classList.add('mostrar'); setTimeout(()=>document.getElementById('guardado-general').classList.remove('mostrar'),3000)">Guardar cambios</button>
@@ -869,61 +893,62 @@
 </div>
 
 <script>
-// ✅ NAVEGACIÓN ENTRE SECCIONES - FUNCIONANDO CORRECTAMENTE
-function mostrarSeccion(nombre) {
-    // Ocultar todas las secciones
-    document.querySelectorAll('.seccion').forEach(s => s.classList.remove('visible'));
-    // Mostrar la sección seleccionada
-    document.getElementById('s-' + nombre).classList.add('visible');
+// =====================================================
+// ✅ GESTIÓN DE SESIÓN LOCAL (NO SE COMPARTE EN EL ENLACE)
+// =====================================================
+
+// Al CARGAR la página: SIEMPRE empieza SIN sesión
+// Solo recupera sesión si existe en el dispositivo del usuario
+window.addEventListener('load', function() {
+    // ⚠️ LIMPIA LA URL para que no tenga datos de sesión
+    if (window.location.search || window.location.hash) {
+        history.replaceState({}, document.title, window.location.pathname);
+    }
+
+    // Revisa si hay sesión guardada en ESTE dispositivo
+    const sesionGuardada = localStorage.getItem('nexis_sesion');
+    if (sesionGuardada) {
+        const datos = JSON.parse(sesionGuardada);
+        iniciarSesionConDatos(datos.nombre, datos.correo);
+    } else {
+        // SIN sesión: muestra botón de "Iniciar con Google"
+        document.body.classList.remove('sesion-iniciada');
+    }
+});
+
+// Iniciar sesión con Google
+function iniciarConGoogle() {
+    // Simulación de inicio con Google
+    // En producción aquí iría la conexión real con Google OAuth
+    const nombreUsuario = prompt("Ingresa tu nombre de usuario (simulando Google):");
+    const correoUsuario = prompt("Ingresa tu correo Gmail:");
     
-    // Quitar clase activo de todos los botones de navegación
-    document.querySelectorAll('.nav-enlaces button').forEach(b => b.classList.remove('activo'));
-    // Marcar activo el botón correspondiente
-    const btnActivo = document.getElementById('m-' + nombre);
-    if (btnActivo) btnActivo.classList.add('activo');
+    if (nombreUsuario && correoUsuario) {
+        // Guardar sesión SOLO en el dispositivo del usuario
+        const datosSesion = {
+            nombre: nombreUsuario,
+            correo: correoUsuario,
+            fecha: new Date().toISOString()
+        };
+        localStorage.setItem('nexis_sesion', JSON.stringify(datosSesion));
+        
+        // Mostrar sesión iniciada
+        iniciarSesionConDatos(nombreUsuario, correoUsuario);
+    }
 }
 
-// Cambiar pestañas de cuenta
-function cambiarPestanaCuenta(nombre, boton) {
-    document.querySelectorAll('.contenido-pestaña').forEach(p => p.classList.remove('visible'));
-    document.getElementById(nombre).classList.add('visible');
-    
-    document.querySelectorAll('.pestaña').forEach(p => p.classList.remove('activa'));
-    if (boton) boton.classList.add('activa');
+// Aplicar estado de sesión en la interfaz
+function iniciarSesionConDatos(nombre, correo) {
+    document.body.classList.add('sesion-iniciada');
+    document.getElementById('usuario-nombre').textContent = '👤 ' + nombre;
+    document.getElementById('saludo-usuario').textContent = nombre;
+    document.getElementById('campo-usuario').value = nombre;
+    document.getElementById('campo-correo').value = correo;
 }
 
-// Seleccionar método de pago
-let metodoSeleccionado = null;
-function seleccionarPago(metodo) {
-    document.querySelectorAll('.opcion-pago').forEach(el => el.classList.remove('seleccionada'));
-    document.getElementById('pago-' + metodo).classList.add('seleccionada');
-    metodoSeleccionado = metodo;
-    document.getElementById('boton-pagar').disabled = false;
-    document.getElementById('boton-pagar').textContent = 'Pagar ahora ✅';
-    document.getElementById('mensaje-pago').classList.add('mostrar');
-    setTimeout(() => document.getElementById('mensaje-pago').classList.remove('mostrar'), 3000);
-}
-
-function realizarPago() {
-    alert('Redirigiendo a ' + metodoSeleccionado + '...');
-}
-
-// Restablecer skin a Steve
-function restablecerSkin() {
-    document.getElementById('vista-skin').textContent = '🧍';
-    document.querySelectorAll('.skin-item-lado').forEach(el => el.classList.remove('seleccionada'));
-    document.querySelectorAll('.skin-item-lado')[0].classList.add('seleccionada');
-    document.getElementById('mensaje-skin').classList.add('mostrar');
-    setTimeout(() => document.getElementById('mensaje-skin').classList.remove('mostrar'), 3000);
-}
-
-// Seleccionar skin de la biblioteca
-function seleccionarSkin(elemento, emoji) {
-    document.querySelectorAll('.skin-item-lado').forEach(el => el.classList.remove('seleccionada'));
-    elemento.classList.add('seleccionada');
-    document.getElementById('vista-skin').textContent = emoji;
-}
-</script>
-
-</body>
-</html>
+// Cerrar sesión
+function cerrarSesion() {
+    localStorage.removeItem('nexis_sesion');
+    document.body.classList.remove('sesion-iniciada');
+    document.getElementById('campo-usuario').value = '';
+    document.getElementById('campo-corre
