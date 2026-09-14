@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nexis Launcher — Minecraft rápido, seguro y gratis</title>
-    <meta name="description" content="Nexis Launcher: Launcher de Minecraft Java y Bedrock gratuito, ligero, sin virus y sin publicidad.">
+    <meta name="description" content="Nexis Launcher: Launcher de Minecraft Java y Bedrock gratuito, ligero, sin virus — con versión Premium.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,6 +25,7 @@
             --rojo: #f43f5e;
             --azul-google: #4285F4;
             --dorado: #facc15;
+            --dorado-oscuro: #eab308;
             --altura-boton: 40px;
             --radio-borde: 8px;
         }
@@ -36,6 +37,15 @@
             min-height: 100vh;
             line-height: 1.6;
         }
+
+        /* ESTILO PREMIUM — Se activa al pagar */
+        body.premium-activo {
+            --verde: #facc15;
+            --verde-oscuro: #eab308;
+        }
+        body.premium-activo .anuncio-banner { display: none; }
+        body.premium-activo .aviso-limite-lado { display: none; }
+        body.premium-activo .etiqueta-limite { display: none; }
 
         .contenedor { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
 
@@ -64,6 +74,18 @@
             color: var(--verde);
             cursor: pointer;
         }
+        .etiqueta-logo-premium {
+            font-size: 0.65rem;
+            background: linear-gradient(90deg, var(--dorado), var(--dorado-oscuro));
+            color: #000;
+            padding: 1px 6px;
+            border-radius: 6px;
+            margin-left: 6px;
+            vertical-align: super;
+            font-weight: 900;
+            display: none;
+        }
+        body.premium-activo .etiqueta-logo-premium { display: inline; }
 
         .nav-enlaces { display: flex; align-items: center; gap: 0.5rem; flex-wrap: nowrap; }
 
@@ -353,12 +375,12 @@
             transition: all 0.25s ease;
         }
         .opcion-pago:hover {
-            border-color: var(--verde);
-            background: rgba(127,255,0,0.05);
+            border-color: var(--dorado);
+            background: rgba(250,204,21,0.05);
         }
         .opcion-pago.seleccionada {
-            border-color: var(--verde);
-            background: rgba(127,255,0,0.08);
+            border-color: var(--dorado);
+            background: rgba(250,204,21,0.08);
         }
         .radio-pago {
             width: 20px;
@@ -368,12 +390,12 @@
             position: relative;
             flex-shrink: 0;
         }
-        .opcion-pago.seleccionada .radio-pago { border-color: var(--verde); }
+        .opcion-pago.seleccionada .radio-pago { border-color: var(--dorado); }
         .opcion-pago.seleccionada .radio-pago::after {
             content: '';
             width: 10px;
             height: 10px;
-            background: var(--verde);
+            background: var(--dorado);
             border-radius: 50%;
             position: absolute;
             top: 50%;
@@ -388,7 +410,7 @@
             margin-top: 1.2rem;
             width: 100%;
             padding: 0.9rem;
-            background: linear-gradient(90deg, var(--dorado), #fde047);
+            background: linear-gradient(90deg, var(--dorado), var(--dorado-oscuro));
             color: #000;
             border: none;
             border-radius: 10px;
@@ -409,10 +431,12 @@
             border-radius: 12px; 
             color: #fde047; 
             font-size: 1rem; 
-            line-height: 1.7; 
+            line-height: 1.8; 
         }
-        .aviso-premium a { color: var(--verde); text-decoration: none; font-weight: 500; }
+        .aviso-premium a { color: var(--dorado); text-decoration: none; font-weight: 500; }
         .aviso-premium a:hover { text-decoration: underline; }
+        .lista-beneficios { margin: 0.8rem 0; padding-left: 1.2rem; }
+        .lista-beneficios li { margin-bottom: 0.3rem; }
 
         /* === SKINS Y CAPAS === */
         .personalizar-seccion {
@@ -472,6 +496,18 @@
             font-family: inherit;
         }
         .btn-azul:hover { background: #60a5fa; }
+        .btn-dorado {
+            background: linear-gradient(90deg, var(--dorado), var(--dorado-oscuro));
+            color: #000;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            margin: 0.25rem;
+            font-family: inherit;
+        }
+        .btn-dorado:hover { filter: brightness(1.1); }
         .btn-rojo {
             background: var(--rojo);
             color: #fff;
@@ -497,6 +533,10 @@
             font-size: 0.9rem;
             margin-bottom: 1rem;
             line-height: 1.5;
+            padding: 0.8rem;
+            background: rgba(244,63,94,0.08);
+            border-radius: 10px;
+            border: 1px solid rgba(244,63,94,0.2);
         }
         .aviso-limite-lado span { color: var(--dorado); font-weight: 700; }
         .cuadricula-skins-lado { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; }
@@ -514,8 +554,8 @@
             transition: all 0.2s ease;
         }
         .skin-item-lado:hover {
-            border-color: var(--verde);
-            background: rgba(127,255,0,0.08);
+            border-color: var(--dorado);
+            background: rgba(250,204,21,0.08);
         }
         .skin-item-lado.seleccionada {
             border-color: var(--dorado);
@@ -526,8 +566,8 @@
             margin-top: 1rem;
             padding: 0.8rem;
             border-radius: 8px;
-            background: rgba(127,255,0,0.1);
-            color: var(--verde);
+            background: rgba(250,204,21,0.1);
+            color: var(--dorado);
             text-align: center;
             font-weight: 500;
             display: none;
@@ -540,7 +580,7 @@
 <!-- NAVEGACIÓN -->
 <nav>
     <div class="contenedor nav-wrap">
-        <span class="logo" onclick="mostrarSeccion('inicio')">Nexis Launcher</span>
+        <span class="logo" onclick="mostrarSeccion('inicio')">Nexis Launcher<span class="etiqueta-logo-premium">💎 PREMIUM</span></span>
         <div class="nav-enlaces">
             <button id="m-inicio" class="activo" onclick="mostrarSeccion('inicio')">Inicio</button>
             <button id="m-caracteristicas" onclick="mostrarSeccion('caracteristicas')">Características</button>
@@ -569,7 +609,7 @@
 
     <div class="contenedor">
         <div class="anuncio-banner">
-            📢 Anuncio — Ves anuncios porque no tienes Premium.<br>
+            📢 Ves anuncios porque no tienes Premium.<br>
             💡 <strong>Consigue Premium</strong> y navega sin anuncios.
         </div>
     </div>
@@ -604,7 +644,7 @@
             <div class="card"><h3>👤 Skins y Capas</h3><p>Personaliza tu apariencia. <strong>Premium →</strong> ilimitadas y exclusivas.</p></div>
             <div class="card"><h3>🔒 100% Seguro</h3><p>Sin virus, sin rastreadores. Tus datos se quedan en tu equipo.</p></div>
             <div class="card"><h3>🖥️ Para cualquier PC</h3><p>Optimizado para equipos modestos.</p></div>
-            <div class="card"><h3>💎 Premium</h3><p>Sin anuncios, skins ilimitadas, soporte prioritario y más.</p></div>
+            <div class="card"><h3>💎 Versión Premium</h3><p>Sin anuncios, skins ilimitadas, capas exclusivas, soporte prioritario.</p></div>
         </div>
     </section>
 </div>
@@ -632,7 +672,7 @@
         <div class="acerca">
             <p>Nexis Launcher es un proyecto gratuito diseñado para facilitar el acceso a Minecraft. Sin publicidad, sin virus y sin costos ocultos en sus funciones básicas.</p>
             <br>
-            <p>Algunos beneficios requieren una suscripción Premium.</p>
+            <p>La <strong>Versión Premium</strong> desbloquea beneficios adicionales: sin anuncios, skins ilimitadas, capas exclusivas y soporte prioritario.</p>
             <br>
             <p>Únete a nuestra comunidad: <a href="https://discord.gg/ef4uw4ttF" target="_blank">Discord Oficial</a></p>
         </div>
@@ -646,7 +686,7 @@
         <p class="dashboard-subtitulo">Gestiona tu cuenta y preferencias</p>
 
         <div class="pestañas">
-            <button class="pestaña activa" onclick="cambiarPestanaCuenta('cuenta-inicio', this)">🏠 Premium y Pagos</button>
+            <button class="pestaña activa" onclick="cambiarPestanaCuenta('cuenta-inicio', this)">💎 Premium y Pagos</button>
             <button class="pestaña" onclick="cambiarPestanaCuenta('cuenta-perfil', this)">🎨 Skins y Capas</button>
             <button class="pestaña" onclick="cambiarPestanaCuenta('cuenta-general', this)">👤 General</button>
             <button class="pestaña" onclick="cambiarPestanaCuenta('cuenta-privacidad', this)">🔒 Privacidad</button>
@@ -661,9 +701,14 @@
                 <p class="fecha-acceso">Último acceso: Hoy</p>
 
                 <div class="aviso-premium">
-                    💎 <strong>¿Qué obtienes con Nexis Premium?</strong><br>
-                    ✅ Skins <strong>ilimitadas</strong> &nbsp;|&nbsp; ✅ Capas <strong>ilimitadas y exclusivas</strong><br>
-                    ✅ Sin anuncios en el sitio &nbsp;|&nbsp; ✅ Soporte prioritario &nbsp;|&nbsp; ✅ Funciones exclusivas
+                    💎 <strong>Versión Premium — Beneficios completos:</strong>
+                    <ul class="lista-beneficios">
+                        <li>✅ <strong>Skins ilimitadas</strong> en tu biblioteca personal</li>
+                        <li>✅ <strong>Capas ilimitadas y exclusivas</strong> de Nexis</li>
+                        <li>✅ <strong>Eliminar anuncios</strong> de todo el sitio</li>
+                        <li>✅ <strong>Soporte prioritario</strong> en Discord</li>
+                        <li>✅ <strong>Funciones exclusivas</strong> que llegan próximamente</li>
+                    </ul>
                 </div>
 
                 <div class="metodos-pago">
@@ -717,7 +762,7 @@
                     <button class="boton-pagar" id="boton-pagar" onclick="realizarPago()" disabled>
                         👇 Selecciona un método de pago arriba
                     </button>
-                    <div class="mensaje-accion" id="mensaje-pago">✅ Método seleccionado. ¡Gracias por apoyar!</div>
+                    <div class="mensaje-accion" id="mensaje-pago">✅ ¡Gracias! Premium activado.</div>
                 </div>
 
                 <button class="btn-guardar btn-peligro" onclick="cerrarSesion()">Cerrar sesión</button>
@@ -734,7 +779,7 @@
                         <div class="vista-personalizada" id="vista-skin">🧍</div>
                         <div>
                             <button class="btn-azul" onclick="alert('📁 Selecciona tu archivo de Skin (.png)')">📁 Subir Skin</button>
-                            <button class="btn-azul" onclick="alert('📁 Selecciona tu archivo de Capa (.png)')">📁 Subir Capa</button>
+                            <button class="btn-dorado" onclick="alert('📁 Selecciona tu archivo de Capa (.png) — 💎 Premium')">📁 Subir Capa 💎</button>
                             <button class="btn-rojo" onclick="restablecerSkin()">↩️ Restablecer a Steve</button>
                         </div>
                         <div class="mensaje-accion" id="mensaje-skin">✅ Skin restablecida a Steve</div>
@@ -791,19 +836,23 @@
 
 <script>
 // =====================================================
-// ✅ SESIÓN LOCAL (NO se comparte en el enlace)
+// ✅ SESIÓN LOCAL + PREMIUM PERSISTENTE
 // =====================================================
 window.addEventListener('load', function() {
-    // Limpia la URL al cargar para que NO pase datos al compartir
+    // Limpia la URL al cargar
     if (window.location.search || window.location.hash) {
         history.replaceState({}, document.title, window.location.pathname);
     }
 
-    // Recuperar sesión guardada en este dispositivo
+    // Recuperar sesión
     const sesion = localStorage.getItem('nexis_sesion');
     if (sesion) {
         const datos = JSON.parse(sesion);
         aplicarSesion(datos.nombre, datos.correo);
+        // Si tenía Premium activado, restaurarlo
+        if (datos.premium === 'si') {
+            activarPremium();
+        }
     }
 });
 
@@ -839,7 +888,7 @@ function iniciarConGoogle() {
     const nombre = prompt("👤 Tu nombre de usuario:");
     const correo = prompt("📧 Tu correo Gmail:");
     if (nombre && correo) {
-        localStorage.setItem('nexis_sesion', JSON.stringify({ nombre, correo }));
+        localStorage.setItem('nexis_sesion', JSON.stringify({ nombre, correo, premium: 'no' }));
         aplicarSesion(nombre, correo);
     }
 }
@@ -857,10 +906,15 @@ function aplicarSesion(nombre, correo) {
 // =====================================================
 function cerrarSesion() {
     localStorage.removeItem('nexis_sesion');
-    document.body.classList.remove('sesion-iniciada');
+    document.body.classList.remove('sesion-iniciada', 'premium-activo');
     document.getElementById('campo-usuario').value = '';
     document.getElementById('campo-correo').value = '';
     mostrarSeccion('inicio');
+    // Restablecer estado visual
+    document.getElementById('estado-premium').textContent = 'Inactiva';
+    document.getElementById('estado-premium').classList.remove('activa');
+    document.getElementById('estado-premium').classList.add('inactiva');
+    document.getElementById('contador-skins').textContent = '2 de 2';
 }
 
 // =====================================================
@@ -869,47 +923,10 @@ function cerrarSesion() {
 let metodoSeleccionado = null;
 
 function seleccionarPago(nombre, elemento) {
-    // Quitar selección de todos
     document.querySelectorAll('.opcion-pago').forEach(el => el.classList.remove('seleccionada'));
-    // Marcar el seleccionado
     elemento.classList.add('seleccionada');
     metodoSeleccionado = nombre;
 
-    // Habilitar botón de pagar
     const boton = document.getElementById('boton-pagar');
     boton.disabled = false;
-    boton.textContent = `✅ Pagar con ${nombre.charAt(0).toUpperCase() + nombre.slice(1)}`;
-}
-
-function realizarPago() {
-    if (!metodoSeleccionado) return;
-    alert(`💳 Redirigiendo a pago vía ${metodoSeleccionado.charAt(0).toUpperCase() + metodoSeleccionado.slice(1)}...\n\n✅ ¡Gracias por tu apoyo! Premium activado.`);
-    
-    // Activar Premium visualmente
-    document.getElementById('estado-premium').textContent = 'Activa ✅';
-    document.getElementById('estado-premium').classList.remove('inactiva');
-    document.getElementById('estado-premium').classList.add('activa');
-    document.getElementById('mensaje-pago').classList.add('mostrar');
-    document.getElementById('contador-skins').textContent = 'Ilimitadas ✅';
-}
-
-// =====================================================
-// ✅ SKINS Y CAPAS
-// =====================================================
-function seleccionarSkin(elemento, icono) {
-    document.querySelectorAll('.skin-item-lado').forEach(el => el.classList.remove('seleccionada'));
-    elemento.classList.add('seleccionada');
-    document.getElementById('vista-skin').textContent = icono;
-}
-
-function restablecerSkin() {
-    document.getElementById('vista-skin').textContent = '🧍';
-    document.querySelectorAll('.skin-item-lado').forEach(el => el.classList.remove('seleccionada'));
-    document.querySelector('.skin-item-lado').classList.add('seleccionada');
-    document.getElementById('mensaje-skin').classList.add('mostrar');
-    setTimeout(() => document.getElementById('mensaje-skin').classList.remove('mostrar'), 3000);
-}
-</script>
-
-</body>
-</html>
+    boton.textContent = `✅ P
