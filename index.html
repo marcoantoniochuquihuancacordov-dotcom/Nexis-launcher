@@ -21,7 +21,7 @@
             --verde: #7fff00;
             --verde-oscuro: #39ff14;
             --azul: #38bdf8;
-            --azul-oscuro: #0284c7;
+            --azul-claro: #60a5fa;
             --fondo-1: #0a0f1f;
             --fondo-2: #0f172a;
             --fondo-3: #1e293b;
@@ -32,8 +32,8 @@
             --borde: rgba(255, 255, 255, 0.08);
             --sombra: 0 8px 30px rgba(0, 0, 0, 0.35);
             --discord-azul: #5865F2;
-            --color-activo: #7fff00; /* ✅ Verde en lugar de azul */
-            --fondo-activo: rgba(127, 255, 0, 0.15); /* ✅ Fondo verde claro */
+            --color-activo: #7fff00;
+            --fondo-activo: rgba(127, 255, 0, 0.15);
         }
 
         body {
@@ -271,7 +271,7 @@
         .dashboard-subtitulo { color: var(--texto-claro); font-size: 1.05rem; margin-bottom: 2rem; }
         .etiqueta-beta { display: inline-block; background: var(--verde); color: #000; font-size: 0.75rem; font-weight: 800; padding: 0.05rem 0.5rem; border-radius: 12px; margin-left: 0.5rem; vertical-align: middle; }
 
-        /* ✅ PESTAÑAS CON ESTILO SELECCIONADO + COLOR VERDE */
+        /* PESTAÑAS */
         .pestañas { 
             display: flex; 
             gap: 0.4rem; 
@@ -300,7 +300,6 @@
             color: #fff; 
             background: rgba(127, 255, 0, 0.08); 
         }
-        /* ✅ Pestaña ACTIVA: Fondo verde brillante + texto negro */
         .pestaña.activa { 
             background: linear-gradient(90deg, var(--verde), var(--verde-oscuro)); 
             color: #000; 
@@ -346,7 +345,6 @@
             box-shadow: 0 0 0 3px rgba(127, 255, 0, 0.15); 
         }
         textarea { resize: vertical; min-height: 120px; }
-        /* ✅ Botones con color verde */
         .btn-guardar { 
             background: linear-gradient(90deg, var(--verde), var(--verde-oscuro)); 
             color: #000; 
@@ -368,6 +366,7 @@
         .btn-peligro:hover { box-shadow: 0 4px 15px rgba(244, 63, 94, 0.3); }
         .suscripcion { font-size: 1.1rem; margin-bottom: 0.5rem; }
         .inactiva { color: var(--rojo); font-weight: 700; }
+        .activa-premium { color: var(--verde); font-weight: 700; }
         .fecha-acceso { color: var(--texto-claro); font-size: 0.95rem; }
         .aviso-premium { 
             margin-top: 1.5rem; 
@@ -395,6 +394,15 @@
         .aviso-premium a:hover { 
             background: rgba(250, 204, 21, 0.25); 
             transform: translateY(-1px); 
+        }
+        .aviso-donar {
+            background: rgba(34, 197, 94, 0.08);
+            border: 1px solid rgba(34, 197, 94, 0.25);
+            color: #86efac;
+        }
+        .aviso-donar a {
+            background: rgba(34, 197, 94, 0.15);
+            color: #86efac;
         }
 
         .fila-toggle { 
@@ -429,120 +437,157 @@
         input:checked + .desliza { background: var(--verde); }
         input:checked + .desliza:before { transform: translateX(24px); }
 
-        .apartado-perfil { margin-bottom: 3.5rem; }
-        .titulo-apartado { font-size: 1.4rem; margin-bottom: 1.2rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--borde); }
-        .titulo-skins { color: var(--verde); }
-        .titulo-capas { color: var(--verde); }
-        .tarjeta-perfil { 
-            background: rgba(30, 41, 59, 0.5); 
-            border: 1px solid var(--borde); 
-            border-radius: 16px; 
-            padding: 2rem; 
-            text-align: center; 
-            margin-bottom: 1.5rem; 
-            transition: all 0.25s ease; 
+        /* === SECCIÓN SKIN Y CAPA — ESTILO IGUAL A TU IMAGEN === */
+        .personalizar-seccion {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid var(--borde);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
         }
-        .tarjeta-perfil:hover { border-color: rgba(127, 255, 0, 0.3); }
-        .tarjeta-perfil h4 { margin-bottom: 1.2rem; color: #fff; font-size: 1.1rem; }
-        .vista-skin, .vista-capa { 
-            width: 140px; 
-            height: 220px; 
-            margin: 0 auto; 
-            background: rgba(0, 0, 0, 0.25); 
-            border-radius: 12px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            font-size: 4rem; 
-            border: 2px solid var(--borde); 
-            image-rendering: pixelated; 
+        .personalizar-seccion h3 {
+            font-size: 1rem;
+            color: #fff;
+            margin-bottom: 2rem;
+            font-weight: 600;
         }
-        .btn-establecer { 
-            margin-top: 1.2rem; 
-            padding: 0.7rem 1.5rem; 
-            background: linear-gradient(90deg, var(--verde), var(--verde-oscuro)); 
-            color: #000; 
-            border: none; 
-            border-radius: 8px; 
-            font-weight: 700; 
-            cursor: pointer; 
-            transition: all 0.2s ease; 
-            font-size: 0.95rem; 
+        .personalizar-grid {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 2rem;
+            align-items: start;
         }
-        .btn-establecer:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(127, 255, 0, 0.3); }
-        .btn-eliminar { 
-            margin-left: 0.5rem; 
-            padding: 0.7rem 1.5rem; 
-            background: var(--rojo); 
-            color: #fff; 
-            border: none; 
-            border-radius: 8px; 
-            font-weight: 700; 
-            cursor: pointer; 
-            transition: all 0.2s ease; 
-            font-size: 0.95rem; 
+        @media (max-width: 768px) {
+            .personalizar-grid {
+                grid-template-columns: 1fr;
+            }
+            .separador-vertical {
+                width: 100%;
+                height: 1px;
+            }
         }
-        .btn-eliminar:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(244, 63, 94, 0.25); }
-
-        .biblioteca { 
-            background: rgba(30, 41, 59, 0.5); 
-            border: 1px solid var(--borde); 
-            border-radius: 16px; 
-            padding: 2rem; 
+        .skin-actual, .capa-actual {
+            text-align: center;
         }
-        .biblioteca h4 { margin-bottom: 1.2rem; color: #fff; font-size: 1.1rem; }
-        .biblioteca-cuerpo { display: flex; gap: 1.5rem; align-items: flex-start; flex-wrap: wrap; }
-        .vista-actual { flex: 0 0 160px; text-align: center; }
-        .vista-actual h5 { color: var(--texto-claro); margin-bottom: 0.8rem; font-size: 0.9rem; }
-        .skin-preview { 
-            width: 100px; 
-            height: 180px; 
-            margin: 0 auto; 
-            background: rgba(0, 0, 0, 0.25); 
-            border-radius: 10px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            font-size: 3rem; 
-            border: 2px solid var(--verde); 
+        .skin-actual h4, .capa-actual h4 {
+            font-size: 1.1rem;
+            color: #fff;
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--borde);
+            display: inline-block;
         }
-        .separador { width: 1px; height: 200px; background: var(--borde); }
-        .skins-lista { flex: 1; min-width: 220px; }
-        .skins-lista h5 { color: var(--texto-claro); margin-bottom: 0.8rem; font-size: 0.9rem; }
-        .cuadricula-skins { display: grid; grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); gap: 0.8rem; }
-        .skin-item { 
-            aspect-ratio: 2/3; 
-            background: rgba(255, 255, 255, 0.04); 
-            border-radius: 10px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            font-size: 1.8rem; 
-            cursor: pointer; 
-            border: 2px solid transparent; 
-            transition: all 0.2s ease; 
-            position: relative; 
-            padding: 0.3rem; 
+        .vista-personalizada {
+            width: 160px;
+            height: 240px;
+            margin: 0 auto 1.2rem;
+            background: rgba(0, 0, 0, 0.35);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            border: 2px solid var(--borde);
+            image-rendering: pixelated;
         }
-        .skin-item:hover { border-color: var(--verde); background: rgba(127, 255, 0, 0.08); transform: translateY(-2px); }
-        .skin-item.seleccionada { border-color: var(--verde); box-shadow: 0 0 12px rgba(127, 255, 0, 0.25); }
-        .skin-item.bloqueado { opacity: 0.6; filter: grayscale(0.6); cursor: not-allowed; }
-        .icono-bloqueo { position: absolute; top: 4px; right: 4px; font-size: 0.7rem; }
-        .aviso-limite { color: var(--rojo); font-size: 0.9rem; margin-top: 0.5rem; display: flex; align-items: center; gap: 0.3rem; line-height: 1.5; }
-        .btn-volver { 
-            display: inline-block; 
-            margin-top: 1.5rem; 
-            padding: 0.65rem 1.4rem; 
-            background: linear-gradient(90deg, var(--verde), var(--verde-oscuro)); 
-            color: #000; 
-            border: none; 
-            border-radius: 8px; 
-            font-weight: 700; 
-            cursor: pointer; 
-            text-decoration: none; 
-            transition: all 0.2s ease; 
+        .btn-azul {
+            background: var(--azul);
+            color: #000;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
         }
-        .btn-volver:hover { transform: translateY(-2px); }
+        .btn-azul:hover {
+            background: var(--azul-claro);
+            transform: translateY(-2px);
+        }
+        .btn-rojo {
+            background: var(--rojo);
+            color: #fff;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-rojo:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(244, 63, 94, 0.25);
+        }
+        .separador-vertical {
+            width: 2px;
+            height: 280px;
+            background: var(--borde);
+        }
+        .biblioteca-lado h4 {
+            font-size: 1.1rem;
+            color: #fff;
+            margin-bottom: 1.2rem;
+            text-align: center;
+        }
+        .aviso-limite-lado {
+            text-align: center;
+            color: var(--rojo);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+        .aviso-limite-lado span {
+            color: var(--verde);
+            font-weight: 700;
+        }
+        .cuadricula-skins-lado {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.8rem;
+        }
+        .cuadricula-skins-lado.skin-4 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        .skin-item-lado {
+            aspect-ratio: 2/3;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+        .skin-item-lado:hover {
+            border-color: var(--verde);
+            background: rgba(127, 255, 0, 0.08);
+        }
+        .skin-item-lado.seleccionada {
+            border-color: var(--verde);
+            box-shadow: 0 0 12px rgba(127, 255, 0, 0.25);
+        }
+        .boton-volver {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        .btn-volver {
+            display: inline-block;
+            padding: 0.65rem 1.4rem;
+            background: linear-gradient(90deg, var(--verde), var(--verde-oscuro));
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        .btn-volver:hover {
+            transform: translateY(-2px);
+        }
 
         section { padding: 2rem 2rem 4rem; }
         section h2 { font-size: 2rem; text-align: center; margin-bottom: 2rem; color: #fff; }
@@ -594,13 +639,6 @@
         .acerca a:hover { text-decoration: underline; }
 
         footer { text-align: center; padding: 2rem; color: #475569; border-top: 1px solid var(--borde); margin-top: 2rem; font-size: 0.9rem; line-height: 1.7; }
-
-        @media (max-width: 768px) {
-            header h1 { font-size: 2rem; }
-            .separador { display: none; }
-            .biblioteca-cuerpo { flex-wrap: wrap; justify-content: center; }
-            .nav-enlaces { justify-content: center; width: 100%; }
-        }
     </style>
 </head>
 <body>
@@ -696,7 +734,7 @@
 <div id="s-cuenta" class="seccion">
     <div class="dashboard">
         <h1 class="dashboard-saludo">Hola, Papichulo6070</h1>
-        <p class="dashboard-subtitulo">Bienvenid@ a tu Panel de Cuenta</p>
+        <p class="dashboard-subtitulo">Bienvenid@ a tu nueva Dashboard</p>
 
         <div class="pestañas">
             <button class="pestaña activa" onclick="cambiarPestanaCuenta('cuenta-inicio', this)">🏠 Inicio</button>
@@ -706,19 +744,33 @@
             <button class="pestaña" onclick="cambiarPestanaCuenta('cuenta-perfil', this)">😀 Perfil</button>
         </div>
 
+        <!-- === INICIO DE CUENTA === -->
         <div id="cuenta-inicio" class="contenido-pestaña visible">
             <div class="tarjeta">
                 <h3>Inicio <span class="etiqueta-beta">BETA</span></h3>
-                <p class="suscripcion">Suscripción Premium: <span class="inactiva">Inactiva</span></p>
+                <p class="suscripcion">Suscripción Premium: <span id="estado-premium" class="inactiva">Inactiva</span></p>
+                <p class="fecha-acceso">Último acceso: Hoy a las 16:45</p>
+
                 <div class="aviso-premium">
-                    💎 <strong>Obtén más beneficios con Premium</strong><br>
-                    Skins ilimitadas, capas exclusivas, sin anuncios y soporte prioritario.<br>
-                    <a onclick="alert('Aquí se abriría el pago')">💳 Suscribirse a Premium →</a>
+                    💎 <strong>Obtén Nexis Premium</strong><br>
+                    ✅ Skins ilimitadas &nbsp;|&nbsp; ✅ Capas ilimitadas y exclusivas<br>
+                    ✅ Sin anuncios &nbsp;|&nbsp; ✅ Soporte prioritario &nbsp;|&nbsp; ✅ Funciones exclusivas<br>
+                    <a href="#cuenta-perfil" onclick="cambiarPestanaCuenta('cuenta-perfil'); return false;">🎨 Ver límites de Skins y Capas →</a>
                 </div>
+
+                <!-- 💳 DONACIONES Y PREMIUM POR PAYPAL -->
+                <div class="aviso-premium aviso-donar" style="margin-top: 1.5rem;">
+                    💳 <strong>Pagar Premium / Donar con PayPal</strong><br>
+                    Al pagar tu suscripción, Premium se activará automáticamente en tu cuenta — disponible tanto en la página web como en el Launcher.<br>
+                    <a href="https://paypal.me/TU_CUENTA_PAYPAL" target="_blank" style="color: #86efac;">💳 Pagar Premium por PayPal →</a>
+                    <a href="https://paypal.me/TU_CUENTA_PAYPAL" target="_blank" style="color: #86efac;">☕ Hacer una donación →</a>
+                </div>
+
                 <button class="btn-guardar btn-peligro" style="margin-top:1.5rem;">Cerrar sesión</button>
             </div>
         </div>
 
+        <!-- === GENERAL === -->
         <div id="cuenta-general" class="contenido-pestaña">
             <div class="tarjeta">
                 <h3>General</h3>
@@ -731,15 +783,17 @@
             </div>
         </div>
 
+        <!-- === PRIVACIDAD === -->
         <div id="cuenta-privacidad" class="contenido-pestaña">
             <div class="tarjeta">
                 <h3>Privacidad</h3>
                 <div class="fila-toggle"><span>Permitir que te encuentren</span><label class="toggle"><input type="checkbox"><span class="desliza"></span></label></div>
                 <div class="fila-toggle"><span>Permitir solicitudes de amistad</span><label class="toggle"><input type="checkbox"><span class="desliza"></span></label></div>
-                <div class="fila-toggle"><span>Skin pública</span><label class="toggle"><input type="checkbox" checked><span class="desliza"></span></label></div>
+                <div class="fila-toggle"><span>Perfil público</span><label class="toggle"><input type="checkbox" checked><span class="desliza"></span></label></div>
             </div>
         </div>
 
+        <!-- === SEGURIDAD === -->
         <div id="cuenta-seguridad" class="contenido-pestaña">
             <div class="tarjeta">
                 <h3>Seguridad</h3>
@@ -752,21 +806,86 @@
             </div>
         </div>
 
+        <!-- === PERFIL: SKINS Y CAPAS === -->
         <div id="cuenta-perfil" class="contenido-pestaña">
-            <div class="apartado-perfil">
-                <h3 class="titulo-apartado titulo-skins">🎨 Skins</h3>
-                <div class="tarjeta-perfil">
-                    <h4>Skin Actual</h4>
-                    <div class="vista-skin">🧍</div>
-                    <div style="margin-top:1.2rem;">
-                        <button class="btn-establecer">✅ Establecer skin</button>
-                        <button class="btn-eliminar">🗑️ Eliminar skin</button>
+
+            <!-- === PERSONALIZAR SKIN === -->
+            <div class="personalizar-seccion">
+                <h3>🎨 Personalizar skin</h3>
+                <div class="personalizar-grid">
+                    <!-- SKIN ACTUAL -->
+                    <div class="skin-actual">
+                        <h4>Skin actual</h4>
+                        <div class="vista-personalizada">🧍</div>
+                        <div style="display:flex; gap:0.5rem; justify-content:center; flex-wrap:wrap;">
+                            <button class="btn-azul">✅ Establecer skin</button>
+                            <button class="btn-rojo">🗑️ Eliminar skin</button>
+                        </div>
+                    </div>
+
+                    <div class="separador-vertical"></div>
+
+                    <!-- BIBLIOTECA DE SKINS — LÍMITE 4 SKINS (incluyendo la actual) -->
+                    <div class="biblioteca-lado">
+                        <h4>Biblioteca</h4>
+                        <div class="aviso-limite-lado">
+                            <span>+</span> No puedes subir más skins.<br>
+                            <strong>Compra Premium</strong> para skins ilimitadas.
+                        </div>
+                        <div class="cuadricula-skins-lado skin-4">
+                            <div class="skin-item-lado seleccionada" title="Skin actual">🧍</div>
+                            <div class="skin-item-lado" title="Skin guardada 1">🧍‍♂️</div>
+                            <div class="skin-item-lado" title="Skin guardada 2">🥷</div>
+                            <div class="skin-item-lado" title="Skin guardada 3">🤠</div>
+                            <!-- ⚠️ Más skins SOLO con Premium -->
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <!-- === PERSONALIZAR CAPA === -->
+            <div class="personalizar-seccion">
+                <h3>🧥 Personalizar capa</h3>
+                <div class="personalizar-grid">
+                    <!-- CAPA ACTUAL -->
+                    <div class="capa-actual">
+                        <h4>Capa actual</h4>
+                        <div class="vista-personalizada">🧥</div>
+                        <button class="btn-azul">✅ Establecer capa</button>
+                    </div>
+
+                    <div class="separador-vertical"></div>
+
+                    <!-- BIBLIOTECA DE CAPAS — LÍMITE 4 CAPAS -->
+                    <div class="biblioteca-lado">
+                        <h4>Biblioteca</h4>
+                        <div class="aviso-limite-lado">
+                            <span>+</span> Añadir capas ilimitadas<br>
+                            <strong>con Premium</strong>.
+                        </div>
+                        <div class="cuadricula-skins-lado">
+                            <div class="skin-item-lado seleccionada" title="Capa actual">🏳️</div>
+                            <div class="skin-item-lado" title="Capa guardada 1">🔥</div>
+                            <div class="skin-item-lado" title="Capa guardada 2">❄️</div>
+                            <div class="skin-item-lado" title="Capa guardada 3">⭐</div>
+                            <!-- ⚠️ Más capas SOLO con Premium -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="boton-volver">
+                <button class="btn-volver" onclick="cambiarPestanaCuenta('cuenta-inicio')">← Volver atrás</button>
+            </div>
         </div>
+
     </div>
 </div>
+
+<footer>
+    © 2026 Nexis Launcher — Gratis, Seguro y Sin Publicidad.<br>
+    Este proyecto no está afiliado a Mojang Studios ni a Microsoft.
+</footer>
 
 <!-- ====================================== -->
 <!-- ✅ JAVASCRIPT COMPLETO -->
@@ -774,41 +893,29 @@
 <script>
     // Cambiar sección principal
     function mostrarSeccion(nombreSeccion) {
-        // Ocultar TODAS las secciones
         document.querySelectorAll('.seccion').forEach(sec => {
             sec.classList.remove('visible');
         });
-
-        // Mostrar la sección elegida
         const seccion = document.getElementById('s-' + nombreSeccion);
         if (seccion) seccion.classList.add('visible');
 
-        // Quitar "activo" a todos los botones del menú
         document.querySelectorAll('.nav-enlaces button').forEach(btn => {
             btn.classList.remove('activo');
         });
-
-        // Poner "activo" al botón pulsado
         const botonActivo = document.getElementById('m-' + nombreSeccion);
         if (botonActivo) botonActivo.classList.add('activo');
     }
 
-    // ✅ Cambiar pestañas — AHORA RECIBE EL BOTÓN PARA RESALTARLO
+    // Cambiar pestaña de cuenta
     function cambiarPestanaCuenta(nombrePestana, botonPulsado) {
-        // Ocultar TODAS las pestañas
         document.querySelectorAll('.contenido-pestaña').forEach(tab => {
             tab.classList.remove('visible');
         });
-
-        // Mostrar la pestaña elegida
         document.getElementById(nombrePestana).classList.add('visible');
 
-        // Quitar "activa" a TODOS los botones de pestaña
         document.querySelectorAll('.pestañas .pestaña').forEach(btn => {
             btn.classList.remove('activa');
         });
-
-        // ✅ Poner "activa" al botón pulsado — con fondo verde
         if (botonPulsado) {
             botonPulsado.classList.add('activa');
         }
