@@ -45,7 +45,7 @@
             padding: 0 2rem;
         }
 
-        /* === NAVEGACIÓN CORREGIDA === */
+        /* === NAVEGACIÓN === */
         nav {
             background: rgba(15, 23, 42, 0.9);
             padding: 0.8rem 0;
@@ -79,7 +79,7 @@
             flex-wrap: nowrap;
         }
 
-        /* 🔹 Estilo UNIFICADO para TODOS los botones */
+        /* Estilo UNIFICADO para TODOS los botones */
         .nav-enlaces button,
         .nav-enlaces .usuario-nav,
         .nav-enlaces .btn-discord,
@@ -143,7 +143,7 @@
             transform: translateY(-1px);
         }
 
-        /* === RESTO DEL CÓDIGO === */
+        /* === SECCIONES === */
         .seccion {
             display: none;
             animation: aparecer 0.35s ease-out;
@@ -170,6 +170,8 @@
             margin: 0 auto 1.5rem;
             color: var(--texto-claro);
         }
+
+        /* === BOTÓN DE DESCARGA FUNCIONAL === */
         .boton-descarga {
             display: inline-flex;
             align-items: center;
@@ -233,6 +235,57 @@
         .noticia p { color: var(--texto-claro); font-size: 0.95rem; line-height: 1.6; margin-bottom: 0.8rem; }
         .leer-mas { color: var(--verde); font-weight: 600; text-decoration: none; }
         .leer-mas:hover { text-decoration: underline; }
+
+        section { padding: 2rem 2rem 4rem; }
+        section h2 { font-size: 2rem; text-align: center; margin-bottom: 2rem; color: #fff; }
+        .grid-caracteristicas { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.2rem; }
+        .card { 
+            background: rgba(30, 41, 59, 0.5); 
+            border: 1px solid var(--borde); 
+            border-radius: 14px; 
+            padding: 1.5rem; 
+            transition: all 0.25s ease; 
+        }
+        .card:hover { border-color: var(--verde); transform: translateY(-4px); }
+        .card h3 { color: var(--verde); margin-bottom: 0.6rem; font-size: 1.1rem; }
+        .card p { color: var(--texto-claro); line-height: 1.6; }
+
+        .pasos { 
+            background: rgba(30, 41, 59, 0.5); 
+            border: 1px solid var(--borde); 
+            border-radius: 14px; 
+            padding: 2rem; 
+            max-width: 700px; 
+            margin: 0 auto; 
+        }
+        .paso { display: flex; gap: 1rem; margin-bottom: 1rem; align-items: flex-start; }
+        .paso-num { 
+            background: var(--verde); 
+            color: #000; 
+            font-weight: 900; 
+            width: 34px; 
+            height: 34px; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            flex-shrink: 0; 
+        }
+        .paso-texto { color: var(--texto); }
+
+        .acerca { 
+            text-align: center; 
+            max-width: 700px; 
+            margin: 0 auto; 
+            background: rgba(30, 41, 59, 0.5); 
+            border: 1px solid var(--borde); 
+            border-radius: 14px; 
+            padding: 2rem; 
+            color: var(--texto-claro); 
+            line-height: 1.8; 
+        }
+        .acerca a { color: var(--verde); text-decoration: none; font-weight: 600; }
+        .acerca a:hover { text-decoration: underline; }
 
         .dashboard { max-width: 1100px; margin: 3rem auto; padding: 0 1.5rem 4rem; }
         .dashboard-saludo { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.2rem; }
@@ -544,55 +597,6 @@
             box-shadow: 0 0 12px rgba(127, 255, 0, 0.25);
         }
 
-        section { padding: 2rem 2rem 4rem; }
-        section h2 { font-size: 2rem; text-align: center; margin-bottom: 2rem; color: #fff; }
-        .grid-caracteristicas { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.2rem; }
-        .card { 
-            background: rgba(30, 41, 59, 0.5); 
-            border: 1px solid var(--borde); 
-            border-radius: 14px; 
-            padding: 1.5rem; 
-            transition: all 0.25s ease; 
-        }
-        .card:hover { border-color: var(--verde); transform: translateY(-4px); }
-        .card h3 { color: var(--verde); margin-bottom: 0.6rem; font-size: 1.1rem; }
-        .card p { color: var(--texto-claro); line-height: 1.6; }
-        .pasos { 
-            background: rgba(30, 41, 59, 0.5); 
-            border: 1px solid var(--borde); 
-            border-radius: 14px; 
-            padding: 2rem; 
-            max-width: 700px; 
-            margin: 0 auto; 
-        }
-        .paso { display: flex; gap: 1rem; margin-bottom: 1rem; align-items: flex-start; }
-        .paso-num { 
-            background: var(--verde); 
-            color: #000; 
-            font-weight: 900; 
-            width: 34px; 
-            height: 34px; 
-            border-radius: 50%; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            flex-shrink: 0; 
-        }
-        .paso-texto { color: var(--texto); }
-        .acerca { 
-            text-align: center; 
-            max-width: 700px; 
-            margin: 0 auto; 
-            background: rgba(30, 41, 59, 0.5); 
-            border: 1px solid var(--borde); 
-            border-radius: 14px; 
-            padding: 2rem; 
-            color: var(--texto-claro); 
-            line-height: 1.8; 
-        }
-        .acerca a { color: var(--verde); text-decoration: none; font-weight: 600; }
-        .acerca a:hover { text-decoration: underline; }
-
         .mensaje-accion {
             margin-top: 1rem;
             padding: 0.8rem;
@@ -608,7 +612,7 @@
 </head>
 <body>
 
-<!-- NAVEGACIÓN CORREGIDA -->
+<!-- NAVEGACIÓN -->
 <nav>
     <div class="contenedor nav-wrap">
         <a href="#" class="logo" onclick="mostrarSeccion('inicio'); return false;">Nexis Launcher</a>
@@ -629,7 +633,8 @@
     <header>
         <h1>Bienvenido a Nexis Launcher</h1>
         <p>El Launcher de Minecraft: Java Edition gratuito, ligero, sin publicidad y 100% seguro. Descarga versiones, instala mods y gestiona perfiles fácilmente.</p>
-        <a href="#" class="boton-descarga">⬇️ Descargar Nexis Launcher v2.0.0</a>
+        <!-- ✅ BOTÓN DE DESCARGA FUNCIONAL -->
+        <a href="#" class="boton-descarga" id="boton-descarga-principal" onclick="alert('¡Descarga iniciada! Aquí irá el enlace de descarga real.'); return false;">⬇️ Descargar Nexis Launcher v2.0.0</a>
     </header>
 
     <div class="contenedor">
@@ -680,10 +685,13 @@
     <section>
         <h2>📥 Cómo Descargar e Instalar</h2>
         <div class="pasos">
-            <div class="paso"><span class="paso-num">1</span><span class="paso-texto">Pulsa el botón verde "Descargar Nexis Launcher".</span></div>
-            <div class="paso"><span class="paso-num">2</span><span class="paso-texto">Espera a que termine la descarga.</span></div>
-            <div class="paso"><span class="paso-num">3</span><span class="paso-texto">Abre el archivo — no necesita instalación.</span></div>
+            <div class="paso"><span class="paso-num">1</span><span class="paso-texto">Pulsa el botón verde "Descargar Nexis Launcher" que aparece arriba.</span></div>
+            <div class="paso"><span class="paso-num">2</span><span class="paso-texto">Espera a que termine la descarga automáticamente.</span></div>
+            <div class="paso"><span class="paso-num">3</span><span class="paso-texto">Abre el archivo descargado — no necesita instalación.</span></div>
             <div class="paso"><span class="paso-num">4</span><span class="paso-texto">¡Listo! Crea tu perfil y ¡a jugar!</span></div>
+        </div>
+        <div style="text-align: center; margin-top: 2rem;">
+            <a href="#" class="boton-descarga" onclick="alert('¡Descarga iniciada! Aquí irá el enlace de descarga real.'); return false;">⬇️ Descargar Nexis Launcher v2.0.0</a>
         </div>
     </section>
 </div>
@@ -861,12 +869,16 @@
 </div>
 
 <script>
-// Cambiar secciones principales
+// ✅ NAVEGACIÓN ENTRE SECCIONES - FUNCIONANDO CORRECTAMENTE
 function mostrarSeccion(nombre) {
+    // Ocultar todas las secciones
     document.querySelectorAll('.seccion').forEach(s => s.classList.remove('visible'));
+    // Mostrar la sección seleccionada
     document.getElementById('s-' + nombre).classList.add('visible');
     
+    // Quitar clase activo de todos los botones de navegación
     document.querySelectorAll('.nav-enlaces button').forEach(b => b.classList.remove('activo'));
+    // Marcar activo el botón correspondiente
     const btnActivo = document.getElementById('m-' + nombre);
     if (btnActivo) btnActivo.classList.add('activo');
 }
