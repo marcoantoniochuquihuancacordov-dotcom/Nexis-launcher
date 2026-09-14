@@ -71,6 +71,7 @@
             color: var(--verde);
             text-decoration: none;
             white-space: nowrap;
+            cursor: pointer;
         }
 
         .nav-enlaces {
@@ -83,8 +84,6 @@
         /* Estilo UNIFICADO para TODOS los botones */
         .nav-enlaces button,
         .nav-enlaces .usuario-nav,
-        .nav-enlaces .btn-discord,
-        .nav-enlaces .btn-cerrar,
         .btn-google {
             height: var(--altura-boton);
             padding: 0 1rem;
@@ -98,6 +97,7 @@
             border: none;
             transition: all 0.2s ease;
             white-space: nowrap;
+            font-family: inherit;
         }
 
         /* Botones de navegación normales */
@@ -157,10 +157,10 @@
         }
 
         /* Ocultar elementos cuando NO hay sesión / Mostrar cuando SÍ hay sesión */
-        .sin-sesion  { display: flex; }
+        .sin-sesion  { display: inline-flex; }
         .con-sesion { display: none; }
-        body.sesion-iniciada .sin-sesion  { display: none; }
-        body.sesion-iniciada .con-sesion { display: flex; }
+        body.sesion-iniciada .sin-sesion  { display: none !important; }
+        body.sesion-iniciada .con-sesion { display: inline-flex !important; }
 
         /* === SECCIONES === */
         .seccion {
@@ -334,6 +334,7 @@
             align-items: center; 
             gap: 0.5rem; 
             font-size: 0.95rem; 
+            font-family: inherit;
         }
         .pestaña:hover { color: #fff; background: rgba(127, 255, 0, 0.08); }
         .pestaña.activa { 
@@ -391,6 +392,7 @@
             margin-top: 1.2rem; 
             width: 100%; 
             transition: all 0.2s ease; 
+            font-family: inherit;
         }
         .btn-guardar:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(127, 255, 0, 0.3); }
         .btn-peligro { background: linear-gradient(90deg, #f43f5e, #e11d48); color: #fff; }
@@ -398,223 +400,6 @@
         .suscripcion { font-size: 1.1rem; margin-bottom: 0.5rem; }
         .inactiva { color: var(--rojo); font-weight: 700; }
         .fecha-acceso { color: var(--texto-claro); font-size: 0.95rem; }
-
-        .metodos-pago { margin-top: 1.5rem; }
-        .metodos-pago h4 { font-size: 1rem; color: #fff; margin-bottom: 1rem; }
-        .opcion-pago {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1rem 1.2rem;
-            background: rgba(255, 255, 255, 0.03);
-            border: 2px solid var(--borde);
-            border-radius: 12px;
-            margin-bottom: 0.8rem;
-            cursor: pointer;
-            transition: all 0.25s ease;
-        }
-        .opcion-pago:hover {
-            border-color: var(--verde);
-            background: rgba(127, 255, 0, 0.05);
-        }
-        .opcion-pago.seleccionada {
-            border-color: var(--verde);
-            background: rgba(127, 255, 0, 0.08);
-        }
-        .radio-pago {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            border: 2px solid var(--texto-claro);
-            position: relative;
-            flex-shrink: 0;
-        }
-        .opcion-pago.seleccionada .radio-pago { border-color: var(--verde); }
-        .opcion-pago.seleccionada .radio-pago::after {
-            content: '';
-            width: 10px;
-            height: 10px;
-            background: var(--verde);
-            border-radius: 50%;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-        .icono-pago { font-size: 1.5rem; }
-        .info-pago { flex: 1; }
-        .info-pago strong { display: block; color: #fff; font-size: 0.95rem; }
-        .info-pago span { display: block; color: var(--texto-claro); font-size: 0.85rem; }
-        .boton-pagar {
-            margin-top: 1.2rem;
-            width: 100%;
-            padding: 0.9rem;
-            background: linear-gradient(90deg, var(--verde), var(--verde-oscuro));
-            color: #000;
-            border: none;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        .boton-pagar:hover:not(:disabled) { transform: translateY(-2px); }
-        .boton-pagar:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-
-        .aviso-premium { 
-            margin-top: 1.5rem; 
-            padding: 1.4rem 1.6rem; 
-            background: rgba(250, 204, 21, 0.08); 
-            border: 1px solid rgba(250, 204, 21, 0.25); 
-            border-radius: 12px; 
-            color: #fde047; 
-            font-size: 1rem; 
-            line-height: 1.7; 
-        }
-        .aviso-donar {
-            background: rgba(34, 197, 94, 0.08);
-            border: 1px solid rgba(34, 197, 94, 0.25);
-            color: #86efac;
-        }
-        .aviso-premium a { color: var(--verde); text-decoration: none; font-weight: 500; }
-        .aviso-premium a:hover { text-decoration: underline; }
-
-        .fila-toggle { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            padding: 1rem 0; 
-            border-bottom: 1px solid var(--borde); 
-        }
-        .fila-toggle:last-child { border-bottom: none; }
-        .toggle { position: relative; display: inline-block; width: 52px; height: 28px; }
-        .toggle input { opacity: 0; width: 0; height: 0; }
-        .desliza { 
-            position: absolute; 
-            cursor: pointer; 
-            inset: 0; 
-            background: #334155; 
-            border-radius: 28px; 
-            transition: 0.3s ease; 
-        }
-        .desliza:before { 
-            content: ''; 
-            position: absolute; 
-            height: 22px; 
-            width: 22px; 
-            left: 3px; 
-            bottom: 3px; 
-            background: white; 
-            border-radius: 50%; 
-            transition: 0.3s ease; 
-        }
-        input:checked + .desliza { background: var(--verde); }
-        input:checked + .desliza:before { transform: translateX(24px); }
-
-        .personalizar-seccion {
-            background: rgba(30, 41, 59, 0.5);
-            border: 1px solid var(--borde);
-            border-radius: 16px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-        }
-        .personalizar-seccion h3 {
-            font-size: 1rem;
-            color: #fff;
-            margin-bottom: 2rem;
-            font-weight: 600;
-        }
-        .personalizar-grid {
-            display: grid;
-            grid-template-columns: 1fr auto 1fr;
-            gap: 2rem;
-            align-items: start;
-        }
-        @media (max-width: 768px) {
-            .personalizar-grid { grid-template-columns: 1fr; }
-            .separador-vertical { width: 100%; height: 1px; }
-        }
-        .skin-actual { text-align: center; }
-        .skin-actual h4 {
-            font-size: 1.1rem;
-            color: #fff;
-            margin-bottom: 1.2rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid var(--borde);
-            display: inline-block;
-        }
-        .vista-personalizada {
-            width: 160px;
-            height: 240px;
-            margin: 0 auto 1.2rem;
-            background: rgba(0, 0, 0, 0.35);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4.5rem;
-            border: 2px solid var(--borde);
-            transition: all 0.3s ease;
-        }
-        .btn-azul {
-            background: #38bdf8;
-            color: #000;
-            border: none;
-            padding: 0.6rem 1.2rem;
-            border-radius: 8px;
-            font-weight: 700;
-            cursor: pointer;
-            margin: 0.25rem;
-        }
-        .btn-azul:hover { background: #60a5fa; }
-        .btn-rojo {
-            background: var(--rojo);
-            color: #fff;
-            border: none;
-            padding: 0.6rem 1.2rem;
-            border-radius: 8px;
-            font-weight: 700;
-            cursor: pointer;
-            margin: 0.25rem;
-        }
-        .btn-rojo:hover { background: #fb7185; }
-        .separador-vertical { width: 2px; height: 280px; background: var(--borde); }
-        .biblioteca-lado h4 {
-            font-size: 1.1rem;
-            color: #fff;
-            margin-bottom: 1.2rem;
-            text-align: center;
-        }
-        .aviso-limite-lado {
-            text-align: center;
-            color: var(--rojo);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-            line-height: 1.5;
-        }
-        .aviso-limite-lado span { color: var(--verde); font-weight: 700; }
-        .cuadricula-skins-lado { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; }
-        .cuadricula-skins-lado.skin-4 { grid-template-columns: repeat(2, 1fr); }
-        .skin-item-lado {
-            aspect-ratio: 2/3;
-            background: rgba(255, 255, 255, 0.04);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            cursor: pointer;
-            border: 2px solid transparent;
-            transition: all 0.2s ease;
-        }
-        .skin-item-lado:hover {
-            border-color: var(--verde);
-            background: rgba(127, 255, 0, 0.08);
-        }
-        .skin-item-lado.seleccionada {
-            border-color: var(--verde);
-            box-shadow: 0 0 12px rgba(127, 255, 0, 0.25);
-        }
 
         .mensaje-accion {
             margin-top: 1rem;
@@ -634,17 +419,17 @@
 <!-- NAVEGACIÓN -->
 <nav>
     <div class="contenedor nav-wrap">
-        <a href="#" class="logo" onclick="mostrarSeccion('inicio'); return false;">Nexis Launcher</a>
+        <span class="logo" onclick="mostrarSeccion('inicio')">Nexis Launcher</span>
         <div class="nav-enlaces">
             <button id="m-inicio" class="activo" onclick="mostrarSeccion('inicio')">Inicio</button>
             <button id="m-caracteristicas" onclick="mostrarSeccion('caracteristicas')">Características</button>
             <button id="m-descargar" onclick="mostrarSeccion('descargar')">Descargar</button>
             <button id="m-acerca" onclick="mostrarSeccion('acerca')">Acerca de</button>
 
-            <!-- ✅ SIN SESIÓN: Botón de Iniciar sesión con Google -->
+            <!-- SIN SESIÓN -->
             <button class="btn-google sin-sesion" onclick="iniciarConGoogle()">🔐 Iniciar con Google</button>
 
-            <!-- ✅ CON SESIÓN: Usuario y Cerrar sesión -->
+            <!-- CON SESIÓN -->
             <span class="usuario-nav con-sesion" id="usuario-nombre" onclick="mostrarSeccion('cuenta'); cambiarPestanaCuenta('cuenta-inicio')">👤 Usuario</span>
             <button class="btn-cerrar con-sesion" onclick="cerrarSesion()">Cerrar sesión</button>
 
@@ -658,7 +443,7 @@
     <header>
         <h1>Bienvenido a Nexis Launcher</h1>
         <p>El Launcher de Minecraft: Java Edition gratuito, ligero, sin publicidad y 100% seguro. Descarga versiones, instala mods y gestiona perfiles fácilmente.</p>
-        <a href="#" class="boton-descarga" onclick="alert('¡Descarga iniciada! Aquí irá el enlace de descarga real.'); return false;">⬇️ Descargar Nexis Launcher v2.0.0</a>
+        <button class="boton-descarga" onclick="alert('✅ Descarga iniciada! Aquí irá tu enlace real de descarga.')">⬇️ Descargar Nexis Launcher v2.0.0</button>
     </header>
 
     <div class="contenedor">
@@ -709,13 +494,13 @@
     <section>
         <h2>📥 Cómo Descargar e Instalar</h2>
         <div class="pasos">
-            <div class="paso"><span class="paso-num">1</span><span class="paso-texto">Pulsa el botón verde "Descargar Nexis Launcher" que aparece arriba.</span></div>
+            <div class="paso"><span class="paso-num">1</span><span class="paso-texto">Pulsa el botón verde "Descargar Nexis Launcher".</span></div>
             <div class="paso"><span class="paso-num">2</span><span class="paso-texto">Espera a que termine la descarga automáticamente.</span></div>
             <div class="paso"><span class="paso-num">3</span><span class="paso-texto">Abre el archivo descargado — no necesita instalación.</span></div>
             <div class="paso"><span class="paso-num">4</span><span class="paso-texto">¡Listo! Crea tu perfil y ¡a jugar!</span></div>
         </div>
         <div style="text-align: center; margin-top: 2rem;">
-            <a href="#" class="boton-descarga" onclick="alert('¡Descarga iniciada! Aquí irá el enlace de descarga real.'); return false;">⬇️ Descargar Nexis Launcher v2.0.0</a>
+            <button class="boton-descarga" onclick="alert('✅ Descarga iniciada! Aquí irá tu enlace real de descarga.')">⬇️ Descargar Nexis Launcher v2.0.0</button>
         </div>
     </section>
 </div>
@@ -745,149 +530,35 @@
             <button class="pestaña" onclick="cambiarPestanaCuenta('cuenta-general', this)">👤 General</button>
             <button class="pestaña" onclick="cambiarPestanaCuenta('cuenta-privacidad', this)">🔒 Privacidad</button>
             <button class="pestaña" onclick="cambiarPestanaCuenta('cuenta-seguridad', this)">🛡️ Seguridad</button>
-            <button class="pestaña" onclick="cambiarPestanaCuenta('cuenta-perfil', this)">🎨 Perfil</button>
         </div>
 
-        <!-- INICIO CUENTA -->
         <div id="cuenta-inicio" class="contenido-pestaña visible">
             <div class="tarjeta">
                 <h3>Inicio <span class="etiqueta-beta">BETA</span></h3>
                 <p class="suscripcion">Suscripción Premium: <span id="estado-premium" class="inactiva">Inactiva</span></p>
-                <p class="fecha-acceso">Último acceso: Hoy a las 18:00</p>
-
-                <div class="aviso-premium">
-                    💎 <strong>Obtén Nexis Premium</strong><br>
-                    ✅ Skins ilimitadas &nbsp;|&nbsp; ✅ Capas ilimitadas y exclusivas<br>
-                    ✅ Sin anuncios &nbsp;|&nbsp; ✅ Soporte prioritario &nbsp;|&nbsp; ✅ Funciones exclusivas<br>
-                    <a href="#" onclick="cambiarPestanaCuenta('cuenta-perfil'); return false;">🎨 Ver límites de Skins y Capas →</a>
-                </div>
-
-                <div class="aviso-premium aviso-donar metodos-pago">
-                    <h4>💳 Elegir medio de pago</h4>
-                    
-                    <div class="opcion-pago" id="pago-elegir" onclick="seleccionarPago('elegir')">
-                        <div class="radio-pago"></div>
-                        <div class="icono-pago">💳</div>
-                        <div class="info-pago">
-                            <strong>Elegir medio de pago</strong>
-                            <span>Selecciona cualquier método de tu preferencia</span>
-                        </div>
-                    </div>
-
-                    <div class="opcion-pago" id="pago-paypal" onclick="seleccionarPago('paypal')">
-                        <div class="radio-pago"></div>
-                        <div class="icono-pago">🅿️</div>
-                        <div class="info-pago">
-                            <strong>PayPal</strong>
-                            <span>Paga con saldo, tarjeta o cuenta bancaria</span>
-                        </div>
-                    </div>
-
-                    <div class="opcion-pago" id="pago-yape" onclick="seleccionarPago('yape')">
-                        <div class="radio-pago"></div>
-                        <div class="icono-pago">📱</div>
-                        <div class="info-pago">
-                            <strong>Yape</strong>
-                            <span>Pago rápido desde tu celular (Perú)</span>
-                        </div>
-                    </div>
-
-                    <div class="opcion-pago" id="pago-plin" onclick="seleccionarPago('plin')">
-                        <div class="radio-pago"></div>
-                        <div class="icono-pago">🔵</div>
-                        <div class="info-pago">
-                            <strong>Plin</strong>
-                            <span>Transferencia inmediata entre bancos</span>
-                        </div>
-                    </div>
-
-                    <div class="opcion-pago" id="pago-donar" onclick="seleccionarPago('donar')">
-                        <div class="radio-pago"></div>
-                        <div class="icono-pago">☕</div>
-                        <div class="info-pago">
-                            <strong>Hacer una donación</strong>
-                            <span>Apoya el proyecto con cualquier cantidad</span>
-                        </div>
-                    </div>
-
-                    <button class="boton-pagar" id="boton-pagar" onclick="realizarPago()" disabled>
-                        Selecciona un medio de pago ↑
-                    </button>
-                    <div class="mensaje-accion" id="mensaje-pago">✅ Medio de pago seleccionado</div>
-                </div>
-
+                <p class="fecha-acceso">Último acceso: Hoy</p>
                 <button class="btn-guardar btn-peligro" onclick="cerrarSesion()">Cerrar sesión</button>
             </div>
         </div>
 
-        <!-- GENERAL -->
         <div id="cuenta-general" class="contenido-pestaña">
             <div class="tarjeta">
                 <h3>General</h3>
                 <div class="fila">
-                    <div class="grupo"><label>Nombre de usuario</label><input type="text" id="campo-usuario" value="" placeholder="Inicia sesión para ver tu nombre"></div>
-                    <div class="grupo"><label>Correo electrónico</label><input type="email" id="campo-correo" value="" placeholder="tu@gmail.com"></div>
+                    <div class="grupo"><label>Nombre de usuario</label><input type="text" id="campo-usuario" placeholder="Tu nombre"></div>
+                    <div class="grupo"><label>Correo electrónico</label><input type="email" id="campo-correo" placeholder="tu@gmail.com"></div>
                 </div>
-                <div class="grupo" style="margin-top:1.2rem;"><label>Sobre mí</label><textarea>No has escrito nada sobre ti</textarea></div>
                 <button class="btn-guardar" onclick="document.getElementById('guardado-general').classList.add('mostrar'); setTimeout(()=>document.getElementById('guardado-general').classList.remove('mostrar'),3000)">Guardar cambios</button>
                 <div class="mensaje-accion" id="guardado-general">✅ Cambios guardados correctamente</div>
             </div>
         </div>
 
-        <!-- PRIVACIDAD -->
         <div id="cuenta-privacidad" class="contenido-pestaña">
-            <div class="tarjeta">
-                <h3>Privacidad</h3>
-                <div class="fila-toggle"><span>Permitir que te encuentren</span><label class="toggle"><input type="checkbox"><span class="desliza"></span></label></div>
-                <div class="fila-toggle"><span>Permitir solicitudes de amistad</span><label class="toggle"><input type="checkbox"><span class="desliza"></span></label></div>
-                <div class="fila-toggle"><span>Perfil público</span><label class="toggle"><input type="checkbox" checked><span class="desliza"></span></label></div>
-            </div>
+            <div class="tarjeta"><h3>Privacidad</h3><p>Ajustes de privacidad aquí...</p></div>
         </div>
 
-        <!-- SEGURIDAD -->
         <div id="cuenta-seguridad" class="contenido-pestaña">
-            <div class="tarjeta">
-                <h3>Seguridad</h3>
-                <div class="grupo"><label>Contraseña actual</label><input type="password" placeholder="••••••••"></div>
-                <div class="fila" style="margin-top:1.2rem;">
-                    <div class="grupo"><label>Nueva contraseña</label><input type="password" placeholder="••••••••"></div>
-                    <div class="grupo"><label>Confirmar contraseña</label><input type="password" placeholder="••••••••"></div>
-                </div>
-                <button class="btn-guardar" style="margin-top:1rem;" onclick="document.getElementById('guardado-pass').classList.add('mostrar'); setTimeout(()=>document.getElementById('guardado-pass').classList.remove('mostrar'),3000)">🔒 Cambiar contraseña</button>
-                <div class="mensaje-accion" id="guardado-pass">✅ Contraseña actualizada</div>
-            </div>
-        </div>
-
-        <!-- PERFIL SKINS -->
-        <div id="cuenta-perfil" class="contenido-pestaña">
-            <div class="personalizar-seccion">
-                <h3>🎨 Personalizar skin</h3>
-                <div class="personalizar-grid">
-                    <div class="skin-actual">
-                        <h4>Skin actual (Predeterminada)</h4>
-                        <div class="vista-personalizada" id="vista-skin">🧍</div>
-                        <div>
-                            <button class="btn-azul">✅ Establecer skin</button>
-                            <button class="btn-rojo" onclick="restablecerSkin()">↩️ Restablecer a Steve</button>
-                        </div>
-                        <div class="mensaje-accion" id="mensaje-skin">✅ Skin restablecida a Steve</div>
-                    </div>
-                    <div class="separador-vertical"></div>
-                    <div class="biblioteca-lado">
-                        <h4>Biblioteca</h4>
-                        <div class="aviso-limite-lado">
-                            <span>+</span> No puedes subir más skins.<br>
-                            <strong>Compra Premium</strong> para skins ilimitadas.
-                        </div>
-                        <div class="cuadricula-skins-lado skin-4">
-                            <div class="skin-item-lado seleccionada" onclick="seleccionarSkin(this, '🧍')">🧍</div>
-                            <div class="skin-item-lado" onclick="seleccionarSkin(this, '🧍‍♂️')">🧍‍♂️</div>
-                            <div class="skin-item-lado" onclick="seleccionarSkin(this, '🥷')">🥷</div>
-                            <div class="skin-item-lado" onclick="seleccionarSkin(this, '🤠')">🤠</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div class="tarjeta"><h3>Seguridad</h3><p>Ajustes de seguridad aquí...</p></div>
         </div>
     </div>
 </div>
@@ -897,10 +568,9 @@
 // ✅ GESTIÓN DE SESIÓN LOCAL (NO SE COMPARTE EN EL ENLACE)
 // =====================================================
 
-// Al CARGAR la página: SIEMPRE empieza SIN sesión
-// Solo recupera sesión si existe en el dispositivo del usuario
+// Al cargar la página: SIEMPRE empieza limpia
 window.addEventListener('load', function() {
-    // ⚠️ LIMPIA LA URL para que no tenga datos de sesión
+    // Limpia la URL para que no pase datos de sesión al compartir
     if (window.location.search || window.location.hash) {
         history.replaceState({}, document.title, window.location.pathname);
     }
@@ -909,36 +579,57 @@ window.addEventListener('load', function() {
     const sesionGuardada = localStorage.getItem('nexis_sesion');
     if (sesionGuardada) {
         const datos = JSON.parse(sesionGuardada);
-        iniciarSesionConDatos(datos.nombre, datos.correo);
+        aplicarSesion(datos.nombre, datos.correo);
     } else {
-        // SIN sesión: muestra botón de "Iniciar con Google"
         document.body.classList.remove('sesion-iniciada');
     }
 });
 
-// Iniciar sesión con Google
+// ✅ NAVEGACIÓN ENTRE SECCIONES
+function mostrarSeccion(nombre) {
+    // Ocultar todas las secciones
+    document.querySelectorAll('.seccion').forEach(s => s.classList.remove('visible'));
+    // Mostrar la sección seleccionada
+    const seccion = document.getElementById('s-' + nombre);
+    if (seccion) seccion.classList.add('visible');
+
+    // Actualizar botones activos del menú
+    document.querySelectorAll('.nav-enlaces > button').forEach(btn => {
+        btn.classList.remove('activo');
+    });
+    const btnActivo = document.getElementById('m-' + nombre);
+    if (btnActivo) btnActivo.classList.add('activo');
+}
+
+// ✅ CAMBIAR PESTAÑAS DE CUENTA
+function cambiarPestanaCuenta(nombre, boton) {
+    document.querySelectorAll('.contenido-pestaña').forEach(p => p.classList.remove('visible'));
+    document.querySelectorAll('.pestaña').forEach(p => p.classList.remove('activa'));
+    
+    const contenido = document.getElementById(nombre);
+    if (contenido) contenido.classList.add('visible');
+    if (boton) boton.classList.add('activa');
+}
+
+// ✅ INICIAR SESIÓN CON GOOGLE
 function iniciarConGoogle() {
-    // Simulación de inicio con Google
-    // En producción aquí iría la conexión real con Google OAuth
-    const nombreUsuario = prompt("Ingresa tu nombre de usuario (simulando Google):");
-    const correoUsuario = prompt("Ingresa tu correo Gmail:");
+    const nombreUsuario = prompt("👤 Ingresa tu nombre de usuario:");
+    const correoUsuario = prompt("📧 Ingresa tu correo Gmail:");
     
     if (nombreUsuario && correoUsuario) {
-        // Guardar sesión SOLO en el dispositivo del usuario
         const datosSesion = {
             nombre: nombreUsuario,
             correo: correoUsuario,
             fecha: new Date().toISOString()
         };
+        // Guardar SOLO en el dispositivo del usuario
         localStorage.setItem('nexis_sesion', JSON.stringify(datosSesion));
-        
-        // Mostrar sesión iniciada
-        iniciarSesionConDatos(nombreUsuario, correoUsuario);
+        aplicarSesion(nombreUsuario, correoUsuario);
     }
 }
 
-// Aplicar estado de sesión en la interfaz
-function iniciarSesionConDatos(nombre, correo) {
+// Aplicar interfaz con sesión iniciada
+function aplicarSesion(nombre, correo) {
     document.body.classList.add('sesion-iniciada');
     document.getElementById('usuario-nombre').textContent = '👤 ' + nombre;
     document.getElementById('saludo-usuario').textContent = nombre;
@@ -946,9 +637,16 @@ function iniciarSesionConDatos(nombre, correo) {
     document.getElementById('campo-correo').value = correo;
 }
 
-// Cerrar sesión
+// ✅ CERRAR SESIÓN
 function cerrarSesion() {
     localStorage.removeItem('nexis_sesion');
     document.body.classList.remove('sesion-iniciada');
     document.getElementById('campo-usuario').value = '';
-    document.getElementById('campo-corre
+    document.getElementById('campo-correo').value = '';
+    // Volver a inicio
+    mostrarSeccion('inicio');
+}
+</script>
+
+</body>
+</html>
