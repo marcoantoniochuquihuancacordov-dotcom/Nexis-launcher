@@ -32,6 +32,8 @@
             --borde: rgba(255, 255, 255, 0.08);
             --sombra: 0 8px 30px rgba(0, 0, 0, 0.35);
             --discord-azul: #5865F2;
+            --color-activo: #7fff00; /* ✅ Verde en lugar de azul */
+            --fondo-activo: rgba(127, 255, 0, 0.15); /* ✅ Fondo verde claro */
         }
 
         body {
@@ -99,7 +101,6 @@
             cursor: pointer;
             position: relative;
             z-index: 10;
-            pointer-events: auto;
         }
 
         .nav-enlaces button:hover {
@@ -109,7 +110,7 @@
 
         .nav-enlaces button.activo {
             color: var(--verde);
-            background: rgba(127, 255, 0, 0.1);
+            background: rgba(127, 255, 0, 0.15);
         }
 
         .usuario-nav {
@@ -128,7 +129,7 @@
 
         .usuario-nav:hover {
             background: rgba(255, 255, 255, 0.1);
-            border-color: var(--azul);
+            border-color: var(--verde);
         }
 
         .btn-cerrar {
@@ -241,7 +242,7 @@
         }
 
         .noticia:hover {
-            border-color: var(--azul);
+            border-color: var(--verde);
             background: rgba(30, 41, 59, 0.8);
             transform: translateY(-4px);
             box-shadow: var(--sombra);
@@ -249,8 +250,8 @@
 
         .etiqueta {
             display: inline-block;
-            background: rgba(56, 189, 248, 0.12);
-            color: var(--azul);
+            background: rgba(127, 255, 0, 0.12);
+            color: var(--verde);
             font-size: 0.8rem;
             font-weight: 700;
             padding: 0.25rem 0.75rem;
@@ -268,89 +269,327 @@
         .dashboard { max-width: 1100px; margin: 3rem auto; padding: 0 1.5rem 4rem; }
         .dashboard-saludo { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.2rem; }
         .dashboard-subtitulo { color: var(--texto-claro); font-size: 1.05rem; margin-bottom: 2rem; }
-        .etiqueta-beta { display: inline-block; background: var(--azul); color: #000; font-size: 0.75rem; font-weight: 800; padding: 0.05rem 0.5rem; border-radius: 12px; margin-left: 0.5rem; vertical-align: middle; }
+        .etiqueta-beta { display: inline-block; background: var(--verde); color: #000; font-size: 0.75rem; font-weight: 800; padding: 0.05rem 0.5rem; border-radius: 12px; margin-left: 0.5rem; vertical-align: middle; }
 
-        .pestañas { display: flex; gap: 0.4rem; margin-bottom: 2.5rem; background: rgba(30, 41, 59, 0.6); padding: 0.4rem; border-radius: 12px; border: 1px solid var(--borde); flex-wrap: wrap; }
-        .pestaña { padding: 0.6rem 1.2rem; border-radius: 8px; cursor: pointer; font-weight: 600; color: var(--texto-claro); transition: all 0.2s ease; border: none; background: transparent; display: flex; align-items: center; gap: 0.4rem; font-size: 0.95rem; }
-        .pestaña:hover { color: #fff; background: rgba(255, 255, 255, 0.05); }
-        .pestaña.activa { background: var(--azul); color: #000; font-weight: 700; box-shadow: 0 2px 8px rgba(56, 189, 248, 0.25); }
+        /* ✅ PESTAÑAS CON ESTILO SELECCIONADO + COLOR VERDE */
+        .pestañas { 
+            display: flex; 
+            gap: 0.4rem; 
+            margin-bottom: 2.5rem; 
+            background: rgba(30, 41, 59, 0.6); 
+            padding: 0.4rem; 
+            border-radius: 14px; 
+            border: 1px solid var(--borde); 
+            flex-wrap: wrap; 
+        }
+        .pestaña { 
+            padding: 0.7rem 1.4rem; 
+            border-radius: 10px; 
+            cursor: pointer; 
+            font-weight: 600; 
+            color: var(--texto-claro); 
+            transition: all 0.25s ease; 
+            border: none; 
+            background: transparent; 
+            display: flex; 
+            align-items: center; 
+            gap: 0.5rem; 
+            font-size: 0.95rem; 
+        }
+        .pestaña:hover { 
+            color: #fff; 
+            background: rgba(127, 255, 0, 0.08); 
+        }
+        /* ✅ Pestaña ACTIVA: Fondo verde brillante + texto negro */
+        .pestaña.activa { 
+            background: linear-gradient(90deg, var(--verde), var(--verde-oscuro)); 
+            color: #000; 
+            font-weight: 700; 
+            box-shadow: 0 0 15px rgba(127, 255, 0, 0.3); 
+        }
         .contenido-pestaña { display: none; animation: aparecer 0.3s ease-out; }
         .contenido-pestaña.visible { display: block; }
 
-        .tarjeta { background: rgba(30, 41, 59, 0.5); border: 1px solid var(--borde); border-radius: 14px; padding: 1.8rem; margin-bottom: 1.5rem; transition: all 0.25s ease; }
-        .tarjeta:hover { border-color: rgba(56, 189, 248, 0.3); }
-        .tarjeta h3 { font-size: 1.3rem; margin-bottom: 1.2rem; color: #fff; border-bottom: 1px solid var(--borde); padding-bottom: 0.5rem; }
-        .fila { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .tarjeta { 
+            background: rgba(30, 41, 59, 0.5); 
+            border: 1px solid var(--borde); 
+            border-radius: 16px; 
+            padding: 2rem; 
+            margin-bottom: 1.5rem; 
+            transition: all 0.25s ease; 
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+        .tarjeta:hover { border-color: rgba(127, 255, 0, 0.3); }
+        .tarjeta h3 { 
+            font-size: 1.4rem; 
+            margin-bottom: 1.5rem; 
+            color: #fff; 
+            border-bottom: 1px solid var(--borde); 
+            padding-bottom: 0.8rem; 
+        }
+        .fila { display: flex; gap: 1.2rem; flex-wrap: wrap; }
         .grupo { flex: 1; min-width: 260px; }
-        label { display: block; margin-bottom: 0.4rem; color: var(--texto-claro); font-weight: 500; font-size: 0.95rem; }
-        input, textarea { width: 100%; padding: 0.75rem 1rem; border-radius: 8px; border: 1px solid var(--borde); background: rgba(0, 0, 0, 0.3); color: #fff; font-size: 0.95rem; outline: none; transition: border 0.25s, box-shadow 0.25s; }
-        input:focus, textarea:focus { border-color: var(--azul); box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.1); }
-        textarea { resize: vertical; min-height: 100px; }
-        .btn-guardar { background: var(--azul); color: #000; border: none; padding: 0.8rem 2rem; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 0.95rem; margin-top: 1rem; width: 100%; transition: all 0.2s ease; }
-        .btn-guardar:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3); }
+        label { display: block; margin-bottom: 0.5rem; color: var(--texto-claro); font-weight: 500; font-size: 0.95rem; }
+        input, textarea { 
+            width: 100%; 
+            padding: 0.85rem 1rem; 
+            border-radius: 10px; 
+            border: 1px solid var(--borde); 
+            background: rgba(0, 0, 0, 0.4); 
+            color: #fff; 
+            font-size: 0.95rem; 
+            outline: none; 
+            transition: border 0.25s, box-shadow 0.25s; 
+        }
+        input:focus, textarea:focus { 
+            border-color: var(--verde); 
+            box-shadow: 0 0 0 3px rgba(127, 255, 0, 0.15); 
+        }
+        textarea { resize: vertical; min-height: 120px; }
+        /* ✅ Botones con color verde */
+        .btn-guardar { 
+            background: linear-gradient(90deg, var(--verde), var(--verde-oscuro)); 
+            color: #000; 
+            border: none; 
+            padding: 0.9rem 2rem; 
+            border-radius: 10px; 
+            font-weight: 700; 
+            cursor: pointer; 
+            font-size: 1rem; 
+            margin-top: 1.2rem; 
+            width: 100%; 
+            transition: all 0.2s ease; 
+        }
+        .btn-guardar:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 4px 15px rgba(127, 255, 0, 0.3); 
+        }
         .btn-peligro { background: linear-gradient(90deg, #f43f5e, #e11d48); color: #fff; }
         .btn-peligro:hover { box-shadow: 0 4px 15px rgba(244, 63, 94, 0.3); }
-        .suscripcion { font-size: 1rem; margin-bottom: 0.5rem; }
+        .suscripcion { font-size: 1.1rem; margin-bottom: 0.5rem; }
         .inactiva { color: var(--rojo); font-weight: 700; }
         .fecha-acceso { color: var(--texto-claro); font-size: 0.95rem; }
-        .aviso-premium { margin-top: 1.5rem; padding: 1.2rem 1.4rem; background: rgba(250, 204, 21, 0.08); border: 1px solid rgba(250, 204, 21, 0.25); border-radius: 10px; color: #fde047; font-size: 0.95rem; line-height: 1.7; }
+        .aviso-premium { 
+            margin-top: 1.5rem; 
+            padding: 1.4rem 1.6rem; 
+            background: rgba(250, 204, 21, 0.08); 
+            border: 1px solid rgba(250, 204, 21, 0.25); 
+            border-radius: 12px; 
+            color: #fde047; 
+            font-size: 1rem; 
+            line-height: 1.7; 
+        }
         .aviso-premium strong { color: #fff; }
-        .aviso-premium a { color: var(--dorado); font-weight: 700; text-decoration: none; cursor: pointer; display: inline-block; margin-top: 0.5rem; padding: 0.4rem 1rem; background: rgba(250, 204, 21, 0.15); border-radius: 6px; transition: all 0.2s; }
-        .aviso-premium a:hover { background: rgba(250, 204, 21, 0.25); transform: translateY(-1px); }
+        .aviso-premium a { 
+            color: var(--dorado); 
+            font-weight: 700; 
+            text-decoration: none; 
+            cursor: pointer; 
+            display: inline-block; 
+            margin-top: 0.8rem; 
+            padding: 0.5rem 1.2rem; 
+            background: rgba(250, 204, 21, 0.15); 
+            border-radius: 8px; 
+            transition: all 0.2s; 
+        }
+        .aviso-premium a:hover { 
+            background: rgba(250, 204, 21, 0.25); 
+            transform: translateY(-1px); 
+        }
 
-        .fila-toggle { display: flex; justify-content: space-between; align-items: center; padding: 0.9rem 0; border-bottom: 1px solid var(--borde); }
+        .fila-toggle { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 1rem 0; 
+            border-bottom: 1px solid var(--borde); 
+        }
         .fila-toggle:last-child { border-bottom: none; }
-        .toggle { position: relative; display: inline-block; width: 48px; height: 26px; }
+        .toggle { position: relative; display: inline-block; width: 52px; height: 28px; }
         .toggle input { opacity: 0; width: 0; height: 0; }
-        .desliza { position: absolute; cursor: pointer; inset: 0; background: #334155; border-radius: 26px; transition: 0.3s ease; }
-        .desliza:before { content: ''; position: absolute; height: 20px; width: 20px; left: 3px; bottom: 3px; background: white; border-radius: 50%; transition: 0.3s ease; }
-        input:checked + .desliza { background: var(--azul); }
-        input:checked + .desliza:before { transform: translateX(22px); }
+        .desliza { 
+            position: absolute; 
+            cursor: pointer; 
+            inset: 0; 
+            background: #334155; 
+            border-radius: 28px; 
+            transition: 0.3s ease; 
+        }
+        .desliza:before { 
+            content: ''; 
+            position: absolute; 
+            height: 22px; 
+            width: 22px; 
+            left: 3px; 
+            bottom: 3px; 
+            background: white; 
+            border-radius: 50%; 
+            transition: 0.3s ease; 
+        }
+        input:checked + .desliza { background: var(--verde); }
+        input:checked + .desliza:before { transform: translateX(24px); }
 
         .apartado-perfil { margin-bottom: 3.5rem; }
         .titulo-apartado { font-size: 1.4rem; margin-bottom: 1.2rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--borde); }
         .titulo-skins { color: var(--verde); }
-        .titulo-capas { color: var(--azul); }
-        .tarjeta-perfil { background: rgba(30, 41, 59, 0.5); border: 1px solid var(--borde); border-radius: 14px; padding: 2rem; text-align: center; margin-bottom: 1.5rem; transition: all 0.25s ease; }
-        .tarjeta-perfil:hover { border-color: rgba(56, 189, 248, 0.3); }
-        .tarjeta-perfil h4 { margin-bottom: 1.2rem; color: #fff; font-size: 1rem; }
-        .vista-skin, .vista-capa { width: 140px; height: 220px; margin: 0 auto; background: rgba(0, 0, 0, 0.25); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 4rem; border: 2px solid var(--borde); image-rendering: pixelated; }
-        .btn-establecer { margin-top: 1.2rem; padding: 0.65rem 1.4rem; background: var(--azul); color: #000; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; transition: all 0.2s ease; font-size: 0.95rem; }
-        .btn-establecer:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(56, 189, 248, 0.25); }
-        .btn-eliminar { margin-left: 0.5rem; padding: 0.65rem 1.4rem; background: var(--rojo); color: #fff; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; transition: all 0.2s ease; font-size: 0.95rem; }
+        .titulo-capas { color: var(--verde); }
+        .tarjeta-perfil { 
+            background: rgba(30, 41, 59, 0.5); 
+            border: 1px solid var(--borde); 
+            border-radius: 16px; 
+            padding: 2rem; 
+            text-align: center; 
+            margin-bottom: 1.5rem; 
+            transition: all 0.25s ease; 
+        }
+        .tarjeta-perfil:hover { border-color: rgba(127, 255, 0, 0.3); }
+        .tarjeta-perfil h4 { margin-bottom: 1.2rem; color: #fff; font-size: 1.1rem; }
+        .vista-skin, .vista-capa { 
+            width: 140px; 
+            height: 220px; 
+            margin: 0 auto; 
+            background: rgba(0, 0, 0, 0.25); 
+            border-radius: 12px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 4rem; 
+            border: 2px solid var(--borde); 
+            image-rendering: pixelated; 
+        }
+        .btn-establecer { 
+            margin-top: 1.2rem; 
+            padding: 0.7rem 1.5rem; 
+            background: linear-gradient(90deg, var(--verde), var(--verde-oscuro)); 
+            color: #000; 
+            border: none; 
+            border-radius: 8px; 
+            font-weight: 700; 
+            cursor: pointer; 
+            transition: all 0.2s ease; 
+            font-size: 0.95rem; 
+        }
+        .btn-establecer:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(127, 255, 0, 0.3); }
+        .btn-eliminar { 
+            margin-left: 0.5rem; 
+            padding: 0.7rem 1.5rem; 
+            background: var(--rojo); 
+            color: #fff; 
+            border: none; 
+            border-radius: 8px; 
+            font-weight: 700; 
+            cursor: pointer; 
+            transition: all 0.2s ease; 
+            font-size: 0.95rem; 
+        }
         .btn-eliminar:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(244, 63, 94, 0.25); }
 
-        .biblioteca { background: rgba(30, 41, 59, 0.5); border: 1px solid var(--borde); border-radius: 14px; padding: 1.8rem; }
+        .biblioteca { 
+            background: rgba(30, 41, 59, 0.5); 
+            border: 1px solid var(--borde); 
+            border-radius: 16px; 
+            padding: 2rem; 
+        }
         .biblioteca h4 { margin-bottom: 1.2rem; color: #fff; font-size: 1.1rem; }
         .biblioteca-cuerpo { display: flex; gap: 1.5rem; align-items: flex-start; flex-wrap: wrap; }
         .vista-actual { flex: 0 0 160px; text-align: center; }
         .vista-actual h5 { color: var(--texto-claro); margin-bottom: 0.8rem; font-size: 0.9rem; }
-        .skin-preview { width: 100px; height: 180px; margin: 0 auto; background: rgba(0, 0, 0, 0.25); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 3rem; border: 2px solid var(--azul); }
+        .skin-preview { 
+            width: 100px; 
+            height: 180px; 
+            margin: 0 auto; 
+            background: rgba(0, 0, 0, 0.25); 
+            border-radius: 10px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 3rem; 
+            border: 2px solid var(--verde); 
+        }
         .separador { width: 1px; height: 200px; background: var(--borde); }
         .skins-lista { flex: 1; min-width: 220px; }
         .skins-lista h5 { color: var(--texto-claro); margin-bottom: 0.8rem; font-size: 0.9rem; }
         .cuadricula-skins { display: grid; grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); gap: 0.8rem; }
-        .skin-item { aspect-ratio: 2/3; background: rgba(255, 255, 255, 0.04); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; cursor: pointer; border: 2px solid transparent; transition: all 0.2s ease; position: relative; padding: 0.3rem; }
-        .skin-item:hover { border-color: var(--azul); background: rgba(56, 189, 248, 0.08); transform: translateY(-2px); }
-        .skin-item.seleccionada { border-color: var(--verde); box-shadow: 0 0 10px rgba(127, 255, 0, 0.2); }
+        .skin-item { 
+            aspect-ratio: 2/3; 
+            background: rgba(255, 255, 255, 0.04); 
+            border-radius: 10px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 1.8rem; 
+            cursor: pointer; 
+            border: 2px solid transparent; 
+            transition: all 0.2s ease; 
+            position: relative; 
+            padding: 0.3rem; 
+        }
+        .skin-item:hover { border-color: var(--verde); background: rgba(127, 255, 0, 0.08); transform: translateY(-2px); }
+        .skin-item.seleccionada { border-color: var(--verde); box-shadow: 0 0 12px rgba(127, 255, 0, 0.25); }
         .skin-item.bloqueado { opacity: 0.6; filter: grayscale(0.6); cursor: not-allowed; }
         .icono-bloqueo { position: absolute; top: 4px; right: 4px; font-size: 0.7rem; }
-        .aviso-limite { color: var(--rojo); font-size: 0.85rem; margin-top: 0.5rem; display: flex; align-items: center; gap: 0.3rem; line-height: 1.5; }
-        .btn-volver { display: inline-block; margin-top: 1.5rem; padding: 0.6rem 1.4rem; background: var(--azul); color: #000; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; text-decoration: none; transition: all 0.2s ease; }
+        .aviso-limite { color: var(--rojo); font-size: 0.9rem; margin-top: 0.5rem; display: flex; align-items: center; gap: 0.3rem; line-height: 1.5; }
+        .btn-volver { 
+            display: inline-block; 
+            margin-top: 1.5rem; 
+            padding: 0.65rem 1.4rem; 
+            background: linear-gradient(90deg, var(--verde), var(--verde-oscuro)); 
+            color: #000; 
+            border: none; 
+            border-radius: 8px; 
+            font-weight: 700; 
+            cursor: pointer; 
+            text-decoration: none; 
+            transition: all 0.2s ease; 
+        }
         .btn-volver:hover { transform: translateY(-2px); }
 
         section { padding: 2rem 2rem 4rem; }
         section h2 { font-size: 2rem; text-align: center; margin-bottom: 2rem; color: #fff; }
         .grid-caracteristicas { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.2rem; }
-        .card { background: rgba(30, 41, 59, 0.5); border: 1px solid var(--borde); border-radius: 14px; padding: 1.5rem; transition: all 0.25s ease; }
+        .card { 
+            background: rgba(30, 41, 59, 0.5); 
+            border: 1px solid var(--borde); 
+            border-radius: 14px; 
+            padding: 1.5rem; 
+            transition: all 0.25s ease; 
+        }
         .card:hover { border-color: var(--verde); transform: translateY(-4px); box-shadow: var(--sombra); }
         .card h3 { color: var(--verde); margin-bottom: 0.6rem; font-size: 1.1rem; }
         .card p { color: var(--texto-claro); line-height: 1.6; }
-        .pasos { background: rgba(30, 41, 59, 0.5); border: 1px solid var(--borde); border-radius: 14px; padding: 2rem; max-width: 700px; margin: 0 auto; }
+        .pasos { 
+            background: rgba(30, 41, 59, 0.5); 
+            border: 1px solid var(--borde); 
+            border-radius: 14px; 
+            padding: 2rem; 
+            max-width: 700px; 
+            margin: 0 auto; 
+        }
         .paso { display: flex; gap: 1rem; margin-bottom: 1rem; align-items: flex-start; }
-        .paso-num { background: var(--verde); color: #000; font-weight: 900; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .paso-num { 
+            background: var(--verde); 
+            color: #000; 
+            font-weight: 900; 
+            width: 34px; 
+            height: 34px; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            flex-shrink: 0; 
+        }
         .paso-texto { color: var(--texto); }
-        .acerca { text-align: center; max-width: 700px; margin: 0 auto; background: rgba(30, 41, 59, 0.5); border: 1px solid var(--borde); border-radius: 14px; padding: 2rem; color: var(--texto-claro); line-height: 1.8; }
+        .acerca { 
+            text-align: center; 
+            max-width: 700px; 
+            margin: 0 auto; 
+            background: rgba(30, 41, 59, 0.5); 
+            border: 1px solid var(--borde); 
+            border-radius: 14px; 
+            padding: 2rem; 
+            color: var(--texto-claro); 
+            line-height: 1.8; 
+        }
         .acerca a { color: var(--verde); text-decoration: none; font-weight: 600; }
         .acerca a:hover { text-decoration: underline; }
 
@@ -460,11 +699,11 @@
         <p class="dashboard-subtitulo">Bienvenid@ a tu Panel de Cuenta</p>
 
         <div class="pestañas">
-            <button class="pestaña activa" onclick="cambiarPestanaCuenta('cuenta-inicio')">🏠 Inicio</button>
-            <button class="pestaña" onclick="cambiarPestanaCuenta('cuenta-general')">👤 General</button>
-            <button class="pestaña" onclick="cambiarPestanaCuenta('cuenta-privacidad')">🔒 Privacidad</button>
-            <button class="pestaña" onclick="cambiarPestanaCuenta('cuenta-seguridad')">🛡️ Seguridad</button>
-            <button class="pestaña" onclick="cambiarPestanaCuenta('cuenta-perfil')">😀 Perfil</button>
+            <button class="pestaña activa" onclick="cambiarPestanaCuenta('cuenta-inicio', this)">🏠 Inicio</button>
+            <button class="pestaña" onclick="cambiarPestanaCuenta('cuenta-general', this)">👤 General</button>
+            <button class="pestaña" onclick="cambiarPestanaCuenta('cuenta-privacidad', this)">🔒 Privacidad</button>
+            <button class="pestaña" onclick="cambiarPestanaCuenta('cuenta-seguridad', this)">🛡️ Seguridad</button>
+            <button class="pestaña" onclick="cambiarPestanaCuenta('cuenta-perfil', this)">😀 Perfil</button>
         </div>
 
         <div id="cuenta-inicio" class="contenido-pestaña visible">
@@ -487,7 +726,7 @@
                     <div class="grupo"><label>Nombre de usuario</label><input type="text" value="Papichulo6070"></div>
                     <div class="grupo"><label>Correo electrónico</label><input type="email" value="usuario@correo.com"></div>
                 </div>
-                <div class="grupo" style="margin-top:1rem;"><label>Sobre mí</label><textarea>No has escrito nada sobre ti</textarea></div>
+                <div class="grupo" style="margin-top:1.2rem;"><label>Sobre mí</label><textarea>No has escrito nada sobre ti</textarea></div>
                 <button class="btn-guardar">Guardar cambios</button>
             </div>
         </div>
@@ -505,7 +744,7 @@
             <div class="tarjeta">
                 <h3>Seguridad</h3>
                 <div class="grupo"><label>Contraseña actual</label><input type="password" placeholder="••••••••"></div>
-                <div class="fila" style="margin-top:1rem;">
+                <div class="fila" style="margin-top:1.2rem;">
                     <div class="grupo"><label>Nueva contraseña</label><input type="password" placeholder="••••••••"></div>
                     <div class="grupo"><label>Confirmar contraseña</label><input type="password" placeholder="••••••••"></div>
                 </div>
@@ -519,7 +758,7 @@
                 <div class="tarjeta-perfil">
                     <h4>Skin Actual</h4>
                     <div class="vista-skin">🧍</div>
-                    <div style="margin-top:1rem;">
+                    <div style="margin-top:1.2rem;">
                         <button class="btn-establecer">✅ Establecer skin</button>
                         <button class="btn-eliminar">🗑️ Eliminar skin</button>
                     </div>
@@ -530,13 +769,11 @@
 </div>
 
 <!-- ====================================== -->
-<!-- ✅ JAVASCRIPT COMPLETO — AQUÍ ESTABA LO QUE FALTABA -->
+<!-- ✅ JAVASCRIPT COMPLETO -->
 <!-- ====================================== -->
 <script>
     // Cambiar sección principal
     function mostrarSeccion(nombreSeccion) {
-        console.log('Mostrando sección:', nombreSeccion); // ✅ Para depurar
-
         // Ocultar TODAS las secciones
         document.querySelectorAll('.seccion').forEach(sec => {
             sec.classList.remove('visible');
@@ -544,46 +781,37 @@
 
         // Mostrar la sección elegida
         const seccion = document.getElementById('s-' + nombreSeccion);
-        if (seccion) {
-            seccion.classList.add('visible');
-        } else {
-            console.error('No existe sección:', 's-' + nombreSeccion);
-        }
+        if (seccion) seccion.classList.add('visible');
 
-        // Quitar clase "activo" a TODOS los botones del menú
+        // Quitar "activo" a todos los botones del menú
         document.querySelectorAll('.nav-enlaces button').forEach(btn => {
             btn.classList.remove('activo');
         });
 
         // Poner "activo" al botón pulsado
         const botonActivo = document.getElementById('m-' + nombreSeccion);
-        if (botonActivo) {
-            botonActivo.classList.add('activo');
-        }
+        if (botonActivo) botonActivo.classList.add('activo');
     }
 
-    // Cambiar pestañas dentro de Cuenta
-    function cambiarPestanaCuenta(nombrePestana) {
-        console.log('Cambiando pestaña:', nombrePestana); // ✅ Para depurar
-
+    // ✅ Cambiar pestañas — AHORA RECIBE EL BOTÓN PARA RESALTARLO
+    function cambiarPestanaCuenta(nombrePestana, botonPulsado) {
         // Ocultar TODAS las pestañas
         document.querySelectorAll('.contenido-pestaña').forEach(tab => {
             tab.classList.remove('visible');
         });
 
         // Mostrar la pestaña elegida
-        const pestana = document.getElementById(nombrePestana);
-        if (pestana) {
-            pestana.classList.add('visible');
-        }
+        document.getElementById(nombrePestana).classList.add('visible');
 
         // Quitar "activa" a TODOS los botones de pestaña
         document.querySelectorAll('.pestañas .pestaña').forEach(btn => {
             btn.classList.remove('activa');
         });
 
-        // Poner "activa" al botón pulsado
-        event.target.classList.add('activa');
+        // ✅ Poner "activa" al botón pulsado — con fondo verde
+        if (botonPulsado) {
+            botonPulsado.classList.add('activa');
+        }
     }
 </script>
 
