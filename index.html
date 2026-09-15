@@ -85,13 +85,13 @@
         }
         .btn-cerrar-sesion:hover { filter: brightness(1.08); }
 
-        /* === SISTEMA DE VISIBILIDAD === */
+        /* === SISTEMA DE VISIBILIDAD — CORREGIDO === */
         .sin-sesion { display: flex; }
         .con-sesion { display: none; }
         body.sesion-iniciada .sin-sesion { display: none !important; }
         body.sesion-iniciada .con-sesion { display: flex !important; }
 
-        /* === CONTENEDOR DASHBOARD === */
+        /* === DASHBOARD: OCULTO POR DEFECTO, SOLO CON SESIÓN === */
         .dashboard {
             max-width: 1200px;
             margin: 0 auto;
@@ -99,6 +99,17 @@
             display: none;
         }
         body.sesion-iniciada .dashboard { display: block; }
+
+        /* === PANTALLA DE BIENVENIDA SIN SESIÓN === */
+        .bienvenida {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        body.sesion-iniciada .bienvenida { display: none; }
 
         .saludo {
             font-size: 2.8rem;
@@ -470,19 +481,23 @@
     </div>
 </div>
 
-<!-- NAVEGACIÓN === SOLO SE CAMBIA ESTA PARTE -->
+<!-- NAVEGACIÓN -->
 <nav>
     <span class="logo" onclick="irInicio()">Batty Launcher</span>
     <div class="nav-botones">
-        <!-- SIN SESIÓN: Se muestran ESTOS dos botones -->
         <button class="btn-nav btn-registrar sin-sesion" onclick="abrirModalRegistro()">Registrarse</button>
         <button class="btn-nav btn-iniciar sin-sesion" onclick="abrirModalLogin()">Iniciar Sesión</button>
-        <!-- CON SESIÓN: Se muestra ESTE botón en lugar de los dos anteriores -->
         <button class="btn-cerrar-sesion con-sesion" onclick="cerrarSesion()">Cerrar sesión</button>
     </div>
 </nav>
 
-<!-- DASHBOARD SOLO VISIBLE CON SESIÓN INICIADA -->
+<!-- ✅ PANTALLA DE BIENVENIDA — SE VE CUANDO NO HAY SESIÓN -->
+<div class="bienvenida">
+    <h1 class="saludo">¡Bienvenido a Batty Launcher!</h1>
+    <p class="sub-saludo">Inicia sesión o regístrate para acceder al panel de control</p>
+</div>
+
+<!-- DASHBOARD — SOLO VISIBLE CON SESIÓN INICIADA -->
 <div class="dashboard">
     <h1 class="saludo">Hola, <span id="nombre-usuario">Usuario</span></h1>
     <p class="sub-saludo">Bienvenid@ a la nueva Dashboard de Batty</p>
