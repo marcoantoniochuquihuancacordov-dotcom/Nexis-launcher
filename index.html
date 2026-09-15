@@ -603,11 +603,11 @@
             <p>Bienvenid@ a tu nueva Dashboard</p>
         </div>
         <div class="pestañas-dash">
-            <button class="pestaña-dash activa" onclick="cambiarPestanaDash('inicio-dash')">🏠 Inicio</button>
-            <button class="pestaña-dash" onclick="cambiarPestanaDash('general')">👤 General</button>
-            <button class="pestaña-dash" onclick="cambiarPestanaDash('privacidad')">🔒 Privacidad</button>
-            <button class="pestaña-dash" onclick="cambiarPestanaDash('seguridad')">🛡️ Seguridad</button>
-            <button class="pestaña-dash" onclick="cambiarPestanaDash('perfil')">😊 Perfil</button>
+            <button class="pestaña-dash activa" id="tab-inicio" onclick="cambiarPestanaDash('inicio')">🏠 Inicio</button>
+            <button class="pestaña-dash" id="tab-general" onclick="cambiarPestanaDash('general')">👤 General</button>
+            <button class="pestaña-dash" id="tab-privacidad" onclick="cambiarPestanaDash('privacidad')">🔒 Privacidad</button>
+            <button class="pestaña-dash" id="tab-seguridad" onclick="cambiarPestanaDash('seguridad')">🛡️ Seguridad</button>
+            <button class="pestaña-dash" id="tab-perfil" onclick="cambiarPestanaDash('perfil')">😊 Perfil</button>
         </div>
 
         <!-- INICIO DASH -->
@@ -756,10 +756,10 @@ function irPagina(nombre) {
         return;
     }
 
-    // Dashboard
+    // Dashboard — SIEMPRE EMPIEZA EN INICIO
     if (nombre === 'dashboard' && cuentaActiva) {
         document.getElementById('pag-dashboard').classList.add('activa');
-        cambiarPestanaDash('inicio-dash'); // ✅ SIEMPRE EMPIEZA EN INICIO DEL PANEL
+        cambiarPestanaDash('inicio'); // ✅ FORZADO A INICIO
     }
 }
 
@@ -819,10 +819,16 @@ function iniciarSesionDirecto(cuenta) {
     document.getElementById('campo-sobre').value = cuenta.sobre;
     document.getElementById('hora-acceso').textContent = cuenta.ultimoAcceso;
 
-    // ✅ IR AL DASHBOARD Y ABRIR SIEMPRE EN INICIO
+    // ✅ FORZAR ABRIR DASHBOARD EN INICIO
     document.querySelectorAll('.pagina').forEach(p => p.classList.remove('activa'));
     document.getElementById('pag-dashboard').classList.add('activa');
-    cambiarPestanaDash('inicio-dash'); // ✅ CORREGIDO: SIEMPRE INICIO AL ENTRAR
+    
+    // ✅ LIMPIAR TODO Y DEJAR SOLO INICIO VISIBLE
+    document.querySelectorAll('.contenido-dash').forEach(d => d.classList.remove('visible'));
+    document.querySelectorAll('.pestaña-dash').forEach(b => b.classList.remove('activa'));
+    document.getElementById('dash-inicio').classList.add('visible');
+    document.getElementById('tab-inicio').classList.add('activa');
+
     actualizarSwitches();
     actualizarEstadoPremium();
 }
@@ -843,24 +849,26 @@ function cerrarSesion() {
 
 // === PESTAÑAS DEL PANEL ===
 function cambiarPestanaDash(nombre) {
+    // Quitar todo
     document.querySelectorAll('.contenido-dash').forEach(d => d.classList.remove('visible'));
     document.querySelectorAll('.pestaña-dash').forEach(b => b.classList.remove('activa'));
 
-    if (nombre === 'inicio-dash') {
+    // Mostrar lo solicitado
+    if (nombre === 'inicio') {
         document.getElementById('dash-inicio').classList.add('visible');
-        document.querySelectorAll('.pestaña-dash')[0].classList.add('activa');
+        document.getElementById('tab-inicio').classList.add('activa');
     } else if (nombre === 'general') {
         document.getElementById('dash-general').classList.add('visible');
-        document.querySelectorAll('.pestaña-dash')[1].classList.add('activa');
+        document.getElementById('tab-general').classList.add('activa');
     } else if (nombre === 'privacidad') {
         document.getElementById('dash-privacidad').classList.add('visible');
-        document.querySelectorAll('.pestaña-dash')[2].classList.add('activa');
+        document.getElementById('tab-privacidad').classList.add('activa');
     } else if (nombre === 'seguridad') {
         document.getElementById('dash-seguridad').classList.add('visible');
-        document.querySelectorAll('.pestaña-dash')[3].classList.add('activa');
+        document.getElementById('tab-seguridad').classList.add('activa');
     } else if (nombre === 'perfil') {
         document.getElementById('dash-perfil').classList.add('visible');
-        document.querySelectorAll('.pestaña-dash')[4].classList.add('activa');
+        document.getElementById('tab-perfil').classList.add('activa');
     }
 }
 
