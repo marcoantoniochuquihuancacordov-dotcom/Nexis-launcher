@@ -22,13 +22,12 @@
         .nav-enlaces a, .nav-enlaces button { padding: .6rem 1.1rem; border-radius: 6px; font-size: .95rem; font-weight: 500; border: none; background: transparent; color: var(--texto); cursor: pointer; text-decoration: none; transition: all .2s; font-family: inherit; }
         .nav-enlaces a:hover, .nav-enlaces button:hover { background: rgba(57,255,20,.1); }
         .nav-enlaces a.activo { background: var(--verde); color: #000; font-weight: 600; }
-        .usuario-nav { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
         .btn-discord { background: var(--azul-discord); color: #fff !important; font-weight: 600; }
         .btn-discord:hover { filter: brightness(1.1); }
+        .contenedor { max-width: 1200px; margin: 0 auto; padding: 3rem 2rem; }
         .pagina { display: none; animation: aparecer .3s ease-out; }
         .pagina.activa { display: block; }
         @keyframes aparecer { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
-        .contenedor { max-width: 1200px; margin: 0 auto; padding: 3rem 2rem; }
         .inicio-contenido { text-align: center; padding: 2rem 0 4rem; }
         .inicio-contenido h1 { font-size: 3rem; color: var(--verde); margin-bottom: 1rem; }
         .inicio-contenido p { color: var(--texto-secundario); font-size: 1.1rem; max-width: 700px; margin: 0 auto 2.5rem; line-height: 1.7; }
@@ -117,9 +116,10 @@
         .con-sesion { display: none; }
         body.sesion-iniciada .sin-sesion { display: none !important; }
         body.sesion-iniciada .con-sesion { display: flex !important; }
+        .pagina-publica { display: none; }
+        .pagina-publica.activa { display: block; }
         .pagina-dashboard { display: none; }
         body.sesion-iniciada .pagina-dashboard { display: block; }
-        body.sesion-iniciada .pagina-publica { display: none; }
     </style>
 </head>
 <body>
@@ -153,19 +153,19 @@
     <span class="logo" onclick="irPagina('inicio')">Nexis Launcher</span>
     <div class="nav-enlaces">
         <div class="sin-sesion">
-            <a href="#" class="activo" onclick="irPagina('inicio', this)">Inicio</a>
-            <a href="#" onclick="irPagina('caracteristicas', this)">Características</a>
-            <a href="#" onclick="irPagina('descargar', this)">Descargar</a>
-            <a href="#" onclick="irPagina('acerca', this)">Acerca de</a>
+            <a href="#" class="activo" onclick="irPagina('inicio', this); return false;">Inicio</a>
+            <a href="#" onclick="irPagina('caracteristicas', this); return false;">Características</a>
+            <a href="#" onclick="irPagina('descargar', this); return false;">Descargar</a>
+            <a href="#" onclick="irPagina('acerca', this); return false;">Acerca de</a>
             <button onclick="abrirModalLogin()">Iniciar sesión</button>
             <button onclick="abrirModalRegistro()">Registrarse</button>
             <a href="#" class="btn-discord">Discord</a>
         </div>
         <div class="con-sesion usuario-nav">
-            <a href="#" onclick="irPagina('dashboard', this)">Inicio</a>
-            <a href="#" onclick="irPagina('caracteristicas', this)">Características</a>
-            <a href="#" onclick="irPagina('descargar', this)">Descargar</a>
-            <a href="#" onclick="irPagina('acerca', this)">Acerca de</a>
+            <a href="#" onclick="irPagina('inicio', this); return false;">Inicio</a>
+            <a href="#" onclick="irPagina('caracteristicas', this); return false;">Características</a>
+            <a href="#" onclick="irPagina('descargar', this); return false;">Descargar</a>
+            <a href="#" onclick="irPagina('acerca', this); return false;">Acerca de</a>
             <span id="usuario-nav">Usuario</span>
             <button onclick="cerrarSesion()">Cerrar sesión</button>
             <a href="#" class="btn-discord">Discord</a>
@@ -340,244 +340,3 @@
                             <div class="item-biblio" onclick="seleccionarSkin(this, '🧍‍♂️')">🧍‍♂️</div>
                             <div class="item-biblio" onclick="seleccionarSkin(this, '🥷')">🥷</div>
                             <div class="item-biblio seleccionada" onclick="seleccionarSkin(this, '🧍')">🧍</div>
-                        </div>
-                    </div>
-                </div>
-                <button class="btn-volver" onclick="volverAPerfil()">Volver atrás</button>
-            </div>
-        </div>
-
-        <div id="detalle-capa" class="contenido-dash" style="display:none;">
-            <div class="tarjeta-dash">
-                <div class="vista-detalle">
-                    <div class="bloque-izq">
-                        <h3>Capa actual</h3>
-                        <div class="vista-grande" id="capa-actual">🧥</div>
-                        <div><button class="btn-azul" onclick="establecerCapa()">Establecer capa</button></div>
-                    </div>
-                    <div class="sep"></div>
-                    <div class="bloque-der">
-                        <h3>Biblioteca</h3>
-                        <div class="cuadricula-biblio">
-                            <div class="item-biblio agregar-item" onclick="agregarCapa()">+</div>
-                            <div class="item-biblio" onclick="seleccionarCapa(this, '🔵')">🔵</div>
-                            <div class="item-biblio" onclick="seleccionarCapa(this, '🔴')">🔴</div>
-                            <div class="item-biblio" onclick="seleccionarCapa(this, '🟡')">🟡</div>
-                            <div class="item-biblio seleccionada" onclick="seleccionarCapa(this, '🧥')">🧥</div>
-                            <div class="item-biblio" onclick="seleccionarCapa(this, '⚫')">⚫</div>
-                            <div class="item-biblio" onclick="seleccionarCapa(this, '🟣')">🟣</div>
-                        </div>
-                    </div>
-                </div>
-                <button class="btn-volver" onclick="volverAPerfil()">Volver atrás</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-const USUARIO_KEY = 'nexis_usuario';
-const CUENTAS_KEY = 'nexis_cuentas';
-let cuentaActiva = null, skinSel = '🧍', capaSel = '🧥';
-
-function obtenerCuentas() { return JSON.parse(localStorage.getItem(CUENTAS_KEY) || '[]'); }
-function guardarCuentas(cuentas) { localStorage.setItem(CUENTAS_KEY, JSON.stringify(cuentas)); }
-function actualizarCuenta(cuenta) {
-    const cuentas = obtenerCuentas();
-    const idx = cuentas.findIndex(c => c.correo === cuenta.correo);
-    if (idx !== -1) { cuentas[idx] = cuenta; guardarCuentas(cuentas); }
-    localStorage.setItem(USUARIO_KEY, JSON.stringify(cuenta));
-}
-
-function abrirModalRegistro() { document.getElementById('modal-registro').classList.add('visible'); }
-function cerrarModalRegistro() { document.getElementById('modal-registro').classList.remove('visible'); }
-function abrirModalLogin() { document.getElementById('modal-login').classList.add('visible'); }
-function cerrarModalLogin() { document.getElementById('modal-login').classList.remove('visible'); }
-
-function irPagina(nombre, enlace) {
-    document.querySelectorAll('.pagina').forEach(p => p.classList.remove('activa'));
-    document.querySelectorAll('.nav-enlaces a').forEach(a => a.classList.remove('activo'));
-    if (nombre === 'dashboard') document.getElementById('pag-dashboard').classList.add('activa');
-    else { document.getElementById(`pag-${nombre}`).classList.add('activa'); if(enlace) enlace.classList.add('activo'); }
-}
-
-function registrarse() {
-    const usuario = document.getElementById('reg-usuario').value.trim();
-    const correo = document.getElementById('reg-correo').value.trim();
-    const clave = document.getElementById('reg-clave').value;
-    if (!usuario || !correo || !clave) return alert('⚠️ Completa todos los campos');
-    const cuentas = obtenerCuentas();
-    if (cuentas.some(c => c.correo === correo)) return alert('⚠️ Este correo ya está registrado');
-    const ahora = new Date();
-    const hora = ahora.toLocaleTimeString('es-ES', {hour:'2-digit', minute:'2-digit'});
-    const nueva = {
-        usuario, correo, clave, sobre: 'No has escrito nada sobre ti',
-        ultimoAcceso: hora, skin: '🧍', capa: '🧥', premium: false,
-        privacidad: { buscar: false, amistad: false, perfilPublico: true }
-    };
-    cuentas.push(nueva); guardarCuentas(cuentas);
-    iniciarSesionDirecto(nueva); cerrarModalRegistro(); alert('✅ ¡Cuenta creada con éxito!');
-}
-
-function iniciarSesion() {
-    const correo = document.getElementById('log-correo').value.trim();
-    const clave = document.getElementById('log-clave').value;
-    const cuentas = obtenerCuentas();
-    const cuenta = cuentas.find(c => c.correo === correo && c.clave === clave);
-    if (!cuenta) return alert('⚠️ Correo o contraseña incorrectos');
-    iniciarSesionDirecto(cuenta); cerrarModalLogin(); alert('✅ ¡Sesión iniciada!');
-}
-
-function iniciarSesionDirecto(cuenta) {
-    cuentaActiva = cuenta;
-    localStorage.setItem(USUARIO_KEY, JSON.stringify(cuenta));
-    document.body.classList.add('sesion-iniciada');
-    document.getElementById('usuario-nav').textContent = cuenta.usuario;
-    document.getElementById('dash-usuario').textContent = cuenta.usuario;
-    document.getElementById('campo-usuario').value = cuenta.usuario;
-    document.getElementById('campo-correo').value = cuenta.correo;
-    document.getElementById('campo-sobre').value = cuenta.sobre;
-    document.getElementById('skin-actual').textContent = cuenta.skin;
-    document.getElementById('capa-actual').textContent = cuenta.capa;
-    document.getElementById('vista-skin').textContent = cuenta.skin;
-    document.getElementById('vista-capa').textContent = cuenta.capa;
-    document.getElementById('hora-acceso').textContent = cuenta.ultimoAcceso;
-    skinSel = cuenta.skin; capaSel = cuenta.capa;
-    irPagina('dashboard'); cambiarPestanaDash('inicio-dash', document.querySelector('.pestaña-dash'));
-    actualizarSwitches(); actualizarEstadoPremium();
-}
-
-function cerrarSesion() {
-    localStorage.removeItem(USUARIO_KEY);
-    document.body.classList.remove('sesion-iniciada');
-    cuentaActiva = null; irPagina('inicio'); alert('✅ Sesión cerrada');
-}
-
-function cambiarPestanaDash(nombre, boton) {
-    document.querySelectorAll('.contenido-dash').forEach(d => d.style.display = 'none');
-    document.querySelectorAll('.pestaña-dash').forEach(b => b.classList.remove('activa'));
-    if (nombre === 'inicio-dash') { document.getElementById('dash-inicio').style.display = 'block'; }
-    else if (nombre === 'general') { document.getElementById('dash-general').style.display = 'block'; }
-    else if (nombre === 'privacidad') { document.getElementById('dash-privacidad').style.display = 'block'; }
-    else if (nombre === 'seguridad') { document.getElementById('dash-seguridad').style.display = 'block'; }
-    else if (nombre === 'perfil') {
-        document.getElementById('dash-perfil').style.display = 'block';
-        document.getElementById('detalle-skin').style.display = 'none';
-        document.getElementById('detalle-capa').style.display = 'none';
-    }
-    if (boton) boton.classList.add('activa');
-}
-
-function guardarGeneral() {
-    if (!cuentaActiva) return;
-    cuentaActiva.usuario = document.getElementById('campo-usuario').value.trim();
-    cuentaActiva.correo = document.getElementById('campo-correo').value.trim();
-    cuentaActiva.sobre = document.getElementById('campo-sobre').value;
-    actualizarCuenta(cuentaActiva);
-    document.getElementById('usuario-nav').textContent = cuentaActiva.usuario;
-    document.getElementById('dash-usuario').textContent = cuentaActiva.usuario;
-    alert('✅ Cambios guardados');
-}
-
-function cambiarContrasena() {
-    if (!cuentaActiva) return;
-    const act = document.getElementById('clave-actual').value;
-    const nva = document.getElementById('clave-nueva').value;
-    const cnf = document.getElementById('clave-confirma').value;
-    if (cuentaActiva.clave !== act) return alert('⚠️ Contraseña actual incorrecta');
-    if (nva !== cnf) return alert('⚠️ Las contraseñas no coinciden');
-    if (!nva || nva.length < 4) return alert('⚠️ Escribe una contraseña válida');
-    cuentaActiva.clave = nva;
-    actualizarCuenta(cuentaActiva);
-    alert('✅ Contraseña cambiada');
-    document.getElementById('clave-actual').value = '';
-    document.getElementById('clave-nueva').value = '';
-    document.getElementById('clave-confirma').value = '';
-}
-
-function toggleSwitch(sw) {
-    sw.classList.toggle('inactivo');
-    if (!cuentaActiva) return;
-    if (sw.id === 'sw-buscar') cuentaActiva.privacidad.buscar = !sw.classList.contains('inactivo');
-    if (sw.id === 'sw-amistad') cuentaActiva.privacidad.amistad = !sw.classList.contains('inactivo');
-    if (sw.id === 'sw-perfil') cuentaActiva.privacidad.perfilPublico = !sw.classList.contains('inactivo');
-    actualizarCuenta(cuentaActiva);
-}
-
-function actualizarSwitches() {
-    if (!cuentaActiva) return;
-    document.getElementById('sw-buscar').classList.toggle('inactivo', !cuentaActiva.privacidad.buscar);
-    document.getElementById('sw-amistad').classList.toggle('inactivo', !cuentaActiva.privacidad.amistad);
-    document.getElementById('sw-perfil').classList.toggle('inactivo', !cuentaActiva.privacidad.perfilPublico);
-}
-
-function actualizarEstadoPremium() {
-    if (!cuentaActiva) return;
-    document.getElementById('estado-premium').textContent = cuentaActiva.premium ? 'Activa ✅' : 'Inactiva';
-}
-
-function abrirDetalle(tipo) {
-    document.getElementById('dash-perfil').style.display = 'none';
-    document.getElementById('tarjeta-skin').classList.remove('activa');
-    document.getElementById('tarjeta-capa').classList.remove('activa');
-    if (tipo === 'skin') { document.getElementById('detalle-skin').style.display = 'block'; document.getElementById('tarjeta-skin').classList.add('activa'); }
-    else { document.getElementById('detalle-capa').style.display = 'block'; document.getElementById('tarjeta-capa').classList.add('activa'); }
-}
-
-function volverAPerfil() {
-    document.getElementById('detalle-skin').style.display = 'none';
-    document.getElementById('detalle-capa').style.display = 'none';
-    document.getElementById('dash-perfil').style.display = 'block';
-}
-
-function seleccionarSkin(el, icono) {
-    document.querySelectorAll('#detalle-skin .item-biblio').forEach(i => i.classList.remove('seleccionada'));
-    el.classList.add('seleccionada');
-    skinSel = icono;
-}
-
-function establecerSkin() {
-    if (!cuentaActiva) return alert('⚠️ Inicia sesión primero');
-    cuentaActiva.skin = skinSel;
-    document.getElementById('skin-actual').textContent = skinSel;
-    document.getElementById('vista-skin').textContent = skinSel;
-    actualizarCuenta(cuentaActiva);
-    alert('✅ Skin establecida');
-}
-
-function eliminarSkin() {
-    if (!cuentaActiva) return;
-    cuentaActiva.skin = '🧍';
-    skinSel = '🧍';
-    document.getElementById('skin-actual').textContent = '🧍';
-    document.getElementById('vista-skin').textContent = '🧍';
-    actualizarCuenta(cuentaActiva);
-    alert('✅ Skin eliminada');
-}
-
-function agregarSkin() { alert('ℹ️ Función de subida próximamente'); }
-
-function seleccionarCapa(el, icono) {
-    document.querySelectorAll('#detalle-capa .item-biblio').forEach(i => i.classList.remove('seleccionada'));
-    el.classList.add('seleccionada');
-    capaSel = icono;
-}
-
-function establecerCapa() {
-    if (!cuentaActiva) return alert('⚠️ Inicia sesión primero');
-    cuentaActiva.capa = capaSel;
-    document.getElementById('capa-actual').textContent = capaSel;
-    document.getElementById('vista-capa').textContent = capaSel;
-    actualizarCuenta(cuentaActiva);
-    alert('✅ Capa establecida');
-}
-
-function agregarCapa() { alert('ℹ️ Función de subida próximamente'); }
-
-window.onload = () => {
-    const guardado = localStorage.getItem(USUARIO_KEY);
-    if (guardado) iniciarSesionDirecto(JSON.parse(guardado));
-};
-</script>
-</body>
-</html>
