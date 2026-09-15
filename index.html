@@ -80,14 +80,15 @@
             border: none;
             font-weight: 600;
             cursor: pointer;
-            width: 100%;
             font-size: 0.95rem;
             transition: all 0.2s;
         }
         .btn-cerrar-sesion:hover { filter: brightness(1.08); }
 
-        .oculto-sesion, .con-sesion { display: none; }
-        body.sesion-iniciada .oculto-sesion { display: none !important; }
+        /* === SISTEMA DE VISIBILIDAD === */
+        .sin-sesion { display: flex; }
+        .con-sesion { display: none; }
+        body.sesion-iniciada .sin-sesion { display: none !important; }
         body.sesion-iniciada .con-sesion { display: flex !important; }
 
         /* === CONTENEDOR DASHBOARD === */
@@ -95,7 +96,9 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 3rem 2rem;
+            display: none;
         }
+        body.sesion-iniciada .dashboard { display: block; }
 
         .saludo {
             font-size: 2.8rem;
@@ -346,7 +349,6 @@
         }
         .item-skin:hover { border-color: var(--azul); }
         .item-skin.seleccionada { border-color: var(--azul); box-shadow: 0 0 0 1px var(--borde-activo); }
-        .item-skin.bloqueado { opacity: 0.5; cursor: not-allowed; }
         .agregar { font-size: 1.8rem; color: var(--azul); font-weight: 700; }
 
         .grupo-botones { display: flex; gap: 0.8rem; margin-top: 1rem; }
@@ -468,22 +470,22 @@
     </div>
 </div>
 
-<!-- NAVEGACIÓN -->
+<!-- NAVEGACIÓN === SOLO SE CAMBIA ESTA PARTE -->
 <nav>
     <span class="logo" onclick="irInicio()">Batty Launcher</span>
     <div class="nav-botones">
-        <!-- SIN SESIÓN -->
-        <button class="btn-nav btn-registrar oculto-sesion" onclick="abrirModalRegistro()">📝 Registrarse</button>
-        <button class="btn-nav btn-iniciar oculto-sesion" onclick="abrirModalLogin()">🔑 Iniciar Sesión</button>
-        <!-- CON SESIÓN -->
+        <!-- SIN SESIÓN: Se muestran ESTOS dos botones -->
+        <button class="btn-nav btn-registrar sin-sesion" onclick="abrirModalRegistro()">Registrarse</button>
+        <button class="btn-nav btn-iniciar sin-sesion" onclick="abrirModalLogin()">Iniciar Sesión</button>
+        <!-- CON SESIÓN: Se muestra ESTE botón en lugar de los dos anteriores -->
         <button class="btn-cerrar-sesion con-sesion" onclick="cerrarSesion()">Cerrar sesión</button>
     </div>
 </nav>
 
 <!-- DASHBOARD SOLO VISIBLE CON SESIÓN INICIADA -->
-<div id="dashboard" class="dashboard con-sesion">
+<div class="dashboard">
     <h1 class="saludo">Hola, <span id="nombre-usuario">Usuario</span></h1>
-    <p class="sub-saludo">Bienvenid@ a la nueva Dashboard de Batty <span id="fecha-actual"></span></p>
+    <p class="sub-saludo">Bienvenid@ a la nueva Dashboard de Batty</p>
 
     <!-- PESTAÑAS -->
     <div class="contenedor-pestañas">
@@ -669,7 +671,6 @@ let premium = false;
 
 // Fecha actual formateada
 const fechaHoy = new Date().toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
-document.getElementById('fecha-actual').textContent = '';
 document.getElementById('ultimo-acceso').textContent = fechaHoy;
 
 // ==============================================
@@ -737,11 +738,13 @@ function iniciarSesionDirecto(cuenta) {
     document.getElementById('capa-actual').textContent = cuenta.capa;
     document.getElementById('vista-muestra-skin').textContent = cuenta.skin;
     document.getElementById('vista-muestra-capa').textContent = cuenta.capa;
+    document.getElementById('ultimo-acceso').textContent = cuenta.fecha;
 
     actualizarEstadoPremium();
     actualizarContadores();
     actualizarInterruptores();
 
+    // ✅ ACTIVAR SESIÓN → se ocultan los botones y aparece el Dashboard
     document.body.classList.add('sesion-iniciada');
     if (premium) document.body.classList.add('premium-activo');
 }
@@ -889,8 +892,6 @@ function actualizarContadores() {
     document.getElementById('usos-capa').textContent = premium ? '∞' : usosCapa;
     document.querySelector('#aviso-skin .sin-limite').style.display = premium ? 'block' : 'none';
     document.querySelector('#aviso-capa .sin-limite').style.display = premium ? 'block' : 'none';
-    document.getElementById('aviso-skin').style.color = premium ? 'var(--verde)' : '';
-    document.getElementById('aviso-capa').style.color = premium ? 'var(--verde)' : '';
 }
 
 function actualizarEstadoPremium() {
