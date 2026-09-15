@@ -692,6 +692,7 @@
 </head>
 <body>
 
+<!-- MODAL REGISTRO -->
 <div id="modal-registro" class="modal-fondo">
     <div class="modal">
         <h3>📝 Crear Cuenta</h3>
@@ -705,6 +706,7 @@
     </div>
 </div>
 
+<!-- MODAL INICIO SESIÓN -->
 <div id="modal-login" class="modal-fondo">
     <div class="modal">
         <h3>🔑 Iniciar Sesión</h3>
@@ -717,6 +719,7 @@
     </div>
 </div>
 
+<!-- NAVEGACIÓN -->
 <nav>
     <span class="logo" onclick="irPagina('inicio')">Nexis Launcher</span>
     <div class="nav-enlaces">
@@ -741,6 +744,7 @@
     </div>
 </nav>
 
+<!-- PÁGINA INICIO -->
 <div id="pag-inicio" class="pagina pagina-publica activa">
     <div class="contenedor">
         <div class="inicio-contenido">
@@ -766,6 +770,7 @@
     </div>
 </div>
 
+<!-- CARACTERÍSTICAS -->
 <div id="pag-caracteristicas" class="pagina pagina-publica">
     <div class="contenedor">
         <h2 class="titulo-seccion">✨ Características Principales</h2>
@@ -780,6 +785,7 @@
     </div>
 </div>
 
+<!-- DESCARGAR -->
 <div id="pag-descargar" class="pagina pagina-publica">
     <div class="contenedor">
         <h2 class="titulo-seccion">📥 Cómo Descargar e Instalar</h2>
@@ -792,6 +798,7 @@
     </div>
 </div>
 
+<!-- ACERCA DE -->
 <div id="pag-acerca" class="pagina pagina-publica">
     <div class="contenedor">
         <h2 class="titulo-seccion">ℹ️ Acerca de Nexis Launcher</h2>
@@ -803,6 +810,7 @@
     </div>
 </div>
 
+<!-- DASHBOARD -->
 <div id="pag-dashboard" class="pagina pagina-dashboard">
     <div class="contenedor">
         <div class="dashboard-header">
@@ -817,6 +825,7 @@
             <button class="pestaña-dash" onclick="cambiarPestanaDash('perfil', this)">😊 Perfil</button>
         </div>
 
+        <!-- INICIO DASH -->
         <div id="dash-inicio" class="contenido-dash visible">
             <div class="tarjeta-dash">
                 <h3>Inicio <span class="etiqueta-beta">BETA</span></h3>
@@ -845,6 +854,7 @@
             <button class="btn-cerrar-grande" onclick="cerrarSesion()">Cerrar sesión</button>
         </div>
 
+        <!-- GENERAL -->
         <div id="dash-general" class="contenido-dash">
             <div class="tarjeta-dash">
                 <h3 style="margin-bottom: 1.5rem;">General</h3>
@@ -857,6 +867,7 @@
             </div>
         </div>
 
+        <!-- PRIVACIDAD -->
         <div id="dash-privacidad" class="contenido-dash">
             <div class="tarjeta-dash">
                 <h3 style="margin-bottom: 1.5rem;">Privacidad</h3>
@@ -866,6 +877,7 @@
             </div>
         </div>
 
+        <!-- SEGURIDAD -->
         <div id="dash-seguridad" class="contenido-dash">
             <div class="tarjeta-dash">
                 <h3 style="margin-bottom: 1.5rem;">Seguridad</h3>
@@ -878,6 +890,7 @@
             </div>
         </div>
 
+        <!-- PERFIL -->
         <div id="dash-perfil" class="contenido-dash">
             <div class="cuadricula-perfil">
                 <div class="tarjeta-perfil-opcion activa" id="tarjeta-skin" onclick="abrirDetalle('skin')">
@@ -891,6 +904,7 @@
             </div>
         </div>
 
+        <!-- DETALLE SKIN -->
         <div id="detalle-skin" class="contenido-dash" style="display:none;">
             <div class="tarjeta-dash">
                 <div class="vista-detalle">
@@ -915,6 +929,7 @@
             </div>
         </div>
 
+        <!-- DETALLE CAPA -->
         <div id="detalle-capa" class="contenido-dash" style="display:none;">
             <div class="tarjeta-dash">
                 <div class="vista-detalle">
@@ -944,22 +959,47 @@
 </div>
 
 <script>
+// ==============================================
+// VARIABLES GLOBALES
+// ==============================================
 const USUARIO_KEY = 'nexis_usuario';
 const CUENTAS_KEY = 'nexis_cuentas';
 let cuentaActiva = null;
 let skinSel = '🧍', capaSel = '🧥';
 
-function obtenerCuentas() { return JSON.parse(localStorage.getItem(CUENTAS_KEY) || '[]'); }
-function guardarCuentas(cuentas) { localStorage.setItem(CUENTAS_KEY, JSON.stringify(cuentas)); }
+// ==============================================
+// FUNCIONES DE ALMACENAMIENTO
+// ==============================================
+function obtenerCuentas() {
+    return JSON.parse(localStorage.getItem(CUENTAS_KEY) || '[]');
+}
 
+function guardarCuentas(cuentas) {
+    localStorage.setItem(CUENTAS_KEY, JSON.stringify(cuentas));
+}
+
+function actualizarCuenta(cuenta) {
+    const cuentas = obtenerCuentas();
+    const idx = cuentas.findIndex(c => c.correo === cuenta.correo);
+    if (idx !== -1) { cuentas[idx] = cuenta; guardarCuentas(cuentas); }
+    localStorage.setItem(USUARIO_KEY, JSON.stringify(cuenta));
+}
+
+// ==============================================
+// MODALES
+// ==============================================
 function abrirModalRegistro() { document.getElementById('modal-registro').classList.add('visible'); }
 function cerrarModalRegistro() { document.getElementById('modal-registro').classList.remove('visible'); }
 function abrirModalLogin() { document.getElementById('modal-login').classList.add('visible'); }
 function cerrarModalLogin() { document.getElementById('modal-login').classList.remove('visible'); }
 
+// ==============================================
+// NAVEGACIÓN ENTRE PÁGINAS
+// ==============================================
 function irPagina(nombre, enlace) {
     document.querySelectorAll('.pagina').forEach(p => p.classList.remove('activa'));
     document.querySelectorAll('.nav-enlaces a').forEach(a => a.classList.remove('activo'));
+    
     if (nombre === 'dashboard') {
         document.getElementById('pag-dashboard').classList.add('activa');
     } else {
@@ -968,15 +1008,22 @@ function irPagina(nombre, enlace) {
     }
 }
 
+// ==============================================
+// REGISTRO E INICIO DE SESIÓN
+// ==============================================
 function registrarse() {
     const usuario = document.getElementById('reg-usuario').value.trim();
     const correo = document.getElementById('reg-correo').value.trim();
     const clave = document.getElementById('reg-clave').value;
-    if (!usuario || !correo || !clave) return alert('Completa todos los campos');
+
+    if (!usuario || !correo || !clave) return alert('⚠️ Completa todos los campos');
+
     const cuentas = obtenerCuentas();
-    if (cuentas.some(c => c.correo === correo)) return alert('Este correo ya está registrado');
+    if (cuentas.some(c => c.correo === correo)) return alert('⚠️ Este correo ya está registrado');
+
     const ahora = new Date();
     const hora = ahora.toLocaleTimeString('es-ES', {hour:'2-digit', minute:'2-digit'});
+
     const nueva = {
         usuario, correo, clave,
         sobre: 'No has escrito nada sobre ti',
@@ -985,10 +1032,12 @@ function registrarse() {
         premium: false,
         privacidad: { buscar: false, amistad: false, perfilPublico: true }
     };
+
     cuentas.push(nueva);
     guardarCuentas(cuentas);
     iniciarSesionDirecto(nueva);
     cerrarModalRegistro();
+    alert('✅ ¡Cuenta creada con éxito!');
 }
 
 function iniciarSesion() {
@@ -996,14 +1045,18 @@ function iniciarSesion() {
     const clave = document.getElementById('log-clave').value;
     const cuentas = obtenerCuentas();
     const cuenta = cuentas.find(c => c.correo === correo && c.clave === clave);
-    if (!cuenta) return alert('Correo o contraseña incorrectos');
+    
+    if (!cuenta) return alert('⚠️ Correo o contraseña incorrectos');
+    
     iniciarSesionDirecto(cuenta);
     cerrarModalLogin();
+    alert('✅ ¡Sesión iniciada!');
 }
 
 function iniciarSesionDirecto(cuenta) {
     cuentaActiva = cuenta;
     localStorage.setItem(USUARIO_KEY, JSON.stringify(cuenta));
+
     document.body.classList.add('sesion-iniciada');
     document.getElementById('usuario-nav').textContent = cuenta.usuario;
     document.getElementById('dash-usuario').textContent = cuenta.usuario;
@@ -1015,8 +1068,10 @@ function iniciarSesionDirecto(cuenta) {
     document.getElementById('vista-skin').textContent = cuenta.skin;
     document.getElementById('vista-capa').textContent = cuenta.capa;
     document.getElementById('hora-acceso').textContent = cuenta.ultimoAcceso;
+
     skinSel = cuenta.skin;
     capaSel = cuenta.capa;
+
     irPagina('dashboard');
     cambiarPestanaDash('inicio-dash', document.querySelector('.pestaña-dash'));
     actualizarSwitches();
@@ -1028,64 +1083,60 @@ function cerrarSesion() {
     document.body.classList.remove('sesion-iniciada');
     cuentaActiva = null;
     irPagina('inicio');
+    alert('✅ Sesión cerrada');
 }
 
-window.onload = () => {
-    const guardado = localStorage.getItem(USUARIO_KEY);
-    if (guardado) iniciarSesionDirecto(JSON.parse(guardado));
-};
-
+// ==============================================
+// PESTAÑAS DEL DASHBOARD
+// ==============================================
 function cambiarPestanaDash(nombre, boton) {
     document.querySelectorAll('.contenido-dash').forEach(d => d.style.display = 'none');
     document.querySelectorAll('.pestaña-dash').forEach(b => b.classList.remove('activa'));
-    if (nombre === 'inicio-dash') { document.getElementById('dash-inicio').style.display = 'block'; }
-    else if (nombre === 'general') { document.getElementById('dash-general').style.display = 'block'; }
-    else if (nombre === 'privacidad') { document.getElementById('dash-privacidad').style.display = 'block'; }
-    else if (nombre === 'seguridad') { document.getElementById('dash-seguridad').style.display = 'block'; }
-    else if (nombre === 'perfil') {
+
+    if (nombre === 'inicio-dash') {
+        document.getElementById('dash-inicio').style.display = 'block';
+    } else if (nombre === 'general') {
+        document.getElementById('dash-general').style.display = 'block';
+    } else if (nombre === 'privacidad') {
+        document.getElementById('dash-privacidad').style.display = 'block';
+    } else if (nombre === 'seguridad') {
+        document.getElementById('dash-seguridad').style.display = 'block';
+    } else if (nombre === 'perfil') {
         document.getElementById('dash-perfil').style.display = 'block';
         document.getElementById('detalle-skin').style.display = 'none';
         document.getElementById('detalle-capa').style.display = 'none';
     }
+
     if (boton) boton.classList.add('activa');
 }
 
+// ==============================================
+// PESTAÑA: GENERAL
+// ==============================================
 function guardarGeneral() {
     if (!cuentaActiva) return;
     cuentaActiva.usuario = document.getElementById('campo-usuario').value.trim();
     cuentaActiva.correo = document.getElementById('campo-correo').value.trim();
     cuentaActiva.sobre = document.getElementById('campo-sobre').value;
     actualizarCuenta(cuentaActiva);
-    alert('✅ Cambios guardados');
+    
+    document.getElementById('usuario-nav').textContent = cuentaActiva.usuario;
+    document.getElementById('dash-usuario').textContent = cuentaActiva.usuario;
+    alert('✅ Cambios guardados correctamente');
 }
 
+// ==============================================
+// PESTAÑA: SEGURIDAD
+// ==============================================
 function cambiarContrasena() {
     if (!cuentaActiva) return;
-    const act = document.getElementById('clave-actual').value;
+    const actual = document.getElementById('clave-actual').value;
     const nueva = document.getElementById('clave-nueva').value;
-    const conf = document.getElementById('clave-confirma').value;
-    if (cuentaActiva.clave !== act) return alert('❌ Contraseña actual incorrecta');
-    if (nueva !== conf) return alert('❌ Las contraseñas no coinciden');
-    if (!nueva) return alert('Escribe la nueva contraseña');
+    const confirma = document.getElementById('clave-confirma').value;
+
+    if (cuentaActiva.clave !== actual) return alert('⚠️ Contraseña actual incorrecta');
+    if (nueva !== confirma) return alert('⚠️ Las contraseñas nuevas no coinciden');
+    if (!nueva || nueva.length < 4) return alert('⚠️ Escribe una contraseña válida (mínimo 4 caracteres)');
+
     cuentaActiva.clave = nueva;
-    actualizarCuenta(cuentaActiva);
-    alert('✅ Contraseña cambiada');
-    document.getElementById('clave-actual').value = '';
-    document.getElementById('clave-nueva').value = '';
-    document.getElementById('clave-confirma').value = '';
-}
-
-function toggleSwitch(sw) {
-    sw.classList.toggle('inactivo');
-    if (!cuentaActiva) return;
-    if (sw.id === 'sw-buscar') cuentaActiva.privacidad.buscar = !sw.classList.contains('inactivo');
-    if (sw.id === 'sw-amistad') cuentaActiva.privacidad.amistad = !sw.classList.contains('inactivo');
-    if (sw.id === 'sw-perfil') cuentaActiva.privacidad.perfilPublico = !sw.classList.contains('inactivo');
-    actualizarCuenta(cuentaActiva);
-}
-
-function actualizarSwitches() {
-    if (!cuentaActiva) return;
-    document.getElementById('sw-buscar').classList.toggle('inactivo', !cuentaActiva.privacidad.buscar);
-    document.getElementById('sw-amistad').classList.toggle('inactivo', !cuentaActiva.privacidad.amistad);
-    document.getElementById('
+   
