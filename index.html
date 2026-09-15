@@ -31,7 +31,6 @@
             line-height: 1.6;
         }
 
-        /* === NAVEGACIÓN PRINCIPAL === */
         nav {
             background: rgba(20, 26, 48, 0.95);
             padding: 0.8rem 2rem;
@@ -108,7 +107,6 @@
             filter: brightness(1.1);
         }
 
-        /* === CONTENEDOR DE PÁGINAS === */
         .pagina {
             display: none;
             animation: aparecer 0.3s ease-out;
@@ -122,7 +120,6 @@
             to   { opacity: 1; transform: translateY(0); }
         }
 
-        /* === PÁGINA INICIO === */
         .contenedor {
             max-width: 1200px;
             margin: 0 auto;
@@ -213,7 +210,6 @@
             font-size: 0.95rem;
         }
 
-        /* === CARACTERÍSTICAS === */
         .titulo-seccion {
             text-align: center;
             font-size: 1.8rem;
@@ -253,7 +249,6 @@
             font-size: 0.9rem;
         }
 
-        /* === DESCARGAR === */
         .tarjeta-pasos {
             background: var(--fondo-tarjeta);
             border: 1px solid var(--borde);
@@ -285,7 +280,6 @@
             flex-shrink: 0;
         }
 
-        /* === ACERCA DE === */
         .tarjeta-acerca {
             background: var(--fondo-tarjeta);
             border: 1px solid var(--borde);
@@ -307,7 +301,6 @@
             text-decoration: none;
         }
 
-        /* === DASHBOARD === */
         .dashboard-header {
             margin-bottom: 2rem;
         }
@@ -328,6 +321,7 @@
             background: var(--fondo-tarjeta);
             padding: 0.3rem;
             border-radius: 10px;
+            flex-wrap: wrap;
         }
 
         .pestaña-dash {
@@ -395,6 +389,7 @@
             display: flex;
             gap: 0.8rem;
             margin-top: 1rem;
+            flex-wrap: wrap;
         }
 
         .btn-pago {
@@ -430,7 +425,6 @@
             cursor: pointer;
         }
 
-        /* === FORMULARIOS === */
         .fila-form {
             display: flex;
             gap: 1rem;
@@ -480,7 +474,6 @@
             margin-top: 0.5rem;
         }
 
-        /* === PRIVACIDAD === */
         .opcion-priv {
             display: flex;
             justify-content: space-between;
@@ -514,7 +507,6 @@
         .switch.inactivo { background: #2a3244; }
         .switch.inactivo::after { right: auto; left: 3px; }
 
-        /* === PERFIL SKINS / CAPAS === */
         .cuadricula-perfil {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -555,7 +547,6 @@
             font-size: 4rem;
         }
 
-        /* === DETALLE SKIN / CAPA === */
         .vista-detalle {
             display: grid;
             grid-template-columns: 280px 2px 1fr;
@@ -649,7 +640,6 @@
             font-weight: 700;
         }
 
-        /* === MODALES === */
         .modal-fondo {
             position: fixed;
             inset: 0;
@@ -691,7 +681,6 @@
         .btn-cancelar { background: #2a3244; color: white; }
         .btn-aceptar { background: var(--verde); color: #000; }
 
-        /* === ESTADO SESIÓN === */
         .sin-sesion { display: flex; }
         .con-sesion { display: none; }
         body.sesion-iniciada .sin-sesion { display: none !important; }
@@ -703,7 +692,6 @@
 </head>
 <body>
 
-<!-- MODAL REGISTRO -->
 <div id="modal-registro" class="modal-fondo">
     <div class="modal">
         <h3>📝 Crear Cuenta</h3>
@@ -717,7 +705,6 @@
     </div>
 </div>
 
-<!-- MODAL INICIO SESIÓN -->
 <div id="modal-login" class="modal-fondo">
     <div class="modal">
         <h3>🔑 Iniciar Sesión</h3>
@@ -730,7 +717,6 @@
     </div>
 </div>
 
-<!-- NAVEGACIÓN -->
 <nav>
     <span class="logo" onclick="irPagina('inicio')">Nexis Launcher</span>
     <div class="nav-enlaces">
@@ -755,11 +741,6 @@
     </div>
 </nav>
 
-<!-- ============================================== -->
-<!-- PÁGINAS PÚBLICAS (SIN SESIÓN) -->
-<!-- ============================================== -->
-
-<!-- INICIO -->
 <div id="pag-inicio" class="pagina pagina-publica activa">
     <div class="contenedor">
         <div class="inicio-contenido">
@@ -767,7 +748,6 @@
             <p>El Launcher de Minecraft: Java Edition gratuito, ligero, sin publicidad y 100% seguro. Descarga versiones, instala mods y gestiona perfiles fácilmente.</p>
             <button class="btn-descargar-principal" onclick="irPagina('descargar')">⬇️ Descargar Nexis Launcher v2.0.0</button>
         </div>
-
         <div class="seccion-noticias">
             <h2>📰 Noticias Oficiales de Minecraft</h2>
             <div class="cuadricula-noticias">
@@ -786,65 +766,32 @@
     </div>
 </div>
 
-<!-- CARACTERÍSTICAS -->
 <div id="pag-caracteristicas" class="pagina pagina-publica">
     <div class="contenedor">
         <h2 class="titulo-seccion">✨ Características Principales</h2>
         <div class="cuadricula-caracteristicas">
-            <div class="tarjeta-caracteristica">
-                <h3>⚡ Rápido y Ligero</h3>
-                <p>Se inicia en segundos y consume pocos recursos.</p>
-            </div>
-            <div class="tarjeta-caracteristica">
-                <h3>🔧 Gestión de Mods</h3>
-                <p>Agrega y quita mods fácilmente. Soporte para Forge y Fabric.</p>
-            </div>
-            <div class="tarjeta-caracteristica">
-                <h3>👤 Perfiles Personalizados</h3>
-                <p>Crea perfiles con su propia versión y configuración.</p>
-            </div>
-            <div class="tarjeta-caracteristica">
-                <h3>🛡️ 100% Seguro</h3>
-                <p>Sin virus, sin rastreadores. Tu información se queda en tu equipo.</p>
-            </div>
-            <div class="tarjeta-caracteristica">
-                <h3>💻 Para cualquier PC</h3>
-                <p>Optimizado para funcionar bien incluso en equipos modestos.</p>
-            </div>
-            <div class="tarjeta-caracteristica">
-                <h3>🎁 Gratis siempre</h3>
-                <p>Funciones básicas gratis. Beneficios extra disponibles en Premium.</p>
-            </div>
+            <div class="tarjeta-caracteristica"><h3>⚡ Rápido y Ligero</h3><p>Se inicia en segundos y consume pocos recursos.</p></div>
+            <div class="tarjeta-caracteristica"><h3>🔧 Gestión de Mods</h3><p>Agrega y quita mods fácilmente. Soporte para Forge y Fabric.</p></div>
+            <div class="tarjeta-caracteristica"><h3>👤 Perfiles Personalizados</h3><p>Crea perfiles con su propia versión y configuración.</p></div>
+            <div class="tarjeta-caracteristica"><h3>🛡️ 100% Seguro</h3><p>Sin virus, sin rastreadores. Tu información se queda en tu equipo.</p></div>
+            <div class="tarjeta-caracteristica"><h3>💻 Para cualquier PC</h3><p>Optimizado para funcionar bien incluso en equipos modestos.</p></div>
+            <div class="tarjeta-caracteristica"><h3>🎁 Gratis siempre</h3><p>Funciones básicas gratis. Beneficios extra disponibles en Premium.</p></div>
         </div>
     </div>
 </div>
 
-<!-- DESCARGAR -->
 <div id="pag-descargar" class="pagina pagina-publica">
     <div class="contenedor">
         <h2 class="titulo-seccion">📥 Cómo Descargar e Instalar</h2>
         <div class="tarjeta-pasos">
-            <div class="paso">
-                <span class="paso-num">1</span>
-                <span>Pulsa el botón verde "Descargar Nexis Launcher".</span>
-            </div>
-            <div class="paso">
-                <span class="paso-num">2</span>
-                <span>Espera a que termine la descarga.</span>
-            </div>
-            <div class="paso">
-                <span class="paso-num">3</span>
-                <span>Abre el archivo — no necesita instalación.</span>
-            </div>
-            <div class="paso">
-                <span class="paso-num">4</span>
-                <span>¡Listo! Crea tu perfil y ¡a jugar!</span>
-            </div>
+            <div class="paso"><span class="paso-num">1</span><span>Pulsa el botón verde "Descargar Nexis Launcher".</span></div>
+            <div class="paso"><span class="paso-num">2</span><span>Espera a que termine la descarga.</span></div>
+            <div class="paso"><span class="paso-num">3</span><span>Abre el archivo — no necesita instalación.</span></div>
+            <div class="paso"><span class="paso-num">4</span><span>¡Listo! Crea tu perfil y ¡a jugar!</span></div>
         </div>
     </div>
 </div>
 
-<!-- ACERCA DE -->
 <div id="pag-acerca" class="pagina pagina-publica">
     <div class="contenedor">
         <h2 class="titulo-seccion">ℹ️ Acerca de Nexis Launcher</h2>
@@ -856,16 +803,12 @@
     </div>
 </div>
 
-<!-- ============================================== -->
-<!-- DASHBOARD (SOLO CON SESIÓN) -->
-<!-- ============================================== -->
 <div id="pag-dashboard" class="pagina pagina-dashboard">
     <div class="contenedor">
         <div class="dashboard-header">
             <h1>Hola, <span id="dash-usuario">Usuario</span></h1>
             <p>Bienvenid@ a tu nueva Dashboard</p>
         </div>
-
         <div class="pestañas-dash">
             <button class="pestaña-dash activa" onclick="cambiarPestanaDash('inicio-dash', this)">🏠 Inicio</button>
             <button class="pestaña-dash" onclick="cambiarPestanaDash('general', this)">👤 General</button>
@@ -874,7 +817,6 @@
             <button class="pestaña-dash" onclick="cambiarPestanaDash('perfil', this)">😊 Perfil</button>
         </div>
 
-        <!-- INICIO DASH -->
         <div id="dash-inicio" class="contenido-dash visible">
             <div class="tarjeta-dash">
                 <h3>Inicio <span class="etiqueta-beta">BETA</span></h3>
@@ -894,7 +836,7 @@
             </div>
             <div class="tarjeta-dash" style="background: rgba(57, 255, 20, 0.05);">
                 <p><strong>Pagar Premium / Donar con PayPal</strong></p>
-                <p style="font-size: 0.9rem; color: var(--texto-secundario); margin: 0.5rem 0;">Al pagar tu suscripción, Premium se activará automáticamente en tu cuenta — disponible tanto en la página web como en el Launcher.</p>
+                <p style="font-size: 0.9rem; color: var(--texto-secundario); margin: 0.5rem 0;">Al pagar tu suscripción, Premium se activará automáticamente en tu cuenta.</p>
                 <div class="fila-botones">
                     <button class="btn-pago">💳 Pagar Premium por PayPal →</button>
                     <button class="btn-donar">❤️ Hacer una donación →</button>
@@ -903,70 +845,39 @@
             <button class="btn-cerrar-grande" onclick="cerrarSesion()">Cerrar sesión</button>
         </div>
 
-        <!-- GENERAL -->
         <div id="dash-general" class="contenido-dash">
             <div class="tarjeta-dash">
                 <h3 style="margin-bottom: 1.5rem;">General</h3>
                 <div class="fila-form">
-                    <div class="campo-form">
-                        <label>Nombre de usuario</label>
-                        <input type="text" id="campo-usuario" value="Papichulo6070">
-                    </div>
-                    <div class="campo-form">
-                        <label>Correo electrónico</label>
-                        <input type="email" id="campo-correo" value="usuario@correo.com">
-                    </div>
+                    <div class="campo-form"><label>Nombre de usuario</label><input type="text" id="campo-usuario" value="Usuario"></div>
+                    <div class="campo-form"><label>Correo electrónico</label><input type="email" id="campo-correo" value="usuario@correo.com"></div>
                 </div>
-                <div class="campo-form">
-                    <label>Sobre mí</label>
-                    <textarea id="campo-sobre">No has escrito nada sobre ti</textarea>
-                </div>
+                <div class="campo-form"><label>Sobre mí</label><textarea id="campo-sobre">No has escrito nada sobre ti</textarea></div>
                 <button class="btn-guardar-verde" onclick="guardarGeneral()">Guardar cambios</button>
             </div>
         </div>
 
-        <!-- PRIVACIDAD -->
         <div id="dash-privacidad" class="contenido-dash">
             <div class="tarjeta-dash">
                 <h3 style="margin-bottom: 1.5rem;">Privacidad</h3>
-                <div class="opcion-priv">
-                    <span>Permitir que te encuentren</span>
-                    <div class="switch inactivo" id="sw-buscar" onclick="toggleSwitch(this)"></div>
-                </div>
-                <div class="opcion-priv">
-                    <span>Permitir solicitudes de amistad</span>
-                    <div class="switch inactivo" id="sw-amistad" onclick="toggleSwitch(this)"></div>
-                </div>
-                <div class="opcion-priv">
-                    <span>Perfil público</span>
-                    <div class="switch" id="sw-perfil" onclick="toggleSwitch(this)"></div>
-                </div>
+                <div class="opcion-priv"><span>Permitir que te encuentren</span><div class="switch inactivo" id="sw-buscar" onclick="toggleSwitch(this)"></div></div>
+                <div class="opcion-priv"><span>Permitir solicitudes de amistad</span><div class="switch inactivo" id="sw-amistad" onclick="toggleSwitch(this)"></div></div>
+                <div class="opcion-priv"><span>Perfil público</span><div class="switch" id="sw-perfil" onclick="toggleSwitch(this)"></div></div>
             </div>
         </div>
 
-        <!-- SEGURIDAD -->
         <div id="dash-seguridad" class="contenido-dash">
             <div class="tarjeta-dash">
                 <h3 style="margin-bottom: 1.5rem;">Seguridad</h3>
-                <div class="campo-form">
-                    <label>Contraseña actual</label>
-                    <input type="password" id="clave-actual" placeholder="••••••••">
-                </div>
+                <div class="campo-form"><label>Contraseña actual</label><input type="password" id="clave-actual" placeholder="••••••••"></div>
                 <div class="fila-form">
-                    <div class="campo-form">
-                        <label>Nueva contraseña</label>
-                        <input type="password" id="clave-nueva" placeholder="••••••••">
-                    </div>
-                    <div class="campo-form">
-                        <label>Confirmar contraseña</label>
-                        <input type="password" id="clave-confirma" placeholder="••••••••">
-                    </div>
+                    <div class="campo-form"><label>Nueva contraseña</label><input type="password" id="clave-nueva" placeholder="••••••••"></div>
+                    <div class="campo-form"><label>Confirmar contraseña</label><input type="password" id="clave-confirma" placeholder="••••••••"></div>
                 </div>
                 <button class="btn-guardar-verde" onclick="cambiarContrasena()">Cambiar contraseña</button>
             </div>
         </div>
 
-        <!-- PERFIL: SELECCIÓN SKIN/CAPA -->
         <div id="dash-perfil" class="contenido-dash">
             <div class="cuadricula-perfil">
                 <div class="tarjeta-perfil-opcion activa" id="tarjeta-skin" onclick="abrirDetalle('skin')">
@@ -980,17 +891,13 @@
             </div>
         </div>
 
-        <!-- DETALLE SKIN -->
         <div id="detalle-skin" class="contenido-dash" style="display:none;">
             <div class="tarjeta-dash">
                 <div class="vista-detalle">
                     <div class="bloque-izq">
                         <h3>Skin actual</h3>
                         <div class="vista-grande" id="skin-actual">🧍</div>
-                        <div>
-                            <button class="btn-azul" onclick="establecerSkin()">Establecer skin</button>
-                            <button class="btn-rojo" onclick="eliminarSkin()">Eliminar skin</button>
-                        </div>
+                        <div><button class="btn-azul" onclick="establecerSkin()">Establecer skin</button><button class="btn-rojo" onclick="eliminarSkin()">Eliminar skin</button></div>
                     </div>
                     <div class="sep"></div>
                     <div class="bloque-der">
@@ -1008,16 +915,13 @@
             </div>
         </div>
 
-        <!-- DETALLE CAPA -->
         <div id="detalle-capa" class="contenido-dash" style="display:none;">
             <div class="tarjeta-dash">
                 <div class="vista-detalle">
                     <div class="bloque-izq">
                         <h3>Capa actual</h3>
                         <div class="vista-grande" id="capa-actual">🧥</div>
-                        <div>
-                            <button class="btn-azul" onclick="establecerCapa()">Establecer capa</button>
-                        </div>
+                        <div><button class="btn-azul" onclick="establecerCapa()">Establecer capa</button></div>
                     </div>
                     <div class="sep"></div>
                     <div class="bloque-der">
@@ -1040,9 +944,19 @@
 </div>
 
 <script>
-// ==============================================
-// GESTIÓN DE PÁGINAS
-// ==============================================
+const USUARIO_KEY = 'nexis_usuario';
+const CUENTAS_KEY = 'nexis_cuentas';
+let cuentaActiva = null;
+let skinSel = '🧍', capaSel = '🧥';
+
+function obtenerCuentas() { return JSON.parse(localStorage.getItem(CUENTAS_KEY) || '[]'); }
+function guardarCuentas(cuentas) { localStorage.setItem(CUENTAS_KEY, JSON.stringify(cuentas)); }
+
+function abrirModalRegistro() { document.getElementById('modal-registro').classList.add('visible'); }
+function cerrarModalRegistro() { document.getElementById('modal-registro').classList.remove('visible'); }
+function abrirModalLogin() { document.getElementById('modal-login').classList.add('visible'); }
+function cerrarModalLogin() { document.getElementById('modal-login').classList.remove('visible'); }
+
 function irPagina(nombre, enlace) {
     document.querySelectorAll('.pagina').forEach(p => p.classList.remove('activa'));
     document.querySelectorAll('.nav-enlaces a').forEach(a => a.classList.remove('activo'));
@@ -1054,33 +968,15 @@ function irPagina(nombre, enlace) {
     }
 }
 
-// ==============================================
-// GESTIÓN DE CUENTAS
-// ==============================================
-const USUARIO_KEY = 'nexis_usuario';
-const CUENTAS_KEY = 'nexis_cuentas';
-let cuentaActiva = null;
-
-function obtenerCuentas() { return JSON.parse(localStorage.getItem(CUENTAS_KEY) || '[]'); }
-function guardarCuentas(cuentas) { localStorage.setItem(CUENTAS_KEY, JSON.stringify(cuentas)); }
-
-function abrirModalRegistro() { document.getElementById('modal-registro').classList.add('visible'); }
-function cerrarModalRegistro() { document.getElementById('modal-registro').classList.remove('visible'); }
-function abrirModalLogin() { document.getElementById('modal-login').classList.add('visible'); }
-function cerrarModalLogin() { document.getElementById('modal-login').classList.remove('visible'); }
-
 function registrarse() {
     const usuario = document.getElementById('reg-usuario').value.trim();
     const correo = document.getElementById('reg-correo').value.trim();
     const clave = document.getElementById('reg-clave').value;
     if (!usuario || !correo || !clave) return alert('Completa todos los campos');
-
     const cuentas = obtenerCuentas();
     if (cuentas.some(c => c.correo === correo)) return alert('Este correo ya está registrado');
-
     const ahora = new Date();
     const hora = ahora.toLocaleTimeString('es-ES', {hour:'2-digit', minute:'2-digit'});
-
     const nueva = {
         usuario, correo, clave,
         sobre: 'No has escrito nada sobre ti',
@@ -1108,7 +1004,6 @@ function iniciarSesion() {
 function iniciarSesionDirecto(cuenta) {
     cuentaActiva = cuenta;
     localStorage.setItem(USUARIO_KEY, JSON.stringify(cuenta));
-
     document.body.classList.add('sesion-iniciada');
     document.getElementById('usuario-nav').textContent = cuenta.usuario;
     document.getElementById('dash-usuario').textContent = cuenta.usuario;
@@ -1120,7 +1015,8 @@ function iniciarSesionDirecto(cuenta) {
     document.getElementById('vista-skin').textContent = cuenta.skin;
     document.getElementById('vista-capa').textContent = cuenta.capa;
     document.getElementById('hora-acceso').textContent = cuenta.ultimoAcceso;
-
+    skinSel = cuenta.skin;
+    capaSel = cuenta.capa;
     irPagina('dashboard');
     cambiarPestanaDash('inicio-dash', document.querySelector('.pestaña-dash'));
     actualizarSwitches();
@@ -1139,21 +1035,14 @@ window.onload = () => {
     if (guardado) iniciarSesionDirecto(JSON.parse(guardado));
 };
 
-// ==============================================
-// PESTAÑAS DASHBOARD
-// ==============================================
 function cambiarPestanaDash(nombre, boton) {
     document.querySelectorAll('.contenido-dash').forEach(d => d.style.display = 'none');
     document.querySelectorAll('.pestaña-dash').forEach(b => b.classList.remove('activa'));
-    if (nombre === 'inicio-dash') {
-        document.getElementById('dash-inicio').style.display = 'block';
-    } else if (nombre === 'general') {
-        document.getElementById('dash-general').style.display = 'block';
-    } else if (nombre === 'privacidad') {
-        document.getElementById('dash-privacidad').style.display = 'block';
-    } else if (nombre === 'seguridad') {
-        document.getElementById('dash-seguridad').style.display = 'block';
-    } else if (nombre === 'perfil') {
+    if (nombre === 'inicio-dash') { document.getElementById('dash-inicio').style.display = 'block'; }
+    else if (nombre === 'general') { document.getElementById('dash-general').style.display = 'block'; }
+    else if (nombre === 'privacidad') { document.getElementById('dash-privacidad').style.display = 'block'; }
+    else if (nombre === 'seguridad') { document.getElementById('dash-seguridad').style.display = 'block'; }
+    else if (nombre === 'perfil') {
         document.getElementById('dash-perfil').style.display = 'block';
         document.getElementById('detalle-skin').style.display = 'none';
         document.getElementById('detalle-capa').style.display = 'none';
@@ -1161,25 +1050,42 @@ function cambiarPestanaDash(nombre, boton) {
     if (boton) boton.classList.add('activa');
 }
 
-// ==============================================
-// PERFIL - SKINS Y CAPAS
-// ==============================================
-function abrirDetalle(tipo) {
-    document.getElementById('dash-perfil').style.display = 'none';
-    if (tipo === 'skin') {
-        document.getElementById('detalle-skin').style.display = 'block';
-    } else {
-        document.getElementById('detalle-capa').style.display = 'block';
-    }
+function guardarGeneral() {
+    if (!cuentaActiva) return;
+    cuentaActiva.usuario = document.getElementById('campo-usuario').value.trim();
+    cuentaActiva.correo = document.getElementById('campo-correo').value.trim();
+    cuentaActiva.sobre = document.getElementById('campo-sobre').value;
+    actualizarCuenta(cuentaActiva);
+    alert('✅ Cambios guardados');
 }
 
-function volverAPerfil() {
-    document.getElementById('detalle-skin').style.display = 'none';
-    document.getElementById('detalle-capa').style.display = 'none';
-    document.getElementById('dash-perfil').style.display = 'block';
+function cambiarContrasena() {
+    if (!cuentaActiva) return;
+    const act = document.getElementById('clave-actual').value;
+    const nueva = document.getElementById('clave-nueva').value;
+    const conf = document.getElementById('clave-confirma').value;
+    if (cuentaActiva.clave !== act) return alert('❌ Contraseña actual incorrecta');
+    if (nueva !== conf) return alert('❌ Las contraseñas no coinciden');
+    if (!nueva) return alert('Escribe la nueva contraseña');
+    cuentaActiva.clave = nueva;
+    actualizarCuenta(cuentaActiva);
+    alert('✅ Contraseña cambiada');
+    document.getElementById('clave-actual').value = '';
+    document.getElementById('clave-nueva').value = '';
+    document.getElementById('clave-confirma').value = '';
 }
 
-let skinSel = '🧍';
-let capaSel = '🧥';
+function toggleSwitch(sw) {
+    sw.classList.toggle('inactivo');
+    if (!cuentaActiva) return;
+    if (sw.id === 'sw-buscar') cuentaActiva.privacidad.buscar = !sw.classList.contains('inactivo');
+    if (sw.id === 'sw-amistad') cuentaActiva.privacidad.amistad = !sw.classList.contains('inactivo');
+    if (sw.id === 'sw-perfil') cuentaActiva.privacidad.perfilPublico = !sw.classList.contains('inactivo');
+    actualizarCuenta(cuentaActiva);
+}
 
-function seleccionarSkin(el
+function actualizarSwitches() {
+    if (!cuentaActiva) return;
+    document.getElementById('sw-buscar').classList.toggle('inactivo', !cuentaActiva.privacidad.buscar);
+    document.getElementById('sw-amistad').classList.toggle('inactivo', !cuentaActiva.privacidad.amistad);
+    document.getElementById('
