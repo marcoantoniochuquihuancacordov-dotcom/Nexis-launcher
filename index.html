@@ -22,8 +22,8 @@
             --texto-claro: #94a3b8;
             --borde: rgba(255,255,255,0.08);
             --discord-azul: #5865F2;
+            --azul: #4f46e5;
             --rojo: #f43f5e;
-            --azul-google: #4285F4;
             --dorado: #facc15;
             --dorado-oscuro: #eab308;
             --altura-boton: 40px;
@@ -38,14 +38,11 @@
             line-height: 1.6;
         }
 
-        /* ESTILO PREMIUM — Se activa al pagar */
         body.premium-activo {
             --verde: #facc15;
             --verde-oscuro: #eab308;
         }
-        body.premium-activo .anuncio-banner { display: none; }
         body.premium-activo .aviso-limite-lado { display: none; }
-        body.premium-activo .etiqueta-limite { display: none; }
 
         .contenedor { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
 
@@ -89,7 +86,7 @@
 
         .nav-enlaces { display: flex; align-items: center; gap: 0.5rem; flex-wrap: nowrap; }
 
-        .nav-enlaces button, .btn-google, .usuario-nav {
+        .nav-enlaces button, .btn, .usuario-nav {
             height: var(--altura-boton);
             padding: 0 1rem;
             border-radius: var(--radio-borde);
@@ -107,6 +104,12 @@
         .nav-enlaces button { background: transparent; color: var(--texto-claro); }
         .nav-enlaces button:hover { background: rgba(255,255,255,0.05); color: #fff; }
         .nav-enlaces button.activo { background: rgba(127,255,0,0.15); color: var(--verde); }
+
+        .btn { gap: 0.5rem; }
+        .btn-primario { background: var(--azul); color: white; }
+        .btn-primario:hover { filter: brightness(1.1); transform: translateY(-1px); }
+        .btn-secundario { background: rgba(255,255,255,0.05); color: white; }
+        .btn-secundario:hover { background: rgba(255,255,255,0.1); transform: translateY(-1px); }
 
         .usuario-nav { background: rgba(255,255,255,0.05); color: #fff; gap: 0.5rem; }
         .usuario-nav:hover { background: rgba(255,255,255,0.1); }
@@ -126,9 +129,6 @@
             justify-content: center;
         }
         .btn-discord:hover { filter: brightness(1.1); transform: translateY(-1px); }
-
-        .btn-google { background: var(--azul-google); color: white; gap: 0.5rem; }
-        .btn-google:hover { filter: brightness(1.1); transform: translateY(-1px); }
 
         .sin-sesion  { display: inline-flex; }
         .con-sesion { display: none; }
@@ -182,6 +182,7 @@
             color: var(--texto-claro);
             font-size: 0.9rem;
         }
+        body.premium-activo .anuncio-banner { display: none; }
 
         .noticias { padding: 2rem 0 4rem; }
         .noticias h2 { text-align: center; font-size: 1.8rem; margin-bottom: 0.5rem; color: #fff; }
@@ -319,7 +320,7 @@
             padding-bottom: 0.8rem; 
         }
         .fila { display: flex; gap: 1.2rem; flex-wrap: wrap; }
-        .grupo { flex: 1; min-width: 260px; }
+        .grupo { flex: 1; min-width: 260px; margin-bottom: 1rem; }
         label { display: block; margin-bottom: 0.5rem; color: var(--texto-claro); font-weight: 500; font-size: 0.95rem; }
         input, textarea { 
             width: 100%; 
@@ -433,8 +434,6 @@
             font-size: 1rem; 
             line-height: 1.8; 
         }
-        .aviso-premium a { color: var(--dorado); text-decoration: none; font-weight: 500; }
-        .aviso-premium a:hover { text-decoration: underline; }
         .lista-beneficios { margin: 0.8rem 0; padding-left: 1.2rem; }
         .lista-beneficios li { margin-bottom: 0.3rem; }
 
@@ -561,6 +560,7 @@
             border-color: var(--dorado);
             box-shadow: 0 0 12px rgba(250,204,21,0.35);
         }
+        .boton-bloqueado { opacity: 0.5; cursor: not-allowed; }
 
         .mensaje-accion {
             margin-top: 1rem;
@@ -573,9 +573,75 @@
             display: none;
         }
         .mensaje-accion.mostrar { display: block; }
+
+        /* === MODAL DE FORMULARIOS === */
+        .modal-fondo {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.75);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            display: none;
+        }
+        .modal-fondo.visible { display: flex; }
+        .modal {
+            background: var(--fondo-2);
+            border: 1px solid var(--borde);
+            border-radius: 16px;
+            padding: 2rem;
+            width: 90%;
+            max-width: 420px;
+        }
+        .modal h3 { margin-bottom: 1.5rem; color: #fff; text-align: center; font-size: 1.3rem; }
+        .modal-botones { display: flex; gap: 0.8rem; margin-top: 1.2rem; }
+        .modal-botones button { flex: 1; }
     </style>
 </head>
 <body>
+
+<!-- MODAL DE REGISTRO -->
+<div id="modal-registro" class="modal-fondo">
+    <div class="modal">
+        <h3>📝 Crear Cuenta Nueva</h3>
+        <div class="grupo">
+            <label>Nombre de usuario</label>
+            <input type="text" id="reg-nombre" placeholder="Tu nombre de usuario">
+        </div>
+        <div class="grupo">
+            <label>Correo electrónico</label>
+            <input type="email" id="reg-correo" placeholder="tu@email.com">
+        </div>
+        <div class="grupo">
+            <label>Contraseña</label>
+            <input type="password" id="reg-clave" placeholder="Crea una contraseña segura">
+        </div>
+        <div class="modal-botones">
+            <button class="btn btn-secundario" onclick="cerrarModalRegistro()">Cancelar</button>
+            <button class="btn btn-primario" onclick="registrarse()">Crear Cuenta</button>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL DE INICIO DE SESIÓN -->
+<div id="modal-login" class="modal-fondo">
+    <div class="modal">
+        <h3>🔑 Iniciar Sesión</h3>
+        <div class="grupo">
+            <label>Correo electrónico</label>
+            <input type="email" id="log-correo" placeholder="tu@email.com">
+        </div>
+        <div class="grupo">
+            <label>Contraseña</label>
+            <input type="password" id="log-clave" placeholder="Tu contraseña">
+        </div>
+        <div class="modal-botones">
+            <button class="btn btn-secundario" onclick="cerrarModalLogin()">Cancelar</button>
+            <button class="btn btn-primario" onclick="iniciarSesion()">Entrar</button>
+        </div>
+    </div>
+</div>
 
 <!-- NAVEGACIÓN -->
 <nav>
@@ -587,10 +653,11 @@
             <button id="m-descargar" onclick="mostrarSeccion('descargar')">Descargar</button>
             <button id="m-acerca" onclick="mostrarSeccion('acerca')">Acerca de</button>
 
-            <!-- SIN SESIÓN -->
-            <button class="btn-google sin-sesion" onclick="iniciarConGoogle()">🔐 Iniciar con Google</button>
+            <!-- SIN SESIÓN → Botones de Registrarse e Iniciar Sesión -->
+            <button class="btn btn-secundario sin-sesion" onclick="abrirModalRegistro()">📝 Registrarse</button>
+            <button class="btn btn-primario sin-sesion" onclick="abrirModalLogin()">🔑 Iniciar Sesión</button>
 
-            <!-- CON SESIÓN -->
+            <!-- CON SESIÓN → Nombre de usuario + Cerrar sesión -->
             <span class="usuario-nav con-sesion" id="usuario-nombre" onclick="mostrarSeccion('cuenta'); cambiarPestanaCuenta('cuenta-inicio')">👤 Usuario</span>
             <button class="btn-cerrar con-sesion" onclick="cerrarSesion()">Cerrar sesión</button>
 
@@ -641,10 +708,10 @@
         <div class="grid-caracteristicas contenedor">
             <div class="card"><h3>⚡ Rápido y Ligero</h3><p>Se inicia en segundos y consume pocos recursos.</p></div>
             <div class="card"><h3>📦 Gestión de Mods</h3><p>Agrega y quita mods fácilmente. Soporte Forge y Fabric.</p></div>
-            <div class="card"><h3>👤 Skins y Capas</h3><p>Personaliza tu apariencia. <strong>Premium →</strong> ilimitadas y exclusivas.</p></div>
+            <div class="card"><h3>👤 Skins y Capas</h3><p>5 cambios gratis. <strong>Premium →</strong> Ilimitadas ♾️</p></div>
             <div class="card"><h3>🔒 100% Seguro</h3><p>Sin virus, sin rastreadores. Tus datos se quedan en tu equipo.</p></div>
             <div class="card"><h3>🖥️ Para cualquier PC</h3><p>Optimizado para equipos modestos.</p></div>
-            <div class="card"><h3>💎 Versión Premium</h3><p>Sin anuncios, skins ilimitadas, capas exclusivas, soporte prioritario.</p></div>
+            <div class="card"><h3>💎 Versión Premium</h3><p>Sin anuncios, skins ilimitadas, capas ilimitadas, soporte prioritario.</p></div>
         </div>
     </section>
 </div>
@@ -657,7 +724,7 @@
             <div class="paso"><span class="paso-num">1</span><span class="paso-texto">Pulsa el botón verde "Descargar Nexis Launcher".</span></div>
             <div class="paso"><span class="paso-num">2</span><span class="paso-texto">Espera a que termine la descarga automáticamente.</span></div>
             <div class="paso"><span class="paso-num">3</span><span class="paso-texto">Abre el archivo — no necesita instalación.</span></div>
-            <div class="paso"><span class="paso-num">4</span><span class="paso-texto">¡Listo! Crea tu perfil y ¡a jugar!</span></div>
+            <div class="paso"><span class="paso-num">4</span><span class="paso-texto">¡Listo! Crea tu cuenta y ¡a jugar!</span></div>
         </div>
         <div style="text-align: center; margin-top: 2rem;">
             <button class="boton-descarga" onclick="alert('✅ Descarga iniciada! Aquí irá tu enlace real de descarga.')">⬇️ Descargar Nexis Launcher v2.0.0</button>
@@ -672,7 +739,7 @@
         <div class="acerca">
             <p>Nexis Launcher es un proyecto gratuito diseñado para facilitar el acceso a Minecraft. Sin publicidad, sin virus y sin costos ocultos en sus funciones básicas.</p>
             <br>
-            <p>La <strong>Versión Premium</strong> desbloquea beneficios adicionales: sin anuncios, skins ilimitadas, capas exclusivas y soporte prioritario.</p>
+            <p>La <strong>Versión Premium</strong> desbloquea beneficios adicionales: sin anuncios, <strong>skins y capas ilimitadas</strong>, y soporte prioritario.</p>
             <br>
             <p>Únete a nuestra comunidad: <a href="https://discord.gg/ef4uw4ttF" target="_blank">Discord Oficial</a></p>
         </div>
@@ -683,7 +750,7 @@
 <div id="s-cuenta" class="seccion">
     <div class="dashboard">
         <h1 class="dashboard-saludo">Hola, <span id="saludo-usuario">Usuario</span></h1>
-        <p class="dashboard-subtitulo">Gestiona tu cuenta y preferencias</p>
+        <p class="dashboard-subtitulo">Configura tu cuenta y preferencias</p>
 
         <div class="pestañas">
             <button class="pestaña activa" onclick="cambiarPestanaCuenta('cuenta-inicio', this)">💎 Premium y Pagos</button>
@@ -703,18 +770,18 @@
                 <div class="aviso-premium">
                     💎 <strong>Versión Premium — Beneficios completos:</strong>
                     <ul class="lista-beneficios">
-                        <li>✅ <strong>Skins ilimitadas</strong> en tu biblioteca personal</li>
-                        <li>✅ <strong>Capas ilimitadas y exclusivas</strong> de Nexis</li>
+                        <li>♾️ <strong>Skins ILIMITADAS</strong> — sin límite de cambios</li>
+                        <li>♾️ <strong>Capas ILIMITADAS</strong> — sin límite de cambios</li>
                         <li>✅ <strong>Eliminar anuncios</strong> de todo el sitio</li>
                         <li>✅ <strong>Soporte prioritario</strong> en Discord</li>
-                        <li>✅ <strong>Funciones exclusivas</strong> que llegan próximamente</li>
+                        <li>✅ <strong>Funciones exclusivas</strong> próximamente</li>
                     </ul>
                 </div>
 
                 <div class="metodos-pago">
-                    <h4>💳 Selecciona tu medio de pago</h4>
+                    <h4>💳 Elige tu método de pago</h4>
                     
-                    <div class="opcion-pago" id="pago-paypal" onclick="seleccionarPago('paypal', this)">
+                    <div class="opcion-pago" onclick="seleccionarPago('paypal', this)">
                         <div class="radio-pago"></div>
                         <div class="icono-pago">🅿️</div>
                         <div class="info-pago">
@@ -723,7 +790,7 @@
                         </div>
                     </div>
 
-                    <div class="opcion-pago" id="pago-yape" onclick="seleccionarPago('yape', this)">
+                    <div class="opcion-pago" onclick="seleccionarPago('yape', this)">
                         <div class="radio-pago"></div>
                         <div class="icono-pago">📱</div>
                         <div class="info-pago">
@@ -732,7 +799,7 @@
                         </div>
                     </div>
 
-                    <div class="opcion-pago" id="pago-plin" onclick="seleccionarPago('plin', this)">
+                    <div class="opcion-pago" onclick="seleccionarPago('plin', this)">
                         <div class="radio-pago"></div>
                         <div class="icono-pago">🔵</div>
                         <div class="info-pago">
@@ -741,7 +808,7 @@
                         </div>
                     </div>
 
-                    <div class="opcion-pago" id="pago-tarjeta" onclick="seleccionarPago('tarjeta', this)">
+                    <div class="opcion-pago" onclick="seleccionarPago('tarjeta', this)">
                         <div class="radio-pago"></div>
                         <div class="icono-pago">💳</div>
                         <div class="info-pago">
@@ -750,11 +817,11 @@
                         </div>
                     </div>
 
-                    <div class="opcion-pago" id="pago-donar" onclick="seleccionarPago('donar', this)">
+                    <div class="opcion-pago" onclick="seleccionarPago('donacion', this)">
                         <div class="radio-pago"></div>
                         <div class="icono-pago">☕</div>
                         <div class="info-pago">
-                            <strong>Hacer una donación</strong>
+                            <strong>Hacer una Donación</strong>
                             <span>Apoya el proyecto con cualquier cantidad</span>
                         </div>
                     </div>
@@ -762,7 +829,7 @@
                     <button class="boton-pagar" id="boton-pagar" onclick="realizarPago()" disabled>
                         👇 Selecciona un método de pago arriba
                     </button>
-                    <div class="mensaje-accion" id="mensaje-pago">✅ ¡Gracias! Premium activado.</div>
+                    <div class="mensaje-accion" id="mensaje-pago">✅ ¡Gracias! Premium activado. Ahora tienes skins y capas ILIMITADAS ♾️</div>
                 </div>
 
                 <button class="btn-guardar btn-peligro" onclick="cerrarSesion()">Cerrar sesión</button>
@@ -778,18 +845,18 @@
                         <h4>Skin actual</h4>
                         <div class="vista-personalizada" id="vista-skin">🧍</div>
                         <div>
-                            <button class="btn-azul" onclick="alert('📁 Selecciona tu archivo de Skin (.png)')">📁 Subir Skin</button>
-                            <button class="btn-dorado" onclick="alert('📁 Selecciona tu archivo de Capa (.png) — 💎 Premium')">📁 Subir Capa 💎</button>
-                            <button class="btn-rojo" onclick="restablecerSkin()">↩️ Restablecer a Steve</button>
+                            <button class="btn-azul" id="btn-subir-skin" onclick="subirSkin()">📁 Subir Skin</button>
+                            <button class="btn-dorado" id="btn-subir-capa" onclick="subirCapa()">📁 Subir Capa 💎</button>
+                            <button class="btn-rojo" id="btn-restablecer-skin" onclick="restablecerSkin()">↩️ Restablecer</button>
                         </div>
-                        <div class="mensaje-accion" id="mensaje-skin">✅ Skin restablecida a Steve</div>
+                        <div class="mensaje-accion" id="mensaje-skin">✅ Skin cambiada correctamente</div>
                     </div>
                     <div class="separador-vertical"></div>
                     <div class="biblioteca-lado">
                         <h4>Biblioteca de Skins</h4>
-                        <div class="aviso-limite-lado">
-                            ⚠️ Has usado <span id="contador-skins">2 de 2</span> skins gratuitas.<br>
-                            <strong>Consigue Premium</strong> para skins <strong>ilimitadas</strong> y capas exclusivas.
+                        <div class="aviso-limite-lado" id="aviso-limite">
+                            ⚠️ Te quedan <span id="contador-usos">5</span> de <span>5</span> cambios gratis.<br>
+                            💎 <strong>Premium = Ilimitadas ♾️</strong> para siempre.
                         </div>
                         <div class="cuadricula-skins-lado skin-4">
                             <div class="skin-item-lado seleccionada" onclick="seleccionarSkin(this, '🧍')">🧍</div>
@@ -805,30 +872,33 @@
         <!-- === GENERAL === -->
         <div id="cuenta-general" class="contenido-pestaña">
             <div class="tarjeta">
-                <h3>Información General</h3>
+                <h3>Información de tu Cuenta</h3>
                 <div class="fila">
-                    <div class="grupo"><label>Nombre de usuario</label><input type="text" id="campo-usuario" placeholder="Inicia sesión para ver tu nombre"></div>
-                    <div class="grupo"><label>Correo electrónico</label><input type="email" id="campo-correo" placeholder="tu@gmail.com"></div>
+                    <div class="grupo"><label>Nombre de usuario</label><input type="text" id="campo-usuario" placeholder="Tu nombre de usuario"></div>
+                    <div class="grupo"><label>Correo electrónico</label><input type="email" id="campo-correo" placeholder="tu@email.com"></div>
                 </div>
-                <div class="grupo" style="margin-top:1.2rem;"><label>Sobre mí</label><textarea id="campo-sobre">No has escrito nada sobre ti</textarea></div>
-                <button class="btn-guardar" onclick="document.getElementById('guardado-general').classList.add('mostrar'); setTimeout(()=>document.getElementById('guardado-general').classList.remove('mostrar'),3000)">Guardar cambios</button>
-                <div class="mensaje-accion" id="guardado-general">✅ Cambios guardados correctamente</div>
+                <div class="grupo">
+                    <label>Biografía / Sobre mí</label>
+                    <textarea id="campo-sobre">Escribe algo sobre ti...</textarea>
+                </div>
+                <button class="btn-guardar" onclick="guardarCuenta()">💾 Guardar Cambios</button>
+                <div class="mensaje-accion" id="guardado-general">✅ ¡Tu cuenta ha sido actualizada!</div>
             </div>
         </div>
 
         <!-- === PRIVACIDAD === -->
         <div id="cuenta-privacidad" class="contenido-pestaña">
             <div class="tarjeta">
-                <h3>Privacidad</h3>
-                <p>Configuración de privacidad aquí...</p>
+                <h3>🔒 Privacidad</h3>
+                <p>Aquí puedes configurar quién ve tu información y actividad...</p>
             </div>
         </div>
 
         <!-- === SEGURIDAD === -->
         <div id="cuenta-seguridad" class="contenido-pestaña">
             <div class="tarjeta">
-                <h3>Seguridad</h3>
-                <p>Configuración de seguridad aquí...</p>
+                <h3>🛡️ Seguridad</h3>
+                <p>Cambia tu contraseña, activa protección de sesión y más...</p>
             </div>
         </div>
     </div>
@@ -836,97 +906,4 @@
 
 <script>
 // =====================================================
-// ✅ SESIÓN LOCAL + PREMIUM PERSISTENTE
-// =====================================================
-window.addEventListener('load', function() {
-    // Limpia la URL al cargar
-    if (window.location.search || window.location.hash) {
-        history.replaceState({}, document.title, window.location.pathname);
-    }
-
-    // Recuperar sesión
-    const sesion = localStorage.getItem('nexis_sesion');
-    if (sesion) {
-        const datos = JSON.parse(sesion);
-        aplicarSesion(datos.nombre, datos.correo);
-        // Si tenía Premium activado, restaurarlo
-        if (datos.premium === 'si') {
-            activarPremium();
-        }
-    }
-});
-
-// =====================================================
-// ✅ NAVEGACIÓN PRINCIPAL
-// =====================================================
-function mostrarSeccion(nombre) {
-    document.querySelectorAll('.seccion').forEach(s => s.classList.remove('visible'));
-    const seccion = document.getElementById('s-' + nombre);
-    if (seccion) seccion.classList.add('visible');
-
-    document.querySelectorAll('.nav-enlaces > button').forEach(btn => btn.classList.remove('activo'));
-    const btn = document.getElementById('m-' + nombre);
-    if (btn) btn.classList.add('activo');
-}
-
-// =====================================================
-// ✅ CAMBIAR PESTAÑAS DE CUENTA
-// =====================================================
-function cambiarPestanaCuenta(nombre, boton) {
-    document.querySelectorAll('.contenido-pestaña').forEach(p => p.classList.remove('visible'));
-    document.querySelectorAll('.pestaña').forEach(p => p.classList.remove('activa'));
-
-    const contenido = document.getElementById(nombre);
-    if (contenido) contenido.classList.add('visible');
-    if (boton) boton.classList.add('activa');
-}
-
-// =====================================================
-// ✅ INICIAR SESIÓN
-// =====================================================
-function iniciarConGoogle() {
-    const nombre = prompt("👤 Tu nombre de usuario:");
-    const correo = prompt("📧 Tu correo Gmail:");
-    if (nombre && correo) {
-        localStorage.setItem('nexis_sesion', JSON.stringify({ nombre, correo, premium: 'no' }));
-        aplicarSesion(nombre, correo);
-    }
-}
-
-function aplicarSesion(nombre, correo) {
-    document.body.classList.add('sesion-iniciada');
-    document.getElementById('usuario-nombre').textContent = '👤 ' + nombre;
-    document.getElementById('saludo-usuario').textContent = nombre;
-    document.getElementById('campo-usuario').value = nombre;
-    document.getElementById('campo-correo').value = correo;
-}
-
-// =====================================================
-// ✅ CERRAR SESIÓN
-// =====================================================
-function cerrarSesion() {
-    localStorage.removeItem('nexis_sesion');
-    document.body.classList.remove('sesion-iniciada', 'premium-activo');
-    document.getElementById('campo-usuario').value = '';
-    document.getElementById('campo-correo').value = '';
-    mostrarSeccion('inicio');
-    // Restablecer estado visual
-    document.getElementById('estado-premium').textContent = 'Inactiva';
-    document.getElementById('estado-premium').classList.remove('activa');
-    document.getElementById('estado-premium').classList.add('inactiva');
-    document.getElementById('contador-skins').textContent = '2 de 2';
-}
-
-// =====================================================
-// ✅ SELECCIÓN DE MÉTODOS DE PAGO
-// =====================================================
-let metodoSeleccionado = null;
-
-function seleccionarPago(nombre, elemento) {
-    document.querySelectorAll('.opcion-pago').forEach(el => el.classList.remove('seleccionada'));
-    elemento.classList.add('seleccionada');
-    metodoSeleccionado = nombre;
-
-    const boton = document.getElementById('boton-pagar');
-    boton.disabled = false;
-    boton.textContent = `✅ P
+// 🔒 GESTIÓN DE CUENTAS — DATOS SOLO EN TU NAVEGADOR
