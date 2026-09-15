@@ -13,13 +13,11 @@
             --fondo: #0F172A;
             --fondo-tarjeta: #1E293B;
             --verde: #39FF14;
-            --azul-boton: #4DABF7;
             --rojo-boton: #FF3344;
             --azul-discord: #5865F2;
             --texto: #FFFFFF;
             --texto-secundario: #94A3B8;
             --borde: rgba(57,255,20,0.15);
-            --borde-activo: rgba(57,255,20,0.5);
         }
         body {
             font-family: 'Inter', sans-serif;
@@ -29,7 +27,7 @@
             line-height: 1.6;
         }
 
-        /* === BARRA DE NAVEGACIÓN SUPERIOR === */
+        /* === BARRA DE NAVEGACIÓN === */
         nav {
             background: rgba(15,23,42,0.95);
             padding: 0.8rem 2rem;
@@ -84,7 +82,6 @@
         }
         .btn-discord:hover {
             background: #4752C4 !important;
-            transform: translateY(-1px);
         }
         .etiqueta-usuario {
             background: rgba(88,101,242,0.2);
@@ -92,9 +89,6 @@
             padding: 0.4rem 0.8rem;
             border-radius: 6px;
             font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
         }
         .contenedor {
             max-width: 1200px;
@@ -103,26 +97,14 @@
         }
 
         /* === PÁGINAS === */
-        .pagina {
-            display: none;
-            animation: aparecer 0.3s ease-out;
-        }
-        .pagina.activa {
-            display: block;
-        }
+        .pagina { display: none; animation: aparecer 0.3s ease-out; }
+        .pagina.activa { display: block; }
         @keyframes aparecer {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .inicio-contenido {
-            text-align: center;
-            padding: 2rem 0 4rem;
-        }
-        .inicio-contenido h1 {
-            font-size: 3.5rem;
-            color: var(--verde);
-            margin-bottom: 1rem;
-        }
+        .inicio-contenido { text-align: center; padding: 2rem 0 4rem; }
+        .inicio-contenido h1 { font-size: 3.5rem; color: var(--verde); margin-bottom: 1rem; }
         .inicio-contenido p {
             color: var(--texto-secundario);
             font-size: 1.1rem;
@@ -141,20 +123,9 @@
             cursor: pointer;
             transition: all 0.2s;
         }
-        .btn-descargar-principal:hover {
-            transform: scale(1.03);
-            box-shadow: 0 0 20px rgba(57,255,20,0.3);
-        }
+        .btn-descargar-principal:hover { transform: scale(1.03); }
         .seccion-noticias { margin-top: 4rem; }
-        .seccion-noticias h2 {
-            text-align: center;
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
+        .seccion-noticias h2 { text-align: center; font-size: 1.5rem; margin-bottom: 2rem; }
         .cuadricula-noticias {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -184,25 +155,15 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 1.2rem;
         }
-        @media (max-width: 850px) {
-            .cuadricula-caracteristicas { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (max-width: 520px) {
-            .cuadricula-caracteristicas { grid-template-columns: 1fr; }
-        }
+        @media (max-width: 850px) { .cuadricula-caracteristicas { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 520px) { .cuadricula-caracteristicas { grid-template-columns: 1fr; } }
         .tarjeta-caracteristica {
             background: var(--fondo-tarjeta);
             border: 1px solid var(--borde);
             border-radius: 12px;
             padding: 1.5rem;
         }
-        .tarjeta-caracteristica h3 {
-            font-size: 1rem;
-            margin-bottom: 0.6rem;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-        }
+        .tarjeta-caracteristica h3 { font-size: 1rem; margin-bottom: 0.6rem; }
         .tarjeta-caracteristica p { color: var(--texto-secundario); font-size: 0.9rem; }
         .tarjeta-pasos {
             background: var(--fondo-tarjeta);
@@ -212,25 +173,13 @@
             max-width: 600px;
             margin: 0 auto;
         }
-        .paso {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid rgba(57,255,20,0.1);
-        }
+        .paso { display: flex; gap: 1rem; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(57,255,20,0.1); }
         .paso-num {
-            width: 28px;
-            height: 28px;
-            background: var(--verde);
-            color: #000;
+            width: 28px; height: 28px;
+            background: var(--verde); color: #000;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 0.9rem;
-            flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 0.9rem; flex-shrink: 0;
         }
         .tarjeta-acerca {
             background: var(--fondo-tarjeta);
@@ -249,30 +198,16 @@
         .dashboard-header h1 { font-size: 1.8rem; margin-bottom: 0.3rem; }
         .dashboard-header p { color: var(--texto-secundario); }
         .pestañas-dash {
-            display: flex;
-            gap: 0.3rem;
-            margin-bottom: 2rem;
-            background: var(--fondo-tarjeta);
-            padding: 0.3rem;
-            border-radius: 10px;
-            flex-wrap: wrap;
+            display: flex; gap: 0.3rem; margin-bottom: 2rem;
+            background: var(--fondo-tarjeta); padding: 0.3rem; border-radius: 10px; flex-wrap: wrap;
         }
         .pestaña-dash {
-            padding: 0.6rem 1.2rem;
-            border-radius: 8px;
-            background: transparent;
-            border: none;
-            color: var(--texto-secundario);
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-family: inherit;
+            padding: 0.6rem 1.2rem; border-radius: 8px;
+            background: transparent; border: none;
+            color: var(--texto-secundario); font-weight: 500;
+            cursor: pointer; transition: all 0.2s; font-family: inherit;
         }
-        .pestaña-dash.activa {
-            background: var(--verde);
-            color: #000;
-            font-weight: 600;
-        }
+        .pestaña-dash.activa { background: var(--verde); color: #000; font-weight: 600; }
         .contenido-dash { display: none; }
         .contenido-dash.visible { display: block; }
         .tarjeta-dash {
@@ -284,191 +219,111 @@
         }
         .etiqueta-beta {
             display: inline-block;
-            background: var(--verde);
-            color: #000;
-            font-size: 0.75rem;
-            font-weight: 700;
-            padding: 0.15rem 0.5rem;
-            border-radius: 6px;
-            margin-left: 0.5rem;
+            background: var(--verde); color: #000;
+            font-size: 0.75rem; font-weight: 700;
+            padding: 0.15rem 0.5rem; border-radius: 6px; margin-left: 0.5rem;
         }
         .premium-lista { margin: 1rem 0; padding-left: 1.2rem; }
         .premium-lista li {
-            color: var(--texto-secundario);
-            font-size: 0.95rem;
-            list-style: none;
-            position: relative;
-            padding-left: 1.2rem;
+            color: var(--texto-secundario); font-size: 0.95rem;
+            list-style: none; position: relative; padding-left: 1.2rem;
         }
         .premium-lista li::before { content: "✅"; position: absolute; left: 0; }
         .btn-premium {
             background: linear-gradient(90deg, #facc15, #fde047);
-            color: #000;
-            font-weight: 600;
-            padding: 0.6rem 1.2rem;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            margin: 0.5rem 0;
+            color: #000; font-weight: 600;
+            padding: 0.6rem 1.2rem; border: none;
+            border-radius: 8px; cursor: pointer; margin: 0.5rem 0;
         }
         .fila-botones { display: flex; gap: 0.8rem; margin-top: 1rem; flex-wrap: wrap; }
         .btn-pago {
-            background: #009cde;
-            color: #fff;
-            padding: 0.7rem 1.2rem;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            background: #009cde; color: #fff;
+            padding: 0.7rem 1.2rem; border: none;
+            border-radius: 8px; font-weight: 600;
+            cursor: pointer; display: flex; align-items: center; gap: 0.5rem;
         }
         .btn-donar {
-            background: var(--verde);
-            color: #000;
-            padding: 0.7rem 1.2rem;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            background: var(--verde); color: #000;
+            padding: 0.7rem 1.2rem; border: none;
+            border-radius: 8px; font-weight: 600;
+            cursor: pointer; display: flex; align-items: center; gap: 0.5rem;
         }
         .btn-cerrar-grande {
-            width: 100%;
-            padding: 0.9rem;
-            background: var(--rojo-boton);
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            margin-top: 1.5rem;
-            cursor: pointer;
+            width: 100%; padding: 0.9rem;
+            background: var(--rojo-boton); color: #fff;
+            border: none; border-radius: 8px;
+            font-weight: 600; font-size: 0.95rem;
+            margin-top: 1.5rem; cursor: pointer;
         }
         .fila-form { display: flex; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap; }
         .campo-form { flex: 1; min-width: 240px; }
         .campo-form label {
-            display: block;
-            font-size: 0.9rem;
-            color: var(--texto-secundario);
-            margin-bottom: 0.4rem;
+            display: block; font-size: 0.9rem;
+            color: var(--texto-secundario); margin-bottom: 0.4rem;
         }
-        .campo-form input,
-        .campo-form textarea {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            background: var(--fondo);
-            border: 1px solid var(--borde);
-            border-radius: 8px;
-            color: var(--texto);
-            font-size: 0.95rem;
-            outline: none;
-            font-family: inherit;
+        .campo-form input, .campo-form textarea {
+            width: 100%; padding: 0.75rem 1rem;
+            background: var(--fondo); border: 1px solid var(--borde);
+            border-radius: 8px; color: var(--texto);
+            font-size: 0.95rem; outline: none; font-family: inherit;
         }
         .campo-form textarea { min-height: 100px; resize: vertical; }
         .btn-guardar-verde {
-            width: 100%;
-            padding: 0.9rem;
-            background: var(--verde);
-            color: #000;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            cursor: pointer;
-            margin-top: 0.5rem;
+            width: 100%; padding: 0.9rem;
+            background: var(--verde); color: #000;
+            border: none; border-radius: 8px;
+            font-weight: 600; font-size: 0.95rem;
+            cursor: pointer; margin-top: 0.5rem;
         }
         .opcion-priv {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-            border-bottom: 1px solid var(--borde);
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 0; border-bottom: 1px solid var(--borde);
         }
         .switch {
-            width: 48px;
-            height: 26px;
-            background: var(--verde);
-            border-radius: 13px;
-            position: relative;
-            cursor: pointer;
-            transition: all 0.2s;
+            width: 48px; height: 26px; background: var(--verde);
+            border-radius: 13px; position: relative; cursor: pointer; transition: all 0.2s;
         }
         .switch::after {
-            content: '';
-            position: absolute;
-            top: 3px;
-            right: 3px;
-            width: 20px;
-            height: 20px;
-            background: #fff;
-            border-radius: 50%;
-            transition: all 0.2s;
+            content: ''; position: absolute; top: 3px; right: 3px;
+            width: 20px; height: 20px; background: #fff;
+            border-radius: 50%; transition: all 0.2s;
         }
         .switch.inactivo { background: #2a3244; }
         .switch.inactivo::after { right: auto; left: 3px; }
         .caja-destacada {
             background: rgba(57,255,20,0.05);
             border: 1px solid rgba(250,204,21,0.2);
-            border-radius: 10px;
-            padding: 1.2rem;
-            margin: 1rem 0;
+            border-radius: 10px; padding: 1.2rem; margin: 1rem 0;
         }
         .caja-pago {
             background: rgba(0,156,222,0.05);
             border: 1px solid rgba(0,156,222,0.2);
-            border-radius: 10px;
-            padding: 1.2rem;
-            margin-top: 1rem;
+            border-radius: 10px; padding: 1.2rem; margin-top: 1rem;
         }
         .texto-premium { color: #facc15; font-weight: 600; }
         .texto-inactivo { color: var(--rojo-boton); }
 
         /* === MODALES === */
         .modal-fondo {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            display: none;
+            position: fixed; inset: 0; background: rgba(0,0,0,0.8);
+            display: none; align-items: center; justify-content: center; z-index: 9999;
         }
         .modal-fondo.visible { display: flex; }
         .modal {
-            background: var(--fondo-tarjeta);
-            border: 1px solid var(--borde);
-            border-radius: 12px;
-            padding: 2rem;
-            width: 90%;
-            max-width: 420px;
+            background: var(--fondo-tarjeta); border: 1px solid var(--borde);
+            border-radius: 12px; padding: 2rem; width: 90%; max-width: 420px;
         }
         .modal h3 { margin-bottom: 1.5rem; text-align: center; }
         .modal input {
-            width: 100%;
-            padding: 0.85rem;
-            margin-bottom: 1rem;
-            background: var(--fondo);
-            border: 1px solid var(--borde);
-            border-radius: 8px;
-            color: #fff;
-            font-size: 0.95rem;
-            outline: none;
-            font-family: inherit;
+            width: 100%; padding: 0.85rem; margin-bottom: 1rem;
+            background: var(--fondo); border: 1px solid var(--borde);
+            border-radius: 8px; color: #fff; font-size: 0.95rem;
+            outline: none; font-family: inherit;
         }
         .modal-botones { display: flex; gap: 0.8rem; margin-top: 0.5rem; }
         .modal-botones button {
-            flex: 1;
-            padding: 0.75rem;
-            border-radius: 8px;
-            border: none;
-            font-weight: 600;
-            cursor: pointer;
-            font-family: inherit;
+            flex: 1; padding: 0.75rem; border-radius: 8px;
+            border: none; font-weight: 600; cursor: pointer; font-family: inherit;
         }
         .btn-cancelar { background: #2a3244; color: #fff; }
         .btn-aceptar { background: var(--verde); color: #000; }
@@ -508,7 +363,7 @@
     </div>
 </div>
 
-<!-- BARRA DE NAVEGACIÓN SUPERIOR -->
+<!-- BARRA DE NAVEGACIÓN -->
 <nav>
     <span class="logo" onclick="irPagina('inicio')">Nexis Launcher</span>
     <div class="nav-enlaces">
@@ -520,7 +375,7 @@
             <a href="#" id="nav-acerca" onclick="irPagina('acerca'); return false;">Acerca de</a>
             <button onclick="abrirModalLogin()">Iniciar sesión</button>
             <button onclick="abrirModalRegistro()">Registrarse</button>
-            <a href="https://discord.com" target="_blank" class="btn-discord">Discord</a>
+            <a href="https://discord.com" target="_blank" rel="noopener" class="btn-discord">Discord</a>
         </div>
         <!-- CON SESIÓN -->
         <div class="con-sesion">
@@ -530,14 +385,14 @@
             <a href="#" id="cnav-acerca" onclick="irPagina('acerca'); return false;">Acerca de</a>
             <span class="etiqueta-usuario" id="usuario-nav">👤 Usuario</span>
             <button onclick="cerrarSesion()">Cerrar sesión</button>
-            <a href="https://discord.com" target="_blank" class="btn-discord">Discord</a>
+            <a href="https://discord.com" target="_blank" rel="noopener" class="btn-discord">Discord</a>
         </div>
     </div>
 </nav>
 
 <!-- PÁGINAS -->
 <div class="contenedor">
-    <!-- INICIO -->
+    <!-- INICIO PÚBLICO -->
     <div id="pag-inicio" class="pagina activa">
         <div class="inicio-contenido">
             <h1>Bienvenido a Nexis Launcher</h1>
@@ -592,7 +447,7 @@
         <div class="tarjeta-acerca">
             <p>Nexis Launcher es un proyecto gratuito diseñado para facilitar el acceso a Minecraft. Sin publicidad, sin virus y sin costos ocultos en sus funciones básicas.</p>
             <p>Algunos beneficios adicionales requieren una suscripción Premium.</p>
-            <p>Únete a nuestra comunidad: <a href="https://discord.com" target="_blank" class="enlace-discord">Discord Oficial</a></p>
+            <p>Únete a nuestra comunidad: <a href="https://discord.com" target="_blank" rel="noopener" class="enlace-discord">Discord Oficial</a></p>
         </div>
     </div>
 
@@ -603,7 +458,7 @@
             <p>Bienvenid@ a tu nueva Dashboard</p>
         </div>
         <div class="pestañas-dash">
-            <button class="pestaña-dash activa" id="tab-inicio" onclick="cambiarPestanaDash('inicio')">🏠 Inicio</button>
+            <button class="pestaña-dash" id="tab-inicio" onclick="cambiarPestanaDash('inicio')">🏠 Inicio</button>
             <button class="pestaña-dash" id="tab-general" onclick="cambiarPestanaDash('general')">👤 General</button>
             <button class="pestaña-dash" id="tab-privacidad" onclick="cambiarPestanaDash('privacidad')">🔒 Privacidad</button>
             <button class="pestaña-dash" id="tab-seguridad" onclick="cambiarPestanaDash('seguridad')">🛡️ Seguridad</button>
@@ -611,7 +466,7 @@
         </div>
 
         <!-- INICIO DASH -->
-        <div id="dash-inicio" class="contenido-dash visible">
+        <div id="dash-inicio" class="contenido-dash">
             <div class="tarjeta-dash">
                 <h3>Inicio <span class="etiqueta-beta">BETA</span></h3>
                 <p style="margin:1rem 0;"><strong>Suscripción Premium:</strong> <span id="estado-premium" class="texto-inactivo">Inactiva</span></p>
@@ -741,11 +596,9 @@ function cerrarModalLogin() { document.getElementById('modal-login').classList.r
 
 // === NAVEGACIÓN PRINCIPAL ===
 function irPagina(nombre) {
-    // Quitar todos los activos
     document.querySelectorAll('.nav-enlaces a').forEach(a => a.classList.remove('activo'));
     document.querySelectorAll('.pagina').forEach(p => p.classList.remove('activa'));
 
-    // Páginas públicas
     const publicas = ['inicio', 'caracteristicas', 'descargar', 'acerca'];
     if (publicas.includes(nombre)) {
         document.getElementById(`pag-${nombre}`).classList.add('activa');
@@ -756,10 +609,32 @@ function irPagina(nombre) {
         return;
     }
 
-    // Dashboard — SIEMPRE EMPIEZA EN INICIO
     if (nombre === 'dashboard' && cuentaActiva) {
         document.getElementById('pag-dashboard').classList.add('activa');
-        cambiarPestanaDash('inicio'); // ✅ FORZADO A INICIO
+        cambiarPestanaDash('inicio'); // ✅ SIEMPRE INICIO AL ENTRAR
+    }
+}
+
+// === CAMBIAR PESTAÑA DEL PANEL ===
+function cambiarPestanaDash(nombre) {
+    document.querySelectorAll('.contenido-dash').forEach(d => d.classList.remove('visible'));
+    document.querySelectorAll('.pestaña-dash').forEach(b => b.classList.remove('activa'));
+
+    if (nombre === 'inicio') {
+        document.getElementById('dash-inicio').classList.add('visible');
+        document.getElementById('tab-inicio').classList.add('activa');
+    } else if (nombre === 'general') {
+        document.getElementById('dash-general').classList.add('visible');
+        document.getElementById('tab-general').classList.add('activa');
+    } else if (nombre === 'privacidad') {
+        document.getElementById('dash-privacidad').classList.add('visible');
+        document.getElementById('tab-privacidad').classList.add('activa');
+    } else if (nombre === 'seguridad') {
+        document.getElementById('dash-seguridad').classList.add('visible');
+        document.getElementById('tab-seguridad').classList.add('activa');
+    } else if (nombre === 'perfil') {
+        document.getElementById('dash-perfil').classList.add('visible');
+        document.getElementById('tab-perfil').classList.add('activa');
     }
 }
 
@@ -805,13 +680,13 @@ function iniciarSesion() {
     alert('✅ ¡Sesión iniciada!');
 }
 
-// === CARGAR SESIÓN Y MOSTRAR DASHBOARD ===
+// === CARGAR SESIÓN Y MOSTRAR DASHBOARD EN INICIO ===
 function iniciarSesionDirecto(cuenta) {
     cuentaActiva = cuenta;
     localStorage.setItem(USUARIO_KEY, JSON.stringify(cuenta));
     document.body.classList.add('sesion-iniciada');
 
-    // Actualizar interfaz con los datos del usuario
+    // Actualizar interfaz
     document.getElementById('usuario-nav').textContent = '👤 ' + cuenta.usuario;
     document.getElementById('saludo-usuario').textContent = 'Hola, ' + cuenta.usuario;
     document.getElementById('campo-usuario').value = cuenta.usuario;
@@ -819,57 +694,35 @@ function iniciarSesionDirecto(cuenta) {
     document.getElementById('campo-sobre').value = cuenta.sobre;
     document.getElementById('hora-acceso').textContent = cuenta.ultimoAcceso;
 
-    // ✅ FORZAR ABRIR DASHBOARD EN INICIO
+    // ✅ MOSTRAR DASHBOARD Y ABRIR SIEMPRE EN INICIO
     document.querySelectorAll('.pagina').forEach(p => p.classList.remove('activa'));
     document.getElementById('pag-dashboard').classList.add('activa');
-    
-    // ✅ LIMPIAR TODO Y DEJAR SOLO INICIO VISIBLE
-    document.querySelectorAll('.contenido-dash').forEach(d => d.classList.remove('visible'));
-    document.querySelectorAll('.pestaña-dash').forEach(b => b.classList.remove('activa'));
-    document.getElementById('dash-inicio').classList.add('visible');
-    document.getElementById('tab-inicio').classList.add('activa');
+    cambiarPestanaDash('inicio');
 
     actualizarSwitches();
     actualizarEstadoPremium();
 }
 
-// === CERRAR SESIÓN ===
+// === CERRAR SESIÓN — CORREGIDO ===
 function cerrarSesion() {
     localStorage.removeItem(USUARIO_KEY);
     document.body.classList.remove('sesion-iniciada');
     cuentaActiva = null;
 
-    // Volver a Inicio
+    // ✅ VOLVER A PÁGINA DE INICIO PÚBLICA COMPLETAMENTE
     document.querySelectorAll('.pagina').forEach(p => p.classList.remove('activa'));
     document.getElementById('pag-inicio').classList.add('activa');
+    
+    // ✅ MARCAR "Inicio" como activo en navegación
     document.querySelectorAll('.nav-enlaces a').forEach(a => a.classList.remove('activo'));
     document.getElementById('nav-inicio').classList.add('activo');
-    alert('✅ Sesión cerrada');
-}
 
-// === PESTAÑAS DEL PANEL ===
-function cambiarPestanaDash(nombre) {
-    // Quitar todo
-    document.querySelectorAll('.contenido-dash').forEach(d => d.classList.remove('visible'));
-    document.querySelectorAll('.pestaña-dash').forEach(b => b.classList.remove('activa'));
+    // ✅ LIMPIAR DATOS DEL FORMULARIO PARA QUE NO APAREZCAN ANTES DE VOLVER A ENTRAR
+    document.getElementById('campo-usuario').value = '';
+    document.getElementById('campo-correo').value = '';
+    document.getElementById('campo-sobre').value = '';
 
-    // Mostrar lo solicitado
-    if (nombre === 'inicio') {
-        document.getElementById('dash-inicio').classList.add('visible');
-        document.getElementById('tab-inicio').classList.add('activa');
-    } else if (nombre === 'general') {
-        document.getElementById('dash-general').classList.add('visible');
-        document.getElementById('tab-general').classList.add('activa');
-    } else if (nombre === 'privacidad') {
-        document.getElementById('dash-privacidad').classList.add('visible');
-        document.getElementById('tab-privacidad').classList.add('activa');
-    } else if (nombre === 'seguridad') {
-        document.getElementById('dash-seguridad').classList.add('visible');
-        document.getElementById('tab-seguridad').classList.add('activa');
-    } else if (nombre === 'perfil') {
-        document.getElementById('dash-perfil').classList.add('visible');
-        document.getElementById('tab-perfil').classList.add('activa');
-    }
+    alert('✅ Sesión cerrada correctamente');
 }
 
 // === GUARDAR DATOS GENERALES ===
