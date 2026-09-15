@@ -9,678 +9,110 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
         :root {
-            --fondo: #0a0e1f;
-            --fondo-tarjeta: #141a30;
-            --verde: #39ff14;
-            --azul-boton: #4dabf7;
-            --rojo-boton: #ff6b6b;
-            --azul-discord: #5865f2;
-            --texto: #ffffff;
-            --texto-secundario: #a0aec0;
-            --borde: rgba(57, 255, 20, 0.15);
-            --borde-activo: rgba(57, 255, 20, 0.5);
+            --fondo: #0a0e1f; --fondo-tarjeta: #141a30; --verde: #39ff14;
+            --azul-boton: #4dabf7; --rojo-boton: #ff6b6b; --azul-discord: #5865f2;
+            --texto: #fff; --texto-secundario: #a0aec0;
+            --borde: rgba(57,255,20,.15); --borde-activo: rgba(57,255,20,.5);
         }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--fondo);
-            color: var(--texto);
-            min-height: 100vh;
-            line-height: 1.6;
-        }
-
-        nav {
-            background: rgba(20, 26, 48, 0.95);
-            padding: 0.8rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--borde);
-            position: sticky;
-            top: 0;
-            z-index: 999;
-        }
-
-        .logo {
-            font-size: 1.4rem;
-            font-weight: 800;
-            color: var(--verde);
-            cursor: pointer;
-        }
-
-        .nav-enlaces {
-            display: flex;
-            gap: 0.5rem;
-            align-items: center;
-        }
-
-        .nav-enlaces a, .nav-enlaces button {
-            padding: 0.6rem 1.1rem;
-            border-radius: 6px;
-            font-size: 0.95rem;
-            font-weight: 500;
-            border: none;
-            background: transparent;
-            color: var(--texto);
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.2s;
-            font-family: inherit;
-        }
-
-        .nav-enlaces a:hover, .nav-enlaces button:hover {
-            background: rgba(57, 255, 20, 0.1);
-        }
-
-        .nav-enlaces a.activo {
-            background: var(--verde);
-            color: #000;
-            font-weight: 600;
-        }
-
-        .usuario-nav {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .nombre-usuario-nav {
-            color: var(--texto);
-            font-weight: 500;
-            font-size: 0.95rem;
-        }
-
-        .btn-cerrar-nav {
-            color: var(--texto);
-            padding: 0.5rem 1rem;
-        }
-
-        .btn-discord {
-            background: var(--azul-discord);
-            color: white !important;
-            font-weight: 600;
-        }
-
-        .btn-discord:hover {
-            filter: brightness(1.1);
-        }
-
-        .pagina {
-            display: none;
-            animation: aparecer 0.3s ease-out;
-        }
-        .pagina.activa {
-            display: block;
-        }
-
-        @keyframes aparecer {
-            from { opacity: 0; transform: translateY(10px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-
-        .contenedor {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
-        }
-
-        .inicio-contenido {
-            text-align: center;
-            padding: 2rem 0 4rem;
-        }
-
-        .inicio-contenido h1 {
-            font-size: 3rem;
-            color: var(--verde);
-            margin-bottom: 1rem;
-        }
-
-        .inicio-contenido p {
-            color: var(--texto-secundario);
-            font-size: 1.1rem;
-            max-width: 700px;
-            margin: 0 auto 2.5rem;
-            line-height: 1.7;
-        }
-
-        .btn-descargar-principal {
-            padding: 1rem 2.5rem;
-            background: var(--verde);
-            color: #000;
-            font-size: 1.1rem;
-            font-weight: 700;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .btn-descargar-principal:hover {
-            transform: scale(1.03);
-            box-shadow: 0 0 20px rgba(57, 255, 20, 0.3);
-        }
-
-        .seccion-noticias {
-            margin-top: 4rem;
-        }
-
-        .seccion-noticias h2 {
-            text-align: center;
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-
-        .cuadricula-noticias {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .tarjeta-noticia {
-            background: var(--fondo-tarjeta);
-            border: 1px solid var(--borde);
-            border-radius: 12px;
-            padding: 1.5rem;
-        }
-
-        .etiqueta-oficial {
-            display: inline-block;
-            background: rgba(57, 255, 20, 0.15);
-            color: var(--verde);
-            font-size: 0.8rem;
-            font-weight: 600;
-            padding: 0.2rem 0.6rem;
-            border-radius: 20px;
-            margin-bottom: 1rem;
-        }
-
-        .tarjeta-noticia h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .tarjeta-noticia p {
-            color: var(--texto-secundario);
-            font-size: 0.95rem;
-        }
-
-        .titulo-seccion {
-            text-align: center;
-            font-size: 1.8rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .cuadricula-caracteristicas {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.2rem;
-        }
-
-        @media (max-width: 850px) {
-            .cuadricula-caracteristicas { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (max-width: 520px) {
-            .cuadricula-caracteristicas { grid-template-columns: 1fr; }
-        }
-
-        .tarjeta-caracteristica {
-            background: var(--fondo-tarjeta);
-            border: 1px solid var(--borde);
-            border-radius: 12px;
-            padding: 1.5rem;
-        }
-
-        .tarjeta-caracteristica h3 {
-            font-size: 1rem;
-            margin-bottom: 0.6rem;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-        }
-
-        .tarjeta-caracteristica p {
-            color: var(--texto-secundario);
-            font-size: 0.9rem;
-        }
-
-        .tarjeta-pasos {
-            background: var(--fondo-tarjeta);
-            border: 1px solid var(--borde);
-            border-radius: 12px;
-            padding: 2rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .paso {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid rgba(57, 255, 20, 0.1);
-        }
-
-        .paso-num {
-            width: 28px;
-            height: 28px;
-            background: var(--verde);
-            color: #000;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 0.9rem;
-            flex-shrink: 0;
-        }
-
-        .tarjeta-acerca {
-            background: var(--fondo-tarjeta);
-            border: 1px solid var(--borde);
-            border-radius: 12px;
-            padding: 2rem;
-            max-width: 700px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .tarjeta-acerca p {
-            color: var(--texto-secundario);
-            margin-bottom: 1rem;
-        }
-
-        .enlace-discord {
-            color: var(--verde);
-            font-weight: 600;
-            text-decoration: none;
-        }
-
-        .dashboard-header {
-            margin-bottom: 2rem;
-        }
-
-        .dashboard-header h1 {
-            font-size: 1.8rem;
-            margin-bottom: 0.3rem;
-        }
-
-        .dashboard-header p {
-            color: var(--texto-secundario);
-        }
-
-        .pestañas-dash {
-            display: flex;
-            gap: 0.3rem;
-            margin-bottom: 2rem;
-            background: var(--fondo-tarjeta);
-            padding: 0.3rem;
-            border-radius: 10px;
-            flex-wrap: wrap;
-        }
-
-        .pestaña-dash {
-            padding: 0.6rem 1.2rem;
-            border-radius: 8px;
-            background: transparent;
-            border: none;
-            color: var(--texto-secundario);
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-family: inherit;
-        }
-
-        .pestaña-dash.activa {
-            background: var(--verde);
-            color: #000;
-            font-weight: 600;
-        }
-
+        body { font-family: 'Inter', sans-serif; background: var(--fondo); color: var(--texto); min-height: 100vh; line-height: 1.6; }
+        nav { background: rgba(20,26,48,.95); padding: .8rem 2rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--borde); position: sticky; top: 0; z-index: 999; }
+        .logo { font-size: 1.4rem; font-weight: 800; color: var(--verde); cursor: pointer; }
+        .nav-enlaces { display: flex; gap: .5rem; align-items: center; flex-wrap: wrap; }
+        .nav-enlaces a, .nav-enlaces button { padding: .6rem 1.1rem; border-radius: 6px; font-size: .95rem; font-weight: 500; border: none; background: transparent; color: var(--texto); cursor: pointer; text-decoration: none; transition: all .2s; font-family: inherit; }
+        .nav-enlaces a:hover, .nav-enlaces button:hover { background: rgba(57,255,20,.1); }
+        .nav-enlaces a.activo { background: var(--verde); color: #000; font-weight: 600; }
+        .usuario-nav { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+        .btn-discord { background: var(--azul-discord); color: #fff !important; font-weight: 600; }
+        .btn-discord:hover { filter: brightness(1.1); }
+        .pagina { display: none; animation: aparecer .3s ease-out; }
+        .pagina.activa { display: block; }
+        @keyframes aparecer { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+        .contenedor { max-width: 1200px; margin: 0 auto; padding: 3rem 2rem; }
+        .inicio-contenido { text-align: center; padding: 2rem 0 4rem; }
+        .inicio-contenido h1 { font-size: 3rem; color: var(--verde); margin-bottom: 1rem; }
+        .inicio-contenido p { color: var(--texto-secundario); font-size: 1.1rem; max-width: 700px; margin: 0 auto 2.5rem; line-height: 1.7; }
+        .btn-descargar-principal { padding: 1rem 2.5rem; background: var(--verde); color: #000; font-size: 1.1rem; font-weight: 700; border: none; border-radius: 10px; cursor: pointer; transition: all .2s; }
+        .btn-descargar-principal:hover { transform: scale(1.03); box-shadow: 0 0 20px rgba(57,255,20,.3); }
+        .seccion-noticias { margin-top: 4rem; }
+        .seccion-noticias h2 { text-align: center; font-size: 1.5rem; margin-bottom: 2rem; display: flex; align-items: center; justify-content: center; gap: .5rem; }
+        .cuadricula-noticias { display: grid; grid-template-columns: repeat(auto-fit,minmax(320px,1fr)); gap: 1.5rem; }
+        .tarjeta-noticia { background: var(--fondo-tarjeta); border: 1px solid var(--borde); border-radius: 12px; padding: 1.5rem; }
+        .etiqueta-oficial { display: inline-block; background: rgba(57,255,20,.15); color: var(--verde); font-size: .8rem; font-weight: 600; padding: .2rem .6rem; border-radius: 20px; margin-bottom: 1rem; }
+        .tarjeta-noticia h3 { font-size: 1.1rem; margin-bottom: .5rem; }
+        .tarjeta-noticia p { color: var(--texto-secundario); font-size: .95rem; }
+        .titulo-seccion { text-align: center; font-size: 1.8rem; margin-bottom: 2.5rem; }
+        .cuadricula-caracteristicas { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.2rem; }
+        @media (max-width:850px){.cuadricula-caracteristicas{grid-template-columns:repeat(2,1fr)}}
+        @media (max-width:520px){.cuadricula-caracteristicas{grid-template-columns:1fr}}
+        .tarjeta-caracteristica { background: var(--fondo-tarjeta); border: 1px solid var(--borde); border-radius: 12px; padding: 1.5rem; }
+        .tarjeta-caracteristica h3 { font-size: 1rem; margin-bottom: .6rem; display: flex; align-items: center; gap: .4rem; }
+        .tarjeta-caracteristica p { color: var(--texto-secundario); font-size: .9rem; }
+        .tarjeta-pasos { background: var(--fondo-tarjeta); border: 1px solid var(--borde); border-radius: 12px; padding: 2rem; max-width: 600px; margin: 0 auto; }
+        .paso { display: flex; gap: 1rem; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(57,255,20,.1); }
+        .paso-num { width: 28px; height: 28px; background: var(--verde); color: #000; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: .9rem; flex-shrink: 0; }
+        .tarjeta-acerca { background: var(--fondo-tarjeta); border: 1px solid var(--borde); border-radius: 12px; padding: 2rem; max-width: 700px; margin: 0 auto; text-align: center; }
+        .tarjeta-acerca p { color: var(--texto-secundario); margin-bottom: 1rem; }
+        .enlace-discord { color: var(--verde); font-weight: 600; text-decoration: none; }
+        .dashboard-header { margin-bottom: 2rem; }
+        .dashboard-header h1 { font-size: 1.8rem; margin-bottom: .3rem; }
+        .dashboard-header p { color: var(--texto-secundario); }
+        .pestañas-dash { display: flex; gap: .3rem; margin-bottom: 2rem; background: var(--fondo-tarjeta); padding: .3rem; border-radius: 10px; flex-wrap: wrap; }
+        .pestaña-dash { padding: .6rem 1.2rem; border-radius: 8px; background: transparent; border: none; color: var(--texto-secundario); font-weight: 500; cursor: pointer; transition: all .2s; font-family: inherit; }
+        .pestaña-dash.activa { background: var(--verde); color: #000; font-weight: 600; }
         .contenido-dash { display: none; }
         .contenido-dash.visible { display: block; }
-
-        .tarjeta-dash {
-            background: var(--fondo-tarjeta);
-            border: 1px solid var(--borde);
-            border-radius: 12px;
-            padding: 1.8rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .etiqueta-beta {
-            display: inline-block;
-            background: var(--verde);
-            color: #000;
-            font-size: 0.75rem;
-            font-weight: 700;
-            padding: 0.15rem 0.5rem;
-            border-radius: 6px;
-            margin-left: 0.5rem;
-        }
-
-        .premium-lista {
-            margin: 1rem 0;
-            padding-left: 1.2rem;
-        }
-
-        .premium-lista li {
-            color: var(--texto-secundario);
-            font-size: 0.95rem;
-        }
-
-        .btn-premium {
-            background: linear-gradient(90deg, #facc15, #fde047);
-            color: #000;
-            font-weight: 600;
-            padding: 0.6rem 1.2rem;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            margin: 0.5rem 0;
-        }
-
-        .fila-botones {
-            display: flex;
-            gap: 0.8rem;
-            margin-top: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .btn-pago {
-            background: #009cde;
-            color: white;
-            padding: 0.7rem 1.2rem;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        .btn-donar {
-            background: var(--verde);
-            color: #000;
-            padding: 0.7rem 1.2rem;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        .btn-cerrar-grande {
-            width: 100%;
-            padding: 0.9rem;
-            background: #ff3344;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            margin-top: 1.5rem;
-            cursor: pointer;
-        }
-
-        .fila-form {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .campo-form {
-            flex: 1;
-            min-width: 240px;
-        }
-
-        .campo-form label {
-            display: block;
-            font-size: 0.9rem;
-            color: var(--texto-secundario);
-            margin-bottom: 0.4rem;
-        }
-
-        .campo-form input, .campo-form textarea {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            background: var(--fondo);
-            border: 1px solid var(--borde);
-            border-radius: 8px;
-            color: var(--texto);
-            font-size: 0.95rem;
-            outline: none;
-            font-family: inherit;
-        }
-
-        .campo-form textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
-
-        .btn-guardar-verde {
-            width: 100%;
-            padding: 0.9rem;
-            background: var(--verde);
-            color: #000;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            cursor: pointer;
-            margin-top: 0.5rem;
-        }
-
-        .opcion-priv {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-            border-bottom: 1px solid var(--borde);
-        }
-
-        .switch {
-            width: 48px;
-            height: 26px;
-            background: var(--verde);
-            border-radius: 13px;
-            position: relative;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .switch::after {
-            content: '';
-            position: absolute;
-            top: 3px;
-            right: 3px;
-            width: 20px;
-            height: 20px;
-            background: white;
-            border-radius: 50%;
-            transition: all 0.2s;
-        }
-
+        .tarjeta-dash { background: var(--fondo-tarjeta); border: 1px solid var(--borde); border-radius: 12px; padding: 1.8rem; margin-bottom: 1.5rem; }
+        .etiqueta-beta { display: inline-block; background: var(--verde); color: #000; font-size: .75rem; font-weight: 700; padding: .15rem .5rem; border-radius: 6px; margin-left: .5rem; }
+        .premium-lista { margin: 1rem 0; padding-left: 1.2rem; }
+        .premium-lista li { color: var(--texto-secundario); font-size: .95rem; }
+        .btn-premium { background: linear-gradient(90deg,#facc15,#fde047); color: #000; font-weight: 600; padding: .6rem 1.2rem; border: none; border-radius: 8px; cursor: pointer; margin: .5rem 0; }
+        .fila-botones { display: flex; gap: .8rem; margin-top: 1rem; flex-wrap: wrap; }
+        .btn-pago { background: #009cde; color: #fff; padding: .7rem 1.2rem; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; }
+        .btn-donar { background: var(--verde); color: #000; padding: .7rem 1.2rem; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; }
+        .btn-cerrar-grande { width: 100%; padding: .9rem; background: #ff3344; color: #fff; border: none; border-radius: 8px; font-weight: 600; font-size: .95rem; margin-top: 1.5rem; cursor: pointer; }
+        .fila-form { display: flex; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap; }
+        .campo-form { flex: 1; min-width: 240px; }
+        .campo-form label { display: block; font-size: .9rem; color: var(--texto-secundario); margin-bottom: .4rem; }
+        .campo-form input, .campo-form textarea { width: 100%; padding: .75rem 1rem; background: var(--fondo); border: 1px solid var(--borde); border-radius: 8px; color: var(--texto); font-size: .95rem; outline: none; font-family: inherit; }
+        .campo-form textarea { min-height: 100px; resize: vertical; }
+        .btn-guardar-verde { width: 100%; padding: .9rem; background: var(--verde); color: #000; border: none; border-radius: 8px; font-weight: 600; font-size: .95rem; cursor: pointer; margin-top: .5rem; }
+        .opcion-priv { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; border-bottom: 1px solid var(--borde); }
+        .switch { width: 48px; height: 26px; background: var(--verde); border-radius: 13px; position: relative; cursor: pointer; transition: all .2s; }
+        .switch::after { content: ''; position: absolute; top: 3px; right: 3px; width: 20px; height: 20px; background: #fff; border-radius: 50%; transition: all .2s; }
         .switch.inactivo { background: #2a3244; }
         .switch.inactivo::after { right: auto; left: 3px; }
-
-        .cuadricula-perfil {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
-
-        @media (max-width: 700px) {
-            .cuadricula-perfil { grid-template-columns: 1fr; }
-        }
-
-        .tarjeta-perfil-opcion {
-            background: var(--fondo-tarjeta);
-            border: 2px solid transparent;
-            border-radius: 12px;
-            padding: 2rem;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .tarjeta-perfil-opcion:hover {
-            border-color: var(--borde-activo);
-        }
-
-        .tarjeta-perfil-opcion.activa {
-            border-color: var(--verde);
-        }
-
-        .vista-muestra {
-            width: 140px;
-            height: 200px;
-            margin: 1rem auto 0;
-            background: var(--fondo);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-        }
-
-        .vista-detalle {
-            display: grid;
-            grid-template-columns: 280px 2px 1fr;
-            gap: 2rem;
-            align-items: start;
-        }
-
-        @media (max-width: 750px) {
-            .vista-detalle { grid-template-columns: 1fr; }
-        }
-
+        .cuadricula-perfil { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        @media (max-width:700px){.cuadricula-perfil{grid-template-columns:1fr}}
+        .tarjeta-perfil-opcion { background: var(--fondo-tarjeta); border: 2px solid transparent; border-radius: 12px; padding: 2rem; text-align: center; cursor: pointer; transition: all .2s; }
+        .tarjeta-perfil-opcion:hover { border-color: var(--borde-activo); }
+        .tarjeta-perfil-opcion.activa { border-color: var(--verde); }
+        .vista-muestra { width: 140px; height: 200px; margin: 1rem auto 0; background: var(--fondo); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 4rem; }
+        .vista-detalle { display: grid; grid-template-columns: 280px 2px 1fr; gap: 2rem; align-items: start; }
+        @media (max-width:750px){.vista-detalle{grid-template-columns:1fr}}
         .bloque-izq { text-align: center; }
         .bloque-izq h3 { margin-bottom: 1rem; font-size: 1.1rem; }
-        .vista-grande {
-            width: 180px;
-            height: 280px;
-            margin: 0 auto 1.5rem;
-            background: var(--fondo);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 5rem;
-        }
-
-        .sep {
-            background: var(--borde);
-        }
-
+        .vista-grande { width: 180px; height: 280px; margin: 0 auto 1.5rem; background: var(--fondo); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 5rem; }
+        .sep { background: var(--borde); }
         .bloque-der h3 { margin-bottom: 1rem; font-size: 1.1rem; }
         .aviso-limite { color: #ff6b6b; margin-bottom: 1rem; }
-
-        .cuadricula-biblio {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0.8rem;
-        }
-
-        .item-biblio {
-            aspect-ratio: 3/4;
-            background: var(--fondo);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            cursor: pointer;
-            border: 3px solid transparent;
-            transition: all 0.2s;
-        }
-
+        .cuadricula-biblio { display: grid; grid-template-columns: repeat(3,1fr); gap: .8rem; }
+        .item-biblio { aspect-ratio: 3/4; background: var(--fondo); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; cursor: pointer; border: 3px solid transparent; transition: all .2s; }
         .item-biblio:hover { border-color: var(--azul-boton); }
-        .item-biblio.seleccionada { border-color: var(--azul-boton); background: rgba(77,171,247,0.1); }
-
-        .btn-azul {
-            background: var(--azul-boton);
-            color: white;
-            padding: 0.7rem 1.4rem;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            margin: 0.3rem;
-        }
-
-        .btn-rojo {
-            background: var(--rojo-boton);
-            color: white;
-            padding: 0.7rem 1.4rem;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            margin: 0.3rem;
-        }
-
-        .btn-volver {
-            background: var(--azul-boton);
-            color: white;
-            padding: 0.7rem 1.4rem;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 2rem;
-        }
-
-        .agregar-item {
-            font-size: 2rem;
-            color: var(--azul-boton);
-            font-weight: 700;
-        }
-
-        .modal-fondo {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            display: none;
-        }
-
+        .item-biblio.seleccionada { border-color: var(--azul-boton); background: rgba(77,171,247,.1); }
+        .btn-azul { background: var(--azul-boton); color: #fff; padding: .7rem 1.4rem; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; margin: .3rem; }
+        .btn-rojo { background: var(--rojo-boton); color: #fff; padding: .7rem 1.4rem; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; margin: .3rem; }
+        .btn-volver { background: var(--azul-boton); color: #fff; padding: .7rem 1.4rem; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; margin-top: 2rem; }
+        .agregar-item { font-size: 2rem; color: var(--azul-boton); font-weight: 700; }
+        .modal-fondo { position: fixed; inset: 0; background: rgba(0,0,0,.8); display: flex; align-items: center; justify-content: center; z-index: 9999; display: none; }
         .modal-fondo.visible { display: flex; }
-
-        .modal {
-            background: var(--fondo-tarjeta);
-            border: 1px solid var(--borde);
-            border-radius: 12px;
-            padding: 2rem;
-            width: 90%;
-            max-width: 420px;
-        }
-
+        .modal { background: var(--fondo-tarjeta); border: 1px solid var(--borde); border-radius: 12px; padding: 2rem; width: 90%; max-width: 420px; }
         .modal h3 { margin-bottom: 1.5rem; text-align: center; }
-        .modal input {
-            width: 100%;
-            padding: 0.85rem;
-            margin-bottom: 1rem;
-            background: var(--fondo);
-            border: 1px solid var(--borde);
-            border-radius: 8px;
-            color: white;
-            font-size: 0.95rem;
-            outline: none;
-            font-family: inherit;
-        }
-
-        .modal-botones { display: flex; gap: 0.8rem; margin-top: 0.5rem; }
-        .modal-botones button { flex: 1; padding: 0.75rem; border-radius: 8px; border: none; font-weight: 600; cursor: pointer; font-family: inherit; }
-        .btn-cancelar { background: #2a3244; color: white; }
+        .modal input { width: 100%; padding: .85rem; margin-bottom: 1rem; background: var(--fondo); border: 1px solid var(--borde); border-radius: 8px; color: #fff; font-size: .95rem; outline: none; font-family: inherit; }
+        .modal-botones { display: flex; gap: .8rem; margin-top: .5rem; }
+        .modal-botones button { flex: 1; padding: .75rem; border-radius: 8px; border: none; font-weight: 600; cursor: pointer; font-family: inherit; }
+        .btn-cancelar { background: #2a3244; color: #fff; }
         .btn-aceptar { background: var(--verde); color: #000; }
-
         .sin-sesion { display: flex; }
         .con-sesion { display: none; }
         body.sesion-iniciada .sin-sesion { display: none !important; }
@@ -692,7 +124,6 @@
 </head>
 <body>
 
-<!-- MODAL REGISTRO -->
 <div id="modal-registro" class="modal-fondo">
     <div class="modal">
         <h3>📝 Crear Cuenta</h3>
@@ -706,7 +137,6 @@
     </div>
 </div>
 
-<!-- MODAL INICIO SESIÓN -->
 <div id="modal-login" class="modal-fondo">
     <div class="modal">
         <h3>🔑 Iniciar Sesión</h3>
@@ -719,32 +149,30 @@
     </div>
 </div>
 
-<!-- NAVEGACIÓN -->
 <nav>
     <span class="logo" onclick="irPagina('inicio')">Nexis Launcher</span>
     <div class="nav-enlaces">
         <div class="sin-sesion">
-            <a href="#" class="activo" data-pagina="inicio" onclick="irPagina('inicio', this)">Inicio</a>
-            <a href="#" data-pagina="caracteristicas" onclick="irPagina('caracteristicas', this)">Características</a>
-            <a href="#" data-pagina="descargar" onclick="irPagina('descargar', this)">Descargar</a>
-            <a href="#" data-pagina="acerca" onclick="irPagina('acerca', this)">Acerca de</a>
+            <a href="#" class="activo" onclick="irPagina('inicio', this)">Inicio</a>
+            <a href="#" onclick="irPagina('caracteristicas', this)">Características</a>
+            <a href="#" onclick="irPagina('descargar', this)">Descargar</a>
+            <a href="#" onclick="irPagina('acerca', this)">Acerca de</a>
             <button onclick="abrirModalLogin()">Iniciar sesión</button>
             <button onclick="abrirModalRegistro()">Registrarse</button>
             <a href="#" class="btn-discord">Discord</a>
         </div>
         <div class="con-sesion usuario-nav">
-            <a href="#" data-pagina="inicio" onclick="irPagina('dashboard', this)">Inicio</a>
-            <a href="#" data-pagina="caracteristicas" onclick="irPagina('caracteristicas', this)">Características</a>
-            <a href="#" data-pagina="descargar" onclick="irPagina('descargar', this)">Descargar</a>
-            <a href="#" data-pagina="acerca" onclick="irPagina('acerca', this)">Acerca de</a>
-            <span class="nombre-usuario-nav" id="usuario-nav">Usuario</span>
-            <button class="btn-cerrar-nav" onclick="cerrarSesion()">Cerrar sesión</button>
+            <a href="#" onclick="irPagina('dashboard', this)">Inicio</a>
+            <a href="#" onclick="irPagina('caracteristicas', this)">Características</a>
+            <a href="#" onclick="irPagina('descargar', this)">Descargar</a>
+            <a href="#" onclick="irPagina('acerca', this)">Acerca de</a>
+            <span id="usuario-nav">Usuario</span>
+            <button onclick="cerrarSesion()">Cerrar sesión</button>
             <a href="#" class="btn-discord">Discord</a>
         </div>
     </div>
 </nav>
 
-<!-- PÁGINA INICIO -->
 <div id="pag-inicio" class="pagina pagina-publica activa">
     <div class="contenedor">
         <div class="inicio-contenido">
@@ -770,7 +198,6 @@
     </div>
 </div>
 
-<!-- CARACTERÍSTICAS -->
 <div id="pag-caracteristicas" class="pagina pagina-publica">
     <div class="contenedor">
         <h2 class="titulo-seccion">✨ Características Principales</h2>
@@ -785,7 +212,6 @@
     </div>
 </div>
 
-<!-- DESCARGAR -->
 <div id="pag-descargar" class="pagina pagina-publica">
     <div class="contenedor">
         <h2 class="titulo-seccion">📥 Cómo Descargar e Instalar</h2>
@@ -798,7 +224,6 @@
     </div>
 </div>
 
-<!-- ACERCA DE -->
 <div id="pag-acerca" class="pagina pagina-publica">
     <div class="contenedor">
         <h2 class="titulo-seccion">ℹ️ Acerca de Nexis Launcher</h2>
@@ -810,7 +235,6 @@
     </div>
 </div>
 
-<!-- DASHBOARD -->
 <div id="pag-dashboard" class="pagina pagina-dashboard">
     <div class="contenedor">
         <div class="dashboard-header">
@@ -825,12 +249,11 @@
             <button class="pestaña-dash" onclick="cambiarPestanaDash('perfil', this)">😊 Perfil</button>
         </div>
 
-        <!-- INICIO DASH -->
         <div id="dash-inicio" class="contenido-dash visible">
             <div class="tarjeta-dash">
                 <h3>Inicio <span class="etiqueta-beta">BETA</span></h3>
-                <p style="margin: 1rem 0;"><strong>Suscripción Premium:</strong> <span id="estado-premium">Inactiva</span></p>
-                <p style="color: var(--texto-secundario);">Último acceso: Hoy a las <span id="hora-acceso">16:45</span></p>
+                <p style="margin:1rem 0;"><strong>Suscripción Premium:</strong> <span id="estado-premium">Inactiva</span></p>
+                <p style="color:var(--texto-secundario);">Último acceso: Hoy a las <span id="hora-acceso">16:45</span></p>
             </div>
             <div class="tarjeta-dash">
                 <p>💎 <strong>Obtén Nexis Premium</strong></p>
@@ -843,9 +266,9 @@
                 </ul>
                 <button class="btn-premium">Ver límites de Skins y Capas →</button>
             </div>
-            <div class="tarjeta-dash" style="background: rgba(57, 255, 20, 0.05);">
+            <div class="tarjeta-dash" style="background:rgba(57,255,20,.05);">
                 <p><strong>Pagar Premium / Donar con PayPal</strong></p>
-                <p style="font-size: 0.9rem; color: var(--texto-secundario); margin: 0.5rem 0;">Al pagar tu suscripción, Premium se activará automáticamente en tu cuenta.</p>
+                <p style="font-size:.9rem;color:var(--texto-secundario);margin:.5rem 0;">Al pagar tu suscripción, Premium se activará automáticamente en tu cuenta.</p>
                 <div class="fila-botones">
                     <button class="btn-pago">💳 Pagar Premium por PayPal →</button>
                     <button class="btn-donar">❤️ Hacer una donación →</button>
@@ -854,10 +277,9 @@
             <button class="btn-cerrar-grande" onclick="cerrarSesion()">Cerrar sesión</button>
         </div>
 
-        <!-- GENERAL -->
         <div id="dash-general" class="contenido-dash">
             <div class="tarjeta-dash">
-                <h3 style="margin-bottom: 1.5rem;">General</h3>
+                <h3 style="margin-bottom:1.5rem;">General</h3>
                 <div class="fila-form">
                     <div class="campo-form"><label>Nombre de usuario</label><input type="text" id="campo-usuario" value="Usuario"></div>
                     <div class="campo-form"><label>Correo electrónico</label><input type="email" id="campo-correo" value="usuario@correo.com"></div>
@@ -867,20 +289,18 @@
             </div>
         </div>
 
-        <!-- PRIVACIDAD -->
         <div id="dash-privacidad" class="contenido-dash">
             <div class="tarjeta-dash">
-                <h3 style="margin-bottom: 1.5rem;">Privacidad</h3>
+                <h3 style="margin-bottom:1.5rem;">Privacidad</h3>
                 <div class="opcion-priv"><span>Permitir que te encuentren</span><div class="switch inactivo" id="sw-buscar" onclick="toggleSwitch(this)"></div></div>
                 <div class="opcion-priv"><span>Permitir solicitudes de amistad</span><div class="switch inactivo" id="sw-amistad" onclick="toggleSwitch(this)"></div></div>
                 <div class="opcion-priv"><span>Perfil público</span><div class="switch" id="sw-perfil" onclick="toggleSwitch(this)"></div></div>
             </div>
         </div>
 
-        <!-- SEGURIDAD -->
         <div id="dash-seguridad" class="contenido-dash">
             <div class="tarjeta-dash">
-                <h3 style="margin-bottom: 1.5rem;">Seguridad</h3>
+                <h3 style="margin-bottom:1.5rem;">Seguridad</h3>
                 <div class="campo-form"><label>Contraseña actual</label><input type="password" id="clave-actual" placeholder="••••••••"></div>
                 <div class="fila-form">
                     <div class="campo-form"><label>Nueva contraseña</label><input type="password" id="clave-nueva" placeholder="••••••••"></div>
@@ -890,7 +310,6 @@
             </div>
         </div>
 
-        <!-- PERFIL -->
         <div id="dash-perfil" class="contenido-dash">
             <div class="cuadricula-perfil">
                 <div class="tarjeta-perfil-opcion activa" id="tarjeta-skin" onclick="abrirDetalle('skin')">
@@ -904,7 +323,6 @@
             </div>
         </div>
 
-        <!-- DETALLE SKIN -->
         <div id="detalle-skin" class="contenido-dash" style="display:none;">
             <div class="tarjeta-dash">
                 <div class="vista-detalle">
@@ -929,7 +347,6 @@
             </div>
         </div>
 
-        <!-- DETALLE CAPA -->
         <div id="detalle-capa" class="contenido-dash" style="display:none;">
             <div class="tarjeta-dash">
                 <div class="vista-detalle">
@@ -959,25 +376,12 @@
 </div>
 
 <script>
-// ==============================================
-// VARIABLES GLOBALES
-// ==============================================
 const USUARIO_KEY = 'nexis_usuario';
 const CUENTAS_KEY = 'nexis_cuentas';
-let cuentaActiva = null;
-let skinSel = '🧍', capaSel = '🧥';
+let cuentaActiva = null, skinSel = '🧍', capaSel = '🧥';
 
-// ==============================================
-// FUNCIONES DE ALMACENAMIENTO
-// ==============================================
-function obtenerCuentas() {
-    return JSON.parse(localStorage.getItem(CUENTAS_KEY) || '[]');
-}
-
-function guardarCuentas(cuentas) {
-    localStorage.setItem(CUENTAS_KEY, JSON.stringify(cuentas));
-}
-
+function obtenerCuentas() { return JSON.parse(localStorage.getItem(CUENTAS_KEY) || '[]'); }
+function guardarCuentas(cuentas) { localStorage.setItem(CUENTAS_KEY, JSON.stringify(cuentas)); }
 function actualizarCuenta(cuenta) {
     const cuentas = obtenerCuentas();
     const idx = cuentas.findIndex(c => c.correo === cuenta.correo);
@@ -985,59 +389,34 @@ function actualizarCuenta(cuenta) {
     localStorage.setItem(USUARIO_KEY, JSON.stringify(cuenta));
 }
 
-// ==============================================
-// MODALES
-// ==============================================
 function abrirModalRegistro() { document.getElementById('modal-registro').classList.add('visible'); }
 function cerrarModalRegistro() { document.getElementById('modal-registro').classList.remove('visible'); }
 function abrirModalLogin() { document.getElementById('modal-login').classList.add('visible'); }
 function cerrarModalLogin() { document.getElementById('modal-login').classList.remove('visible'); }
 
-// ==============================================
-// NAVEGACIÓN ENTRE PÁGINAS
-// ==============================================
 function irPagina(nombre, enlace) {
     document.querySelectorAll('.pagina').forEach(p => p.classList.remove('activa'));
     document.querySelectorAll('.nav-enlaces a').forEach(a => a.classList.remove('activo'));
-    
-    if (nombre === 'dashboard') {
-        document.getElementById('pag-dashboard').classList.add('activa');
-    } else {
-        document.getElementById(`pag-${nombre}`).classList.add('activa');
-        if (enlace) enlace.classList.add('activo');
-    }
+    if (nombre === 'dashboard') document.getElementById('pag-dashboard').classList.add('activa');
+    else { document.getElementById(`pag-${nombre}`).classList.add('activa'); if(enlace) enlace.classList.add('activo'); }
 }
 
-// ==============================================
-// REGISTRO E INICIO DE SESIÓN
-// ==============================================
 function registrarse() {
     const usuario = document.getElementById('reg-usuario').value.trim();
     const correo = document.getElementById('reg-correo').value.trim();
     const clave = document.getElementById('reg-clave').value;
-
     if (!usuario || !correo || !clave) return alert('⚠️ Completa todos los campos');
-
     const cuentas = obtenerCuentas();
     if (cuentas.some(c => c.correo === correo)) return alert('⚠️ Este correo ya está registrado');
-
     const ahora = new Date();
     const hora = ahora.toLocaleTimeString('es-ES', {hour:'2-digit', minute:'2-digit'});
-
     const nueva = {
-        usuario, correo, clave,
-        sobre: 'No has escrito nada sobre ti',
-        ultimoAcceso: hora,
-        skin: '🧍', capa: '🧥',
-        premium: false,
+        usuario, correo, clave, sobre: 'No has escrito nada sobre ti',
+        ultimoAcceso: hora, skin: '🧍', capa: '🧥', premium: false,
         privacidad: { buscar: false, amistad: false, perfilPublico: true }
     };
-
-    cuentas.push(nueva);
-    guardarCuentas(cuentas);
-    iniciarSesionDirecto(nueva);
-    cerrarModalRegistro();
-    alert('✅ ¡Cuenta creada con éxito!');
+    cuentas.push(nueva); guardarCuentas(cuentas);
+    iniciarSesionDirecto(nueva); cerrarModalRegistro(); alert('✅ ¡Cuenta creada con éxito!');
 }
 
 function iniciarSesion() {
@@ -1045,18 +424,13 @@ function iniciarSesion() {
     const clave = document.getElementById('log-clave').value;
     const cuentas = obtenerCuentas();
     const cuenta = cuentas.find(c => c.correo === correo && c.clave === clave);
-    
     if (!cuenta) return alert('⚠️ Correo o contraseña incorrectos');
-    
-    iniciarSesionDirecto(cuenta);
-    cerrarModalLogin();
-    alert('✅ ¡Sesión iniciada!');
+    iniciarSesionDirecto(cuenta); cerrarModalLogin(); alert('✅ ¡Sesión iniciada!');
 }
 
 function iniciarSesionDirecto(cuenta) {
     cuentaActiva = cuenta;
     localStorage.setItem(USUARIO_KEY, JSON.stringify(cuenta));
-
     document.body.classList.add('sesion-iniciada');
     document.getElementById('usuario-nav').textContent = cuenta.usuario;
     document.getElementById('dash-usuario').textContent = cuenta.usuario;
@@ -1068,75 +442,142 @@ function iniciarSesionDirecto(cuenta) {
     document.getElementById('vista-skin').textContent = cuenta.skin;
     document.getElementById('vista-capa').textContent = cuenta.capa;
     document.getElementById('hora-acceso').textContent = cuenta.ultimoAcceso;
-
-    skinSel = cuenta.skin;
-    capaSel = cuenta.capa;
-
-    irPagina('dashboard');
-    cambiarPestanaDash('inicio-dash', document.querySelector('.pestaña-dash'));
-    actualizarSwitches();
-    actualizarEstadoPremium();
+    skinSel = cuenta.skin; capaSel = cuenta.capa;
+    irPagina('dashboard'); cambiarPestanaDash('inicio-dash', document.querySelector('.pestaña-dash'));
+    actualizarSwitches(); actualizarEstadoPremium();
 }
 
 function cerrarSesion() {
     localStorage.removeItem(USUARIO_KEY);
     document.body.classList.remove('sesion-iniciada');
-    cuentaActiva = null;
-    irPagina('inicio');
-    alert('✅ Sesión cerrada');
+    cuentaActiva = null; irPagina('inicio'); alert('✅ Sesión cerrada');
 }
 
-// ==============================================
-// PESTAÑAS DEL DASHBOARD
-// ==============================================
 function cambiarPestanaDash(nombre, boton) {
     document.querySelectorAll('.contenido-dash').forEach(d => d.style.display = 'none');
     document.querySelectorAll('.pestaña-dash').forEach(b => b.classList.remove('activa'));
-
-    if (nombre === 'inicio-dash') {
-        document.getElementById('dash-inicio').style.display = 'block';
-    } else if (nombre === 'general') {
-        document.getElementById('dash-general').style.display = 'block';
-    } else if (nombre === 'privacidad') {
-        document.getElementById('dash-privacidad').style.display = 'block';
-    } else if (nombre === 'seguridad') {
-        document.getElementById('dash-seguridad').style.display = 'block';
-    } else if (nombre === 'perfil') {
+    if (nombre === 'inicio-dash') { document.getElementById('dash-inicio').style.display = 'block'; }
+    else if (nombre === 'general') { document.getElementById('dash-general').style.display = 'block'; }
+    else if (nombre === 'privacidad') { document.getElementById('dash-privacidad').style.display = 'block'; }
+    else if (nombre === 'seguridad') { document.getElementById('dash-seguridad').style.display = 'block'; }
+    else if (nombre === 'perfil') {
         document.getElementById('dash-perfil').style.display = 'block';
         document.getElementById('detalle-skin').style.display = 'none';
         document.getElementById('detalle-capa').style.display = 'none';
     }
-
     if (boton) boton.classList.add('activa');
 }
 
-// ==============================================
-// PESTAÑA: GENERAL
-// ==============================================
 function guardarGeneral() {
     if (!cuentaActiva) return;
     cuentaActiva.usuario = document.getElementById('campo-usuario').value.trim();
     cuentaActiva.correo = document.getElementById('campo-correo').value.trim();
     cuentaActiva.sobre = document.getElementById('campo-sobre').value;
     actualizarCuenta(cuentaActiva);
-    
     document.getElementById('usuario-nav').textContent = cuentaActiva.usuario;
     document.getElementById('dash-usuario').textContent = cuentaActiva.usuario;
-    alert('✅ Cambios guardados correctamente');
+    alert('✅ Cambios guardados');
 }
 
-// ==============================================
-// PESTAÑA: SEGURIDAD
-// ==============================================
 function cambiarContrasena() {
     if (!cuentaActiva) return;
-    const actual = document.getElementById('clave-actual').value;
-    const nueva = document.getElementById('clave-nueva').value;
-    const confirma = document.getElementById('clave-confirma').value;
+    const act = document.getElementById('clave-actual').value;
+    const nva = document.getElementById('clave-nueva').value;
+    const cnf = document.getElementById('clave-confirma').value;
+    if (cuentaActiva.clave !== act) return alert('⚠️ Contraseña actual incorrecta');
+    if (nva !== cnf) return alert('⚠️ Las contraseñas no coinciden');
+    if (!nva || nva.length < 4) return alert('⚠️ Escribe una contraseña válida');
+    cuentaActiva.clave = nva;
+    actualizarCuenta(cuentaActiva);
+    alert('✅ Contraseña cambiada');
+    document.getElementById('clave-actual').value = '';
+    document.getElementById('clave-nueva').value = '';
+    document.getElementById('clave-confirma').value = '';
+}
 
-    if (cuentaActiva.clave !== actual) return alert('⚠️ Contraseña actual incorrecta');
-    if (nueva !== confirma) return alert('⚠️ Las contraseñas nuevas no coinciden');
-    if (!nueva || nueva.length < 4) return alert('⚠️ Escribe una contraseña válida (mínimo 4 caracteres)');
+function toggleSwitch(sw) {
+    sw.classList.toggle('inactivo');
+    if (!cuentaActiva) return;
+    if (sw.id === 'sw-buscar') cuentaActiva.privacidad.buscar = !sw.classList.contains('inactivo');
+    if (sw.id === 'sw-amistad') cuentaActiva.privacidad.amistad = !sw.classList.contains('inactivo');
+    if (sw.id === 'sw-perfil') cuentaActiva.privacidad.perfilPublico = !sw.classList.contains('inactivo');
+    actualizarCuenta(cuentaActiva);
+}
 
-    cuentaActiva.clave = nueva;
-   
+function actualizarSwitches() {
+    if (!cuentaActiva) return;
+    document.getElementById('sw-buscar').classList.toggle('inactivo', !cuentaActiva.privacidad.buscar);
+    document.getElementById('sw-amistad').classList.toggle('inactivo', !cuentaActiva.privacidad.amistad);
+    document.getElementById('sw-perfil').classList.toggle('inactivo', !cuentaActiva.privacidad.perfilPublico);
+}
+
+function actualizarEstadoPremium() {
+    if (!cuentaActiva) return;
+    document.getElementById('estado-premium').textContent = cuentaActiva.premium ? 'Activa ✅' : 'Inactiva';
+}
+
+function abrirDetalle(tipo) {
+    document.getElementById('dash-perfil').style.display = 'none';
+    document.getElementById('tarjeta-skin').classList.remove('activa');
+    document.getElementById('tarjeta-capa').classList.remove('activa');
+    if (tipo === 'skin') { document.getElementById('detalle-skin').style.display = 'block'; document.getElementById('tarjeta-skin').classList.add('activa'); }
+    else { document.getElementById('detalle-capa').style.display = 'block'; document.getElementById('tarjeta-capa').classList.add('activa'); }
+}
+
+function volverAPerfil() {
+    document.getElementById('detalle-skin').style.display = 'none';
+    document.getElementById('detalle-capa').style.display = 'none';
+    document.getElementById('dash-perfil').style.display = 'block';
+}
+
+function seleccionarSkin(el, icono) {
+    document.querySelectorAll('#detalle-skin .item-biblio').forEach(i => i.classList.remove('seleccionada'));
+    el.classList.add('seleccionada');
+    skinSel = icono;
+}
+
+function establecerSkin() {
+    if (!cuentaActiva) return alert('⚠️ Inicia sesión primero');
+    cuentaActiva.skin = skinSel;
+    document.getElementById('skin-actual').textContent = skinSel;
+    document.getElementById('vista-skin').textContent = skinSel;
+    actualizarCuenta(cuentaActiva);
+    alert('✅ Skin establecida');
+}
+
+function eliminarSkin() {
+    if (!cuentaActiva) return;
+    cuentaActiva.skin = '🧍';
+    skinSel = '🧍';
+    document.getElementById('skin-actual').textContent = '🧍';
+    document.getElementById('vista-skin').textContent = '🧍';
+    actualizarCuenta(cuentaActiva);
+    alert('✅ Skin eliminada');
+}
+
+function agregarSkin() { alert('ℹ️ Función de subida próximamente'); }
+
+function seleccionarCapa(el, icono) {
+    document.querySelectorAll('#detalle-capa .item-biblio').forEach(i => i.classList.remove('seleccionada'));
+    el.classList.add('seleccionada');
+    capaSel = icono;
+}
+
+function establecerCapa() {
+    if (!cuentaActiva) return alert('⚠️ Inicia sesión primero');
+    cuentaActiva.capa = capaSel;
+    document.getElementById('capa-actual').textContent = capaSel;
+    document.getElementById('vista-capa').textContent = capaSel;
+    actualizarCuenta(cuentaActiva);
+    alert('✅ Capa establecida');
+}
+
+function agregarCapa() { alert('ℹ️ Función de subida próximamente'); }
+
+window.onload = () => {
+    const guardado = localStorage.getItem(USUARIO_KEY);
+    if (guardado) iniciarSesionDirecto(JSON.parse(guardado));
+};
+</script>
+</body>
+</html>
