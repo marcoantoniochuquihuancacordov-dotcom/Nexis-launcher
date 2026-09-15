@@ -520,7 +520,7 @@
             <a href="#" id="nav-acerca" onclick="irPagina('acerca'); return false;">Acerca de</a>
             <button onclick="abrirModalLogin()">Iniciar sesión</button>
             <button onclick="abrirModalRegistro()">Registrarse</button>
-            <a href="#" class="btn-discord">Discord</a>
+            <a href="https://discord.com" target="_blank" class="btn-discord">Discord</a>
         </div>
         <!-- CON SESIÓN -->
         <div class="con-sesion">
@@ -530,7 +530,7 @@
             <a href="#" id="cnav-acerca" onclick="irPagina('acerca'); return false;">Acerca de</a>
             <span class="etiqueta-usuario" id="usuario-nav">👤 Usuario</span>
             <button onclick="cerrarSesion()">Cerrar sesión</button>
-            <a href="#" class="btn-discord">Discord</a>
+            <a href="https://discord.com" target="_blank" class="btn-discord">Discord</a>
         </div>
     </div>
 </nav>
@@ -592,7 +592,7 @@
         <div class="tarjeta-acerca">
             <p>Nexis Launcher es un proyecto gratuito diseñado para facilitar el acceso a Minecraft. Sin publicidad, sin virus y sin costos ocultos en sus funciones básicas.</p>
             <p>Algunos beneficios adicionales requieren una suscripción Premium.</p>
-            <p>Únete a nuestra comunidad: <a href="#" class="enlace-discord">Discord Oficial</a></p>
+            <p>Únete a nuestra comunidad: <a href="https://discord.com" target="_blank" class="enlace-discord">Discord Oficial</a></p>
         </div>
     </div>
 
@@ -759,7 +759,7 @@ function irPagina(nombre) {
     // Dashboard
     if (nombre === 'dashboard' && cuentaActiva) {
         document.getElementById('pag-dashboard').classList.add('activa');
-        cambiarPestanaDash('inicio-dash');
+        cambiarPestanaDash('inicio-dash'); // ✅ SIEMPRE EMPIEZA EN INICIO DEL PANEL
     }
 }
 
@@ -819,10 +819,10 @@ function iniciarSesionDirecto(cuenta) {
     document.getElementById('campo-sobre').value = cuenta.sobre;
     document.getElementById('hora-acceso').textContent = cuenta.ultimoAcceso;
 
-    // Ir al Dashboard
+    // ✅ IR AL DASHBOARD Y ABRIR SIEMPRE EN INICIO
     document.querySelectorAll('.pagina').forEach(p => p.classList.remove('activa'));
     document.getElementById('pag-dashboard').classList.add('activa');
-    cambiarPestanaDash('inicio-dash');
+    cambiarPestanaDash('inicio-dash'); // ✅ CORREGIDO: SIEMPRE INICIO AL ENTRAR
     actualizarSwitches();
     actualizarEstadoPremium();
 }
