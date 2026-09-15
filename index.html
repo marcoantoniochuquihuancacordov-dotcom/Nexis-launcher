@@ -11,7 +11,8 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
             --fondo: #0a0e1f; --fondo-tarjeta: #141a30; --verde: #39ff14;
-            --azul-boton: #4dabf7; --rojo-boton: #ff6b6b; --azul-discord: #5865f2;
+            --azul-boton: #4dabf7; --rojo-boton: #ff3344;
+            --azul-discord: #5865F2; /* 💜 COLOR OFICIAL DE DISCORD */
             --texto: #fff; --texto-secundario: #a0aec0;
             --borde: rgba(57,255,20,.15); --borde-activo: rgba(57,255,20,.5);
         }
@@ -22,8 +23,22 @@
         .nav-enlaces a, .nav-enlaces button { padding: .6rem 1.1rem; border-radius: 6px; font-size: .95rem; font-weight: 500; border: none; background: transparent; color: var(--texto); cursor: pointer; text-decoration: none; transition: all .2s; font-family: inherit; }
         .nav-enlaces a:hover, .nav-enlaces button:hover { background: rgba(57,255,20,.1); }
         .nav-enlaces a.activo { background: var(--verde); color: #000; font-weight: 600; }
-        .btn-discord { background: var(--azul-discord); color: #fff !important; font-weight: 600; }
-        .btn-discord:hover { filter: brightness(1.1); }
+        
+        /* 💜 BOTÓN DE DISCORD CON COLOR */
+        .btn-discord { 
+            background: var(--azul-discord) !important; 
+            color: #fff !important; 
+            font-weight: 600; 
+            border-radius: 6px;
+            box-shadow: 0 2px 6px rgba(88, 101, 242, 0.3);
+        }
+        .btn-discord:hover { 
+            background: #4752c4 !important; 
+            filter: none !important;
+            box-shadow: 0 4px 12px rgba(88, 101, 242, 0.4);
+            transform: translateY(-1px);
+        }
+
         .contenedor { max-width: 1200px; margin: 0 auto; padding: 3rem 2rem; }
         .pagina { display: none; animation: aparecer .3s ease-out; }
         .pagina.activa { display: block; }
@@ -52,7 +67,7 @@
         .paso-num { width: 28px; height: 28px; background: var(--verde); color: #000; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: .9rem; flex-shrink: 0; }
         .tarjeta-acerca { background: var(--fondo-tarjeta); border: 1px solid var(--borde); border-radius: 12px; padding: 2rem; max-width: 700px; margin: 0 auto; text-align: center; }
         .tarjeta-acerca p { color: var(--texto-secundario); margin-bottom: 1rem; }
-        .enlace-discord { color: var(--verde); font-weight: 600; text-decoration: none; }
+        .enlace-discord { color: var(--azul-discord); font-weight: 600; text-decoration: none; }
         .dashboard-header { margin-bottom: 2rem; }
         .dashboard-header h1 { font-size: 1.8rem; margin-bottom: .3rem; }
         .dashboard-header p { color: var(--texto-secundario); }
@@ -64,12 +79,13 @@
         .tarjeta-dash { background: var(--fondo-tarjeta); border: 1px solid var(--borde); border-radius: 12px; padding: 1.8rem; margin-bottom: 1.5rem; }
         .etiqueta-beta { display: inline-block; background: var(--verde); color: #000; font-size: .75rem; font-weight: 700; padding: .15rem .5rem; border-radius: 6px; margin-left: .5rem; }
         .premium-lista { margin: 1rem 0; padding-left: 1.2rem; }
-        .premium-lista li { color: var(--texto-secundario); font-size: .95rem; }
+        .premium-lista li { color: var(--texto-secundario); font-size: .95rem; list-style: none; position: relative; padding-left: 1.2rem; }
+        .premium-lista li::before { content: "✅"; position: absolute; left: 0; }
         .btn-premium { background: linear-gradient(90deg,#facc15,#fde047); color: #000; font-weight: 600; padding: .6rem 1.2rem; border: none; border-radius: 8px; cursor: pointer; margin: .5rem 0; }
         .fila-botones { display: flex; gap: .8rem; margin-top: 1rem; flex-wrap: wrap; }
-        .btn-pago { background: #009cde; color: #fff; padding: .7rem 1.2rem; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; }
-        .btn-donar { background: var(--verde); color: #000; padding: .7rem 1.2rem; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; }
-        .btn-cerrar-grande { width: 100%; padding: .9rem; background: #ff3344; color: #fff; border: none; border-radius: 8px; font-weight: 600; font-size: .95rem; margin-top: 1.5rem; cursor: pointer; }
+        .btn-pago { background: #009cde; color: #fff; padding: .7rem 1.2rem; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: .5rem; }
+        .btn-donar { background: var(--verde); color: #000; padding: .7rem 1.2rem; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: .5rem; }
+        .btn-cerrar-grande { width: 100%; padding: .9rem; background: var(--rojo-boton); color: #fff; border: none; border-radius: 8px; font-weight: 600; font-size: .95rem; margin-top: 1.5rem; cursor: pointer; }
         .fila-form { display: flex; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap; }
         .campo-form { flex: 1; min-width: 240px; }
         .campo-form label { display: block; font-size: .9rem; color: var(--texto-secundario); margin-bottom: .4rem; }
@@ -94,7 +110,7 @@
         .vista-grande { width: 180px; height: 280px; margin: 0 auto 1.5rem; background: var(--fondo); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 5rem; }
         .sep { background: var(--borde); }
         .bloque-der h3 { margin-bottom: 1rem; font-size: 1.1rem; }
-        .aviso-limite { color: #ff6b6b; margin-bottom: 1rem; }
+        .aviso-limite { color: var(--rojo-boton); margin-bottom: 1rem; }
         .cuadricula-biblio { display: grid; grid-template-columns: repeat(3,1fr); gap: .8rem; }
         .item-biblio { aspect-ratio: 3/4; background: var(--fondo); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; cursor: pointer; border: 3px solid transparent; transition: all .2s; }
         .item-biblio:hover { border-color: var(--azul-boton); }
@@ -119,7 +135,13 @@
         .pagina-publica { display: none; }
         .pagina-publica.activa { display: block; }
         .pagina-dashboard { display: none; }
-        body.sesion-iniciada .pagina-dashboard { display: block; }
+        body.sesion-iniciada .pagina-dashboard.activa { display: block; }
+        .etiqueta-usuario { background: rgba(88,101,242,.2); color: #cddaff; padding: .4rem .8rem; border-radius: 6px; font-size: .9rem; display: flex; align-items: center; gap: .4rem; }
+        .etiqueta-usuario::before { content: "👤"; }
+        .caja-destacada { background: rgba(57,255,20,.05); border: 1px solid rgba(250,204,21,.2); border-radius: 10px; padding: 1.2rem; margin: 1rem 0; }
+        .caja-pago { background: rgba(0,156,222,.05); border: 1px solid rgba(0,156,222,.2); border-radius: 10px; padding: 1.2rem; margin-top: 1rem; }
+        .texto-premium { color: #facc15; font-weight: 600; }
+        .texto-inactivo { color: var(--rojo-boton); }
     </style>
 </head>
 <body>
@@ -153,26 +175,27 @@
     <span class="logo" onclick="irPagina('inicio')">Nexis Launcher</span>
     <div class="nav-enlaces">
         <div class="sin-sesion">
-            <a href="#" class="activo" onclick="irPagina('inicio', this); return false;">Inicio</a>
-            <a href="#" onclick="irPagina('caracteristicas', this); return false;">Características</a>
-            <a href="#" onclick="irPagina('descargar', this); return false;">Descargar</a>
-            <a href="#" onclick="irPagina('acerca', this); return false;">Acerca de</a>
+            <a href="#" class="activo" id="nav-inicio" onclick="irPagina('inicio'); return false;">Inicio</a>
+            <a href="#" id="nav-caracteristicas" onclick="irPagina('caracteristicas'); return false;">Características</a>
+            <a href="#" id="nav-descargar" onclick="irPagina('descargar'); return false;">Descargar</a>
+            <a href="#" id="nav-acerca" onclick="irPagina('acerca'); return false;">Acerca de</a>
             <button onclick="abrirModalLogin()">Iniciar sesión</button>
             <button onclick="abrirModalRegistro()">Registrarse</button>
             <a href="#" class="btn-discord">Discord</a>
         </div>
         <div class="con-sesion usuario-nav">
-            <a href="#" onclick="irPagina('inicio', this); return false;">Inicio</a>
-            <a href="#" onclick="irPagina('caracteristicas', this); return false;">Características</a>
-            <a href="#" onclick="irPagina('descargar', this); return false;">Descargar</a>
-            <a href="#" onclick="irPagina('acerca', this); return false;">Acerca de</a>
-            <span id="usuario-nav">Usuario</span>
+            <a href="#" id="cnav-inicio" onclick="irPagina('inicio'); return false;">Inicio</a>
+            <a href="#" id="cnav-caracteristicas" onclick="irPagina('caracteristicas'); return false;">Características</a>
+            <a href="#" id="cnav-descargar" onclick="irPagina('descargar'); return false;">Descargar</a>
+            <a href="#" id="cnav-acerca" onclick="irPagina('acerca'); return false;">Acerca de</a>
+            <span class="etiqueta-usuario" id="usuario-nav">Usuario</span>
             <button onclick="cerrarSesion()">Cerrar sesión</button>
             <a href="#" class="btn-discord">Discord</a>
         </div>
     </div>
 </nav>
 
+<!-- PÁGINAS PÚBLICAS -->
 <div id="pag-inicio" class="pagina pagina-publica activa">
     <div class="contenedor">
         <div class="inicio-contenido">
@@ -235,6 +258,7 @@
     </div>
 </div>
 
+<!-- PANEL DE CUENTA -->
 <div id="pag-dashboard" class="pagina pagina-dashboard">
     <div class="contenedor">
         <div class="dashboard-header">
@@ -242,33 +266,33 @@
             <p>Bienvenid@ a tu nueva Dashboard</p>
         </div>
         <div class="pestañas-dash">
-            <button class="pestaña-dash activa" onclick="cambiarPestanaDash('inicio-dash', this)">🏠 Inicio</button>
-            <button class="pestaña-dash" onclick="cambiarPestanaDash('general', this)">👤 General</button>
-            <button class="pestaña-dash" onclick="cambiarPestanaDash('privacidad', this)">🔒 Privacidad</button>
-            <button class="pestaña-dash" onclick="cambiarPestanaDash('seguridad', this)">🛡️ Seguridad</button>
-            <button class="pestaña-dash" onclick="cambiarPestanaDash('perfil', this)">😊 Perfil</button>
+            <button class="pestaña-dash activa" onclick="cambiarPestanaDash('inicio-dash')">🏠 Inicio</button>
+            <button class="pestaña-dash" onclick="cambiarPestanaDash('general')">👤 General</button>
+            <button class="pestaña-dash" onclick="cambiarPestanaDash('privacidad')">🔒 Privacidad</button>
+            <button class="pestaña-dash" onclick="cambiarPestanaDash('seguridad')">🛡️ Seguridad</button>
+            <button class="pestaña-dash" onclick="cambiarPestanaDash('perfil')">😊 Perfil</button>
         </div>
 
         <div id="dash-inicio" class="contenido-dash visible">
             <div class="tarjeta-dash">
                 <h3>Inicio <span class="etiqueta-beta">BETA</span></h3>
-                <p style="margin:1rem 0;"><strong>Suscripción Premium:</strong> <span id="estado-premium">Inactiva</span></p>
+                <p style="margin:1rem 0;"><strong>Suscripción Premium:</strong> <span id="estado-premium" class="texto-inactivo">Inactiva</span></p>
                 <p style="color:var(--texto-secundario);">Último acceso: Hoy a las <span id="hora-acceso">16:45</span></p>
             </div>
-            <div class="tarjeta-dash">
-                <p>💎 <strong>Obtén Nexis Premium</strong></p>
+            <div class="tarjeta-dash caja-destacada">
+                <p style="font-size:1.05rem;"><span style="color:#facc15;">💎</span> <strong>Obtén Nexis Premium</strong></p>
                 <ul class="premium-lista">
-                    <li>✅ Skins ilimitadas</li>
-                    <li>✅ Capas ilimitadas y exclusivas</li>
-                    <li>✅ Sin anuncios</li>
-                    <li>✅ Soporte prioritario</li>
-                    <li>✅ Funciones exclusivas</li>
+                    <li>Skins ilimitadas y exclusivas</li>
+                    <li>Capas ilimitadas y exclusivas</li>
+                    <li>Sin anuncios</li>
+                    <li>Soporte prioritario</li>
+                    <li>Funciones exclusivas</li>
                 </ul>
                 <button class="btn-premium">Ver límites de Skins y Capas →</button>
             </div>
-            <div class="tarjeta-dash" style="background:rgba(57,255,20,.05);">
-                <p><strong>Pagar Premium / Donar con PayPal</strong></p>
-                <p style="font-size:.9rem;color:var(--texto-secundario);margin:.5rem 0;">Al pagar tu suscripción, Premium se activará automáticamente en tu cuenta.</p>
+            <div class="tarjeta-dash caja-pago">
+                <p><strong>💳 Pagar Premium / Donar con PayPal</strong></p>
+                <p style="font-size:.9rem;color:var(--texto-secundario);margin:.5rem 0;">Al pagar tu suscripción, Premium se activará automáticamente en tu cuenta — disponible tanto en la página web como en el Launcher.</p>
                 <div class="fila-botones">
                     <button class="btn-pago">💳 Pagar Premium por PayPal →</button>
                     <button class="btn-donar">❤️ Hacer una donación →</button>
@@ -340,3 +364,256 @@
                             <div class="item-biblio" onclick="seleccionarSkin(this, '🧍‍♂️')">🧍‍♂️</div>
                             <div class="item-biblio" onclick="seleccionarSkin(this, '🥷')">🥷</div>
                             <div class="item-biblio seleccionada" onclick="seleccionarSkin(this, '🧍')">🧍</div>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn-volver" onclick="volverAPerfil()">Volver atrás</button>
+            </div>
+        </div>
+
+        <div id="detalle-capa" class="contenido-dash" style="display:none;">
+            <div class="tarjeta-dash">
+                <div class="vista-detalle">
+                    <div class="bloque-izq">
+                        <h3>Capa actual</h3>
+                        <div class="vista-grande" id="capa-actual">🧥</div>
+                        <div><button class="btn-azul" onclick="establecerCapa()">Establecer capa</button></div>
+                    </div>
+                    <div class="sep"></div>
+                    <div class="bloque-der">
+                        <h3>Biblioteca</h3>
+                        <div class="cuadricula-biblio">
+                            <div class="item-biblio agregar-item" onclick="agregarCapa()">+</div>
+                            <div class="item-biblio" onclick="seleccionarCapa(this, '🔵')">🔵</div>
+                            <div class="item-biblio" onclick="seleccionarCapa(this, '🔴')">🔴</div>
+                            <div class="item-biblio" onclick="seleccionarCapa(this, '🟡')">🟡</div>
+                            <div class="item-biblio seleccionada" onclick="seleccionarCapa(this, '🧥')">🧥</div>
+                            <div class="item-biblio" onclick="seleccionarCapa(this, '⚫')">⚫</div>
+                            <div class="item-biblio" onclick="seleccionarCapa(this, '🟣')">🟣</div>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn-volver" onclick="volverAPerfil()">Volver atrás</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+const USUARIO_KEY = 'nexis_usuario';
+const CUENTAS_KEY = 'nexis_cuentas';
+let cuentaActiva = null, skinSel = '🧍', capaSel = '🧥';
+
+function obtenerCuentas() { return JSON.parse(localStorage.getItem(CUENTAS_KEY) || '[]'); }
+function guardarCuentas(cuentas) { localStorage.setItem(CUENTAS_KEY, JSON.stringify(cuentas)); }
+function actualizarCuenta(cuenta) {
+    const cuentas = obtenerCuentas();
+    const idx = cuentas.findIndex(c => c.correo === cuenta.correo);
+    if (idx !== -1) { cuentas[idx] = cuenta; guardarCuentas(cuentas); }
+    localStorage.setItem(USUARIO_KEY, JSON.stringify(cuenta));
+}
+
+function abrirModalRegistro() { document.getElementById('modal-registro').classList.add('visible'); }
+function cerrarModalRegistro() { document.getElementById('modal-registro').classList.remove('visible'); }
+function abrirModalLogin() { document.getElementById('modal-login').classList.add('visible'); }
+function cerrarModalLogin() { document.getElementById('modal-login').classList.remove('visible'); }
+
+// ✅ FUNCIÓN DE NAVEGACIÓN ARREGLADA
+function irPagina(nombre) {
+    // Quitar activo de todos los enlaces de navegación
+    document.querySelectorAll('.nav-enlaces a').forEach(a => a.classList.remove('activo'));
+
+    // Ocultar TODAS las páginas
+    document.querySelectorAll('.pagina').forEach(p => {
+        p.classList.remove('activa');
+        p.style.display = '';
+    });
+
+    // Lista de páginas públicas
+    const paginasPublicas = ['inicio', 'caracteristicas', 'descargar', 'acerca'];
+
+    // Si va a una página pública
+    if (paginasPublicas.includes(nombre)) {
+        // Ocultar dashboard
+        document.getElementById('pag-dashboard').classList.remove('activa');
+        document.getElementById('pag-dashboard').style.display = 'none';
+        // Mostrar página pública
+        const pagina = document.getElementById(`pag-${nombre}`);
+        pagina.classList.add('activa');
+        pagina.style.display = 'block';
+        // Marcar enlace activo
+        const enlaceSinSesion = document.getElementById(`nav-${nombre}`);
+        const enlaceConSesion = document.getElementById(`cnav-${nombre}`);
+        if (enlaceSinSesion) enlaceSinSesion.classList.add('activo');
+        if (enlaceConSesion) enlaceConSesion.classList.add('activo');
+        return;
+    }
+
+    // Si es dashboard
+    if (nombre === 'dashboard' && cuentaActiva) {
+        document.getElementById('pag-dashboard').classList.add('activa');
+        document.getElementById('pag-dashboard').style.display = 'block';
+        cambiarPestanaDash('inicio-dash');
+    }
+}
+
+function registrarse() {
+    const usuario = document.getElementById('reg-usuario').value.trim();
+    const correo = document.getElementById('reg-correo').value.trim();
+    const clave = document.getElementById('reg-clave').value;
+    if (!usuario || !correo || !clave) return alert('⚠️ Completa todos los campos');
+    const cuentas = obtenerCuentas();
+    if (cuentas.some(c => c.correo === correo)) return alert('⚠️ Este correo ya está registrado');
+    const ahora = new Date();
+    const hora = ahora.toLocaleTimeString('es-ES', {hour:'2-digit', minute:'2-digit'});
+    const nueva = {
+        usuario, correo, clave, sobre: 'No has escrito nada sobre ti',
+        ultimoAcceso: hora, skin: '🧍', capa: '🧥', premium: false,
+        privacidad: { buscar: false, amistad: false, perfilPublico: true }
+    };
+    cuentas.push(nueva); guardarCuentas(cuentas);
+    iniciarSesionDirecto(nueva); cerrarModalRegistro(); alert('✅ ¡Cuenta creada con éxito!');
+}
+
+function iniciarSesion() {
+    const correo = document.getElementById('log-correo').value.trim();
+    const clave = document.getElementById('log-clave').value;
+    const cuentas = obtenerCuentas();
+    const cuenta = cuentas.find(c => c.correo === correo && c.clave === clave);
+    if (!cuenta) return alert('⚠️ Correo o contraseña incorrectos');
+    iniciarSesionDirecto(cuenta); cerrarModalLogin(); alert('✅ ¡Sesión iniciada!');
+}
+
+function iniciarSesionDirecto(cuenta) {
+    cuentaActiva = cuenta;
+    localStorage.setItem(USUARIO_KEY, JSON.stringify(cuenta));
+    document.body.classList.add('sesion-iniciada');
+    // Actualizar datos mostrados
+    document.getElementById('usuario-nav').textContent = cuenta.usuario;
+    document.getElementById('dash-usuario').textContent = cuenta.usuario;
+    document.getElementById('campo-usuario').value = cuenta.usuario;
+    document.getElementById('campo-correo').value = cuenta.correo;
+    document.getElementById('campo-sobre').value = cuenta.sobre;
+    document.getElementById('skin-actual').textContent = cuenta.skin;
+    document.getElementById('capa-actual').textContent = cuenta.capa;
+    document.getElementById('vista-skin').textContent = cuenta.skin;
+    document.getElementById('vista-capa').textContent = cuenta.capa;
+    document.getElementById('hora-acceso').textContent = cuenta.ultimoAcceso;
+    skinSel = cuenta.skin; capaSel = cuenta.capa;
+    // ✅ Mostrar Dashboard al iniciar sesión
+    document.querySelectorAll('.pagina-publica').forEach(p => {
+        p.classList.remove('activa');
+        p.style.display = 'none';
+    });
+    document.getElementById('pag-dashboard').classList.add('activa');
+    document.getElementById('pag-dashboard').style.display = 'block';
+    cambiarPestanaDash('inicio-dash');
+    actualizarSwitches(); actualizarEstadoPremium();
+}
+
+function cerrarSesion() {
+    localStorage.removeItem(USUARIO_KEY);
+    document.body.classList.remove('sesion-iniciada');
+    cuentaActiva = null;
+    // Volver a página de Inicio
+    document.querySelectorAll('.pagina').forEach(p => {
+        p.classList.remove('activa');
+        p.style.display = '';
+    });
+    document.getElementById('pag-inicio').classList.add('activa');
+    document.getElementById('pag-inicio').style.display = 'block';
+    // Marcar enlace activo
+    document.querySelectorAll('.nav-enlaces a').forEach(a => a.classList.remove('activo'));
+    document.getElementById('nav-inicio').classList.add('activo');
+    alert('✅ Sesión cerrada');
+}
+
+function cambiarPestanaDash(nombre) {
+    document.querySelectorAll('.contenido-dash').forEach(d => d.style.display = 'none');
+    document.querySelectorAll('.pestaña-dash').forEach(b => b.classList.remove('activa'));
+    if (nombre === 'inicio-dash') {
+        document.getElementById('dash-inicio').style.display = 'block';
+        document.querySelectorAll('.pestaña-dash')[0].classList.add('activa');
+    }
+    else if (nombre === 'general') {
+        document.getElementById('dash-general').style.display = 'block';
+        document.querySelectorAll('.pestaña-dash')[1].classList.add('activa');
+    }
+    else if (nombre === 'privacidad') {
+        document.getElementById('dash-privacidad').style.display = 'block';
+        document.querySelectorAll('.pestaña-dash')[2].classList.add('activa');
+    }
+    else if (nombre === 'seguridad') {
+        document.getElementById('dash-seguridad').style.display = 'block';
+        document.querySelectorAll('.pestaña-dash')[3].classList.add('activa');
+    }
+    else if (nombre === 'perfil') {
+        document.getElementById('dash-perfil').style.display = 'block';
+        document.querySelectorAll('.pestaña-dash')[4].classList.add('activa');
+    }
+}
+
+function guardarGeneral() {
+    if (!cuentaActiva) return;
+    cuentaActiva.usuario = document.getElementById('campo-usuario').value.trim();
+    cuentaActiva.correo = document.getElementById('campo-correo').value.trim();
+    cuentaActiva.sobre = document.getElementById('campo-sobre').value;
+    actualizarCuenta(cuentaActiva);
+    document.getElementById('usuario-nav').textContent = cuentaActiva.usuario;
+    document.getElementById('dash-usuario').textContent = cuentaActiva.usuario;
+    alert('✅ Cambios guardados');
+}
+
+function cambiarContrasena() {
+    if (!cuentaActiva) return;
+    const act = document.getElementById('clave-actual').value;
+    const nva = document.getElementById('clave-nueva').value;
+    const cnf = document.getElementById('clave-confirma').value;
+    if (cuentaActiva.clave !== act) return alert('⚠️ Contraseña actual incorrecta');
+    if (nva !== cnf) return alert('⚠️ Las contraseñas no coinciden');
+    if (!nva || nva.length < 4) return alert('⚠️ Escribe una contraseña válida');
+    cuentaActiva.clave = nva;
+    actualizarCuenta(cuentaActiva);
+    alert('✅ Contraseña cambiada');
+    document.getElementById('clave-actual').value = '';
+    document.getElementById('clave-nueva').value = '';
+    document.getElementById('clave-confirma').value = '';
+}
+
+function toggleSwitch(sw) {
+    sw.classList.toggle('inactivo');
+    if (!cuentaActiva) return;
+    if (sw.id === 'sw-buscar') cuentaActiva.privacidad.buscar = !sw.classList.contains('inactivo');
+    if (sw.id === 'sw-amistad') cuentaActiva.privacidad.amistad = !sw.classList.contains('inactivo');
+    if (sw.id === 'sw-perfil') cuentaActiva.privacidad.perfilPublico = !sw.classList.contains('inactivo');
+    actualizarCuenta(cuentaActiva);
+}
+
+function actualizarSwitches() {
+    if (!cuentaActiva) return;
+    document.getElementById('sw-buscar').classList.toggle('inactivo', !cuentaActiva.privacidad.buscar);
+    document.getElementById('sw-amistad').classList.toggle('inactivo', !cuentaActiva.privacidad.amistad);
+    document.getElementById('sw-perfil').classList.toggle('inactivo', !cuentaActiva.privacidad.perfilPublico);
+}
+
+function actualizarEstadoPremium() {
+    if (!cuentaActiva) return;
+    const estado = document.getElementById('estado-premium');
+    if (cuentaActiva.premium) {
+        estado.textContent = 'Activa ✅';
+        estado.classList.remove('texto-inactivo');
+        estado.classList.add('texto-premium');
+    } else {
+        estado.textContent = 'Inactiva';
+        estado.classList.remove('texto-premium');
+        estado.classList.add('texto-inactivo');
+    }
+}
+
+function abrirDetalle(tipo) {
+    document.getElementById('dash-perfil').style.display = 'none';
+    document.getElementById('tarjeta-skin').classList.remove('activa');
+    document.getElementById('tarjeta-capa').classList.remove('activa');
+    if (tipo === 'skin') {
+        document.getElementById('detalle-skin').style.display = 'block';
+       
