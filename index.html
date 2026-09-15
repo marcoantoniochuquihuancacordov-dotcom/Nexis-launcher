@@ -3,546 +3,338 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexis Launcher — Minecraft rápido, seguro y gratis</title>
-    <meta name="description" content="Nexis Launcher: Launcher de Minecraft Java y Bedrock gratuito, ligero, sin virus — con versión Premium.">
-    
+    <title>Batty Launcher — Dashboard</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --verde: #7fff00;
-            --verde-oscuro: #39ff14;
-            --fondo-1: #0a0f1f;
-            --fondo-2: #0f172a;
-            --texto: #e2e8f0;
-            --texto-claro: #94a3b8;
-            --borde: rgba(255,255,255,0.08);
-            --discord-azul: #5865F2;
-            --azul: #4f46e5;
-            --rojo: #f43f5e;
-            --dorado: #facc15;
-            --dorado-oscuro: #eab308;
-            --altura-boton: 40px;
-            --radio-borde: 8px;
+            --fondo: #0a0e17;
+            --tarjeta: #141a28;
+            --borde: rgba(59, 130, 246, 0.2);
+            --azul: #3b82f6;
+            --azul-claro: #60a5fa;
+            --rosa: #f45b74;
+            --texto: #e6edf3;
+            --texto-secundario: #8b949e;
+            --verde: #3fb950;
+            --rojo: #f85149;
+            --dorado: #f0b429;
+            --borde-activo: rgba(59, 130, 246, 0.6);
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, var(--fondo-1), var(--fondo-2));
+            background: var(--fondo);
             color: var(--texto);
             min-height: 100vh;
             line-height: 1.6;
         }
 
-        body.premium-activo {
-            --verde: #facc15;
-            --verde-oscuro: #eab308;
-        }
-        body.premium-activo .aviso-limite-lado { display: none; }
-
-        .contenedor { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        body.premium-activo { --dorado: #facc15; }
 
         /* === NAVEGACIÓN === */
         nav {
-            background: rgba(15,23,42,0.9);
-            padding: 0.8rem 0;
-            backdrop-filter: blur(12px);
-            position: sticky;
-            top: 0;
-            z-index: 9999;
-            border-bottom: 1px solid var(--borde);
-        }
-
-        .nav-wrap {
+            background: rgba(20, 26, 40, 0.95);
+            padding: 0.8rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 1rem;
-            flex-wrap: nowrap;
+            border-bottom: 1px solid var(--borde);
+            position: sticky;
+            top: 0;
+            z-index: 999;
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: 900;
-            color: var(--verde);
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--azul-claro);
             cursor: pointer;
         }
-        .etiqueta-logo-premium {
-            font-size: 0.65rem;
-            background: linear-gradient(90deg, var(--dorado), var(--dorado-oscuro));
-            color: #000;
-            padding: 1px 6px;
-            border-radius: 6px;
-            margin-left: 6px;
-            vertical-align: super;
-            font-weight: 900;
-            display: none;
-        }
-        body.premium-activo .etiqueta-logo-premium { display: inline; }
 
-        .nav-enlaces { display: flex; align-items: center; gap: 0.5rem; flex-wrap: nowrap; }
+        .nav-botones { display: flex; gap: 0.8rem; align-items: center; }
 
-        .nav-enlaces button, .btn, .usuario-nav {
-            height: var(--altura-boton);
-            padding: 0 1rem;
-            border-radius: var(--radio-borde);
+        .btn-nav {
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
             font-size: 0.95rem;
             font-weight: 600;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
             border: none;
+            cursor: pointer;
             transition: all 0.2s ease;
             font-family: inherit;
         }
 
-        .nav-enlaces button { background: transparent; color: var(--texto-claro); }
-        .nav-enlaces button:hover { background: rgba(255,255,255,0.05); color: #fff; }
-        .nav-enlaces button.activo { background: rgba(127,255,0,0.15); color: var(--verde); }
-
-        .btn { gap: 0.5rem; }
-        .btn-primario { background: var(--azul); color: white; }
-        .btn-primario:hover { filter: brightness(1.1); transform: translateY(-1px); }
-        .btn-secundario { background: rgba(255,255,255,0.05); color: white; }
-        .btn-secundario:hover { background: rgba(255,255,255,0.1); transform: translateY(-1px); }
-
-        .usuario-nav { background: rgba(255,255,255,0.05); color: #fff; gap: 0.5rem; }
-        .usuario-nav:hover { background: rgba(255,255,255,0.1); }
-
-        .btn-cerrar { background: transparent; color: var(--texto-claro); }
-        .btn-cerrar:hover { background: rgba(244,63,94,0.15); color: #ffc0c8; }
-
-        .btn-discord {
-            background: var(--discord-azul);
+        .btn-registrar { background: transparent; color: var(--texto); }
+        .btn-registrar:hover { background: rgba(59,130,246,0.1); }
+        .btn-iniciar { background: var(--azul); color: white; }
+        .btn-iniciar:hover { background: var(--azul-claro); }
+        .btn-cerrar-sesion {
+            background: var(--rosa);
             color: white;
-            text-decoration: none;
-            padding: 0 1rem;
-            height: var(--altura-boton);
-            border-radius: var(--radio-borde);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .btn-discord:hover { filter: brightness(1.1); transform: translateY(-1px); }
-
-        .sin-sesion  { display: inline-flex; }
-        .con-sesion { display: none; }
-        body.sesion-iniciada .sin-sesion  { display: none !important; }
-        body.sesion-iniciada .con-sesion { display: inline-flex !important; }
-
-        /* === SECCIONES === */
-        .seccion { display: none; animation: aparecer 0.35s ease-out; }
-        .seccion.visible { display: block; }
-
-        @keyframes aparecer {
-            from { opacity: 0; transform: translateY(12px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-
-        header { padding: 3.5rem 2rem; text-align: center; }
-        header h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(90deg, var(--verde), var(--verde-oscuro));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 900;
-        }
-        header p { font-size: 1.1rem; max-width: 800px; margin: 0 auto 1.5rem; color: var(--texto-claro); }
-
-        .boton-descarga {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: linear-gradient(90deg, var(--verde), var(--verde-oscuro));
-            color: #000;
-            padding: 1rem 2.5rem;
-            font-size: 1.05rem;
-            font-weight: 800;
-            border-radius: 10px;
+            padding: 0.7rem 2rem;
+            border-radius: 8px;
             border: none;
+            font-weight: 600;
             cursor: pointer;
-            margin-top: 1rem;
-            transition: all 0.3s;
+            width: 100%;
+            font-size: 0.95rem;
+            transition: all 0.2s;
         }
-        .boton-descarga:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(127,255,0,0.25); }
+        .btn-cerrar-sesion:hover { filter: brightness(1.08); }
 
-        .anuncio-banner {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid var(--borde);
-            border-radius: 12px;
-            padding: 1rem;
-            margin: 1.5rem 0;
-            text-align: center;
-            color: var(--texto-claro);
-            font-size: 0.9rem;
+        .oculto-sesion, .con-sesion { display: none; }
+        body.sesion-iniciada .oculto-sesion { display: none !important; }
+        body.sesion-iniciada .con-sesion { display: flex !important; }
+
+        /* === CONTENEDOR DASHBOARD === */
+        .dashboard {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
         }
-        body.premium-activo .anuncio-banner { display: none; }
 
-        .noticias { padding: 2rem 0 4rem; }
-        .noticias h2 { text-align: center; font-size: 1.8rem; margin-bottom: 0.5rem; color: #fff; }
-        .noticias-sub { text-align: center; color: var(--texto-claro); margin-bottom: 2rem; }
-        .noticias-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.2rem; }
-
-        .noticia {
-            background: rgba(30,41,59,0.55);
-            border: 1px solid var(--borde);
-            border-radius: 14px;
-            padding: 1.5rem;
-            transition: all 0.25s ease;
+        .saludo {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 0.3rem;
         }
-        .noticia:hover { border-color: var(--verde); background: rgba(30,41,59,0.8); transform: translateY(-4px); }
-        .etiqueta {
+
+        .sub-saludo {
+            color: var(--texto-secundario);
+            font-size: 1.05rem;
+            margin-bottom: 2rem;
+        }
+
+        .etiqueta-beta {
             display: inline-block;
-            background: rgba(127,255,0,0.12);
-            color: var(--verde);
-            font-size: 0.8rem;
+            background: var(--azul);
+            color: white;
+            font-size: 0.75rem;
             font-weight: 700;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            margin-bottom: 1rem;
+            padding: 0.15rem 0.5rem;
+            border-radius: 6px;
+            margin-left: 0.5rem;
+            vertical-align: middle;
         }
-        .noticia h3 { font-size: 1.05rem; margin-bottom: 0.6rem; color: #fff; }
-        .noticia p { color: var(--texto-claro); font-size: 0.95rem; line-height: 1.6; margin-bottom: 0.8rem; }
-        .leer-mas { color: var(--verde); font-weight: 600; text-decoration: none; }
-        .leer-mas:hover { text-decoration: underline; }
 
-        section { padding: 2rem 2rem 4rem; }
-        section h2 { font-size: 2rem; text-align: center; margin-bottom: 2rem; color: #fff; }
-        .grid-caracteristicas { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.2rem; }
-        .card { 
-            background: rgba(30,41,59,0.5); 
-            border: 1px solid var(--borde); 
-            border-radius: 14px; 
-            padding: 1.5rem; 
-            transition: all 0.25s ease; 
+        /* === PESTAÑAS === */
+        .contenedor-pestañas {
+            display: flex;
+            gap: 0.4rem;
+            margin-bottom: 2.5rem;
+            background: var(--tarjeta);
+            padding: 0.4rem;
+            border-radius: 12px;
+            border: 1px solid var(--borde);
+            flex-wrap: wrap;
         }
-        .card:hover { border-color: var(--verde); transform: translateY(-4px); }
-        .card h3 { color: var(--verde); margin-bottom: 0.6rem; font-size: 1.1rem; }
-        .card p { color: var(--texto-claro); line-height: 1.6; }
 
-        .pasos { 
-            background: rgba(30,41,59,0.5); 
-            border: 1px solid var(--borde); 
-            border-radius: 14px; 
-            padding: 2rem; 
-            max-width: 700px; 
-            margin: 0 auto; 
-        }
-        .paso { display: flex; gap: 1rem; margin-bottom: 1rem; align-items: flex-start; }
-        .paso-num { 
-            background: var(--verde); 
-            color: #000; 
-            font-weight: 900; 
-            width: 34px; 
-            height: 34px; 
-            border-radius: 50%; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            flex-shrink: 0; 
-        }
-        .paso-texto { color: var(--texto); }
-
-        .acerca { 
-            text-align: center; 
-            max-width: 700px; 
-            margin: 0 auto; 
-            background: rgba(30,41,59,0.5); 
-            border: 1px solid var(--borde); 
-            border-radius: 14px; 
-            padding: 2rem; 
-            color: var(--texto-claro); 
-            line-height: 1.8; 
-        }
-        .acerca a { color: var(--verde); text-decoration: none; font-weight: 600; }
-        .acerca a:hover { text-decoration: underline; }
-
-        .dashboard { max-width: 1100px; margin: 3rem auto; padding: 0 1.5rem 4rem; }
-        .dashboard-saludo { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.2rem; }
-        .dashboard-subtitulo { color: var(--texto-claro); font-size: 1.05rem; margin-bottom: 2rem; }
-        .etiqueta-beta { display: inline-block; background: var(--verde); color: #000; font-size: 0.75rem; font-weight: 800; padding: 0.1rem 0.5rem; border-radius: 12px; margin-left: 0.5rem; }
-        .etiqueta-premium { display: inline-block; background: var(--dorado); color: #000; font-size: 0.75rem; font-weight: 800; padding: 0.1rem 0.5rem; border-radius: 12px; margin-left: 0.5rem; }
-
-        .pestañas { 
-            display: flex; 
-            gap: 0.4rem; 
-            margin-bottom: 2.5rem; 
-            background: rgba(30,41,59,0.6); 
-            padding: 0.4rem; 
-            border-radius: 14px; 
-            border: 1px solid var(--borde); 
-            flex-wrap: wrap; 
-        }
-        .pestaña { 
-            padding: 0.7rem 1.4rem; 
-            border-radius: 10px; 
-            cursor: pointer; 
-            font-weight: 600; 
-            color: var(--texto-claro); 
-            transition: all 0.25s ease; 
-            border: none; 
-            background: transparent; 
-            display: flex; 
-            align-items: center; 
-            gap: 0.5rem; 
-            font-size: 0.95rem; 
+        .pestaña {
+            padding: 0.7rem 1.4rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--texto-secundario);
+            background: transparent;
+            border: none;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.95rem;
+            transition: all 0.2s;
             font-family: inherit;
         }
-        .pestaña:hover { color: #fff; background: rgba(127,255,0,0.08); }
-        .pestaña.activa { 
-            background: linear-gradient(90deg, var(--verde), var(--verde-oscuro)); 
-            color: #000; 
-            font-weight: 700; 
+
+        .pestaña:hover { color: var(--texto); background: rgba(59,130,246,0.08); }
+        .pestaña.activa {
+            background: var(--azul);
+            color: white;
+            box-shadow: 0 0 0 1px var(--borde-activo);
         }
+
         .contenido-pestaña { display: none; animation: aparecer 0.3s ease-out; }
         .contenido-pestaña.visible { display: block; }
 
-        .tarjeta { 
-            background: rgba(30,41,59,0.5); 
-            border: 1px solid var(--borde); 
-            border-radius: 16px; 
-            padding: 2rem; 
-            margin-bottom: 1.5rem; 
-            transition: all 0.25s ease; 
+        @keyframes aparecer {
+            from { opacity: 0; transform: translateY(10px); }
+            to   { opacity: 1; transform: translateY(0); }
         }
-        .tarjeta:hover { border-color: rgba(127,255,0,0.3); }
-        .tarjeta h3 { 
-            font-size: 1.4rem; 
-            margin-bottom: 1.5rem; 
-            color: #fff; 
-            border-bottom: 1px solid var(--borde); 
-            padding-bottom: 0.8rem; 
+
+        /* === TARJETAS Y SECCIONES === */
+        .tarjeta {
+            background: var(--tarjeta);
+            border: 1px solid var(--borde);
+            border-radius: 14px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
         }
-        .fila { display: flex; gap: 1.2rem; flex-wrap: wrap; }
-        .grupo { flex: 1; min-width: 260px; margin-bottom: 1rem; }
-        label { display: block; margin-bottom: 0.5rem; color: var(--texto-claro); font-weight: 500; font-size: 0.95rem; }
-        input, textarea { 
-            width: 100%; 
-            padding: 0.85rem 1rem; 
-            border-radius: 10px; 
-            border: 1px solid var(--borde); 
-            background: rgba(0,0,0,0.4); 
-            color: #fff; 
-            font-size: 0.95rem; 
-            outline: none; 
-            transition: border 0.25s, box-shadow 0.25s; 
+
+        .tarjeta h2 {
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.6rem;
+            border-bottom: 1px solid var(--borde);
         }
-        input:focus, textarea:focus { 
-            border-color: var(--verde); 
-            box-shadow: 0 0 0 3px rgba(127,255,0,0.15); 
-        }
-        textarea { resize: vertical; min-height: 120px; }
-        .btn-guardar { 
-            background: linear-gradient(90deg, var(--verde), var(--verde-oscuro)); 
-            color: #000; 
-            border: none; 
-            padding: 0.9rem 2rem; 
-            border-radius: 10px; 
-            font-weight: 700; 
-            cursor: pointer; 
-            font-size: 1rem; 
-            margin-top: 1.2rem; 
-            width: 100%; 
-            transition: all 0.2s ease; 
+
+        .fila { display: flex; flex-direction: column; gap: 1rem; }
+        .campo { display: flex; align-items: center; padding: 0.5rem 0; }
+        .campo label { width: 140px; font-weight: 500; color: var(--texto); flex-shrink: 0; }
+        .campo input, .campo textarea {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            background: var(--fondo);
+            border: 1px solid var(--borde);
+            border-radius: 8px;
+            color: var(--texto);
+            font-size: 0.95rem;
+            outline: none;
             font-family: inherit;
+            transition: border 0.2s;
         }
-        .btn-guardar:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(127,255,0,0.3); }
-        .btn-peligro { background: linear-gradient(90deg, #f43f5e, #e11d48); color: #fff; }
-        .btn-peligro:hover { box-shadow: 0 4px 15px rgba(244,63,94,0.3); }
-        .suscripcion { font-size: 1.1rem; margin-bottom: 0.5rem; }
+        .campo input:focus, .campo textarea:focus { border-color: var(--azul); }
+        .campo textarea { min-height: 100px; resize: vertical; }
+
+        .btn-guardar {
+            margin-top: 1rem;
+            width: 100%;
+            padding: 0.85rem;
+            background: var(--azul);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+        .btn-guardar:hover { background: var(--azul-claro); }
+
+        .estado-premium { font-size: 1rem; margin-bottom: 0.5rem; }
         .inactiva { color: var(--rojo); font-weight: 700; }
         .activa { color: var(--dorado); font-weight: 700; }
-        .fecha-acceso { color: var(--texto-claro); font-size: 0.95rem; }
+        .fecha { color: var(--texto-secundario); font-size: 0.95rem; margin-bottom: 2rem; }
 
-        /* === MÉTODOS DE PAGO === */
-        .metodos-pago { margin-top: 1.5rem; }
-        .metodos-pago h4 { font-size: 1rem; color: #fff; margin-bottom: 1rem; }
-        .opcion-pago {
+        /* === PRIVACIDAD === */
+        .opcion-privacidad {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 1rem;
-            padding: 1rem 1.2rem;
-            background: rgba(255,255,255,0.03);
-            border: 2px solid var(--borde);
-            border-radius: 12px;
-            margin-bottom: 0.8rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--borde);
+        }
+        .opcion-privacidad span { font-weight: 500; }
+        .interruptor {
+            width: 46px;
+            height: 26px;
+            background: var(--azul);
+            border-radius: 13px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .interruptor::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            right: 3px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            transition: all 0.2s;
+        }
+        .interruptor.inactivo { background: #2a3244; }
+        .interruptor.inactivo::after { right: auto; left: 3px; }
+
+        /* === PERFIL: SKINS Y CAPAS === */
+        .cuadricula-perfil {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        @media (max-width: 850px) {
+            .cuadricula-perfil { grid-template-columns: 1fr; }
+        }
+
+        .tarjeta-perfil {
+            background: var(--tarjeta);
+            border: 2px solid transparent;
+            border-radius: 14px;
+            padding: 1.5rem;
+            text-align: center;
             cursor: pointer;
             transition: all 0.25s ease;
         }
-        .opcion-pago:hover {
-            border-color: var(--dorado);
-            background: rgba(250,204,21,0.05);
-        }
-        .opcion-pago.seleccionada {
-            border-color: var(--dorado);
-            background: rgba(250,204,21,0.08);
-        }
-        .radio-pago {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            border: 2px solid var(--texto-claro);
-            position: relative;
-            flex-shrink: 0;
-        }
-        .opcion-pago.seleccionada .radio-pago { border-color: var(--dorado); }
-        .opcion-pago.seleccionada .radio-pago::after {
-            content: '';
-            width: 10px;
-            height: 10px;
-            background: var(--dorado);
-            border-radius: 50%;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-        .icono-pago { font-size: 1.5rem; }
-        .info-pago { flex: 1; }
-        .info-pago strong { display: block; color: #fff; font-size: 0.95rem; }
-        .info-pago span { display: block; color: var(--texto-claro); font-size: 0.85rem; }
-        .boton-pagar {
-            margin-top: 1.2rem;
-            width: 100%;
-            padding: 0.9rem;
-            background: linear-gradient(90deg, var(--dorado), var(--dorado-oscuro));
-            color: #000;
-            border: none;
+        .tarjeta-perfil:hover { border-color: var(--borde-activo); }
+        .tarjeta-perfil.activa { border-color: var(--azul); box-shadow: 0 0 0 1px var(--borde-activo); }
+        .tarjeta-perfil h3 { margin-bottom: 1rem; font-size: 1rem; color: var(--texto); }
+        .vista-minecraft {
+            width: 140px;
+            height: 200px;
+            margin: 0 auto;
+            background: var(--fondo);
             border-radius: 10px;
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            font-family: inherit;
-        }
-        .boton-pagar:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(250,204,21,0.3); }
-        .boton-pagar:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
-
-        .aviso-premium { 
-            margin-top: 1.5rem; 
-            padding: 1.4rem 1.6rem; 
-            background: rgba(250,204,21,0.08); 
-            border: 1px solid rgba(250,204,21,0.25); 
-            border-radius: 12px; 
-            color: #fde047; 
-            font-size: 1rem; 
-            line-height: 1.8; 
-        }
-        .lista-beneficios { margin: 0.8rem 0; padding-left: 1.2rem; }
-        .lista-beneficios li { margin-bottom: 0.3rem; }
-
-        /* === SKINS Y CAPAS === */
-        .personalizar-seccion {
-            background: rgba(30,41,59,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
             border: 1px solid var(--borde);
-            border-radius: 16px;
-            padding: 2rem;
-            margin-bottom: 2rem;
         }
-        .personalizar-seccion h3 {
-            font-size: 1.2rem;
-            color: #fff;
-            margin-bottom: 2rem;
-            font-weight: 600;
-        }
-        .personalizar-grid {
+
+        /* === DETALLE SKIN / CAPA === */
+        .vista-detalle {
             display: grid;
-            grid-template-columns: 1fr auto 1fr;
+            grid-template-columns: 300px 2px 1fr;
             gap: 2rem;
             align-items: start;
         }
-        @media (max-width: 768px) {
-            .personalizar-grid { grid-template-columns: 1fr; }
-            .separador-vertical { width: 100%; height: 1px; }
+        @media (max-width: 700px) {
+            .vista-detalle { grid-template-columns: 1fr; }
+            .separador { width: 100%; height: 2px; }
         }
-        .skin-actual { text-align: center; }
-        .skin-actual h4 {
-            font-size: 1.1rem;
-            color: #fff;
-            margin-bottom: 1.2rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid var(--borde);
-            display: inline-block;
-        }
-        .vista-personalizada {
-            width: 160px;
-            height: 240px;
+
+        .bloque-izq { text-align: center; }
+        .bloque-izq h3 { margin-bottom: 1rem; font-size: 1.1rem; }
+        .skin-vista-grande {
+            width: 180px;
+            height: 260px;
             margin: 0 auto 1.2rem;
-            background: rgba(0,0,0,0.35);
+            background: var(--fondo);
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 4.5rem;
-            border: 2px solid var(--borde);
-            transition: all 0.3s ease;
+            font-size: 5rem;
+            border: 1px solid var(--borde);
         }
-        .btn-azul {
-            background: #38bdf8;
-            color: #000;
-            border: none;
-            padding: 0.6rem 1.2rem;
-            border-radius: 8px;
-            font-weight: 700;
-            cursor: pointer;
-            margin: 0.25rem;
-            font-family: inherit;
-        }
-        .btn-azul:hover { background: #60a5fa; }
-        .btn-dorado {
-            background: linear-gradient(90deg, var(--dorado), var(--dorado-oscuro));
-            color: #000;
-            border: none;
-            padding: 0.6rem 1.2rem;
-            border-radius: 8px;
-            font-weight: 700;
-            cursor: pointer;
-            margin: 0.25rem;
-            font-family: inherit;
-        }
-        .btn-dorado:hover { filter: brightness(1.1); }
-        .btn-rojo {
-            background: var(--rojo);
-            color: #fff;
-            border: none;
-            padding: 0.6rem 1.2rem;
-            border-radius: 8px;
-            font-weight: 700;
-            cursor: pointer;
-            margin: 0.25rem;
-            font-family: inherit;
-        }
-        .btn-rojo:hover { background: #fb7185; }
-        .separador-vertical { width: 2px; height: 280px; background: var(--borde); }
-        .biblioteca-lado h4 {
-            font-size: 1.1rem;
-            color: #fff;
-            margin-bottom: 1.2rem;
-            text-align: center;
-        }
-        .aviso-limite-lado {
-            text-align: center;
+        .separador { background: var(--borde); }
+
+        .bloque-der h3 { margin-bottom: 1rem; font-size: 1.1rem; }
+        .aviso-limite {
             color: var(--rojo);
             font-size: 0.9rem;
             margin-bottom: 1rem;
+            padding: 0.7rem;
+            background: rgba(248,81,73,0.08);
+            border-radius: 8px;
             line-height: 1.5;
-            padding: 0.8rem;
-            background: rgba(244,63,94,0.08);
-            border-radius: 10px;
-            border: 1px solid rgba(244,63,94,0.2);
         }
-        .aviso-limite-lado span { color: var(--dorado); font-weight: 700; }
-        .cuadricula-skins-lado { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; }
-        .cuadricula-skins-lado.skin-4 { grid-template-columns: repeat(2, 1fr); }
-        .skin-item-lado {
+        .aviso-limite span { color: var(--dorado); font-weight: 700; }
+        .sin-limite { color: var(--verde); font-weight: 700; }
+
+        .cuadricula-biblioteca {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.8rem;
+        }
+        .item-skin {
             aspect-ratio: 2/3;
-            background: rgba(255,255,255,0.04);
+            background: var(--fondo);
             border-radius: 8px;
             display: flex;
             align-items: center;
@@ -550,31 +342,65 @@
             font-size: 2rem;
             cursor: pointer;
             border: 2px solid transparent;
-            transition: all 0.2s ease;
+            transition: all 0.2s;
         }
-        .skin-item-lado:hover {
-            border-color: var(--dorado);
-            background: rgba(250,204,21,0.08);
-        }
-        .skin-item-lado.seleccionada {
-            border-color: var(--dorado);
-            box-shadow: 0 0 12px rgba(250,204,21,0.35);
-        }
-        .boton-bloqueado { opacity: 0.5; cursor: not-allowed; }
+        .item-skin:hover { border-color: var(--azul); }
+        .item-skin.seleccionada { border-color: var(--azul); box-shadow: 0 0 0 1px var(--borde-activo); }
+        .item-skin.bloqueado { opacity: 0.5; cursor: not-allowed; }
+        .agregar { font-size: 1.8rem; color: var(--azul); font-weight: 700; }
 
-        .mensaje-accion {
+        .grupo-botones { display: flex; gap: 0.8rem; margin-top: 1rem; }
+        .btn-azul {
+            flex: 1;
+            padding: 0.75rem;
+            background: var(--azul);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+        .btn-azul:hover { background: var(--azul-claro); }
+        .btn-rojo {
+            flex: 1;
+            padding: 0.75rem;
+            background: var(--rojo);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+        .btn-rojo:hover { filter: brightness(1.08); }
+        .btn-volver {
+            margin-top: 2rem;
+            padding: 0.7rem 2rem;
+            background: var(--azul);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .mensaje {
             margin-top: 1rem;
             padding: 0.8rem;
             border-radius: 8px;
-            background: rgba(250,204,21,0.1);
-            color: var(--dorado);
+            background: rgba(63,185,80,0.1);
+            color: var(--verde);
             text-align: center;
             font-weight: 500;
             display: none;
         }
-        .mensaje-accion.mostrar { display: block; }
+        .mensaje.mostrar { display: block; }
 
-        /* === MODAL DE FORMULARIOS === */
+        /* === MODALES === */
         .modal-fondo {
             position: fixed;
             inset: 0;
@@ -582,328 +408,540 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 10000;
+            z-index: 9999;
             display: none;
         }
         .modal-fondo.visible { display: flex; }
         .modal {
-            background: var(--fondo-2);
+            background: var(--tarjeta);
             border: 1px solid var(--borde);
-            border-radius: 16px;
+            border-radius: 14px;
             padding: 2rem;
             width: 90%;
             max-width: 420px;
         }
-        .modal h3 { margin-bottom: 1.5rem; color: #fff; text-align: center; font-size: 1.3rem; }
-        .modal-botones { display: flex; gap: 0.8rem; margin-top: 1.2rem; }
-        .modal-botones button { flex: 1; }
+        .modal h3 { margin-bottom: 1.5rem; text-align: center; }
+        .modal input {
+            width: 100%;
+            padding: 0.85rem;
+            margin-bottom: 1rem;
+            background: var(--fondo);
+            border: 1px solid var(--borde);
+            border-radius: 8px;
+            color: white;
+            font-size: 0.95rem;
+            outline: none;
+            font-family: inherit;
+        }
+        .modal-botones { display: flex; gap: 0.8rem; margin-top: 0.5rem; }
+        .modal-botones button { flex: 1; padding: 0.75rem; border-radius: 8px; border: none; font-weight: 600; cursor: pointer; font-family: inherit; }
+        .btn-cancelar { background: #2a3244; color: white; }
+        .btn-aceptar { background: var(--azul); color: white; }
     </style>
 </head>
 <body>
 
-<!-- MODAL DE REGISTRO -->
+<!-- MODAL REGISTRO -->
 <div id="modal-registro" class="modal-fondo">
     <div class="modal">
-        <h3>📝 Crear Cuenta Nueva</h3>
-        <div class="grupo">
-            <label>Nombre de usuario</label>
-            <input type="text" id="reg-nombre" placeholder="Tu nombre de usuario">
-        </div>
-        <div class="grupo">
-            <label>Correo electrónico</label>
-            <input type="email" id="reg-correo" placeholder="tu@email.com">
-        </div>
-        <div class="grupo">
-            <label>Contraseña</label>
-            <input type="password" id="reg-clave" placeholder="Crea una contraseña segura">
-        </div>
+        <h3>📝 Crear Cuenta</h3>
+        <input type="text" id="reg-usuario" placeholder="Nombre de usuario">
+        <input type="email" id="reg-correo" placeholder="Correo electrónico">
+        <input type="password" id="reg-clave" placeholder="Contraseña">
         <div class="modal-botones">
-            <button class="btn btn-secundario" onclick="cerrarModalRegistro()">Cancelar</button>
-            <button class="btn btn-primario" onclick="registrarse()">Crear Cuenta</button>
+            <button class="btn-cancelar" onclick="cerrarModalRegistro()">Cancelar</button>
+            <button class="btn-aceptar" onclick="registrarse()">Crear Cuenta</button>
         </div>
     </div>
 </div>
 
-<!-- MODAL DE INICIO DE SESIÓN -->
+<!-- MODAL INICIO SESIÓN -->
 <div id="modal-login" class="modal-fondo">
     <div class="modal">
         <h3>🔑 Iniciar Sesión</h3>
-        <div class="grupo">
-            <label>Correo electrónico</label>
-            <input type="email" id="log-correo" placeholder="tu@email.com">
-        </div>
-        <div class="grupo">
-            <label>Contraseña</label>
-            <input type="password" id="log-clave" placeholder="Tu contraseña">
-        </div>
+        <input type="email" id="log-correo" placeholder="Correo electrónico">
+        <input type="password" id="log-clave" placeholder="Contraseña">
         <div class="modal-botones">
-            <button class="btn btn-secundario" onclick="cerrarModalLogin()">Cancelar</button>
-            <button class="btn btn-primario" onclick="iniciarSesion()">Entrar</button>
+            <button class="btn-cancelar" onclick="cerrarModalLogin()">Cancelar</button>
+            <button class="btn-aceptar" onclick="iniciarSesion()">Entrar</button>
         </div>
     </div>
 </div>
 
 <!-- NAVEGACIÓN -->
 <nav>
-    <div class="contenedor nav-wrap">
-        <span class="logo" onclick="mostrarSeccion('inicio')">Nexis Launcher<span class="etiqueta-logo-premium">💎 PREMIUM</span></span>
-        <div class="nav-enlaces">
-            <button id="m-inicio" class="activo" onclick="mostrarSeccion('inicio')">Inicio</button>
-            <button id="m-caracteristicas" onclick="mostrarSeccion('caracteristicas')">Características</button>
-            <button id="m-descargar" onclick="mostrarSeccion('descargar')">Descargar</button>
-            <button id="m-acerca" onclick="mostrarSeccion('acerca')">Acerca de</button>
-
-            <!-- SIN SESIÓN → Botones de Registrarse e Iniciar Sesión -->
-            <button class="btn btn-secundario sin-sesion" onclick="abrirModalRegistro()">📝 Registrarse</button>
-            <button class="btn btn-primario sin-sesion" onclick="abrirModalLogin()">🔑 Iniciar Sesión</button>
-
-            <!-- CON SESIÓN → Nombre de usuario + Cerrar sesión -->
-            <span class="usuario-nav con-sesion" id="usuario-nombre" onclick="mostrarSeccion('cuenta'); cambiarPestanaCuenta('cuenta-inicio')">👤 Usuario</span>
-            <button class="btn-cerrar con-sesion" onclick="cerrarSesion()">Cerrar sesión</button>
-
-            <a href="https://discord.gg/ef4uw4ttF" target="_blank" class="btn-discord">Discord</a>
-        </div>
+    <span class="logo" onclick="irInicio()">Batty Launcher</span>
+    <div class="nav-botones">
+        <!-- SIN SESIÓN -->
+        <button class="btn-nav btn-registrar oculto-sesion" onclick="abrirModalRegistro()">📝 Registrarse</button>
+        <button class="btn-nav btn-iniciar oculto-sesion" onclick="abrirModalLogin()">🔑 Iniciar Sesión</button>
+        <!-- CON SESIÓN -->
+        <button class="btn-cerrar-sesion con-sesion" onclick="cerrarSesion()">Cerrar sesión</button>
     </div>
 </nav>
 
-<!-- SECCIÓN INICIO -->
-<div id="s-inicio" class="seccion visible">
-    <header>
-        <h1>Bienvenido a Nexis Launcher</h1>
-        <p>El Launcher de Minecraft: Java Edition gratuito, ligero, sin publicidad y 100% seguro. Descarga versiones, instala mods y gestiona perfiles fácilmente.</p>
-        <button class="boton-descarga" onclick="alert('✅ Descarga iniciada! Aquí irá tu enlace real de descarga.')">⬇️ Descargar Nexis Launcher v2.0.0</button>
-    </header>
+<!-- DASHBOARD SOLO VISIBLE CON SESIÓN INICIADA -->
+<div id="dashboard" class="dashboard con-sesion">
+    <h1 class="saludo">Hola, <span id="nombre-usuario">Usuario</span></h1>
+    <p class="sub-saludo">Bienvenid@ a la nueva Dashboard de Batty <span id="fecha-actual"></span></p>
 
-    <div class="contenedor">
-        <div class="anuncio-banner">
-            📢 Ves anuncios porque no tienes Premium.<br>
-            💡 <strong>Consigue Premium</strong> y navega sin anuncios.
+    <!-- PESTAÑAS -->
+    <div class="contenedor-pestañas">
+        <button class="pestaña activa" onclick="cambiarPestana('inicio', this)">🏠 Inicio</button>
+        <button class="pestaña" onclick="cambiarPestana('general', this)">👤 General</button>
+        <button class="pestaña" onclick="cambiarPestana('privacidad', this)">🔒 Privacidad</button>
+        <button class="pestaña" onclick="cambiarPestana('seguridad', this)">🛡️ Seguridad</button>
+        <button class="pestaña" onclick="cambiarPestana('perfil', this)">😊 Perfil</button>
+    </div>
+
+    <!-- === INICIO === -->
+    <div id="p-inicio" class="contenido-pestaña visible">
+        <div class="tarjeta">
+            <h2>Inicio <span class="etiqueta-beta">BETA</span></h2>
+            <p class="estado-premium">Suscripción a Batty Plus: <span id="estado-premium">Inactiva</span></p>
+            <p class="fecha">Tu último inicio de sesión fue el <span id="ultimo-acceso"></span></p>
         </div>
     </div>
 
-    <div class="noticias contenedor">
-        <h2>📰 Noticias Oficiales de Minecraft</h2>
-        <p class="noticias-sub">Información verificada desde <strong>minecraft.net</strong></p>
-        <div class="noticias-grid">
-            <div class="noticia">
-                <span class="etiqueta">Oficial · Minecraft.net</span>
-                <h3>Versiones y Actualizaciones</h3>
-                <p>Entérate de las últimas versiones, Snapshots y Pre-releases.</p>
-                <a href="https://www.minecraft.net/es-es/download" target="_blank" class="leer-mas">Leer más →</a>
+    <!-- === GENERAL === -->
+    <div id="p-general" class="contenido-pestaña">
+        <div class="tarjeta">
+            <h2>General</h2>
+            <div class="fila">
+                <div class="campo">
+                    <label>Nombre de usuario</label>
+                    <input type="text" id="campo-usuario" placeholder="Tu nombre">
+                </div>
+                <div class="campo">
+                    <label>Correo electrónico</label>
+                    <input type="email" id="campo-correo" placeholder="tu@email.com">
+                </div>
+                <div class="campo">
+                    <label>Sobre mí</label>
+                    <textarea id="campo-sobre" placeholder="No has escrito nada sobre ti"></textarea>
+                </div>
             </div>
-            <div class="noticia">
-                <span class="etiqueta">Oficial · Minecraft.net</span>
-                <h3>Minecraft Bedrock Edition</h3>
-                <p>Novedades y características de Bedrock.</p>
-                <a href="https://www.minecraft.net/es-es/about-minecraft" target="_blank" class="leer-mas">Leer más →</a>
+            <button class="btn-guardar" onclick="guardarGeneral()">Guardar cambios</button>
+            <div class="mensaje" id="msg-general">✅ Cambios guardados correctamente</div>
+        </div>
+    </div>
+
+    <!-- === PRIVACIDAD === -->
+    <div id="p-privacidad" class="contenido-pestaña">
+        <div class="tarjeta">
+            <h2>Privacidad</h2>
+            <div class="opcion-privacidad">
+                <span>Permitir que los usuarios te encuentren en Batty</span>
+                <div class="interruptor" id="sw-buscar" onclick="toggleSwitch(this)"></div>
+            </div>
+            <div class="opcion-privacidad">
+                <span>Permitir solicitudes de amistad</span>
+                <div class="interruptor" id="sw-amistad" onclick="toggleSwitch(this)"></div>
+            </div>
+            <div class="opcion-privacidad">
+                <span>Skin pública</span>
+                <div class="interruptor" id="sw-skinpub" onclick="toggleSwitch(this)"></div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- SECCIÓN CARACTERÍSTICAS -->
-<div id="s-caracteristicas" class="seccion">
-    <section>
-        <h2>✨ Características Principales</h2>
-        <div class="grid-caracteristicas contenedor">
-            <div class="card"><h3>⚡ Rápido y Ligero</h3><p>Se inicia en segundos y consume pocos recursos.</p></div>
-            <div class="card"><h3>📦 Gestión de Mods</h3><p>Agrega y quita mods fácilmente. Soporte Forge y Fabric.</p></div>
-            <div class="card"><h3>👤 Skins y Capas</h3><p>5 cambios gratis. <strong>Premium →</strong> Ilimitadas ♾️</p></div>
-            <div class="card"><h3>🔒 100% Seguro</h3><p>Sin virus, sin rastreadores. Tus datos se quedan en tu equipo.</p></div>
-            <div class="card"><h3>🖥️ Para cualquier PC</h3><p>Optimizado para equipos modestos.</p></div>
-            <div class="card"><h3>💎 Versión Premium</h3><p>Sin anuncios, skins ilimitadas, capas ilimitadas, soporte prioritario.</p></div>
-        </div>
-    </section>
-</div>
-
-<!-- SECCIÓN DESCARGAR -->
-<div id="s-descargar" class="seccion">
-    <section>
-        <h2>📥 Cómo Descargar e Instalar</h2>
-        <div class="pasos">
-            <div class="paso"><span class="paso-num">1</span><span class="paso-texto">Pulsa el botón verde "Descargar Nexis Launcher".</span></div>
-            <div class="paso"><span class="paso-num">2</span><span class="paso-texto">Espera a que termine la descarga automáticamente.</span></div>
-            <div class="paso"><span class="paso-num">3</span><span class="paso-texto">Abre el archivo — no necesita instalación.</span></div>
-            <div class="paso"><span class="paso-num">4</span><span class="paso-texto">¡Listo! Crea tu cuenta y ¡a jugar!</span></div>
-        </div>
-        <div style="text-align: center; margin-top: 2rem;">
-            <button class="boton-descarga" onclick="alert('✅ Descarga iniciada! Aquí irá tu enlace real de descarga.')">⬇️ Descargar Nexis Launcher v2.0.0</button>
-        </div>
-    </section>
-</div>
-
-<!-- SECCIÓN ACERCA DE -->
-<div id="s-acerca" class="seccion">
-    <section>
-        <h2>ℹ️ Acerca de Nexis Launcher</h2>
-        <div class="acerca">
-            <p>Nexis Launcher es un proyecto gratuito diseñado para facilitar el acceso a Minecraft. Sin publicidad, sin virus y sin costos ocultos en sus funciones básicas.</p>
-            <br>
-            <p>La <strong>Versión Premium</strong> desbloquea beneficios adicionales: sin anuncios, <strong>skins y capas ilimitadas</strong>, y soporte prioritario.</p>
-            <br>
-            <p>Únete a nuestra comunidad: <a href="https://discord.gg/ef4uw4ttF" target="_blank">Discord Oficial</a></p>
-        </div>
-    </section>
-</div>
-
-<!-- SECCIÓN CUENTA -->
-<div id="s-cuenta" class="seccion">
-    <div class="dashboard">
-        <h1 class="dashboard-saludo">Hola, <span id="saludo-usuario">Usuario</span></h1>
-        <p class="dashboard-subtitulo">Configura tu cuenta y preferencias</p>
-
-        <div class="pestañas">
-            <button class="pestaña activa" onclick="cambiarPestanaCuenta('cuenta-inicio', this)">💎 Premium y Pagos</button>
-            <button class="pestaña" onclick="cambiarPestanaCuenta('cuenta-perfil', this)">🎨 Skins y Capas</button>
-            <button class="pestaña" onclick="cambiarPestanaCuenta('cuenta-general', this)">👤 General</button>
-            <button class="pestaña" onclick="cambiarPestanaCuenta('cuenta-privacidad', this)">🔒 Privacidad</button>
-            <button class="pestaña" onclick="cambiarPestanaCuenta('cuenta-seguridad', this)">🛡️ Seguridad</button>
-        </div>
-
-        <!-- === PREMIUM Y MÉTODOS DE PAGO === -->
-        <div id="cuenta-inicio" class="contenido-pestaña visible">
-            <div class="tarjeta">
-                <h3>Suscripción Premium <span class="etiqueta-beta">BETA</span></h3>
-                <p class="suscripcion">Estado: <span id="estado-premium" class="inactiva">Inactiva</span></p>
-                <p class="fecha-acceso">Último acceso: Hoy</p>
-
-                <div class="aviso-premium">
-                    💎 <strong>Versión Premium — Beneficios completos:</strong>
-                    <ul class="lista-beneficios">
-                        <li>♾️ <strong>Skins ILIMITADAS</strong> — sin límite de cambios</li>
-                        <li>♾️ <strong>Capas ILIMITADAS</strong> — sin límite de cambios</li>
-                        <li>✅ <strong>Eliminar anuncios</strong> de todo el sitio</li>
-                        <li>✅ <strong>Soporte prioritario</strong> en Discord</li>
-                        <li>✅ <strong>Funciones exclusivas</strong> próximamente</li>
-                    </ul>
+    <!-- === SEGURIDAD === -->
+    <div id="p-seguridad" class="contenido-pestaña">
+        <div class="tarjeta">
+            <h2>Seguridad</h2>
+            <div class="fila">
+                <div class="campo">
+                    <label>Contraseña actual</label>
+                    <input type="password" id="clave-actual" placeholder="••••••••">
                 </div>
-
-                <div class="metodos-pago">
-                    <h4>💳 Elige tu método de pago</h4>
-                    
-                    <div class="opcion-pago" onclick="seleccionarPago('paypal', this)">
-                        <div class="radio-pago"></div>
-                        <div class="icono-pago">🅿️</div>
-                        <div class="info-pago">
-                            <strong>PayPal</strong>
-                            <span>Paga con saldo, tarjeta o cuenta bancaria</span>
-                        </div>
-                    </div>
-
-                    <div class="opcion-pago" onclick="seleccionarPago('yape', this)">
-                        <div class="radio-pago"></div>
-                        <div class="icono-pago">📱</div>
-                        <div class="info-pago">
-                            <strong>Yape</strong>
-                            <span>Pago rápido desde tu celular (Perú)</span>
-                        </div>
-                    </div>
-
-                    <div class="opcion-pago" onclick="seleccionarPago('plin', this)">
-                        <div class="radio-pago"></div>
-                        <div class="icono-pago">🔵</div>
-                        <div class="info-pago">
-                            <strong>Plin</strong>
-                            <span>Transferencia inmediata entre bancos</span>
-                        </div>
-                    </div>
-
-                    <div class="opcion-pago" onclick="seleccionarPago('tarjeta', this)">
-                        <div class="radio-pago"></div>
-                        <div class="icono-pago">💳</div>
-                        <div class="info-pago">
-                            <strong>Tarjeta de Crédito / Débito</strong>
-                            <span>Visa, Mastercard, American Express</span>
-                        </div>
-                    </div>
-
-                    <div class="opcion-pago" onclick="seleccionarPago('donacion', this)">
-                        <div class="radio-pago"></div>
-                        <div class="icono-pago">☕</div>
-                        <div class="info-pago">
-                            <strong>Hacer una Donación</strong>
-                            <span>Apoya el proyecto con cualquier cantidad</span>
-                        </div>
-                    </div>
-
-                    <button class="boton-pagar" id="boton-pagar" onclick="realizarPago()" disabled>
-                        👇 Selecciona un método de pago arriba
-                    </button>
-                    <div class="mensaje-accion" id="mensaje-pago">✅ ¡Gracias! Premium activado. Ahora tienes skins y capas ILIMITADAS ♾️</div>
+                <div class="campo">
+                    <label>Nueva contraseña</label>
+                    <input type="password" id="clave-nueva" placeholder="••••••••">
                 </div>
+                <div class="campo">
+                    <label>Confirmar nueva contraseña</label>
+                    <input type="password" id="clave-confirma" placeholder="••••••••">
+                </div>
+            </div>
+            <button class="btn-guardar" onclick="cambiarContrasena()">Cambiar contraseña</button>
+            <div class="mensaje" id="msg-clave">✅ Contraseña actualizada</div>
+        </div>
+    </div>
 
-                <button class="btn-guardar btn-peligro" onclick="cerrarSesion()">Cerrar sesión</button>
+    <!-- === PERFIL: SELECCIÓN SKIN / CAPA === -->
+    <div id="p-perfil" class="contenido-pestaña">
+        <div class="cuadricula-perfil">
+            <div class="tarjeta-perfil activa" id="tarjeta-skin" onclick="abrirSeleccion('skin')">
+                <h3>Personalizar skin</h3>
+                <div class="vista-minecraft" id="vista-muestra-skin">🧍</div>
+            </div>
+            <div class="tarjeta-perfil" id="tarjeta-capa" onclick="abrirSeleccion('capa')">
+                <h3>Personalizar capa</h3>
+                <div class="vista-minecraft" id="vista-muestra-capa">🧥</div>
             </div>
         </div>
+    </div>
 
-        <!-- === SKINS Y CAPAS === -->
-        <div id="cuenta-perfil" class="contenido-pestaña">
-            <div class="personalizar-seccion">
-                <h3>🎨 Personalizar Skin y Capa</h3>
-                <div class="personalizar-grid">
-                    <div class="skin-actual">
-                        <h4>Skin actual</h4>
-                        <div class="vista-personalizada" id="vista-skin">🧍</div>
-                        <div>
-                            <button class="btn-azul" id="btn-subir-skin" onclick="subirSkin()">📁 Subir Skin</button>
-                            <button class="btn-dorado" id="btn-subir-capa" onclick="subirCapa()">📁 Subir Capa 💎</button>
-                            <button class="btn-rojo" id="btn-restablecer-skin" onclick="restablecerSkin()">↩️ Restablecer</button>
-                        </div>
-                        <div class="mensaje-accion" id="mensaje-skin">✅ Skin cambiada correctamente</div>
+    <!-- === DETALLE SKIN === -->
+    <div id="detalle-skin" class="contenido-pestaña" style="display:none;">
+        <div class="tarjeta">
+            <div class="vista-detalle">
+                <div class="bloque-izq">
+                    <h3>Skin actual</h3>
+                    <div class="skin-vista-grande" id="skin-actual">🧍</div>
+                    <div class="grupo-botones">
+                        <button class="btn-azul" onclick="establecerSkin()">Establecer skin</button>
+                        <button class="btn-rojo" onclick="eliminarSkin()">Eliminar skin</button>
                     </div>
-                    <div class="separador-vertical"></div>
-                    <div class="biblioteca-lado">
-                        <h4>Biblioteca de Skins</h4>
-                        <div class="aviso-limite-lado" id="aviso-limite">
-                            ⚠️ Te quedan <span id="contador-usos">5</span> de <span>5</span> cambios gratis.<br>
-                            💎 <strong>Premium = Ilimitadas ♾️</strong> para siempre.
-                        </div>
-                        <div class="cuadricula-skins-lado skin-4">
-                            <div class="skin-item-lado seleccionada" onclick="seleccionarSkin(this, '🧍')">🧍</div>
-                            <div class="skin-item-lado" onclick="seleccionarSkin(this, '🧍‍♂️')">🧍‍♂️</div>
-                            <div class="skin-item-lado" onclick="seleccionarSkin(this, '🥷')">🥷</div>
-                            <div class="skin-item-lado" onclick="seleccionarSkin(this, '🤠')">🤠</div>
-                        </div>
+                    <div class="mensaje" id="msg-skin">✅ Skin cambiada correctamente</div>
+                </div>
+                <div class="separador"></div>
+                <div class="bloque-der">
+                    <h3>Biblioteca</h3>
+                    <div class="aviso-limite" id="aviso-skin">
+                        ⚠️ No puedes subir más skins.<br>
+                        Te quedan <span id="usos-skin">5</span> de 5 cambios gratis.<br>
+                        <span class="sin-limite" style="display:none;">♾️ ¡Tienes cambios ILIMITADOS!</span>
+                    </div>
+                    <div class="cuadricula-biblioteca" id="biblio-skin">
+                        <div class="item-skin agregar" onclick="agregarSkin()">+</div>
+                        <div class="item-skin" onclick="seleccionarSkin(this, '🧍‍♂️')">🧍‍♂️</div>
+                        <div class="item-skin" onclick="seleccionarSkin(this, '🥷')">🥷</div>
+                        <div class="item-skin seleccionada" onclick="seleccionarSkin(this, '🧍')">🧍</div>
                     </div>
                 </div>
             </div>
+            <button class="btn-volver" onclick="volverPerfil()">Volver atrás</button>
         </div>
+    </div>
 
-        <!-- === GENERAL === -->
-        <div id="cuenta-general" class="contenido-pestaña">
-            <div class="tarjeta">
-                <h3>Información de tu Cuenta</h3>
-                <div class="fila">
-                    <div class="grupo"><label>Nombre de usuario</label><input type="text" id="campo-usuario" placeholder="Tu nombre de usuario"></div>
-                    <div class="grupo"><label>Correo electrónico</label><input type="email" id="campo-correo" placeholder="tu@email.com"></div>
+    <!-- === DETALLE CAPA === -->
+    <div id="detalle-capa" class="contenido-pestaña" style="display:none;">
+        <div class="tarjeta">
+            <div class="vista-detalle">
+                <div class="bloque-izq">
+                    <h3>Capa actual</h3>
+                    <div class="skin-vista-grande" id="capa-actual">🧥</div>
+                    <div class="grupo-botones">
+                        <button class="btn-azul" onclick="establecerCapa()">Establecer capa</button>
+                        <button class="btn-rojo" onclick="eliminarCapa()">Eliminar capa</button>
+                    </div>
+                    <div class="mensaje" id="msg-capa">✅ Capa cambiada correctamente</div>
                 </div>
-                <div class="grupo">
-                    <label>Biografía / Sobre mí</label>
-                    <textarea id="campo-sobre">Escribe algo sobre ti...</textarea>
+                <div class="separador"></div>
+                <div class="bloque-der">
+                    <h3>Biblioteca</h3>
+                    <div class="aviso-limite" id="aviso-capa">
+                        ⚠️ No puedes subir más capas.<br>
+                        Te quedan <span id="usos-capa">5</span> de 5 cambios gratis.<br>
+                        <span class="sin-limite" style="display:none;">♾️ ¡Tienes cambios ILIMITADOS!</span>
+                    </div>
+                    <div class="cuadricula-biblioteca" id="biblio-capa">
+                        <div class="item-skin agregar" onclick="agregarCapa()">+</div>
+                        <div class="item-skin" onclick="seleccionarCapa(this, '🔵')">🔵</div>
+                        <div class="item-skin" onclick="seleccionarCapa(this, '🔴')">🔴</div>
+                        <div class="item-skin" onclick="seleccionarCapa(this, '🟡')">🟡</div>
+                        <div class="item-skin seleccionada" onclick="seleccionarCapa(this, '🧥')">🧥</div>
+                        <div class="item-skin" onclick="seleccionarCapa(this, '⚫')">⚫</div>
+                        <div class="item-skin" onclick="seleccionarCapa(this, '🟣')">🟣</div>
+                    </div>
                 </div>
-                <button class="btn-guardar" onclick="guardarCuenta()">💾 Guardar Cambios</button>
-                <div class="mensaje-accion" id="guardado-general">✅ ¡Tu cuenta ha sido actualizada!</div>
             </div>
-        </div>
-
-        <!-- === PRIVACIDAD === -->
-        <div id="cuenta-privacidad" class="contenido-pestaña">
-            <div class="tarjeta">
-                <h3>🔒 Privacidad</h3>
-                <p>Aquí puedes configurar quién ve tu información y actividad...</p>
-            </div>
-        </div>
-
-        <!-- === SEGURIDAD === -->
-        <div id="cuenta-seguridad" class="contenido-pestaña">
-            <div class="tarjeta">
-                <h3>🛡️ Seguridad</h3>
-                <p>Cambia tu contraseña, activa protección de sesión y más...</p>
-            </div>
+            <button class="btn-volver" onclick="volverPerfil()">Volver atrás</button>
         </div>
     </div>
 </div>
 
 <script>
-// =====================================================
-// 🔒 GESTIÓN DE CUENTAS — DATOS SOLO EN TU NAVEGADOR
+// ==============================================
+// GESTIÓN DE CUENTAS Y DATOS EN NAVEGADOR
+// ==============================================
+
+const USUARIO_KEY = 'batty_usuario';
+const CUENTAS_KEY = 'batty_cuentas';
+
+let cuentaActiva = null;
+let skinsDisponibles = '🧍';
+let capasDisponibles = '🧥';
+let usosSkin = 5;
+let usosCapa = 5;
+let premium = false;
+
+// Fecha actual formateada
+const fechaHoy = new Date().toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+document.getElementById('fecha-actual').textContent = '';
+document.getElementById('ultimo-acceso').textContent = fechaHoy;
+
+// ==============================================
+// MODALES
+// ==============================================
+function abrirModalRegistro() { document.getElementById('modal-registro').classList.add('visible'); }
+function cerrarModalRegistro() { document.getElementById('modal-registro').classList.remove('visible'); }
+function abrirModalLogin() { document.getElementById('modal-login').classList.add('visible'); }
+function cerrarModalLogin() { document.getElementById('modal-login').classList.remove('visible'); }
+
+// ==============================================
+// REGISTRO E INICIO DE SESIÓN
+// ==============================================
+function obtenerCuentas() { return JSON.parse(localStorage.getItem(CUENTAS_KEY) || '[]'); }
+function guardarCuentas(cuentas) { localStorage.setItem(CUENTAS_KEY, JSON.stringify(cuentas)); }
+
+function registrarse() {
+    const usuario = document.getElementById('reg-usuario').value.trim();
+    const correo = document.getElementById('reg-correo').value.trim();
+    const clave = document.getElementById('reg-clave').value;
+    if (!usuario || !correo || !clave) return alert('Completa todos los campos');
+
+    const cuentas = obtenerCuentas();
+    if (cuentas.some(c => c.correo === correo)) return alert('Este correo ya está registrado');
+
+    const nueva = {
+        usuario, correo, clave,
+        sobre: 'No has escrito nada sobre ti',
+        fecha: fechaHoy,
+        usosSkin: 5, usosCapa: 5,
+        premium: false,
+        skin: '🧍', capa: '🧥',
+        privacidad: { buscar: true, amistad: true, skinPub: true }
+    };
+    cuentas.push(nueva);
+    guardarCuentas(cuentas);
+    iniciarSesionDirecto(nueva);
+    cerrarModalRegistro();
+}
+
+function iniciarSesion() {
+    const correo = document.getElementById('log-correo').value.trim();
+    const clave = document.getElementById('log-clave').value;
+    const cuentas = obtenerCuentas();
+    const cuenta = cuentas.find(c => c.correo === correo && c.clave === clave);
+    if (!cuenta) return alert('Correo o contraseña incorrectos');
+    iniciarSesionDirecto(cuenta);
+    cerrarModalLogin();
+}
+
+function iniciarSesionDirecto(cuenta) {
+    cuentaActiva = cuenta;
+    usosSkin = cuenta.usosSkin;
+    usosCapa = cuenta.usosCapa;
+    premium = cuenta.premium;
+    skinsDisponibles = cuenta.skin;
+    capasDisponibles = cuenta.capa;
+
+    localStorage.setItem(USUARIO_KEY, JSON.stringify(cuenta));
+    document.getElementById('nombre-usuario').textContent = cuenta.usuario;
+    document.getElementById('campo-usuario').value = cuenta.usuario;
+    document.getElementById('campo-correo').value = cuenta.correo;
+    document.getElementById('campo-sobre').value = cuenta.sobre;
+    document.getElementById('skin-actual').textContent = cuenta.skin;
+    document.getElementById('capa-actual').textContent = cuenta.capa;
+    document.getElementById('vista-muestra-skin').textContent = cuenta.skin;
+    document.getElementById('vista-muestra-capa').textContent = cuenta.capa;
+
+    actualizarEstadoPremium();
+    actualizarContadores();
+    actualizarInterruptores();
+
+    document.body.classList.add('sesion-iniciada');
+    if (premium) document.body.classList.add('premium-activo');
+}
+
+function cerrarSesion() {
+    localStorage.removeItem(USUARIO_KEY);
+    document.body.classList.remove('sesion-iniciada', 'premium-activo');
+    cuentaActiva = null;
+    cambiarPestana('inicio', null);
+}
+
+// Recuperar sesión al cargar
+window.onload = () => {
+    const guardado = localStorage.getItem(USUARIO_KEY);
+    if (guardado) iniciarSesionDirecto(JSON.parse(guardado));
+};
+
+// ==============================================
+// PESTAÑAS
+// ==============================================
+function cambiarPestana(nombre, boton) {
+    document.querySelectorAll('.contenido-pestaña').forEach(el => {
+        if (!el.closest('#detalle-skin') && !el.closest('#detalle-capa')) el.classList.remove('visible');
+    });
+    document.querySelectorAll('.pestaña').forEach(b => b.classList.remove('activa'));
+    if (nombre === 'perfil') {
+        document.getElementById('p-perfil').classList.add('visible');
+        document.getElementById('detalle-skin').style.display = 'none';
+        document.getElementById('detalle-capa').style.display = 'none';
+    } else {
+        document.getElementById(`p-${nombre}`).classList.add('visible');
+    }
+    if (boton) {
+        document.querySelectorAll('.pestaña').forEach(b => b.classList.remove('activa'));
+        boton.classList.add('activa');
+    }
+}
+
+function irInicio() { cambiarPestana('inicio', document.querySelector('.pestaña')); }
+
+// ==============================================
+// PERFIL → SKIN / CAPA
+// ==============================================
+function abrirSeleccion(tipo) {
+    document.getElementById('p-perfil').classList.remove('visible');
+    document.getElementById('tarjeta-skin').classList.remove('activa');
+    document.getElementById('tarjeta-capa').classList.remove('activa');
+    if (tipo === 'skin') {
+        document.getElementById('detalle-skin').style.display = 'block';
+    } else {
+        document.getElementById('detalle-capa').style.display = 'block';
+    }
+}
+
+function volverPerfil() {
+    document.getElementById('detalle-skin').style.display = 'none';
+    document.getElementById('detalle-capa').style.display = 'none';
+    document.getElementById('p-perfil').classList.add('visible');
+    document.getElementById('tarjeta-skin').classList.add('activa');
+    document.getElementById('tarjeta-capa').classList.remove('activa');
+}
+
+// ==============================================
+// SISTEMA DE SKINS
+// ==============================================
+let skinSeleccionada = '🧍';
+function seleccionarSkin(el, icono) {
+    document.querySelectorAll('#biblio-skin .item-skin').forEach(i => i.classList.remove('seleccionada'));
+    el.classList.add('seleccionada');
+    skinSeleccionada = icono;
+}
+
+function establecerSkin() {
+    if (!premium && usosSkin <= 0) return alert('❌ No tienes más cambios gratis. ¡Activa Premium para cambios ilimitados!');
+    if (!premium) usosSkin--;
+    cuentaActiva.skin = skinSeleccionada;
+    document.getElementById('skin-actual').textContent = skinSeleccionada;
+    document.getElementById('vista-muestra-skin').textContent = skinSeleccionada;
+    guardarCuenta();
+    actualizarContadores();
+    mostrarMensaje('msg-skin');
+}
+
+function eliminarSkin() {
+    cuentaActiva.skin = '🧍';
+    document.getElementById('skin-actual').textContent = '🧍';
+    document.getElementById('vista-muestra-skin').textContent = '🧍';
+    guardarCuenta();
+    mostrarMensaje('msg-skin');
+}
+
+function agregarSkin() {
+    if (!premium && usosSkin <= 0) return alert('❌ No puedes agregar más skins gratis. ¡Activa Premium!');
+    alert('Aquí se abrirá el selector o cargador de archivos de skin.');
+}
+
+// ==============================================
+// SISTEMA DE CAPAS
+// ==============================================
+let capaSeleccionada = '🧥';
+function seleccionarCapa(el, icono) {
+    document.querySelectorAll('#biblio-capa .item-skin').forEach(i => i.classList.remove('seleccionada'));
+    el.classList.add('seleccionada');
+    capaSeleccionada = icono;
+}
+
+function establecerCapa() {
+    if (!premium && usosCapa <= 0) return alert('❌ No tienes más cambios gratis. ¡Activa Premium para cambios ilimitados!');
+    if (!premium) usosCapa--;
+    cuentaActiva.capa = capaSeleccionada;
+    document.getElementById('capa-actual').textContent = capaSeleccionada;
+    document.getElementById('vista-muestra-capa').textContent = capaSeleccionada;
+    guardarCuenta();
+    actualizarContadores();
+    mostrarMensaje('msg-capa');
+}
+
+function eliminarCapa() {
+    cuentaActiva.capa = '🧥';
+    document.getElementById('capa-actual').textContent = '🧥';
+    document.getElementById('vista-muestra-capa').textContent = '🧥';
+    guardarCuenta();
+    mostrarMensaje('msg-capa');
+}
+
+function agregarCapa() {
+    if (!premium && usosCapa <= 0) return alert('❌ No puedes agregar más capas gratis. ¡Activa Premium!');
+    alert('Aquí se abrirá el cargador de archivos de capa.');
+}
+
+// ==============================================
+// AYUDAS
+// ==============================================
+function guardarCuenta() {
+    cuentaActiva.usosSkin = usosSkin;
+    cuentaActiva.usosCapa = usosCapa;
+    cuentaActiva.premium = premium;
+    const cuentas = obtenerCuentas().map(c => c.correo === cuentaActiva.correo ? cuentaActiva : c);
+    guardarCuentas(cuentas);
+    localStorage.setItem(USUARIO_KEY, JSON.stringify(cuentaActiva));
+}
+
+function actualizarContadores() {
+    document.getElementById('usos-skin').textContent = premium ? '∞' : usosSkin;
+    document.getElementById('usos-capa').textContent = premium ? '∞' : usosCapa;
+    document.querySelector('#aviso-skin .sin-limite').style.display = premium ? 'block' : 'none';
+    document.querySelector('#aviso-capa .sin-limite').style.display = premium ? 'block' : 'none';
+    document.getElementById('aviso-skin').style.color = premium ? 'var(--verde)' : '';
+    document.getElementById('aviso-capa').style.color = premium ? 'var(--verde)' : '';
+}
+
+function actualizarEstadoPremium() {
+    const estado = document.getElementById('estado-premium');
+    if (premium) {
+        estado.textContent = 'Activa ✅';
+        estado.classList.remove('inactiva');
+        estado.classList.add('activa');
+    } else {
+        estado.textContent = 'Inactiva';
+        estado.classList.remove('activa');
+        estado.classList.add('inactiva');
+    }
+}
+
+function mostrarMensaje(id) {
+    const el = document.getElementById(id);
+    el.classList.add('mostrar');
+    setTimeout(() => el.classList.remove('mostrar'), 2500);
+}
+
+function guardarGeneral() {
+    cuentaActiva.usuario = document.getElementById('campo-usuario').value.trim();
+    cuentaActiva.correo = document.getElementById('campo-correo').value.trim();
+    cuentaActiva.sobre = document.getElementById('campo-sobre').value.trim();
+    document.getElementById('nombre-usuario').textContent = cuentaActiva.usuario;
+    guardarCuenta();
+    mostrarMensaje('msg-general');
+}
+
+function cambiarContrasena() {
+    const act = document.getElementById('clave-actual').value;
+    const nueva = document.getElementById('clave-nueva').value;
+    const conf = document.getElementById('clave-confirma').value;
+    if (cuentaActiva.clave !== act) return alert('❌ Contraseña actual incorrecta');
+    if (nueva !== conf) return alert('❌ Las contraseñas no coinciden');
+    if (nueva.length < 4) return alert('❌ Contraseña muy corta');
+    cuentaActiva.clave = nueva;
+    guardarCuenta();
+    mostrarMensaje('msg-clave');
+    document.getElementById('clave-actual').value = '';
+    document.getElementById('clave-nueva').value = '';
+    document.getElementById('clave-confirma').value = '';
+}
+
+function toggleSwitch(el) { el.classList.toggle('inactivo'); }
+function actualizarInterruptores() {
+    if (!cuentaActiva.privacidad.buscar) document.getElementById('sw-buscar').classList.add('inactivo');
+    if (!cuentaActiva.privacidad.amistad) document.getElementById('sw-amistad').classList.add('inactivo');
+    if (!cuentaActiva.privacidad.skinPub) document.getElementById('sw-skinpub').classList.add('inactivo');
+}
+</script>
+</body>
+</html>
