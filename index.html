@@ -74,7 +74,6 @@
             color: #000;
             font-weight: 600;
         }
-        /* 💜 BOTÓN DE DISCORD CON COLOR */
         .btn-discord {
             background: var(--azul-discord) !important;
             color: #fff !important;
@@ -730,7 +729,7 @@
             </div>
             <div class="tarjeta-dash caja-pago">
                 <p><strong>💳 Pagar Premium / Donar con PayPal</strong></p>
-                <p style="font-size:.9rem;color:var(--texto-secundario);margin:.5rem 0;">Al pagar tu suscripción, Premium se activará automáticamente en tu cuenta — disponible tanto en la página web como en el Launcher.</p>
+                <p style="font-size:.9rem;color:var(--texto-secundario);margin:.5rem 0;">Al pagar tu suscripción, Premium se activará automáticamente en tu cuenta.</p>
                 <div class="fila-botones">
                     <button class="btn-pago">💳 Pagar Premium por PayPal →</button>
                     <button class="btn-donar">❤️ Hacer una donación →</button>
@@ -842,6 +841,15 @@ const USUARIO_KEY = 'nexis_usuario';
 const CUENTAS_KEY = 'nexis_cuentas';
 let cuentaActiva = null;
 
+// --- Al cargar la página ---
+window.onload = function() {
+    const guardado = localStorage.getItem(USUARIO_KEY);
+    if (guardado) {
+        const cuenta = JSON.parse(guardado);
+        iniciarSesionDirecto(cuenta);
+    }
+};
+
 // --- Funciones de almacenamiento ---
 function obtenerCuentas() {
     return JSON.parse(localStorage.getItem(CUENTAS_KEY) || '[]');
@@ -862,36 +870,22 @@ function cerrarModalRegistro() { document.getElementById('modal-registro').class
 function abrirModalLogin() { document.getElementById('modal-login').classList.add('visible'); }
 function cerrarModalLogin() { document.getElementById('modal-login').classList.remove('visible'); }
 
-// ✅ FUNCIÓN DE NAVEGACIÓN ARREGLADA
+// --- NAVEGACIÓN ---
 function irPagina(nombre) {
-    // Quitar clase activa de TODOS los enlaces de navegación
     document.querySelectorAll('.nav-enlaces a').forEach(a => a.classList.remove('activo'));
-
-    // Ocultar TODAS las páginas
     document.querySelectorAll('.pagina').forEach(p => p.classList.remove('activa'));
 
-    // Páginas públicas
     const paginasPublicas = ['inicio', 'caracteristicas', 'descargar', 'acerca'];
-
     if (paginasPublicas.includes(nombre)) {
-        // Mostrar la página pública seleccionada
         document.getElementById(`pag-${nombre}`).classList.add('activa');
-        // Marcar el enlace como activo (tanto sin sesión como con sesión)
         const enlaceSinSesion = document.getElementById(`nav-${nombre}`);
         const enlaceConSesion = document.getElementById(`cnav-${nombre}`);
         if (enlaceSinSesion) enlaceSinSesion.classList.add('activo');
         if (enlaceConSesion) enlaceConSesion.classList.add('activo');
-        return;
-    }
-
-    // Ir al Dashboard
-    if (nombre === 'dashboard' && cuentaActiva) {
-        document.getElementById('pag-dashboard').classList.add('activa');
-        cambiarPestanaDash('inicio-dash');
     }
 }
 
-// --- Registro e Inicio de Sesión ---
+// --- Registro ---
 function registrarse() {
     const usuario = document.getElementById('reg-usuario').value.trim();
     const correo = document.getElementById('reg-correo').value.trim();
@@ -921,6 +915,7 @@ function registrarse() {
     alert('✅ ¡Cuenta creada con éxito!');
 }
 
+// --- Iniciar Sesión ---
 function iniciarSesion() {
     const correo = document.getElementById('log-correo').value.trim();
     const clave = document.getElementById('log-clave').value;
@@ -934,12 +929,12 @@ function iniciarSesion() {
     alert('✅ ¡Sesión iniciada!');
 }
 
+// --- Cargar sesión y mostrar Dashboard ---
 function iniciarSesionDirecto(cuenta) {
     cuentaActiva = cuenta;
     localStorage.setItem(USUARIO_KEY, JSON.stringify(cuenta));
     document.body.classList.add('sesion-iniciada');
 
-    // Actualizar datos mostrados
     document.getElementById('usuario-nav').textContent = cuenta.usuario;
     document.getElementById('dash-usuario').textContent = cuenta.usuario;
     document.getElementById('campo-usuario').value = cuenta.usuario;
@@ -947,7 +942,6 @@ function iniciarSesionDirecto(cuenta) {
     document.getElementById('campo-sobre').value = cuenta.sobre;
     document.getElementById('hora-acceso').textContent = cuenta.ultimoAcceso;
 
-    // Mostrar Dashboard al iniciar sesión
     document.querySelectorAll('.pagina').forEach(p => p.classList.remove('activa'));
     document.getElementById('pag-dashboard').classList.add('activa');
     cambiarPestanaDash('inicio-dash');
@@ -955,12 +949,12 @@ function iniciarSesionDirecto(cuenta) {
     actualizarEstadoPremium();
 }
 
+// --- Cerrar Sesión ---
 function cerrarSesion() {
     localStorage.removeItem(USUARIO_KEY);
     document.body.classList.remove('sesion-iniciada');
     cuentaActiva = null;
 
-    // Volver a la página de Inicio
     document.querySelectorAll('.pagina').forEach(p => p.classList.remove('activa'));
     document.getElementById('pag-inicio').classList.add('activa');
     document.querySelectorAll('.nav-enlaces a').forEach(a => a.classList.remove('activo'));
@@ -991,7 +985,7 @@ function cambiarPestanaDash(nombre) {
     }
 }
 
-// --- Funciones del perfil ---
+// --- Guardar datos generales ---
 function guardarGeneral() {
     if (!cuentaActiva) return;
     cuentaActiva.usuario = document.getElementById('campo-usuario').value.trim();
@@ -1003,6 +997,7 @@ function guardarGeneral() {
     alert('✅ Cambios guardados');
 }
 
+// --- Cambiar contraseña ---
 function cambiarContrasena() {
     if (!cuentaActiva) return;
     const act = document.getElementById('clave-actual').value;
@@ -1011,3 +1006,10 @@ function cambiarContrasena() {
     
     if (cuentaActiva.clave !== act) return alert('⚠️ Contraseña actual incorrecta');
     if (nva !== cnf) return alert('⚠️ Las contraseñas no coinciden');
+    if (!nva || nva.length < 4) return alert('⚠️ Escribe una contraseña válida');
+    
+    cuentaActiva.clave = nva;
+    actualizarCuenta(cuentaActiva);
+    alert('✅ Contraseña cambiada');
+    document.getElementById('clave-actual').value = '';
+    document.getElementById('
