@@ -24,14 +24,12 @@
             color: var(--texto);
             min-height: 100vh;
             line-height: 1.6;
-
             background:
                 linear-gradient(
-                    rgba(15,23,42,0.82),
-                    rgba(15,23,42,0.95)
+                    rgba(15,23,42,0.75),
+                    rgba(15,23,42,0.90)
                 ),
-                url("732cfd9156c17e3ba9c3d2f2b5a295d1.jpg");
-
+                url("fondo-minecraft.jpg");  /* ← PON AQUÍ TU NOMBRE DE IMAGEN */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -40,7 +38,8 @@
 
         /* === BARRA DE NAVEGACIÓN === */
         nav {
-            background: rgba(15,23,42,0.95);
+            background: rgba(15,23,42,0.82);
+            backdrop-filter: blur(12px);
             padding: 0.8rem 2rem;
             display: flex;
             justify-content: space-between;
@@ -115,7 +114,12 @@
             to { opacity: 1; transform: translateY(0); }
         }
         .inicio-contenido { text-align: center; padding: 2rem 0 4rem; }
-        .inicio-contenido h1 { font-size: 3.5rem; color: var(--verde); margin-bottom: 1rem; }
+        .inicio-contenido h1 {
+            font-size: 3.5rem;
+            color: var(--verde);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 12px rgba(57,255,20,.45), 0 0 30px rgba(57,255,20,.25);
+        }
         .inicio-contenido p {
             color: var(--texto-secundario);
             font-size: 1.1rem;
@@ -125,7 +129,7 @@
         }
         .btn-descargar-principal {
             padding: 1rem 2.5rem;
-            background: var(--verde);
+            background: linear-gradient(135deg,#39FF14,#24c40b);
             color: #000;
             font-size: 1.1rem;
             font-weight: 700;
@@ -133,6 +137,7 @@
             border-radius: 10px;
             cursor: pointer;
             transition: all 0.2s;
+            box-shadow: 0 0 25px rgba(57,255,20,.30);
         }
         .btn-descargar-principal:hover { transform: scale(1.03); }
         .seccion-noticias { margin-top: 4rem; }
@@ -142,11 +147,14 @@
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 1.5rem;
         }
-        .tarjeta-noticia {
-            background: var(--fondo-tarjeta);
+        .tarjeta-noticia, .tarjeta-caracteristica, .tarjeta-pasos,
+        .tarjeta-acerca, .tarjeta-dash, .modal {
+            background: rgba(30,41,59,.88);
+            backdrop-filter: blur(10px);
             border: 1px solid var(--borde);
             border-radius: 12px;
             padding: 1.5rem;
+            box-shadow: 0 0 20px rgba(57,255,20,.08), 0 0 40px rgba(0,0,0,.35);
         }
         .etiqueta-oficial {
             display: inline-block;
@@ -168,18 +176,9 @@
         }
         @media (max-width: 850px) { .cuadricula-caracteristicas { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 520px) { .cuadricula-caracteristicas { grid-template-columns: 1fr; } }
-        .tarjeta-caracteristica {
-            background: var(--fondo-tarjeta);
-            border: 1px solid var(--borde);
-            border-radius: 12px;
-            padding: 1.5rem;
-        }
         .tarjeta-caracteristica h3 { font-size: 1rem; margin-bottom: 0.6rem; }
         .tarjeta-caracteristica p { color: var(--texto-secundario); font-size: 0.9rem; }
         .tarjeta-pasos {
-            background: var(--fondo-tarjeta);
-            border: 1px solid var(--borde);
-            border-radius: 12px;
             padding: 2rem;
             max-width: 600px;
             margin: 0 auto;
@@ -193,9 +192,6 @@
             font-weight: 700; font-size: 0.9rem; flex-shrink: 0;
         }
         .tarjeta-acerca {
-            background: var(--fondo-tarjeta);
-            border: 1px solid var(--borde);
-            border-radius: 12px;
             padding: 2rem;
             max-width: 700px;
             margin: 0 auto;
@@ -221,13 +217,6 @@
         .pestaña-dash.activa { background: var(--verde); color: #000; font-weight: 600; }
         .contenido-dash { display: none; }
         .contenido-dash.visible { display: block; }
-        .tarjeta-dash {
-            background: var(--fondo-tarjeta);
-            border: 1px solid var(--borde);
-            border-radius: 12px;
-            padding: 1.8rem;
-            margin-bottom: 1.5rem;
-        }
         .etiqueta-beta {
             display: inline-block;
             background: var(--verde); color: #000;
@@ -320,10 +309,7 @@
             display: none; align-items: center; justify-content: center; z-index: 9999;
         }
         .modal-fondo.visible { display: flex; }
-        .modal {
-            background: var(--fondo-tarjeta); border: 1px solid var(--borde);
-            border-radius: 12px; padding: 2rem; width: 90%; max-width: 420px;
-        }
+        .modal { width: 90%; max-width: 420px; }
         .modal h3 { margin-bottom: 1.5rem; text-align: center; }
         .modal input {
             width: 100%; padding: 0.85rem; margin-bottom: 1rem;
@@ -339,55 +325,24 @@
         .btn-cancelar { background: #2a3244; color: #fff; }
         .btn-aceptar { background: var(--verde); color: #000; }
 
-        /* === VISIBILIDAD POR SESION === */
+        /* === EFECTOS ADICIONALES === */
+        body::before{
+            content:"";
+            position:fixed;
+            inset:0;
+            pointer-events:none;
+            background:
+                radial-gradient(circle at top left, rgba(57,255,20,0.12), transparent 40%),
+                radial-gradient(circle at bottom right, rgba(57,255,20,0.08), transparent 40%);
+            z-index:-1;
+        }
+
+        /* === SESIONES === */
         .sin-sesion { display: flex; }
         .con-sesion { display: none; }
         body.sesion-iniciada .sin-sesion { display: none !important; }
         body.sesion-iniciada .con-sesion { display: flex !important; }
-    
-/* ===== EFECTOS DE FONDO ===== */
-
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    background:
-        radial-gradient(circle at top left, rgba(57,255,20,0.12), transparent 40%),
-        radial-gradient(circle at bottom right, rgba(57,255,20,0.08), transparent 40%);
-    z-index:-1;
-}
-
-nav{
-    background:rgba(15,23,42,0.82);
-    backdrop-filter:blur(12px);
-}
-
-.inicio-contenido h1{
-    text-shadow:
-        0 0 12px rgba(57,255,20,.45),
-        0 0 30px rgba(57,255,20,.25);
-}
-
-.btn-descargar-principal{
-    background:linear-gradient(135deg,#39FF14,#24c40b);
-    box-shadow:0 0 25px rgba(57,255,20,.30);
-}
-
-.tarjeta-noticia,
-.tarjeta-caracteristica,
-.tarjeta-pasos,
-.tarjeta-acerca,
-.tarjeta-dash,
-.modal{
-    background:rgba(30,41,59,.88);
-    backdrop-filter:blur(10px);
-    box-shadow:
-        0 0 20px rgba(57,255,20,.08),
-        0 0 40px rgba(0,0,0,.35);
-}
-
-</style>
+    </style>
 </head>
 <body>
 
@@ -421,7 +376,6 @@ nav{
 <nav>
     <span class="logo" onclick="irPagina('inicio')">Nexis Launcher</span>
     <div class="nav-enlaces">
-        <!-- SIN SESIÓN -->
         <div class="sin-sesion">
             <a href="#" class="activo" id="nav-inicio" onclick="irPagina('inicio'); return false;">Inicio</a>
             <a href="#" id="nav-caracteristicas" onclick="irPagina('caracteristicas'); return false;">Características</a>
@@ -429,9 +383,8 @@ nav{
             <a href="#" id="nav-acerca" onclick="irPagina('acerca'); return false;">Acerca de</a>
             <button onclick="abrirModalLogin()">Iniciar sesión</button>
             <button onclick="abrirModalRegistro()">Registrarse</button>
-            <a href="https://discord.com" target="_blank" rel="noopener" class="btn-discord">Discord</a>
+            <a href="https://discord.gg/EPGHRcug4" target="_blank" rel="noopener" class="btn-discord">Discord</a>
         </div>
-        <!-- CON SESIÓN -->
         <div class="con-sesion">
             <a href="#" id="cnav-inicio" onclick="irPagina('inicio'); return false;">Inicio</a>
             <a href="#" id="cnav-caracteristicas" onclick="irPagina('caracteristicas'); return false;">Características</a>
@@ -439,14 +392,13 @@ nav{
             <a href="#" id="cnav-acerca" onclick="irPagina('acerca'); return false;">Acerca de</a>
             <span class="etiqueta-usuario" id="usuario-nav">👤 Usuario</span>
             <button onclick="cerrarSesion()">Cerrar sesión</button>
-            <a href="https://discord.com" target="_blank" rel="noopener" class="btn-discord">Discord</a>
+            <a href="https://discord.gg/EPGHRcug4" target="_blank" rel="noopener" class="btn-discord">Discord</a>
         </div>
     </div>
 </nav>
 
 <!-- PÁGINAS -->
 <div class="contenedor">
-    <!-- INICIO PÚBLICO -->
     <div id="pag-inicio" class="pagina activa">
         <div class="inicio-contenido">
             <h1>Bienvenido a Nexis Launcher</h1>
@@ -471,7 +423,6 @@ nav{
         </div>
     </div>
 
-    <!-- CARACTERÍSTICAS -->
     <div id="pag-caracteristicas" class="pagina">
         <h2 class="titulo-seccion">✨ Características Principales</h2>
         <div class="cuadricula-caracteristicas">
@@ -484,7 +435,6 @@ nav{
         </div>
     </div>
 
-    <!-- DESCARGAR -->
     <div id="pag-descargar" class="pagina">
         <h2 class="titulo-seccion">📥 Cómo Descargar e Instalar</h2>
         <div class="tarjeta-pasos">
@@ -495,17 +445,15 @@ nav{
         </div>
     </div>
 
-    <!-- ACERCA DE -->
     <div id="pag-acerca" class="pagina">
         <h2 class="titulo-seccion">ℹ️ Acerca de Nexis Launcher</h2>
         <div class="tarjeta-acerca">
             <p>Nexis Launcher es un proyecto gratuito diseñado para facilitar el acceso a Minecraft. Sin publicidad, sin virus y sin costos ocultos en sus funciones básicas.</p>
             <p>Algunos beneficios adicionales requieren una suscripción Premium.</p>
-            <p>Únete a nuestra comunidad: <a href="https://discord.com" target="_blank" rel="noopener" class="enlace-discord">Discord Oficial</a></p>
+            <p>Únete a nuestra comunidad: <a href="https://discord.gg/EPGHRcug4" target="_blank" rel="noopener" class="enlace-discord">Discord Oficial</a></p>
         </div>
     </div>
 
-    <!-- DASHBOARD / PANEL DE USUARIO -->
     <div id="pag-dashboard" class="pagina">
         <div class="dashboard-header">
             <h1 id="saludo-usuario">Hola, Usuario</h1>
@@ -519,8 +467,7 @@ nav{
             <button class="pestaña-dash" id="tab-perfil" onclick="cambiarPestanaDash('perfil')">😊 Perfil</button>
         </div>
 
-        <!-- INICIO DASH -->
-        <div id="dash-inicio" class="contenido-dash">
+        <div id="dash-inicio" class="contenido-dash visible">
             <div class="tarjeta-dash">
                 <h3>Inicio <span class="etiqueta-beta">BETA</span></h3>
                 <p style="margin:1rem 0;"><strong>Suscripción Premium:</strong> <span id="estado-premium" class="texto-inactivo">Inactiva</span></p>
@@ -548,7 +495,6 @@ nav{
             <button class="btn-cerrar-grande" onclick="cerrarSesion()">Cerrar sesión</button>
         </div>
 
-        <!-- GENERAL -->
         <div id="dash-general" class="contenido-dash">
             <div class="tarjeta-dash">
                 <h3 style="margin-bottom:1.5rem;">General</h3>
@@ -570,7 +516,6 @@ nav{
             </div>
         </div>
 
-        <!-- PRIVACIDAD -->
         <div id="dash-privacidad" class="contenido-dash">
             <div class="tarjeta-dash">
                 <h3 style="margin-bottom:1.5rem;">Privacidad</h3>
@@ -580,7 +525,6 @@ nav{
             </div>
         </div>
 
-        <!-- SEGURIDAD -->
         <div id="dash-seguridad" class="contenido-dash">
             <div class="tarjeta-dash">
                 <h3 style="margin-bottom:1.5rem;">Seguridad</h3>
@@ -604,7 +548,6 @@ nav{
             </div>
         </div>
 
-        <!-- PERFIL -->
         <div id="dash-perfil" class="contenido-dash">
             <div class="tarjeta-dash">
                 <h3 style="margin-bottom:1.5rem;">Perfil</h3>
@@ -619,7 +562,6 @@ const USUARIO_KEY = 'nexis_usuario';
 const CUENTAS_KEY = 'nexis_cuentas';
 let cuentaActiva = null;
 
-// === AL CARGAR LA PÁGINA ===
 window.onload = function() {
     const guardado = localStorage.getItem(USUARIO_KEY);
     if (guardado) {
@@ -628,7 +570,6 @@ window.onload = function() {
     }
 };
 
-// === ALMACENAMIENTO ===
 function obtenerCuentas() {
     return JSON.parse(localStorage.getItem(CUENTAS_KEY) || '[]');
 }
@@ -642,13 +583,11 @@ function actualizarCuenta(cuenta) {
     localStorage.setItem(USUARIO_KEY, JSON.stringify(cuenta));
 }
 
-// === MODALES ===
 function abrirModalRegistro() { document.getElementById('modal-registro').classList.add('visible'); }
 function cerrarModalRegistro() { document.getElementById('modal-registro').classList.remove('visible'); }
 function abrirModalLogin() { document.getElementById('modal-login').classList.add('visible'); }
 function cerrarModalLogin() { document.getElementById('modal-login').classList.remove('visible'); }
 
-// === NAVEGACIÓN PRINCIPAL ===
 function irPagina(nombre) {
     document.querySelectorAll('.nav-enlaces a').forEach(a => a.classList.remove('activo'));
     document.querySelectorAll('.pagina').forEach(p => p.classList.remove('activa'));
@@ -665,11 +604,10 @@ function irPagina(nombre) {
 
     if (nombre === 'dashboard' && cuentaActiva) {
         document.getElementById('pag-dashboard').classList.add('activa');
-        cambiarPestanaDash('inicio'); // ✅ SIEMPRE INICIO AL ENTRAR
+        cambiarPestanaDash('inicio');
     }
 }
 
-// === CAMBIAR PESTAÑA DEL PANEL ===
 function cambiarPestanaDash(nombre) {
     document.querySelectorAll('.contenido-dash').forEach(d => d.classList.remove('visible'));
     document.querySelectorAll('.pestaña-dash').forEach(b => b.classList.remove('activa'));
@@ -692,19 +630,18 @@ function cambiarPestanaDash(nombre) {
     }
 }
 
-// === REGISTRO ===
 function registrarse() {
     const usuario = document.getElementById('reg-usuario').value.trim();
     const correo = document.getElementById('reg-correo').value.trim();
     const clave = document.getElementById('reg-clave').value;
     if (!usuario || !correo || !clave) return alert('⚠️ Completa todos los campos');
-    
+
     const cuentas = obtenerCuentas();
     if (cuentas.some(c => c.correo === correo)) return alert('⚠️ Este correo ya está registrado');
-    
+
     const ahora = new Date();
     const hora = ahora.toLocaleTimeString('es-ES', {hour:'2-digit', minute:'2-digit'});
-    
+
     const nueva = {
         usuario, correo, clave,
         sobre: 'No has escrito nada sobre ti',
@@ -712,7 +649,7 @@ function registrarse() {
         premium: false,
         privacidad: { buscar: false, amistad: false, perfilPublico: true }
     };
-    
+
     cuentas.push(nueva);
     guardarCuentas(cuentas);
     iniciarSesionDirecto(nueva);
@@ -720,27 +657,24 @@ function registrarse() {
     alert('✅ ¡Cuenta creada con éxito!');
 }
 
-// === INICIAR SESIÓN ===
 function iniciarSesion() {
     const correo = document.getElementById('log-correo').value.trim();
     const clave = document.getElementById('log-clave').value;
     const cuentas = obtenerCuentas();
     const cuenta = cuentas.find(c => c.correo === correo && c.clave === clave);
-    
+
     if (!cuenta) return alert('⚠️ Correo o contraseña incorrectos');
-    
+
     iniciarSesionDirecto(cuenta);
     cerrarModalLogin();
     alert('✅ ¡Sesión iniciada!');
 }
 
-// === CARGAR SESIÓN Y MOSTRAR DASHBOARD EN INICIO ===
 function iniciarSesionDirecto(cuenta) {
     cuentaActiva = cuenta;
     localStorage.setItem(USUARIO_KEY, JSON.stringify(cuenta));
     document.body.classList.add('sesion-iniciada');
 
-    // Actualizar interfaz
     document.getElementById('usuario-nav').textContent = '👤 ' + cuenta.usuario;
     document.getElementById('saludo-usuario').textContent = 'Hola, ' + cuenta.usuario;
     document.getElementById('campo-usuario').value = cuenta.usuario;
@@ -748,7 +682,6 @@ function iniciarSesionDirecto(cuenta) {
     document.getElementById('campo-sobre').value = cuenta.sobre;
     document.getElementById('hora-acceso').textContent = cuenta.ultimoAcceso;
 
-    // ✅ MOSTRAR DASHBOARD Y ABRIR SIEMPRE EN INICIO
     document.querySelectorAll('.pagina').forEach(p => p.classList.remove('activa'));
     document.getElementById('pag-dashboard').classList.add('activa');
     cambiarPestanaDash('inicio');
@@ -757,21 +690,17 @@ function iniciarSesionDirecto(cuenta) {
     actualizarEstadoPremium();
 }
 
-// === CERRAR SESIÓN — CORREGIDO ===
 function cerrarSesion() {
     localStorage.removeItem(USUARIO_KEY);
     document.body.classList.remove('sesion-iniciada');
     cuentaActiva = null;
 
-    // ✅ VOLVER A PÁGINA DE INICIO PÚBLICA COMPLETAMENTE
     document.querySelectorAll('.pagina').forEach(p => p.classList.remove('activa'));
     document.getElementById('pag-inicio').classList.add('activa');
-    
-    // ✅ MARCAR "Inicio" como activo en navegación
+
     document.querySelectorAll('.nav-enlaces a').forEach(a => a.classList.remove('activo'));
     document.getElementById('nav-inicio').classList.add('activo');
 
-    // ✅ LIMPIAR DATOS DEL FORMULARIO PARA QUE NO APAREZCAN ANTES DE VOLVER A ENTRAR
     document.getElementById('campo-usuario').value = '';
     document.getElementById('campo-correo').value = '';
     document.getElementById('campo-sobre').value = '';
@@ -779,7 +708,6 @@ function cerrarSesion() {
     alert('✅ Sesión cerrada correctamente');
 }
 
-// === GUARDAR DATOS GENERALES ===
 function guardarGeneral() {
     if (!cuentaActiva) return;
     cuentaActiva.usuario = document.getElementById('campo-usuario').value.trim();
@@ -791,17 +719,16 @@ function guardarGeneral() {
     alert('✅ Cambios guardados');
 }
 
-// === CAMBIAR CONTRASEÑA ===
 function cambiarContrasena() {
     if (!cuentaActiva) return;
     const act = document.getElementById('clave-actual').value;
     const nva = document.getElementById('clave-nueva').value;
     const cnf = document.getElementById('clave-confirma').value;
-    
+
     if (cuentaActiva.clave !== act) return alert('⚠️ Contraseña actual incorrecta');
     if (nva !== cnf) return alert('⚠️ Las contraseñas no coinciden');
     if (!nva || nva.length < 4) return alert('⚠️ Escribe una contraseña válida');
-    
+
     cuentaActiva.clave = nva;
     actualizarCuenta(cuentaActiva);
     alert('✅ Contraseña cambiada');
@@ -810,7 +737,6 @@ function cambiarContrasena() {
     document.getElementById('clave-confirma').value = '';
 }
 
-// === INTERRUPTORES DE PRIVACIDAD ===
 function toggleSwitch(sw) {
     sw.classList.toggle('inactivo');
     if (!cuentaActiva) return;
@@ -820,7 +746,6 @@ function toggleSwitch(sw) {
     actualizarCuenta(cuentaActiva);
 }
 
-// === CARGAR ESTADO DE INTERRUPTORES ===
 function actualizarSwitches() {
     if (!cuentaActiva) return;
     document.getElementById('sw-buscar').classList.toggle('inactivo', !cuentaActiva.privacidad.buscar);
@@ -828,7 +753,6 @@ function actualizarSwitches() {
     document.getElementById('sw-perfil').classList.toggle('inactivo', !cuentaActiva.privacidad.perfilPublico);
 }
 
-// === ESTADO PREMIUM ===
 function actualizarEstadoPremium() {
     if (!cuentaActiva) return;
     const estado = document.getElementById('estado-premium');
