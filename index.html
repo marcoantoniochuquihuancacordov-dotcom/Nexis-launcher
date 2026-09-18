@@ -29,13 +29,12 @@
                     rgba(15,23,42,0.75),
                     rgba(15,23,42,0.90)
                 ),
-                url("fondo-nexis.jpg");  /* ← PON AQUÍ TU NOMBRE DE IMAGEN */
+                url("fondo-nexis.jpg");
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
         }
-
         /* === BARRA DE NAVEGACIÓN === */
         nav {
             background: rgba(15,23,42,0.82);
@@ -54,6 +53,12 @@
             font-weight: 800;
             color: var(--verde);
             cursor: pointer;
+        }
+        .logo-imagen {
+            height: 45px;
+            width: auto;
+            display: block;
+            object-fit: contain;
         }
         .nav-enlaces {
             display: flex;
@@ -105,7 +110,6 @@
             margin: 0 auto;
             padding: 3rem 2rem;
         }
-
         /* === PÁGINAS === */
         .pagina { display: none; animation: aparecer 0.3s ease-out; }
         .pagina.activa { display: block; }
@@ -199,7 +203,6 @@
         }
         .tarjeta-acerca p { color: var(--texto-secundario); margin-bottom: 1rem; }
         .enlace-discord { color: var(--azul-discord); font-weight: 600; text-decoration: none; }
-
         /* === DASHBOARD === */
         .dashboard-header { margin-bottom: 2rem; }
         .dashboard-header h1 { font-size: 1.8rem; margin-bottom: 0.3rem; }
@@ -302,7 +305,6 @@
         }
         .texto-premium { color: #facc15; font-weight: 600; }
         .texto-inactivo { color: var(--rojo-boton); }
-
         /* === MODALES === */
         .modal-fondo {
             position: fixed; inset: 0; background: rgba(0,0,0,0.8);
@@ -324,7 +326,6 @@
         }
         .btn-cancelar { background: #2a3244; color: #fff; }
         .btn-aceptar { background: var(--verde); color: #000; }
-
         /* === EFECTOS ADICIONALES === */
         body::before{
             content:"";
@@ -336,7 +337,6 @@
                 radial-gradient(circle at bottom right, rgba(57,255,20,0.08), transparent 40%);
             z-index:-1;
         }
-
         /* === SESIONES === */
         .sin-sesion { display: flex; }
         .con-sesion { display: none; }
@@ -345,7 +345,6 @@
     </style>
 </head>
 <body>
-
 <!-- MODALES -->
 <div id="modal-registro" class="modal-fondo">
     <div class="modal">
@@ -359,7 +358,6 @@
         </div>
     </div>
 </div>
-
 <div id="modal-login" class="modal-fondo">
     <div class="modal">
         <h3>🔑 Iniciar Sesión</h3>
@@ -371,12 +369,11 @@
         </div>
     </div>
 </div>
-
 <!-- BARRA DE NAVEGACIÓN -->
 <nav>
     <a href="#" onclick="irPagina('inicio'); return false;">
-  <img src="Nexis-Logo.png" alt="Nexis Launcher" class="logo-imagen">
-</a>
+        <img src="Nexis-Logo.png" alt="Nexis Launcher" class="logo-imagen">
+    </a>
     <div class="nav-enlaces">
         <div class="sin-sesion">
             <a href="#" class="activo" id="nav-inicio" onclick="irPagina('inicio'); return false;">Inicio</a>
@@ -398,7 +395,6 @@
         </div>
     </div>
 </nav>
-
 <!-- PÁGINAS -->
 <div class="contenedor">
     <div id="pag-inicio" class="pagina activa">
@@ -424,7 +420,6 @@
             </div>
         </div>
     </div>
-
     <div id="pag-caracteristicas" class="pagina">
         <h2 class="titulo-seccion">✨ Características Principales</h2>
         <div class="cuadricula-caracteristicas">
@@ -436,7 +431,6 @@
             <div class="tarjeta-caracteristica"><h3>🎁 Gratis siempre</h3><p>Funciones básicas gratis. Beneficios extra disponibles en Premium.</p></div>
         </div>
     </div>
-
     <div id="pag-descargar" class="pagina">
         <h2 class="titulo-seccion">📥 Cómo Descargar e Instalar</h2>
         <div class="tarjeta-pasos">
@@ -446,7 +440,6 @@
             <div class="paso"><span class="paso-num">4</span><span>¡Listo! Crea tu perfil y ¡a jugar!</span></div>
         </div>
     </div>
-
     <div id="pag-acerca" class="pagina">
         <h2 class="titulo-seccion">ℹ️ Acerca de Nexis Launcher</h2>
         <div class="tarjeta-acerca">
@@ -455,7 +448,6 @@
             <p>Únete a nuestra comunidad: <a href="https://discord.gg/EPGHRcug4" target="_blank" rel="noopener" class="enlace-discord">Discord Oficial</a></p>
         </div>
     </div>
-
     <div id="pag-dashboard" class="pagina">
         <div class="dashboard-header">
             <h1 id="saludo-usuario">Hola, Usuario</h1>
@@ -468,7 +460,6 @@
             <button class="pestaña-dash" id="tab-seguridad" onclick="cambiarPestanaDash('seguridad')">🛡️ Seguridad</button>
             <button class="pestaña-dash" id="tab-perfil" onclick="cambiarPestanaDash('perfil')">😊 Perfil</button>
         </div>
-
         <div id="dash-inicio" class="contenido-dash visible">
             <div class="tarjeta-dash">
                 <h3>Inicio <span class="etiqueta-beta">BETA</span></h3>
@@ -496,7 +487,6 @@
             </div>
             <button class="btn-cerrar-grande" onclick="cerrarSesion()">Cerrar sesión</button>
         </div>
-
         <div id="dash-general" class="contenido-dash">
             <div class="tarjeta-dash">
                 <h3 style="margin-bottom:1.5rem;">General</h3>
@@ -517,7 +507,6 @@
                 <button class="btn-guardar-verde" onclick="guardarGeneral()">Guardar cambios</button>
             </div>
         </div>
-
         <div id="dash-privacidad" class="contenido-dash">
             <div class="tarjeta-dash">
                 <h3 style="margin-bottom:1.5rem;">Privacidad</h3>
@@ -526,7 +515,6 @@
                 <div class="opcion-priv"><span>Perfil público</span><div class="switch" id="sw-perfil" onclick="toggleSwitch(this)"></div></div>
             </div>
         </div>
-
         <div id="dash-seguridad" class="contenido-dash">
             <div class="tarjeta-dash">
                 <h3 style="margin-bottom:1.5rem;">Seguridad</h3>
@@ -549,7 +537,6 @@
                 <button class="btn-guardar-verde" onclick="cambiarContrasena()">Cambiar contraseña</button>
             </div>
         </div>
-
         <div id="dash-perfil" class="contenido-dash">
             <div class="tarjeta-dash">
                 <h3 style="margin-bottom:1.5rem;">Perfil</h3>
@@ -558,12 +545,10 @@
         </div>
     </div>
 </div>
-
 <script>
 const USUARIO_KEY = 'nexis_usuario';
 const CUENTAS_KEY = 'nexis_cuentas';
 let cuentaActiva = null;
-
 window.onload = function() {
     const guardado = localStorage.getItem(USUARIO_KEY);
     if (guardado) {
@@ -571,7 +556,6 @@ window.onload = function() {
         iniciarSesionDirecto(cuenta);
     }
 };
-
 function obtenerCuentas() {
     return JSON.parse(localStorage.getItem(CUENTAS_KEY) || '[]');
 }
@@ -584,16 +568,13 @@ function actualizarCuenta(cuenta) {
     if (idx !== -1) { cuentas[idx] = cuenta; guardarCuentas(cuentas); }
     localStorage.setItem(USUARIO_KEY, JSON.stringify(cuenta));
 }
-
 function abrirModalRegistro() { document.getElementById('modal-registro').classList.add('visible'); }
 function cerrarModalRegistro() { document.getElementById('modal-registro').classList.remove('visible'); }
 function abrirModalLogin() { document.getElementById('modal-login').classList.add('visible'); }
 function cerrarModalLogin() { document.getElementById('modal-login').classList.remove('visible'); }
-
 function irPagina(nombre) {
     document.querySelectorAll('.nav-enlaces a').forEach(a => a.classList.remove('activo'));
     document.querySelectorAll('.pagina').forEach(p => p.classList.remove('activa'));
-
     const publicas = ['inicio', 'caracteristicas', 'descargar', 'acerca'];
     if (publicas.includes(nombre)) {
         document.getElementById(`pag-${nombre}`).classList.add('activa');
@@ -603,17 +584,14 @@ function irPagina(nombre) {
         if (enlaceCon) enlaceCon.classList.add('activo');
         return;
     }
-
     if (nombre === 'dashboard' && cuentaActiva) {
         document.getElementById('pag-dashboard').classList.add('activa');
         cambiarPestanaDash('inicio');
     }
 }
-
 function cambiarPestanaDash(nombre) {
     document.querySelectorAll('.contenido-dash').forEach(d => d.classList.remove('visible'));
     document.querySelectorAll('.pestaña-dash').forEach(b => b.classList.remove('activa'));
-
     if (nombre === 'inicio') {
         document.getElementById('dash-inicio').classList.add('visible');
         document.getElementById('tab-inicio').classList.add('activa');
@@ -631,19 +609,15 @@ function cambiarPestanaDash(nombre) {
         document.getElementById('tab-perfil').classList.add('activa');
     }
 }
-
 function registrarse() {
     const usuario = document.getElementById('reg-usuario').value.trim();
     const correo = document.getElementById('reg-correo').value.trim();
     const clave = document.getElementById('reg-clave').value;
     if (!usuario || !correo || !clave) return alert('⚠️ Completa todos los campos');
-
     const cuentas = obtenerCuentas();
     if (cuentas.some(c => c.correo === correo)) return alert('⚠️ Este correo ya está registrado');
-
     const ahora = new Date();
     const hora = ahora.toLocaleTimeString('es-ES', {hour:'2-digit', minute:'2-digit'});
-
     const nueva = {
         usuario, correo, clave,
         sobre: 'No has escrito nada sobre ti',
@@ -651,65 +625,51 @@ function registrarse() {
         premium: false,
         privacidad: { buscar: false, amistad: false, perfilPublico: true }
     };
-
     cuentas.push(nueva);
     guardarCuentas(cuentas);
     iniciarSesionDirecto(nueva);
     cerrarModalRegistro();
     alert('✅ ¡Cuenta creada con éxito!');
 }
-
 function iniciarSesion() {
     const correo = document.getElementById('log-correo').value.trim();
     const clave = document.getElementById('log-clave').value;
     const cuentas = obtenerCuentas();
     const cuenta = cuentas.find(c => c.correo === correo && c.clave === clave);
-
     if (!cuenta) return alert('⚠️ Correo o contraseña incorrectos');
-
     iniciarSesionDirecto(cuenta);
     cerrarModalLogin();
     alert('✅ ¡Sesión iniciada!');
 }
-
 function iniciarSesionDirecto(cuenta) {
     cuentaActiva = cuenta;
     localStorage.setItem(USUARIO_KEY, JSON.stringify(cuenta));
     document.body.classList.add('sesion-iniciada');
-
     document.getElementById('usuario-nav').textContent = '👤 ' + cuenta.usuario;
     document.getElementById('saludo-usuario').textContent = 'Hola, ' + cuenta.usuario;
     document.getElementById('campo-usuario').value = cuenta.usuario;
     document.getElementById('campo-correo').value = cuenta.correo;
     document.getElementById('campo-sobre').value = cuenta.sobre;
     document.getElementById('hora-acceso').textContent = cuenta.ultimoAcceso;
-
     document.querySelectorAll('.pagina').forEach(p => p.classList.remove('activa'));
     document.getElementById('pag-dashboard').classList.add('activa');
     cambiarPestanaDash('inicio');
-
     actualizarSwitches();
     actualizarEstadoPremium();
 }
-
 function cerrarSesion() {
     localStorage.removeItem(USUARIO_KEY);
     document.body.classList.remove('sesion-iniciada');
     cuentaActiva = null;
-
     document.querySelectorAll('.pagina').forEach(p => p.classList.remove('activa'));
     document.getElementById('pag-inicio').classList.add('activa');
-
     document.querySelectorAll('.nav-enlaces a').forEach(a => a.classList.remove('activo'));
     document.getElementById('nav-inicio').classList.add('activo');
-
     document.getElementById('campo-usuario').value = '';
     document.getElementById('campo-correo').value = '';
     document.getElementById('campo-sobre').value = '';
-
     alert('✅ Sesión cerrada correctamente');
 }
-
 function guardarGeneral() {
     if (!cuentaActiva) return;
     cuentaActiva.usuario = document.getElementById('campo-usuario').value.trim();
@@ -720,17 +680,14 @@ function guardarGeneral() {
     document.getElementById('saludo-usuario').textContent = 'Hola, ' + cuentaActiva.usuario;
     alert('✅ Cambios guardados');
 }
-
 function cambiarContrasena() {
     if (!cuentaActiva) return;
     const act = document.getElementById('clave-actual').value;
     const nva = document.getElementById('clave-nueva').value;
     const cnf = document.getElementById('clave-confirma').value;
-
     if (cuentaActiva.clave !== act) return alert('⚠️ Contraseña actual incorrecta');
     if (nva !== cnf) return alert('⚠️ Las contraseñas no coinciden');
     if (!nva || nva.length < 4) return alert('⚠️ Escribe una contraseña válida');
-
     cuentaActiva.clave = nva;
     actualizarCuenta(cuentaActiva);
     alert('✅ Contraseña cambiada');
@@ -738,7 +695,6 @@ function cambiarContrasena() {
     document.getElementById('clave-nueva').value = '';
     document.getElementById('clave-confirma').value = '';
 }
-
 function toggleSwitch(sw) {
     sw.classList.toggle('inactivo');
     if (!cuentaActiva) return;
@@ -747,14 +703,12 @@ function toggleSwitch(sw) {
     if (sw.id === 'sw-perfil') cuentaActiva.privacidad.perfilPublico = !sw.classList.contains('inactivo');
     actualizarCuenta(cuentaActiva);
 }
-
 function actualizarSwitches() {
     if (!cuentaActiva) return;
     document.getElementById('sw-buscar').classList.toggle('inactivo', !cuentaActiva.privacidad.buscar);
     document.getElementById('sw-amistad').classList.toggle('inactivo', !cuentaActiva.privacidad.amistad);
     document.getElementById('sw-perfil').classList.toggle('inactivo', !cuentaActiva.privacidad.perfilPublico);
 }
-
 function actualizarEstadoPremium() {
     if (!cuentaActiva) return;
     const estado = document.getElementById('estado-premium');
